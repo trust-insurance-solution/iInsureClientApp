@@ -30,10 +30,11 @@ export class HomePage {
     await loading.present();
 
     this._AccountsService.PostData('CreateNewClientAccount', this.data)
-      .subscribe(res => {
-        this.getSignUp = res;
-        loading.dismiss();
-      },
+        .subscribe(res => {
+          this.getSignUp = res;
+          console.log(res);
+          loading.dismiss();
+        },
         err => {
           console.log(err);
           loading.dismiss();
@@ -42,10 +43,7 @@ export class HomePage {
 
   ngOnInit() {
 
-  }
- 
-
-
+  } 
   resultMessage: any;
  
   login() { 
