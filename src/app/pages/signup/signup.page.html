@@ -1,0 +1,38 @@
+<ion-content padding>
+  <ion-row col-12>
+    <img src="../../../assets/img/logo2.png" width="70%" height="70%" class="auto">
+  </ion-row>
+
+
+  <ion-list class="top">
+    <ion-item>
+      <ion-label>User Name</ion-label>
+      <ion-input [(ngModel)]="name" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Password</ion-label>
+      <ion-input [(ngModel)]="password" type="password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label> Confirm Password</ion-label>
+      <ion-input [(ngModel)]="conpass" type="password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Email</ion-label>
+      <ion-input [(ngModel)]="email" type="email" pattern="[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]*\.([a-z]{2,4})$"></ion-input>
+    </ion-item>
+
+  </ion-list>
+  <ion-button color="dark" expand="full" (click)="signup(name,password,conpass,email)">SIGN UP</ion-button>
+
+  <ion-row col-12>
+    <ion-col size="8">
+      <p> Already a Member?</p>
+    </ion-col>
+
+    <ion-col size="4" (click)="login();">
+      <p>Login here</p>
+    </ion-col>
+  </ion-row>
+</ion-content>
