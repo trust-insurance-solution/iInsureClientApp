@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { AccountsService } from '../businessClasses/accounts.service';
 import { LoadingController } from '@ionic/angular';
-import { RouterModule, Routes } from '@angular/router';
-import { LoginPage } from '../pages/login/login.page';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,7 +17,7 @@ export class HomePage {
     Password: '',
     DeviceToken: '',
   };
-  constructor(public _AccountsService: AccountsService, public loadingController: LoadingController, public _routes: Routes) { }
+  constructor(public _AccountsService: AccountsService, public loadingController: LoadingController, public _routes: Router) { }
 
   data = '{ "Data": { "EmailAddress": "", "PhoneNumber": "0785946301", "Password": "123456789", "DeviceToken": "000" }, "Language": "en", }';
 
@@ -44,11 +43,13 @@ export class HomePage {
   ngOnInit() {
 
   }
+ 
+
 
   resultMessage: any;
  
   login() { 
-    this._routes.push(LoginPage);
+    this._routes.navigateByUrl('login');
 
   }
   SaveData() {
