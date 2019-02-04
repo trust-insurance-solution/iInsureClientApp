@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { AccountsService } from '../businessClasses/accounts.service';
 import { LoadingController } from '@ionic/angular';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
-
+import { RouterModule, Routes } from '@angular/router';
+import { LoginPage } from '../pages/login/login.page';
 
 
 @Component({
@@ -11,14 +11,14 @@ import { analyzeAndValidateNgModules } from '@angular/compiler';
   styleUrls: ['home.page.scss']
 })
 export class HomePage {
-  getSignUp: any;
 
+  getSignUp: any;
   objSignUp = {
     EmailAddress: '',
     Password: '',
     DeviceToken: '',
   };
-  constructor(public _AccountsService: AccountsService, public loadingController: LoadingController) { }
+  constructor(public _AccountsService: AccountsService, public loadingController: LoadingController, public _routes: Routes) { }
 
   data = '{ "Data": { "EmailAddress": "", "PhoneNumber": "0785946301", "Password": "123456789", "DeviceToken": "000" }, "Language": "en", }';
 
@@ -36,7 +36,7 @@ export class HomePage {
         loading.dismiss();
       },
         err => {
-          console.log(err); 
+          console.log(err);
           loading.dismiss();
         });
   }
@@ -45,8 +45,13 @@ export class HomePage {
 
   }
 
+  resultMessage: any;
+ 
+  login() { 
+    this._routes.push(LoginPage);
+
+  }
   SaveData() {
     this.getData();
   }
-
 }
