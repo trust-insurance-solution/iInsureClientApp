@@ -1,6 +1,5 @@
 {
-  "name": "iInsureClientApp1.0",
+  "name": "Insure",
   "integrations": {},
-  "type": "angular",
-  "id": "9bf4dfcc"
+  "type": "angular"
 }
