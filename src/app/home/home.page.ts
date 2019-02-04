@@ -1,33 +1,52 @@
 import { Component } from '@angular/core';
-import {GlobalService}  from '../services/global.service';
+import { AccountsService } from '../businessClasses/accounts.service';
+import { LoadingController } from '@ionic/angular';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
+
+
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  styleUrls: ['home.page.scss']
 })
 export class HomePage {
-  resultMessage:any;
-  constructor(public _GlobalService: GlobalService) {
+  getSignUp: any;
+
+  objSignUp = {
+    EmailAddress: '',
+    Password: '',
+    DeviceToken: '',
+  };
+  constructor(public _AccountsService: AccountsService, public loadingController: LoadingController) { }
+
+  data = '{ "Data": { "EmailAddress": "", "PhoneNumber": "0785946301", "Password": "123456789", "DeviceToken": "000" }, "Language": "en", }';
 
 
-   }
+  async getData() {
+    const loading = await this.loadingController.create({
+      message: 'Loading'
+    });
 
-   SaveData(){
-  
-    let data={
-        "FullName": "Faresss1",
-        "EmailAddress": "fareselkh865@yahoo.com",
-        "PhoneNumber": "42364384",
-        "Password": "43243fd",
-        "CountryId": 81   
-    }
+    await loading.present();
 
-   this.resultMessage=this._GlobalService.postService('s',data);
+    this._AccountsService.PostData('CreateNewClientAccount', this.data)
+      .subscribe(res => {
+        this.getSignUp = res;
+        loading.dismiss();
+      },
+        err => {
+          console.log(err); 
+          loading.dismiss();
+        });
+  }
 
-console.log(data.FullName);
+  ngOnInit() {
 
-   }
+  }
 
+  SaveData() {
+    this.getData();
+  }
 
 }
