@@ -30,7 +30,7 @@ export class LoginPage implements OnInit {
   };
   LoginUser() {
 this.LoginUser();
-this.postNewClientAccount('CreateNewClientAccount', this.SendData);
+this._AccountsService.PostData('CreateNewClientAccount', this.SendData);
 alert('Successfully Registered')
 
   }
