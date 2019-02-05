@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { forkJoin } from 'rxjs';
 import { appInitialize } from '@ionic/angular/dist/app-initialize';
 
-const apiUrl = "https://api.trst-ins.com/api/Client/";
+const apiUrl = "http://192.168.0.141/TrustInsurance.Services/api/Client/";
 
 @Injectable({
   providedIn: 'root'

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { AccountsService } from '../businessClasses/accounts.service';
+import { AccountsService } from '../businessClasses/account/accounts.service';
 import { LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class HomePage {
     Password: '',
     DeviceToken: '',
   };
-  constructor(public _AccountBusiness: AccountsService, public loadingController: LoadingController, public _routes: Router) { }
+  constructor(public navCtrl: NavController,public _AccountsService: AccountsService, public loadingController: LoadingController, public _routes: Router) { }
 
   data = '{ "Data": { "EmailAddress": "", "PhoneNumber": "0785946301", "Password": "123456789", "DeviceToken": "000" }, "Language": "en", }';
 
@@ -29,7 +30,7 @@ export class HomePage {
 
     await loading.present();
 
-    this._AccountBusiness.PostData('CreateNewClientAccount', this.data)
+    this._AccountsService.PostData('CreateNewClientAccount', this.data)
         .subscribe(res => {
           this.getSignUp = res;
           console.log(res);
@@ -51,6 +52,7 @@ export class HomePage {
 
   }
   SaveData() {
-    this.getData();
+    this.navCtrl.navigateForward('signup')
+   // this.getData();
   }
 }
