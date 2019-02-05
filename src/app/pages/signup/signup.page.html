@@ -7,23 +7,23 @@
   <ion-list class="top">
     <ion-item>
       <ion-label position="stacked">Full Name</ion-label>
-      <ion-input [(ngModel)]="name" type="text"></ion-input>
+      <ion-input [(ngModel)]="signUpData.FullName" type="text"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Email Address</ion-label>
-      <ion-input [(ngModel)]="email" type="email" pattern="[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]*\.([a-z]{2,4})$"></ion-input>
+      <ion-input [(ngModel)]="signUpData.EmailAddress" type="email" pattern="[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]*\.([a-z]{2,4})$"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Phone Number</ion-label>
-      <ion-input [(ngModel)]="number" type="Number"></ion-input>
+      <ion-input [(ngModel)]="signUpData.PhoneNumber" type="Number"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Password</ion-label>
-      <ion-input [(ngModel)]="password" type="password"></ion-input>
+      <ion-input [(ngModel)]="signUpData.Password" type="password"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked"> Confirm Password</ion-label>
-      <ion-input [(ngModel)]="conpass" type="password"></ion-input>
+      <ion-input [(ngModel)]="confirmPassword" type="password"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Country</ion-label>
@@ -37,7 +37,8 @@
     </ion-item>
   </ion-list>
 
-  <ion-button color="dark" expand="full" (click)="signup(name,password,conpass,email)">SIGN UP</ion-button>
+  <ion-button color="dark" expand="full" (click)="signUp(confirmPassword)">SIGN UP</ion-button>
+
 
   <ion-row col-12>
     <ion-col size="8">

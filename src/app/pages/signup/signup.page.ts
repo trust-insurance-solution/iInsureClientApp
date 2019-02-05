@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { AccountsService } from '../../businessClasses/account/accounts.service';
+import { LoadingController } from '@ionic/angular';
+
+
 
 @Component({
   selector: 'app-signup',
@@ -7,28 +11,51 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./signup.page.scss'],
 })
 export class SignupPage implements OnInit {
-  pass: any
-  conpass: any
-  email: any
+  confirmPassword:any;
+  sendData:any;
+  
+  signUpData={
+    FullName:'',
+    Password:'',
+    EmailAddress:'',
+    PhoneNumber:'42455543',
+    RoleId:3,
+    fkStatusId:1
+   }
 
-  constructor( public navCtrl: NavController) { }
+  constructor(public _AccountsService:AccountsService,
+              public _LoadingController:LoadingController, 
+              public navCtrl: NavController) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
+  login() {this.navCtrl.navigateForward('login')}
 
-  login() {
-    this.navCtrl.navigateForward('login')
-  }
+  //SignUp Data Method
+  signUp(objConfirmPassword) {
 
-  signup(name, password, conpass, email) {
-    this.conpass = conpass
-    this.pass = password
-    this.email = email
+    //Get Data From Form
+    this.sendData = {
+      Data:
+      {
+        "EmailAddress": this.signUpData.EmailAddress,
+        "PhoneNumber": this.signUpData.PhoneNumber,
+        "Password": this.signUpData.Password,
+        "FullName": this.signUpData.FullName,
+        "DeviceToken": "",
+        "RoleId": this.signUpData.RoleId,
+        "fkStatusId": this.signUpData.fkStatusId
+      },
+      "Language": "en",
+    };
 
-    if (this.pass != this.conpass)
+
+    if (this.signUpData.Password != objConfirmPassword) {
       alert('Password not correct')
-    else
-      alert('Successfully Registered')
-
+    }
+    else {
+      this._AccountsService.PostData('CreateNewClientAccount', this.sendData);
+      this.navCtrl.navigateForward('login')
+     // alert('Successfully Registered')
+    }
   }
 }
