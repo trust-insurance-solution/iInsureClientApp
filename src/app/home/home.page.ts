@@ -23,24 +23,7 @@ export class HomePage {
   data = '{ "Data": { "EmailAddress": "", "PhoneNumber": "0785946301", "Password": "123456789", "DeviceToken": "000" }, "Language": "en", }';
 
 
-  async getData() {
-    const loading = await this.loadingController.create({
-      message: 'Loading'
-    });
-
-    await loading.present();
-
-    this._AccountsService.PostData('CreateNewClientAccount', this.data)
-        .subscribe(res => {
-          this.getSignUp = res;
-          console.log(res);
-          loading.dismiss();
-        },
-        err => {
-          console.log(err);
-          loading.dismiss();
-        });
-  }
+ 
 
   ngOnInit() {
 
