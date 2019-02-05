@@ -7,7 +7,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-
+import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
 
 
 @NgModule({
@@ -18,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 
     providers: [
       StatusBar,
+      UniqueDeviceID,
       SplashScreen,
       { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
     ],

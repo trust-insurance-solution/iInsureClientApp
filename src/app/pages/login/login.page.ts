@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { AccountsService } from '../../businessClasses/account/accounts.service';
-//import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
+import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
 
 
 @Component({
@@ -12,13 +12,17 @@ import { AccountsService } from '../../businessClasses/account/accounts.service'
 })
 export class LoginPage implements OnInit {
   deviceToken;
-  constructor(public navCtrl: NavController, public _AccountsService: AccountsService) { }
-  ngOnInit() {
-    
-  /* this.uniqueDeviceID.get()
+  constructor(public navCtrl: NavController, public _AccountsService: AccountsService, private uniqueDeviceID: UniqueDeviceID) {
+   
+   
+    this.deviceToken = this.uniqueDeviceID.get()
       .then((uuid: any) => console.log(uuid))
       .catch((error: any) => console.log(error));
-      */
+   }
+  
+  
+  ngOnInit() {
+    
   }
 
   LoginData = {
@@ -32,7 +36,8 @@ export class LoginPage implements OnInit {
     {
       "EmailAddress": this.LoginData.EmailAddress,
       "PhoneNumber": this.LoginData.EmailAddress,
-      "Password": this.LoginData.Password
+      "Password": this.LoginData.Password,
+      "DeviceToken": this.deviceToken
     },
     "Language": "en",
   };
