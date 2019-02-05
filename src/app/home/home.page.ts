@@ -17,7 +17,7 @@ export class HomePage {
     Password: '',
     DeviceToken: '',
   };
-  constructor(public _AccountsService: AccountsService, public loadingController: LoadingController, public _routes: Router) { }
+  constructor(public _AccountBusiness: AccountsService, public loadingController: LoadingController, public _routes: Router) { }
 
   data = '{ "Data": { "EmailAddress": "", "PhoneNumber": "0785946301", "Password": "123456789", "DeviceToken": "000" }, "Language": "en", }';
 
@@ -29,7 +29,7 @@ export class HomePage {
 
     await loading.present();
 
-    this._AccountsService.PostData('CreateNewClientAccount', this.data)
+    this._AccountBusiness.PostData('CreateNewClientAccount', this.data)
         .subscribe(res => {
           this.getSignUp = res;
           console.log(res);
