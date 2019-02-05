@@ -1,4 +1,26 @@
 
-   .auto{
+ion-icon {
+    font-size: x-large;
+    text-align: center;
     margin: auto;
+    display: flex;
+    border: 1px solid #3171e0;
+    padding: 5px;
+    border-radius: 6vw;
+    background-color: #bbbaba;
+    color: #3171e0;
+}
+.headd{
+     color: #3171e0;
+     font-size: 5vw;
+    
+}
+.desc{
+    color: #949090
+}
+.grid{
+    display: grid;
+}
+ion-card{
+    min-height: 90%;
 }
