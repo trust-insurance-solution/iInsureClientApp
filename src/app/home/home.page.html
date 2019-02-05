@@ -6,6 +6,7 @@
   </ion-toolbar>
 </ion-header>
 
+
 <ion-content>
   <ion-slides pager="true" #mySlider (ionSlidesDidLoad)="slidesDidLoad(mySlider)">
     <ion-slide>
@@ -98,41 +99,41 @@
 
 
     <ion-col size="6" class="nopadding">
-        <ion-card>
-          <ion-row>
-            <ion-col size="4">
-              <ion-icon name="settings"></ion-icon>
-            </ion-col>
-            <ion-col size="8" class="grid">
-              <span class="headd">
-               Settings
-              </span>
-              <span class="desc">
-                  manage your
-                  account.. etc.
-              </span>
-            </ion-col>
-          </ion-row>
-        </ion-card>
-      </ion-col>
-      <ion-col size="6" class="nopadding">
-        <ion-card>
-          <ion-row>
-            <ion-col size="4">
-                <ion-icon name="information"></ion-icon>
-            </ion-col>
-            <ion-col size="8" class="grid">
-              <span class="headd">
-               About
-              </span>
-              <span class="desc">
-                  app info,
-                  about services
-              </span>
-            </ion-col>
-          </ion-row>
-        </ion-card>
-      </ion-col>
+      <ion-card>
+        <ion-row>
+          <ion-col size="4">
+            <ion-icon name="settings"></ion-icon>
+          </ion-col>
+          <ion-col size="8" class="grid">
+            <span class="headd">
+              Settings
+            </span>
+            <span class="desc">
+              manage your
+              account.. etc.
+            </span>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </ion-col>
+    <ion-col size="6" class="nopadding">
+      <ion-card>
+        <ion-row>
+          <ion-col size="4">
+            <ion-icon name="information"></ion-icon>
+          </ion-col>
+          <ion-col size="8" class="grid">
+            <span class="headd">
+              About
+            </span>
+            <span class="desc">
+              app info,
+              about services
+            </span>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </ion-col>
   </ion-row>
 
 
@@ -144,9 +145,15 @@
   <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be
     your guide.</p>
 
+  <ion-content padding>
+    <button ion-button (click)="SaveData()">Save Datad</button>
+    <h3>{{resultMessage}}</h3>
+    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be
+      your guide.</p>
 
 
 
-  <ion-button (click)="login()">Login</ion-button>
 
-</ion-content>
+    <ion-button (click)="login()">Login</ion-button>
+
+  </ion-content>

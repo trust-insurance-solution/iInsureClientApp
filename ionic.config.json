@@ -1,5 +1,7 @@
 {
   "name": "Insure",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

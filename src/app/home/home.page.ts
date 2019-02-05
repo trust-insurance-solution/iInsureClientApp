@@ -12,30 +12,34 @@ import { NavController } from '@ionic/angular';
 export class HomePage {
   @ViewChild('mySlider') slides: IonSlides;
 
-  getSignUp: any;
-  objSignUp = {
-    EmailAddress: '',
-    Password: '',
-    DeviceToken: '',
-  };
-  constructor(public navCtrl: NavController, public _AccountsService: AccountsService, public loadingController: LoadingController, public _routes: Router) { }
 
-  data = '{ "Data": { "EmailAddress": "", "PhoneNumber": "0785946301", "Password": "123456789", "DeviceToken": "000" }, "Language": "en", }';
+ 
+getSignUp: any;
+objSignUp = {
+EmailAddress: '',
+Password: '',
+DeviceToken: '',
+};
+constructor(public navCtrl: NavController,public _AccountsService: AccountsService, public loadingController: LoadingController, public _routes: Router) { }
+ 
+data ='{ "Data": { "EmailAddress": "", "PhoneNumber": "0785946301", "Password": "123456789", "DeviceToken": "000" }, "Language": "en", }';
+   
+ngOnInit() {
+ 
+}
+resultMessage: any;
+login() {
+this._routes.navigateByUrl('login');
+ 
+}
+SaveData() {
+this.navCtrl.navigateForward('signup')
+// this.getData();
+}
 
-  ngOnInit() {
 
-  }
-  resultMessage: any;
-  login() {
-    this._routes.navigateByUrl('login');
+slidesDidLoad(slides: IonSlides) {
+  slides.startAutoplay();
+}
 
-  }
-  SaveData() {
-    this.navCtrl.navigateForward('signup')
-    // this.getData();
-  }
-
-  slidesDidLoad(slides: IonSlides) {
-    slides.startAutoplay();
-  }
 }

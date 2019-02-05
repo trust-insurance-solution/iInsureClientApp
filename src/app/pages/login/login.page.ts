@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { AccountsService } from '../../businessClasses/account/accounts.service';
+//import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -8,15 +11,20 @@ import { AccountsService } from '../../businessClasses/account/accounts.service'
   //D:\Projects\iInsureClientApp\src\theme\common.scss
 })
 export class LoginPage implements OnInit {
-
-  constructor( public navCtrl: NavController,public _AccountsService:AccountsService) { }
+  deviceToken;
+  constructor(public navCtrl: NavController, public _AccountsService: AccountsService) { }
   ngOnInit() {
+    
+  /* this.uniqueDeviceID.get()
+      .then((uuid: any) => console.log(uuid))
+      .catch((error: any) => console.log(error));
+      */
   }
 
   LoginData = {
-    EmailAddress: '',
-    PhoneNumber: '',
-    Password: ''
+    EmailAddress: "",
+    PhoneNumber: "",
+    Password: ""
   }
 
   SendData = {
@@ -29,15 +37,13 @@ export class LoginPage implements OnInit {
     "Language": "en",
   };
   LoginUser() {
-this.LoginUser();
-this._AccountsService.PostData('CreateNewClientAccount', this.SendData);
-alert('Successfully Registered')
-
+    this._AccountsService.PostData('Login', this.SendData);
+    alert('Successfully Registered')
   }
-  SignUp(){
-  this.navCtrl.navigateForward('signup')
+  SignUp() {
+    this.navCtrl.navigateForward('signup')
   }
-  forgotPss(){
-   this.navCtrl.navigateForward('forgot-pass')
+  forgotPss() {
+    this.navCtrl.navigateForward('forgot-pass')
   }
 }
