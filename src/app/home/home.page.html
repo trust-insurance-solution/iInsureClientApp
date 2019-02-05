@@ -1,15 +1,139 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="dark">
     <ion-title>
-      Ionic Blank
+      Home
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
+
+  <ion-slides #mySlider (ionSlidesDidLoad)="slidesDidLoad(mySlider)" pager>
+    <ion-slide>
+      <img src="../../assets/img/bg1.jpg" width="70%" height="70%" class="auto">
+    </ion-slide>
+    <ion-slide>
+      <img src="../../assets/img/bg2.jpg" width="70%" height="70%" class="auto">
+    </ion-slide>
+    <ion-slide>
+      <img src="../../assets/img/bg3.jpg" width="70%" height="70%" class="auto">
+    </ion-slide>
+  </ion-slides>
+
+  <ion-row>
+    <ion-col size="6" class="nopadding">
+      <ion-card>
+        <ion-row>
+          <ion-col size="4">
+            <ion-icon name="paper"></ion-icon>
+          </ion-col>
+          <ion-col size="8">
+            <ion-label>Policy issuance</ion-label>
+            <span> add export insurance request</span>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </ion-col>
+
+    <ion-col size="6" class="nopadding">
+      <ion-card>
+        <ion-row>
+          <ion-col size="4">
+            <ion-icon name="timer"></ion-icon>
+          </ion-col>
+          <ion-col size="8">
+            <ion-label>Transaction history</ion-label>
+            <span> view transaction history log.</span>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </ion-col>
+
+    <ion-col size="6" class="nopadding">
+      <ion-card>
+        <ion-row>
+          <ion-col size="4">
+            <ion-icon name="person"></ion-icon>
+          </ion-col>
+          <ion-col size="8">
+            <ion-label>User Profile</ion-label>
+            <span> User info, and data.</span>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </ion-col>
+
+
+    <ion-col size="6" class="nopadding">
+      <ion-card>
+        <ion-row>
+          <ion-col size="4">
+            <ion-icon name="call"></ion-icon>
+          </ion-col>
+          <ion-col size="8">
+            <ion-label>Contact us</ion-label>
+            <span> send your questions</span>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </ion-col>
+
+    <ion-col size="6" class="nopadding">
+      <ion-card>
+        <ion-row>
+          <ion-col size="4">
+            <ion-icon name="settings"></ion-icon>
+          </ion-col>
+          <ion-col size="8">
+            <ion-label>Settings</ion-label>
+            <span> manage your account.. etc.</span>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </ion-col>
+
+    <ion-col size="6" class="nopadding">
+      <ion-card>
+        <ion-row>
+          <ion-col size="4">
+            <ion-icon name="information"></ion-icon>
+          </ion-col>
+          <ion-col size="8">
+            <ion-label>About</ion-label>
+            <span>app info, about services</span>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <button ion-button (click)="SaveData()">Save Datad</button>
-<h3>{{resultMessage}}</h3>
-  <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
+  <h3>{{resultMessage}}</h3>
+  <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be
+    your guide.</p>
 
 
 
