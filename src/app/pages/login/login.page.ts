@@ -4,7 +4,7 @@ import { AccountsService } from '../../businessClasses/account/accounts.service'
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss','../../home/home.page.scss'],
+  styleUrls: ['./login.page.scss'],
   //D:\Projects\iInsureClientApp\src\theme\common.scss
 })
 export class LoginPage implements OnInit {
@@ -37,7 +37,7 @@ alert('Successfully Registered')
   SignUp(){
   this.navCtrl.navigateForward('signup')
   }
-  lostPss(){
-   this.navCtrl.navigateForward('lost-pass')
+  forgotPss(){
+   this.navCtrl.navigateForward('forgot-pass')
   }
 }

@@ -5,8 +5,8 @@
 
 
   <ion-list class="top">
-    <ion-item>
-      <ion-label>Email</ion-label>
+    <ion-item> 
+      <ion-label  position="stacked">Email</ion-label>
       <ion-input [(ngModel)]="LoginData.EmailAddress" type="text"></ion-input>
     </ion-item>
     <ion-item>
@@ -14,12 +14,10 @@
       <ion-input [(ngModel)]="LoginData.Password" type="password"></ion-input>
     </ion-item>
   </ion-list>
-
   <ion-button color="dark" expand="full" (click)="LoginUser()">LOGIN</ion-button>
-
   <ion-row col-12>
-    <ion-col size="8" (click)="lostPss()">
-      <p> Lost your Password?</p>
+    <ion-col size="8" (click)="forgotPss()">
+      <p> Forgot your Password?</p>
     </ion-col>
 
     <ion-col size="4" (click)="SignUp();">
