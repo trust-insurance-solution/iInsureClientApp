@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, AlertController } from '@ionic/angular';
-import { AccountsService } from '../../businessClasses/account/accounts.service';
+import { GlobalService } from '../../apiCaller/global.service';
 import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
 @Component({
   selector: 'app-login',
@@ -18,7 +18,7 @@ export class LoginPage implements OnInit {
   }
 
   constructor(public navCtrl: NavController,
-    public _AccountsService: AccountsService,
+    public _GlobalService: GlobalService,
     private uniqueDeviceID: UniqueDeviceID,
     public alertController: AlertController) {
     this.deviceToken = this.uniqueDeviceID.get()
@@ -37,7 +37,7 @@ export class LoginPage implements OnInit {
       },
       "Language": "en",
     };
-    this._AccountsService.PostData('Login', this.SendData).then(data => {
+    this._GlobalService.PostData('Login', this.SendData).then(data => {
       if (data[0].Success === 'true')
         this.navCtrl.navigateForward('home');
       else {
