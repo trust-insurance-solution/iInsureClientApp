@@ -41,5 +41,9 @@ this.navCtrl.navigateForward('signup')
 slidesDidLoad(slides: IonSlides) {
   slides.startAutoplay();
 }
+slideOpts = { 
+  pager: true,
+   autoHeight: true
+   }
 
 }
