@@ -8,20 +8,29 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
+import {  IonicStorageModule } from '@ionic/storage';
+
 
 
 @NgModule({
   declarations:
     [AppComponent],
-    entryComponents: [],
-    imports: [HttpClientModule, BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  entryComponents: [],
+  imports: [
+    HttpClientModule, 
+    BrowserModule,
+     IonicModule.forRoot(),
+      AppRoutingModule,
+       IonicStorageModule.forRoot(),
+  ],
 
-    providers: [
-      StatusBar,
-      UniqueDeviceID,
-      SplashScreen,
-      { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
-    ],
+  providers: [
+    StatusBar,
+    UniqueDeviceID,
+    
+    SplashScreen,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

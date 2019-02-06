@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { AccountsService } from '../../businessClasses/account/accounts.service';
+import { GlobalService } from '../../apiCaller/global.service';
 import { LoadingController } from '@ionic/angular';
 
 
@@ -23,7 +23,7 @@ export class SignupPage implements OnInit {
     fkStatusId:1
    }
 
-  constructor(public _AccountsService:AccountsService,
+  constructor(public _GlobalService:GlobalService,
               public _LoadingController:LoadingController, 
               public navCtrl: NavController) { }
 
@@ -53,7 +53,7 @@ export class SignupPage implements OnInit {
       alert('Password not correct')
     }
     else {
-      this._AccountsService.PostData('CreateNewClientAccount', this.sendData);
+      this._GlobalService.PostData('CreateNewClientAccount', this.sendData);
       this.navCtrl.navigateForward('login')
      // alert('Successfully Registered')
     }

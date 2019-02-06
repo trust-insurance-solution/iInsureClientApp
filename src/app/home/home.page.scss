@@ -1,29 +1,31 @@
-
+ion-row{
+    height: 25vw;
+}
+ion-button{
+    height: 100%;
+}
 ion-icon {
     font-size: x-large;
     text-align: center;
     margin: auto;
-    display: flex;
-    border: 1px solid #e0e8f5;
-    padding: 5px;
-    border-radius: 6vw;
-    background-color: #f7f3f3;
-    color: #8cb6ff;
-}
-.headd{
-     color: #3171e0;
-     font-size: 5vw;
-    
-}
-.desc{
-    color: #949090
-}
+    color: #ffffff;
+} 
 .grid{
     display: grid;
 }
-ion-card{
-    min-height: 90%;
+button.button-native{
+    padding: 0px !important
 }
-   .auto{
-    margin: auto;
+
+span {
+    width: 100%;
+    font-weight: 600;
+    white-space: pre-line;
+    font-size: 3vw;
+    color: #073bb3;
+    font-weight: 600;
+}
+.des{
+    color: #777777;
+    font-size: xx-small
 }

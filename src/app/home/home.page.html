@@ -8,18 +8,114 @@
 
 
 <ion-content>
-  <ion-slides pager="true" #mySlider (ionSlidesDidLoad)="slidesDidLoad(mySlider)">
-    <ion-slide>
-      <img src="../../assets/img/bg1.jpg">
-    </ion-slide>
-    <ion-slide>
-      <img src="../../assets/img/bg2.jpg">
-    </ion-slide>
-    <ion-slide>
-      <img src="../../assets/img/bg3.jpg">
-    </ion-slide>
-  </ion-slides>
+  <div class="header-banner">
 
+    <ion-slides pager="true" #mySlider (ionSlidesDidLoad)="slidesDidLoad(mySlider)" [options]="slideOpts">
+      <ion-slide>
+        <img src="../../assets/img/bg1.jpg">
+      </ion-slide>
+      <ion-slide>
+        <img src="../../assets/img/bg2.jpg">
+      </ion-slide>
+      <ion-slide>
+        <img src="../../assets/img/bg3.jpg">
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+  <ion-row>
+    <ion-col size="4" class="nopadding">
+      <ion-button expand="full" class="nomargin">
+        <div class="grid">
+          <ion-icon name="paper"></ion-icon>
+          <span>Policy issuance</span>
+        </div>
+      </ion-button>
+    </ion-col>
+
+    <ion-col size="4" class="nopadding">
+      <ion-button expand="full" class="nomargin" color="dark">
+        <div class="grid">
+          <ion-icon name="time"></ion-icon>
+          <span>Transaction history</span>
+        </div>
+      </ion-button>
+    </ion-col>
+
+    <ion-col size="4" class="nopadding">
+      <ion-button expand="full" class="nomargin">
+        <div class="grid">
+          <ion-icon name="notifications"></ion-icon>
+          <span>notifications</span>
+        </div>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="4" class="nopadding">
+      <ion-button expand="full" class="nomargin" color="dark">
+        <div class="grid">
+          <ion-icon name="paper"></ion-icon>
+          <span>Policy issuance</span>
+        </div>
+      </ion-button>
+    </ion-col>
+
+    <ion-col size="4" class="nopadding">
+      <ion-button expand="full" class="nomargin">
+        <div class="grid">
+          <ion-icon name="time"></ion-icon>
+          <span>Transaction history</span>
+        </div>
+      </ion-button>
+    </ion-col>
+
+    <ion-col size="4" class="nopadding">
+      <ion-button expand="full" class="nomargin" color="dark">
+        <div class="grid">
+          <ion-icon name="notifications"></ion-icon>
+          <span>notifications</span>
+        </div>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+
+ <!--
+
+  <ion-row>
+      <ion-col size="4" class="nopadding">
+        <ion-button expand="full" class="nomargin nopadding" >
+          <div class="grid nopadding">
+            <ion-icon name="paper"></ion-icon>
+            <span>Policy issuance</span>
+            <span class="des">add export insurance request</span>
+          </div>
+        </ion-button>
+      </ion-col>
+  
+      <ion-col size="4" class="nopadding">
+        <ion-button expand="full" class="nomargin" color="dark">
+          <div class="grid">
+            <ion-icon name="time"></ion-icon>
+            <span>Transaction history</span>
+          </div>
+        </ion-button>
+      </ion-col>
+  
+      <ion-col size="4" class="nopadding">
+        <ion-button expand="full" class="nomargin">
+          <div class="grid">
+            <ion-icon name="notifications"></ion-icon>
+            <span>notifications</span>
+          </div>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+ --> 
+
+  <!-- 
   <ion-row>
     <ion-col size="6" class="nopadding">
       <ion-card>
@@ -134,13 +230,13 @@
         </ion-row>
       </ion-card>
     </ion-col>
-  </ion-row>
+  </ion-row> -->
 
 
 
 
 
-  <button ion-button (click)="SaveData()">Save Datad</button>
+  <!--   <button ion-button (click)="SaveData()">Save Datad</button>
   <h3>{{resultMessage}}</h3>
   <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be
     your guide.</p>
@@ -150,10 +246,9 @@
     <h3>{{resultMessage}}</h3>
     <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be
       your guide.</p>
-
-
-
-
+ -->
+  <!-- 
     <ion-button (click)="login()">Login</ion-button>
+  -->
 
-  </ion-content>
+</ion-content>
