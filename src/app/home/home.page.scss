@@ -1,11 +1,9 @@
-
 ion-row{
     height: 25vw;
 }
 ion-button{
     height: 100%;
 }
-
 ion-icon {
     font-size: x-large;
     text-align: center;
@@ -15,10 +13,19 @@ ion-icon {
 .grid{
     display: grid;
 }
+button.button-native{
+    padding: 0px !important
+}
 
 span {
     width: 100%;
+    font-weight: 600;
     white-space: pre-line;
     font-size: 3vw;
+    color: #073bb3;
     font-weight: 600;
+}
+.des{
+    color: #777777;
+    font-size: xx-small
 }
