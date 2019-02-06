@@ -1,50 +1,62 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavController, AlertController } from '@ionic/angular';
 import { AccountsService } from '../../businessClasses/account/accounts.service';
 import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
-
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
-  //D:\Projects\iInsureClientApp\src\theme\common.scss
 })
 export class LoginPage implements OnInit {
   deviceToken;
-  constructor(public navCtrl: NavController, public _AccountsService: AccountsService, private uniqueDeviceID: UniqueDeviceID) {
-   
-   
-    this.deviceToken = this.uniqueDeviceID.get()
-      .then((uuid: any) => console.log(uuid))
-      .catch((error: any) => console.log(error));
-   }
-  
-  
-  ngOnInit() {
-    
-  }
-
+  SendData: any;
+  ResponseData: any;
   LoginData = {
     EmailAddress: "",
     PhoneNumber: "",
     Password: ""
   }
 
-  SendData = {
-    Data:
-    {
-      "EmailAddress": this.LoginData.EmailAddress,
-      "PhoneNumber": this.LoginData.EmailAddress,
-      "Password": this.LoginData.Password,
-      "DeviceToken": this.deviceToken
-    },
-    "Language": "en",
-  };
-  LoginUser() {
-    this._AccountsService.PostData('Login', this.SendData);
-    alert('Successfully Registered')
+  constructor(public navCtrl: NavController,
+    public _AccountsService: AccountsService,
+    private uniqueDeviceID: UniqueDeviceID,
+    public alertController: AlertController) {
+    this.deviceToken = this.uniqueDeviceID.get()
+      .then((uuid: any) => console.log(uuid))
+      .catch((error: any) => console.log(error));
   }
+
+  LoginUser() {
+    this.SendData = {
+      Data:
+      {
+        "EmailAddress": this.LoginData.EmailAddress,
+        "PhoneNumber": this.LoginData.EmailAddress,
+        "Password": this.LoginData.Password,
+        "DeviceToken": "cbF1x6YK4_w:APA91bEZOJLaN5ZO8wfRB6WyyLIQZ_29E0RLlU4ssd7rqEOxAP1AXYCOBE07-jBQyyn6zKY6MUrqXNFIZsS186Pg-fGMeOSwoHq1tJYv53V_BYHEduiT8CehSlxpObifuMOmuDEZZWQb"
+      },
+      "Language": "en",
+    };
+    this._AccountsService.PostData('Login', this.SendData).then(data => {
+      if (data[0].Success === 'true')
+        this.navCtrl.navigateForward('home');
+      else {
+        this.showAlert('Sign-in Failed', data[0].ErrorMessage, ['OK']);
+      }
+    });
+  }
+
+  async showAlert(_subHeader: string, _message: string, _buttons: [string]) {
+    const alert = await this.alertController.create({
+      subHeader: _subHeader,
+      message: _message,
+      buttons: _buttons
+    });
+    await alert.present();
+  }
+
+  ngOnInit() { }
+
   SignUp() {
     this.navCtrl.navigateForward('signup')
   }
@@ -52,3 +64,5 @@ export class LoginPage implements OnInit {
     this.navCtrl.navigateForward('forgot-pass')
   }
 }
+
+
