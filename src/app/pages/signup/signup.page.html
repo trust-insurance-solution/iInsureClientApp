@@ -27,12 +27,23 @@
       <ion-label position="stacked">Country</ion-label>
       <ion-input [(ngModel)]="number" type="text"></ion-input>
     </ion-item>
-    <ion-item>
-      <a href="#">
-        <ion-checkbox> </ion-checkbox>
-        <ion-label class="term">I agree To the terms and condition</ion-label>
-      </a>
-    </ion-item>
+
+    <ion-row>
+      <ion-col size="2" class="nopadding nomargin">
+        <ion-item class="nopadding">
+          <ion-checkbox [(ngModel)]="agreed" > </ion-checkbox>
+        </ion-item>
+      </ion-col>
+      <ion-col size="10" class="nopadding nomargin">
+        <ion-item>
+          <a href="#" target="_self">
+            I agree To the terms and condition
+          </a>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+
   </ion-list>
   <ion-button color="dark" expand="full" (click)="signUp(confirmPassword)">SIGN UP</ion-button>
   <ion-row col-12>
