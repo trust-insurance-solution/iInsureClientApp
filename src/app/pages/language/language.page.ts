@@ -24,7 +24,6 @@ export class LanguagePage implements OnInit {
   lang(x) {
     console.log(2222)
     switch (x) {
-
       case 1:
         if (this.lan1) {
           this.language_selected = x;
@@ -78,28 +77,25 @@ export class LanguagePage implements OnInit {
 
   done() {
     if (this.language_selected == 1) {
-      this.storage.set('language', 1);
+      this.storage.set('language','en');
       console.log("dede1" + this.language_selected)
-
       this.navCtrl.navigateForward('signup')
 
     }
-    else  if (this.language_selected == 2) {
-      this.storage.set('language', 2);
+    else if (this.language_selected == 2) {
+      this.storage.set('language', 'ar');
       console.log("dede222 " + this.language_selected)
-
       this.navCtrl.navigateForward('signup')
 
     }
-    else  if (this.language_selected == 3) {
-      this.storage.set('language', 3);
+    else if (this.language_selected == 3) {
+      this.storage.set('language', 'fr');
       console.log("dede3333  " + this.language_selected)
-
       this.navCtrl.navigateForward('signup')
 
     }
     else {
-      alert("noooooo")
+      alert("Selecte a language first")
     }
 
 
