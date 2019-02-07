@@ -8,7 +8,8 @@ const routes: Routes = [
   { path: 'signup', loadChildren: './pages/signup/signup.module#SignupPageModule' },
   { path: 'rest-pass', loadChildren: './pages/rest-pass/rest-pass.module#RestPassPageModule' },
   { path: 'forgot-pass', loadChildren: './pages/forgot-pass/forgot-pass.module#ForgotPassPageModule' },
-  { path: 'language', loadChildren: './pages/language/language.module#LanguagePageModule' },
+  { path: 'language', loadChildren: './pages/language/language.module#LanguagePageModule' },  { path: 'business', loadChildren: './pages/business/business.module#BusinessPageModule' },
+
 
 
 ];
