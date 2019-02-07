@@ -6,7 +6,7 @@ import { forkJoin } from 'rxjs';
 import { Storage } from '@ionic/storage';
 import { appInitialize } from '@ionic/angular/dist/app-initialize';
 import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
-
+import { Platform } from '@ionic/angular';
 
 
 const apiUrl = "http://192.168.0.141/TrustInsurance.Services/api/Client/";
@@ -17,8 +17,10 @@ const apiUrl = "http://192.168.0.141/TrustInsurance.Services/api/Client/";
 export class GlobalService {
   _Language;
   _UserInfo;
+  _IsApp ;
+  _DeviceToken;
   constructor(private http: HttpClient,public _AlertController:AlertController,
-    private _Storage: Storage,private _UniqueDeviceID:UniqueDeviceID) { }
+    private _Storage: Storage,private _UniqueDeviceID:UniqueDeviceID,public _Platform:Platform) { }
 
 
   private _PostData(controllerName: string, data: any, 
@@ -37,7 +39,7 @@ export class GlobalService {
     return forkJoin([response1]);
   }
 
-  public PostData(controllerName: string, userData: any): Promise<any> {
+  public postData(controllerName: string, userData: any): Promise<any> {
     return new Promise((resolve, reject) => {
       this._PostData(controllerName, userData)
         .subscribe(res => {
@@ -70,21 +72,21 @@ export class GlobalService {
 
    //Method Device token
   public getDeviceToken() {
-    var deviceToken = this._UniqueDeviceID.get()
-      .then(uuid => uuid)
+    this._UniqueDeviceID.get()
+      .then(uuid => this._DeviceToken = uuid)
       .catch((error: any) => console.log(error));
-    return deviceToken;
+    return this._DeviceToken;
   }
 
    //Method Get Current Language
-  CurrentLanguage() {
+  currentLanguage() {
     this.getStorage('Lang').then(data => this._Language = data);
     return this._Language;
   }
    
 
    //Method Get User Account
-  UserInfo() {
+  userInfo() {
     this.getStorage('UserInfo').then(data => this._UserInfo = data);
     return this._UserInfo;
   }
@@ -99,7 +101,17 @@ export class GlobalService {
     await alert.present();
   }
 
-  //
+  //Method to check 
+  getPlatform(): boolean {
+    if (this._Platform.is('android') || this._Platform.is('ios')) {
+      this._IsApp = true;
+      return this._IsApp;
+    }
+    else {
+      this._IsApp = false;
+      return this._IsApp;
+    }
+  }
 
 
 

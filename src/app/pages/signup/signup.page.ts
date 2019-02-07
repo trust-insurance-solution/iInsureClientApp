@@ -51,7 +51,7 @@ export class SignupPage implements OnInit {
       alert('Password not correct')
     }
     else {
-      this._GlobalService.PostData('CreateNewClientAccount', this.sendData).then(data => {
+      this._GlobalService.postData('CreateNewClientAccount', this.sendData).then(data => {
         if (data[0].Success === 'true') {
           this._GlobalService.setStorage('UserInfo', data[0]);
           this.navCtrl.navigateForward('login')
@@ -62,6 +62,6 @@ export class SignupPage implements OnInit {
       });
     }
 
-    
+
   }
 }

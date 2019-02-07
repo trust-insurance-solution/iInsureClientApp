@@ -25,7 +25,7 @@ export class ForgotPassPage implements OnInit {
       },
       "Language": "en"
     };
-    this._GlobalService.PostData('ForgotPassword', this.forgetData).then(data => {
+    this._GlobalService.postData('ForgotPassword', this.forgetData).then(data => {
       if (data[0].Success === 'true')
         this._GlobalService.showAlert('Sign-in Failed', data[0].ErrorMessage, ['OK']);
       else

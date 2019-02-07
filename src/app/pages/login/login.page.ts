@@ -36,11 +36,11 @@ export class LoginPage implements OnInit {
         "EmailAddress": this.LoginData.EmailAddress,
         "PhoneNumber": this.LoginData.EmailAddress,
         "Password": this.LoginData.Password,
-        "DeviceToken": "cbF1x6YK4_w:APA91bEZOJLaN5ZO8wfRB6WyyLIQZ_29E0RLlU4ssd7rqEOxAP1AXYCOBE07-jBQyyn6zKY6MUrqXNFIZsS186Pg-fGMeOSwoHq1tJYv53V_BYHEduiT8CehSlxpObifuMOmuDEZZWQb"
+        "DeviceToken":this._GlobalService.getPlatform() ? this._GlobalService.getDeviceToken(): "cbF1x6YK4_w:APA91bEZOJLaN5ZO8wfRB6WyyLIQZ_29E0RLlU4ssd7rqEOxAP1AXYCOBE07-jBQyyn6zKY6MUrqXNFIZsS186Pg-fGMeOSwoHq1tJYv53V_BYHEduiT8CehSlxpObifuMOmuDEZZWQb"
       },
       "Language": "en",
     };
-    this._GlobalService.PostData('Login', this.SendData).then(data => {
+    this._GlobalService.postData('Login', this.SendData).then(data => {
       if (data[0].Success === 'true') {
         this._GlobalService.setStorage('Name', 'Fares');
         this._GlobalService.getStorage('Name').then(data => this.movie = data);
