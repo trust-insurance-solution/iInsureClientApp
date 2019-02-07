@@ -41,19 +41,11 @@ export class LoginPage implements OnInit {
       if (data[0].Success === 'true')
         this.navCtrl.navigateForward('home');
       else {
-        this.showAlert('Sign-in Failed', data[0].ErrorMessage, ['OK']);
+        this._GlobalService.showAlert('Sign-in Failed', data[0].ErrorMessage, ['OK']);
       }
     });
   }
 
-  async showAlert(_subHeader: string, _message: string, _buttons: [string]) {
-    const alert = await this.alertController.create({
-      subHeader: _subHeader,
-      message: _message,
-      buttons: _buttons
-    });
-    await alert.present();
-  }
 
   ngOnInit() { }
 
