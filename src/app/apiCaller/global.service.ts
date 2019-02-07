@@ -9,6 +9,7 @@ import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
 import { Platform } from '@ionic/angular';
 
 
+
 const apiUrl = "http://192.168.0.141/TrustInsurance.Services/api/Client/";
 
 @Injectable({
@@ -17,13 +18,13 @@ const apiUrl = "http://192.168.0.141/TrustInsurance.Services/api/Client/";
 export class GlobalService {
   _Language;
   _UserInfo;
-  _IsApp ;
+  _IsApp;
   _DeviceToken;
-  constructor(private http: HttpClient,public _AlertController:AlertController,
-    private _Storage: Storage,private _UniqueDeviceID:UniqueDeviceID,public _Platform:Platform) { }
+  constructor(private http: HttpClient, public _AlertController: AlertController,
+    private _Storage: Storage, private _UniqueDeviceID: UniqueDeviceID, public _Platform: Platform) { }
 
 
-  private _PostData(controllerName: string, data: any, 
+  private _PostData(controllerName: string, data: any,
     loggedInUserID: string = null, authorization: string = null): Observable<any> {
 
 
@@ -52,7 +53,7 @@ export class GlobalService {
   }
 
   //Set Value To Storage
-  public setStorage(_key: string, _value: string):void {
+  public setStorage(_key: string, _value: string): void {
     this._Storage.set(_key, _value);
   }
 
@@ -66,11 +67,11 @@ export class GlobalService {
   }
 
   //Delte Value from Storage
-  public deleteStorage(_key: string):void {
+  public deleteStorage(_key: string): void {
     this._Storage.remove(_key);
   }
 
-   //Method Device token
+  //Method Device token
   public getDeviceToken() {
     this._UniqueDeviceID.get()
       .then(uuid => this._DeviceToken = uuid)
@@ -78,21 +79,21 @@ export class GlobalService {
     return this._DeviceToken;
   }
 
-   //Method Get Current Language
+  //Method Get Current Language
   currentLanguage() {
     this.getStorage('Lang').then(data => this._Language = data);
     return this._Language;
   }
-   
 
-   //Method Get User Account
+
+  //Method Get User Account
   userInfo() {
     this.getStorage('UserInfo').then(data => this._UserInfo = data);
     return this._UserInfo;
   }
 
-   //Show Alert
-   public async showAlert(_subHeader: string, _message: string, _buttons: [string]) {
+  //Show Alert
+  public async showAlert(_subHeader: string, _message: string, _buttons: [string]) {
     const alert = await this._AlertController.create({
       subHeader: _subHeader,
       message: _message,
@@ -101,7 +102,7 @@ export class GlobalService {
     await alert.present();
   }
 
-  //Method to check 
+  //Check a Platform is 
   getPlatform(): boolean {
     if (this._Platform.is('android') || this._Platform.is('ios')) {
       this._IsApp = true;
@@ -113,7 +114,9 @@ export class GlobalService {
     }
   }
 
-
-
+  //Get a countries
+  getCountries(): Promise<any> {
+    return this.postData('GetAllCountryList', {});
+  }
 }
 

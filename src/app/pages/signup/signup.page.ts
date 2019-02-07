@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { GlobalService } from '../../apiCaller/global.service';
 import { LoadingController } from '@ionic/angular';
+import { getOrCreateCurrentQueries } from '@angular/core/src/render3/state';
 
 
 
@@ -13,6 +14,8 @@ import { LoadingController } from '@ionic/angular';
 export class SignupPage implements OnInit {
   confirmPassword: any;
   sendData: any;
+  countries:any;
+
 
   signUpData = {
     FullName: '',
@@ -20,6 +23,7 @@ export class SignupPage implements OnInit {
     EmailAddress: '',
     PhoneNumber: '',
     RoleId: 3,
+    Country:0,
     fkStatusId: 1
   }
 
@@ -27,7 +31,11 @@ export class SignupPage implements OnInit {
     public _LoadingController: LoadingController,
     public navCtrl: NavController) { }
 
-  ngOnInit() { }
+    
+  ngOnInit() {
+    this.countries= this._GlobalService.getCountries().then(result => {return result});
+      console.log(this.countries);
+   }
   login() { this.navCtrl.navigateForward('login') }
 
   //SignUp Data Method
@@ -40,6 +48,7 @@ export class SignupPage implements OnInit {
         "PhoneNumber": this.signUpData.PhoneNumber,
         "Password": this.signUpData.Password,
         "FullName": this.signUpData.FullName,
+        "Country":this.signUpData.Country,
         "DeviceToken": "",
         "RoleId": this.signUpData.RoleId,
         "fkStatusId": this.signUpData.fkStatusId
@@ -61,6 +70,8 @@ export class SignupPage implements OnInit {
         }
       });
     }
+
+  
 
 
   }
