@@ -2,12 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, AlertController } from '@ionic/angular';
 import { GlobalService } from '../../apiCaller/global.service';
 import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  movie;
   deviceToken;
   SendData: any;
   ResponseData: any;
@@ -25,7 +28,7 @@ export class LoginPage implements OnInit {
       .then((uuid: any) => console.log(uuid))
       .catch((error: any) => console.log(error));
   }
-
+  MyData;
   LoginUser() {
     this.SendData = {
       Data:
@@ -38,15 +41,16 @@ export class LoginPage implements OnInit {
       "Language": "en",
     };
     this._GlobalService.PostData('Login', this.SendData).then(data => {
-      if (data[0].Success === 'true')
+      if (data[0].Success === 'true') {
+        this._GlobalService.setStorage('Name', 'Fares');
+        this._GlobalService.getStorage('Name').then(data => this.movie = data);
         this.navCtrl.navigateForward('home');
+      }
       else {
         this._GlobalService.showAlert('Sign-in Failed', data[0].ErrorMessage, ['OK']);
       }
     });
   }
-
-
   ngOnInit() { }
 
   SignUp() {

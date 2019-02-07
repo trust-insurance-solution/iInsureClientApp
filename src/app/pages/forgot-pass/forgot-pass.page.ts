@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController,AlertController } from '@ionic/angular';
+import { NavController, AlertController } from '@ionic/angular';
 import { GlobalService } from '../../apiCaller/global.service';
-
 
 @Component({
   selector: 'app-forgot-pass',
@@ -9,9 +8,9 @@ import { GlobalService } from '../../apiCaller/global.service';
   styleUrls: ['./forgot-pass.page.scss'],
 })
 export class ForgotPassPage implements OnInit {
-  forgetData:any;
-  email:string;
-  constructor(public navCtrl: NavController,public _GlobalService:GlobalService,public showAlert:AlertController) { }
+  forgetData: any;
+  email: string;
+  constructor(public navCtrl: NavController, public _GlobalService: GlobalService, public showAlert: AlertController) { }
 
   ngOnInit() {
   }
@@ -28,11 +27,10 @@ export class ForgotPassPage implements OnInit {
     };
     this._GlobalService.PostData('ForgotPassword', this.forgetData).then(data => {
       if (data[0].Success === 'true')
-        this._GlobalService.showAlert('Sign-in Failed', data[0].ErrorMessage, ['OK']);    
+        this._GlobalService.showAlert('Sign-in Failed', data[0].ErrorMessage, ['OK']);
       else
         this._GlobalService.showAlert('Sign-in Failed', data[0].ErrorMessage, ['OK']);
     });
-    this.email='';
+    this.email = '';
   }
-
 }

@@ -11,29 +11,28 @@ import { LoadingController } from '@ionic/angular';
   styleUrls: ['./signup.page.scss'],
 })
 export class SignupPage implements OnInit {
-  confirmPassword:any;
-  sendData:any;
-  
-  signUpData={
-    FullName:'',
-    Password:'',
-    EmailAddress:'',
-    PhoneNumber:'42455543',
-    RoleId:3,
-    fkStatusId:1
-   }
+  confirmPassword: any;
+  sendData: any;
 
-  constructor(public _GlobalService:GlobalService,
-              public _LoadingController:LoadingController, 
-              public navCtrl: NavController) { }
+  signUpData = {
+    FullName: '',
+    Password: '',
+    EmailAddress: '',
+    PhoneNumber: '',
+    RoleId: 3,
+    fkStatusId: 1
+  }
 
-  ngOnInit() {}
-  login() {this.navCtrl.navigateForward('login')}
+  constructor(public _GlobalService: GlobalService,
+    public _LoadingController: LoadingController,
+    public navCtrl: NavController) { }
+
+  ngOnInit() { }
+  login() { this.navCtrl.navigateForward('login') }
 
   //SignUp Data Method
   signUp(objConfirmPassword) {
 
-    //Get Data From Form
     this.sendData = {
       Data:
       {
@@ -48,14 +47,21 @@ export class SignupPage implements OnInit {
       "Language": "en",
     };
 
-
     if (this.signUpData.Password != objConfirmPassword) {
       alert('Password not correct')
     }
     else {
-      this._GlobalService.PostData('CreateNewClientAccount', this.sendData);
-      this.navCtrl.navigateForward('login')
-     // alert('Successfully Registered')
+      this._GlobalService.PostData('CreateNewClientAccount', this.sendData).then(data => {
+        if (data[0].Success === 'true') {
+          this._GlobalService.setStorage('UserInfo', data[0]);
+          this.navCtrl.navigateForward('login')
+        }
+        else {
+          this._GlobalService.showAlert('Sign-up Failed', data[0].ErrorMessage, ['OK']);
+        }
+      });
     }
+
+    
   }
 }
