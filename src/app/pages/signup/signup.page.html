@@ -8,20 +8,20 @@
   <ion-list class="top" lines="none">
     <ion-item>
       <ion-label position="stacked">Full Name </ion-label>
-      <ion-input [(ngModel)]="objSignUp.Data.FullName" type="text" required></ion-input>
+      <ion-input [(ngModel)]="signUpData.FullName" type="text" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Email Address</ion-label>
-      <ion-input [(ngModel)]="objSignUp.Data.EmailAddress" type="email" required
+      <ion-input [(ngModel)]="signUpData.EmailAddress" type="email" required
         pattern="[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]*\.([a-z]{2,4})$"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Phone Number</ion-label>
-      <ion-input [(ngModel)]="objSignUp.Data.PhoneNumber" type="Number" required></ion-input>
+      <ion-input [(ngModel)]="signUpData.PhoneNumber" type="Number" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Password</ion-label>
-      <ion-input [(ngModel)]="objSignUp.Data.Password" type="password" required></ion-input>
+      <ion-input [(ngModel)]="signUpData.Password" type="password" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked"> Confirm Password</ion-label>
@@ -30,7 +30,7 @@
 
     <ion-item>
       <ion-label>Country</ion-label>
-      <ionic-selectable [(ngModel)]="objSignUp.Data.CountryId" [items]="countries" itemValueField="id" itemTextField="name"
+      <ionic-selectable [(ngModel)]="country" [items]="countries" itemValueField="Id" itemTextField="CountryName"
        [canSearch]="true"
         (onChange)="portChange($event)">
       </ionic-selectable>
