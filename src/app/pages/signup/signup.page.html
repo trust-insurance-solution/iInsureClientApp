@@ -27,9 +27,11 @@
       <ion-label position="stacked"> Confirm Password</ion-label>
       <ion-input [(ngModel)]="confirmPassword" type="password" required></ion-input>
     </ion-item>
+
     <ion-item>
       <ion-label>Country</ion-label>
-      <ionic-selectable [(ngModel)]="country" [items]="Country" itemValueField="id" itemTextField="name" [canSearch]="true"
+      <ionic-selectable [(ngModel)]="country" [items]="Country" itemValueField="id" itemTextField="name"
+       [canSearch]="true"
         (onChange)="portChange($event)">
       </ionic-selectable>
     </ion-item>

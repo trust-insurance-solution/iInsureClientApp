@@ -1,5 +1,4 @@
 import { Component, ViewChild } from '@angular/core';
-import { AccountsService } from '../businessClasses/account/accounts.service';
 import { LoadingController, IonSlides } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
@@ -20,7 +19,7 @@ EmailAddress: '',
 Password: '',
 DeviceToken: '',
 };
-constructor(public navCtrl: NavController,public _AccountsService: AccountsService, public loadingController: LoadingController, public _routes: Router) { }
+constructor(public navCtrl: NavController, public loadingController: LoadingController, public _routes: Router) { }
  
 data ='{ "Data": { "EmailAddress": "", "PhoneNumber": "0785946301", "Password": "123456789", "DeviceToken": "000" }, "Language": "en", }';
    
