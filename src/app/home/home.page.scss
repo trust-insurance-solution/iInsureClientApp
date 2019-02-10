@@ -1,8 +1,19 @@
-ion-row{
-    height: 25vw;
+.sec{
+    height: 25%;
+    background-color: red
 }
-ion-button{
-    height: 100%;
+.first{
+    height: 75%;
+    background-color: blue
+}
+ion-slides{
+    height: 100% !important;
+}
+ion-slide{
+    height: 100% !important;
+}
+.swiper-slide img{
+    height: 100% !important;
 }
 ion-icon {
     font-size: x-large;
@@ -10,22 +21,14 @@ ion-icon {
     margin: auto;
     color: #ffffff;
 } 
-.grid{
-    display: grid;
-}
-button.button-native{
-    padding: 0px !important
-}
 
-span {
-    width: 100%;
-    font-weight: 600;
-    white-space: pre-line;
-    font-size: 3vw;
-    color: #073bb3;
-    font-weight: 600;
+.fifty{
+    height: 50% ;
+    background-color: slateblue
 }
-.des{
-    color: #777777;
-    font-size: xx-small
+ion-button {
+    height: 100%;
+}
+.actName{
+    white-space: pre-line;
 }

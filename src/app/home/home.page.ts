@@ -35,8 +35,9 @@ SaveData() {
 this.navCtrl.navigateForward('signup')
 // this.getData();
 }
-
-
+notiPage(){
+  this._routes.navigateByUrl('notification');
+}
 slidesDidLoad(slides: IonSlides) {
   slides.startAutoplay();
 }

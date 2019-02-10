@@ -16,7 +16,7 @@ export class GlobalService {
   _Language;
   _UserInfo;
   _IsApp;
-  
+
   constructor(private http: HttpClient, public _AlertController: AlertController,
     private _Storage: Storage, private _UniqueDeviceID: UniqueDeviceID, public _Platform: Platform) { }
 

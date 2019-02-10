@@ -9,8 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
 import {  IonicStorageModule } from '@ionic/storage';
-
-
+import { IonicSelectableModule } from 'ionic-selectable';
 
 @NgModule({
   declarations:
@@ -18,6 +17,7 @@ import {  IonicStorageModule } from '@ionic/storage';
   entryComponents: [],
   imports: [
     HttpClientModule, 
+    IonicSelectableModule,
     BrowserModule,
      IonicModule.forRoot(),
       AppRoutingModule,
