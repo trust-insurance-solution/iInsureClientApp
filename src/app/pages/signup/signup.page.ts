@@ -26,14 +26,14 @@ export class SignupPage implements OnInit {
     Country:0,
     fkStatusId: 1
   }
-
+  
   constructor(public _GlobalService: GlobalService,
     public _LoadingController: LoadingController,
     public navCtrl: NavController) { }
 
     
-  ngOnInit() {
-    this.countries= this._GlobalService.getCountries().then(result => {return result});
+  async ngOnInit() {
+    this.countries= await this._GlobalService.getCountries().then(result => {return result});
       console.log(this.countries);
    }
   login() { this.navCtrl.navigateForward('login') }

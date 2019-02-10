@@ -10,7 +10,6 @@ import { Platform } from '@ionic/angular';
 
 
 
-const apiUrl = "http://192.168.0.141/TrustInsurance.Services/api/Client/";
 
 @Injectable({
   providedIn: 'root'
@@ -24,33 +23,44 @@ export class GlobalService {
     private _Storage: Storage, private _UniqueDeviceID: UniqueDeviceID, public _Platform: Platform) { }
 
 
-  private _PostData(controllerName: string, data: any,
-    loggedInUserID: string = null, authorization: string = null): Observable<any> {
+  // private _PostData(controllerName: string, data: any,
+  //   loggedInUserID: string = null, authorization: string = null): Observable<any> {
+ 
+  //   let response1 = this.http.post(apiUrl + controllerName, data, { headers });
+  //   return forkJoin([response1]);
+  // }
 
 
-
+  async fetchDataApi(controllerName: string, data: any,
+      loggedInUserID: string = null, authorization: string = null) {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json; charset=utf-8',
       'LoggedInUserID': loggedInUserID != null ? loggedInUserID : '',
       'Authorization': authorization != null ? authorization : ''
     });
-
-
-    let response1 = this.http.post(apiUrl + controllerName, data, { headers });
-    return forkJoin([response1]);
-  }
-
-  public postData(controllerName: string, userData: any): Promise<any> {
+    let Data = "{}";
     return new Promise((resolve, reject) => {
-      this._PostData(controllerName, userData)
+      this.http.post(apiUrl + controllerName, Data, { headers })
         .subscribe(res => {
           resolve(res);
-        },
-          err => {
-            console.log(err);
-          });
+        }, (err) => {
+          reject(err);
+        });
     });
   }
+
+
+  // public postData(controllerName: string, userData: any): Promise<any> {
+  //   return new Promise((resolve, reject) => {
+  //     this._PostData(controllerName, userData)
+  //       .subscribe(res => {
+  //         resolve(res);
+  //       },
+  //         err => {
+  //           console.log(err);
+  //         });
+  //   });
+  // }
 
   //Set Value To Storage
   public setStorage(_key: string, _value: string): void {
@@ -115,8 +125,8 @@ export class GlobalService {
   }
 
   //Get a countries
-  getCountries(): Promise<any> {
-    return this.postData('GetAllCountryList', {});
-  }
+   getCountries(): Promise<any> {
+     return this.fetchDataApi('GetAllCountryList', {});
+   }
 }
 
