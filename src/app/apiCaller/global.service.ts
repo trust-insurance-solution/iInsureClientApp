@@ -10,6 +10,7 @@ import { Platform } from '@ionic/angular';
 
 
 
+const apiUrl = "https://api.trst-ins.com/api/Client/";
 
 @Injectable({
   providedIn: 'root'
