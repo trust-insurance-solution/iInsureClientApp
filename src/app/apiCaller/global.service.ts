@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, throwError } from 'rxjs';
 import { AlertController } from '@ionic/angular';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { forkJoin } from 'rxjs';
 import { Storage } from '@ionic/storage';
-import { appInitialize } from '@ionic/angular/dist/app-initialize';
 import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
 import { Platform } from '@ionic/angular';
 
@@ -19,19 +16,11 @@ export class GlobalService {
   _Language;
   _UserInfo;
   _IsApp;
-  _DeviceToken;
+  
   constructor(private http: HttpClient, public _AlertController: AlertController,
     private _Storage: Storage, private _UniqueDeviceID: UniqueDeviceID, public _Platform: Platform) { }
 
-
-  // private _PostData(controllerName: string, data: any,
-  //   loggedInUserID: string = null, authorization: string = null): Observable<any> {
- 
-  //   let response1 = this.http.post(apiUrl + controllerName, data, { headers });
-  //   return forkJoin([response1]);
-  // }
-
-
+//Post Method
   async fetchDataApi(controllerName: string, data: any,
       loggedInUserID: string = null, authorization: string = null) {
     const headers = new HttpHeaders({
@@ -39,7 +28,7 @@ export class GlobalService {
       'LoggedInUserID': loggedInUserID != null ? loggedInUserID : '',
       'Authorization': authorization != null ? authorization : ''
     });
-    let Data = "{}";
+    let Data = data;
     return new Promise((resolve, reject) => {
       this.http.post(apiUrl + controllerName, Data, { headers })
         .subscribe(res => {
@@ -49,19 +38,6 @@ export class GlobalService {
         });
     });
   }
-
-
-  // public postData(controllerName: string, userData: any): Promise<any> {
-  //   return new Promise((resolve, reject) => {
-  //     this._PostData(controllerName, userData)
-  //       .subscribe(res => {
-  //         resolve(res);
-  //       },
-  //         err => {
-  //           console.log(err);
-  //         });
-  //   });
-  // }
 
   //Set Value To Storage
   public setStorage(_key: string, _value: string): void {
@@ -84,10 +60,9 @@ export class GlobalService {
 
   //Method Device token
   public getDeviceToken() {
-    this._UniqueDeviceID.get()
-      .then(uuid => this._DeviceToken = uuid)
-      .catch((error: any) => console.log(error));
-    return this._DeviceToken;
+  return this._UniqueDeviceID.get()
+      .then(uuid => {return uuid})
+      .catch((error: any) => console.log(error));   
   }
 
   //Method Get Current Language
@@ -124,10 +99,5 @@ export class GlobalService {
       return this._IsApp;
     }
   }
-
-  //Get a countries
-   getCountries(): Promise<any> {
-     return this.fetchDataApi('GetAllCountryList', {});
-   }
 }
 

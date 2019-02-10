@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { GlobalService } from '../../apiCaller/global.service';
 import { LoadingController } from '@ionic/angular';
-import { getOrCreateCurrentQueries } from '@angular/core/src/render3/state';
-
-
 
 @Component({
   selector: 'app-signup',
@@ -15,7 +12,7 @@ export class SignupPage implements OnInit {
   confirmPassword: any;
   sendData: any;
   countries:any;
-
+  country:number=-1;
 
   signUpData = {
     FullName: '',
@@ -23,9 +20,10 @@ export class SignupPage implements OnInit {
     EmailAddress: '',
     PhoneNumber: '',
     RoleId: 3,
-    Country:0,
-    fkStatusId: 1
-  }
+    Country: -1,
+    fkStatusId: 1,
+    DeviceToken:''
+}
   
   constructor(public _GlobalService: GlobalService,
     public _LoadingController: LoadingController,
@@ -33,14 +31,12 @@ export class SignupPage implements OnInit {
 
     
   async ngOnInit() {
-    this.countries= await this._GlobalService.getCountries().then(result => {return result});
-      console.log(this.countries);
+     await this.getCountries().then(result => this.countries= result.Data);
    }
   login() { this.navCtrl.navigateForward('login') }
 
   //SignUp Data Method
   signUp(objConfirmPassword) {
-
     this.sendData = {
       Data:
       {
@@ -48,8 +44,8 @@ export class SignupPage implements OnInit {
         "PhoneNumber": this.signUpData.PhoneNumber,
         "Password": this.signUpData.Password,
         "FullName": this.signUpData.FullName,
-        "Country":this.signUpData.Country,
-        "DeviceToken": "",
+        "Country":this.country > 0 ? this.country : null,
+        "DeviceToken": this._GlobalService.getPlatform() ? this._GlobalService.getDeviceToken(): "cbF1x6YK4_w:APA91bEZOJLaN5ZO8wfRB6WyyLIQZ_29E0RLlU4ssd7rqEOxAP1AXYCOBE07-jBQyyn6zKY6MUrqXNFIZsS186Pg-fGMeOSwoHq1tJYv53V_BYHEduiT8CehSlxpObifuMOmuDEZZWQb",
         "RoleId": this.signUpData.RoleId,
         "fkStatusId": this.signUpData.fkStatusId
       },
@@ -60,19 +56,25 @@ export class SignupPage implements OnInit {
       alert('Password not correct')
     }
     else {
-      this._GlobalService.postData('CreateNewClientAccount', this.sendData).then(data => {
-        if (data[0].Success === 'true') {
+      this.postCreateNewClientAccount().then(data =>{
+        if(data.Success === 'true') {
           this._GlobalService.setStorage('UserInfo', data[0]);
           this.navCtrl.navigateForward('login')
         }
         else {
-          this._GlobalService.showAlert('Sign-up Failed', data[0].ErrorMessage, ['OK']);
-        }
+          this._GlobalService.showAlert('Sign-up Failed', data.ErrorMessage, ['OK']);
+        }         
       });
     }
+  }
 
-  
+  //Get a countries
+  getCountries(): Promise<any> {
+    return this._GlobalService.fetchDataApi('GetAllCountryList', {});
+  }
 
-
+  //Post Create New Client Account
+  postCreateNewClientAccount(): Promise<any> {
+    return this._GlobalService.fetchDataApi('CreateNewClientAccount', this.sendData)
   }
 }
