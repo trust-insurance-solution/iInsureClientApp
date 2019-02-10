@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { GlobalService } from '../../apiCaller/global.service';
 import { LoadingController } from '@ionic/angular';
-
+import { SignUpEntity } from '../../../entity/SignUpEntity';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.page.html',
@@ -10,7 +10,7 @@ import { LoadingController } from '@ionic/angular';
 })
 export class SignupPage implements OnInit {
   confirmPassword: any;
-  sendData: any;
+  objSignUp: SignUpEntity;
   countries:any;
   country:number=-1;
 
@@ -37,7 +37,7 @@ export class SignupPage implements OnInit {
 
   //SignUp Data Method
   signUp(objConfirmPassword) {
-    this.sendData = {
+    this.objSignUp = {
       Data:
       {
         "EmailAddress": this.signUpData.EmailAddress,
@@ -75,6 +75,6 @@ export class SignupPage implements OnInit {
 
   //Post Create New Client Account
   postCreateNewClientAccount(): Promise<any> {
-    return this._GlobalService.fetchDataApi('CreateNewClientAccount', this.sendData)
+    return this._GlobalService.fetchDataApi('CreateNewClientAccount', this.objSignUp)
   }
 }
