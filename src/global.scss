@@ -25,16 +25,8 @@
 .nopadding{
     padding: 0px !important;
 }
-ion-input{
-    background-color: #E7E5F2 !important;
-    border-radius: 2vw;
-    margin-top: 5px !important;
-}
 .nomargin{
     margin: 0px !important;
-}
-input {
-    padding-left: 15px !important;
 }
 .top{
     margin-top: 5vw;
@@ -45,4 +37,8 @@ input {
 }
 .pl2{
     padding-left: 2vw;
+}
+.item-highlight {
+    height: var(--full-highlight-height);
+    z-index: 999;
 }

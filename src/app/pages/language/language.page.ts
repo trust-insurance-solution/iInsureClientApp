@@ -29,11 +29,9 @@ export class LanguagePage implements OnInit {
           this.language_selected = x;
           console.log("xx" + x)
           console.log("d" + this.language_selected)
-
           this.lan1 = false
           this.lan2 = true
           this.lan3 = true
-
         }
         else {
           this.lan1 = true
@@ -45,8 +43,6 @@ export class LanguagePage implements OnInit {
           this.language_selected = x;
           console.log("xx" + x)
           console.log("d" + this.language_selected)
-
-
           this.lan2 = false
           this.lan1 = true
           this.lan3 = true
@@ -61,7 +57,6 @@ export class LanguagePage implements OnInit {
           this.language_selected = x;
           console.log("xx" + x)
           console.log("d" + this.language_selected)
-
           this.lan3 = false
           this.lan1 = true
           this.lan2 = true
@@ -77,7 +72,7 @@ export class LanguagePage implements OnInit {
 
   done() {
     if (this.language_selected == 1) {
-      this.storage.set('Lang','en');
+      this.storage.set('Lang', 'en');
       console.log("dede1" + this.language_selected)
       this.navCtrl.navigateForward('signup')
 

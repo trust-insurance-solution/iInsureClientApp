@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { SignupPage } from './signup.page';
+import { IonicSelectableModule } from 'ionic-selectable';
 
 const routes: Routes = [
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    IonicSelectableModule,
     RouterModule.forChild(routes)
   ],
   declarations: [SignupPage]
