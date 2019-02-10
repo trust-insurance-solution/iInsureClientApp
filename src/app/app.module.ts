@@ -10,6 +10,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
 import {  IonicStorageModule } from '@ionic/storage';
 import { IonicSelectableModule } from 'ionic-selectable';
+import {Camera} from '@ionic-native/camera/ngx';
+
 
 @NgModule({
   declarations:
@@ -28,6 +30,7 @@ import { IonicSelectableModule } from 'ionic-selectable';
     StatusBar,
     UniqueDeviceID,
     SplashScreen,
+    Camera,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
