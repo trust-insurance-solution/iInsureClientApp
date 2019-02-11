@@ -2,7 +2,9 @@
     height: 47%;
     margin-top: 19%;
 }
-
+.homeColor{
+    background: linear-gradient(to right, #4372ff 0%, #801afe 100%);
+}
 .circle{
     border: #ffffff 1px solid;
     height: 100%;
@@ -11,7 +13,11 @@
     padding: 5px;
     margin: auto;
 }
-
+img.avatar {
+    display: flex !important;
+    margin: auto;
+    border-radius: 50%;
+}
 .name{
     color: #ffffff;
     text-align: center;
@@ -45,11 +51,6 @@ ion-slides{
     padding-top: 0px
 }
 
-ion-icon.arrow{
-    font-size: 12vw;
-    color: #615f65;
-    font-weight: 700;
-}
 ion-icon.ic {
     font-size: xx-large;
     color: #9c47fc;

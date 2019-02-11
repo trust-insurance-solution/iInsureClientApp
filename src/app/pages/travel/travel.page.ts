@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { IonSlides } from '@ionic/angular';
 
 @Component({
   selector: 'app-travel',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./travel.page.scss'],
 })
 export class TravelPage implements OnInit {
+  @ViewChild('mySlider') slides: IonSlides;
 
   constructor() { }
 
   ngOnInit() {
   }
-
+  slidesDidLoad(slides: IonSlides) {
+    slides.startAutoplay();
+   
+  }
 }

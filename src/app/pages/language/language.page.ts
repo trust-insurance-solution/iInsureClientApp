@@ -9,10 +9,11 @@ import { AlertController, NavController } from '@ionic/angular';
   styleUrls: ['./language.page.scss'],
 })
 export class LanguagePage implements OnInit {
-  lan1: boolean = true
-  lan2: boolean = false
-  lan3: boolean = false
 
+  lan1: boolean = true
+  lan2: boolean = true
+  lan3: boolean = true
+ 
 
 
   language_selected = 0
@@ -27,42 +28,43 @@ export class LanguagePage implements OnInit {
       case 1:
         if (this.lan1) {
           this.language_selected = x;
-          console.log("xx" + x)
-          console.log("d" + this.language_selected)
+          console.log("xx11 " + x)
+          console.log("d11 " + this.language_selected)
           this.lan1 = false
           this.lan2 = true
           this.lan3 = true
+         
         }
         else {
-          this.lan1 = true
+          //  this.lan1 = true
+          console.log("fasleee")
         }
         break;
-
       case 2:
         if (this.lan2) {
           this.language_selected = x;
-          console.log("xx" + x)
-          console.log("d" + this.language_selected)
+          console.log("xx22 " + x)
+          console.log("d22 " + this.language_selected)
           this.lan2 = false
           this.lan1 = true
           this.lan3 = true
         }
         else {
-          this.lan2 = true
+          // this.lan2 = true
         }
         break;
 
       case 3:
         if (this.lan3) {
           this.language_selected = x;
-          console.log("xx" + x)
-          console.log("d" + this.language_selected)
+          console.log("xx11 " + x)
+          console.log("d22 " + this.language_selected)
           this.lan3 = false
           this.lan1 = true
           this.lan2 = true
         }
         else {
-          this.lan3 = true
+          // this.lan3 = true
         }
         break;
     }

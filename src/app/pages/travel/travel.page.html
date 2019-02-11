@@ -1,9 +1,33 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>travel</ion-title>
+  <ion-toolbar color="dark">
+    <ion-title>Travel</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+  <ion-list class="top" lines="none">
+    <ion-item>
+      <ion-label position="stacked">Start Date </ion-label>
+      <ion-input name="startDate" type="time" required></ion-input>
+    </ion-item>
 
+    <ion-item>
+      <ion-label position="stacked">End Date </ion-label>
+      <ion-input name="endDate" type="time" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Destination Country</ion-label>
+      <ionic-selectable [(ngModel)]="Dcountry" name="Dcountry" [items]="Dcountries" itemValueField="Id"
+        itemTextField="DName" [canSearch]="true" (onChange)="Dcountry($event)">
+      </ionic-selectable>
+    </ion-item>
+
+    <ion-item detail>
+      <ion-label>Add a person </ion-label>
+    </ion-item>
+
+    <ion-button color="dark" expand="full" (click)="k()">Get Quotation</ion-button>
+
+  </ion-list>
 </ion-content>

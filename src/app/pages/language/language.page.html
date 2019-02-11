@@ -1,23 +1,15 @@
 <ion-content>
-    <div class="first">
-        <ion-buttons slot="end">
-          <ion-icon name="notifications" class="noti" (click)="notiPage()"></ion-icon>
-        </ion-buttons>
-        <ion-grid>
-          <ion-row>
-            <ion-col size="4" offset="4" class="nopadding">
-              <div class="circle">
-                <img class="avatar" src="../../assets/img/avatar.png">
-              </div>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col size="12" class="nopadding auto">
-              <h6 class="name">Tasneem Khalifeh</h6>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </div>
+  <div class="first lanColor">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="8" offset="2" class="nopadding">
+          <div class="circle">
+            <img class="avatar" src="assets/img/logo.png">
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 
   <div class="ttop">
     <h4 class="lan">Change Language</h4>
@@ -25,22 +17,21 @@
     <h4 class="lan">Cambiar idioma</h4>
   </div>
 
-
   <ion-row>
     <ion-col size="4">
-      <ion-button fill="outline" expand="block" (click)="lang(1)">
+      <ion-button [color]="lan1 ? 'medium' : 'dark'" expand="block" (click)="lang(1)">
         <img src="../../../assets/img/english.png">
         <span class="city">English</span>
       </ion-button>
     </ion-col>
     <ion-col size="4">
-      <ion-button fill="outline" expand="block" (click)="lang(2)">
+      <ion-button [color]="lan2 ? 'medium' : 'dark'" expand="block" (click)="lang(2)">
         <img src="../../../assets/img/jordan.png">
         <span class="city">العربية</span>
       </ion-button>
     </ion-col>
     <ion-col size="4">
-      <ion-button fill="outline" expand="block" (click)="lang(3)">
+      <ion-button [color]="lan3 ? 'medium' : 'dark'"  expand="block" (click)="lang(3)">
         <img src="../../../assets/img/france.png">
         <span class="city">Francés</span>
       </ion-button>

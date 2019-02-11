@@ -2,10 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-
 import { IonicModule } from '@ionic/angular';
-
 import { TravelPage } from './travel.page';
+import { IonicSelectableModule } from 'ionic-selectable';
 
 const routes: Routes = [
   {
@@ -18,9 +17,10 @@ const routes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
+    IonicSelectableModule,
     IonicModule,
     RouterModule.forChild(routes)
   ],
   declarations: [TravelPage]
 })
-export class TravelPageModule {}
+export class TravelPageModule { }
