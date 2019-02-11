@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-business',
@@ -8,7 +8,8 @@ import { Router } from '@angular/router';
 })
 export class BusinessPage implements OnInit {
 
-  constructor(public _routes: Router) { }
+
+  constructor(public navCtrl: NavController) { } 
 
   ngOnInit() {
   }
@@ -17,9 +18,11 @@ export class BusinessPage implements OnInit {
   }
 
   travelPage(){
-    this._routes.navigateByUrl('travel');
+    this.navCtrl.navigateForward('travel');
 
+  } 
+  goToHome(){
+    this.navCtrl.navigateForward('homeBL')
   }
-
 
 }

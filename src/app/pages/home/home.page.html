@@ -3,7 +3,66 @@
     <ion-title>home</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content padding>
-
+  <table>
+    <tr>
+      <td>Full Name</td>
+      <td><input type="text" [(ngModel)]="objHome.Data.FullName" name="FullName" /></td>
+    </tr>
+    <tr>
+      <td>National</td>
+      <td><input type="number" [(ngModel)]="objHome.Data.NationalID" name="NationalID" /></td>
+    </tr>
+    <tr>
+      <td>Some Insured</td>
+      <td><input type="number" [(ngModel)]="objHome.Data.Fk_SomeInsured" name="Fk_SomeInsured" /></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <input type="radio" name="IsApartment" [value]="true" [(ngModel)]="objHome.Data.IsApartment"> Apartment
+        <input type="radio" name="IsApartment" [value]="false" [(ngModel)]="objHome.Data.IsApartment"> Villa
+      </td>
+    </tr>
+    <tr>
+      <td>Size</td>
+      <td><input type="number" [(ngModel)]="objHome.Data.SizeOfApartmentOrVilla" name="SizeOfApartmentOrVilla" /></td>
+    </tr>
+    <tr>
+      <td>Detailed Location</td>
+      <td><input type="text" [(ngModel)]="objHome.Data.DetailedLocation" name="DetailedLocation" /></td>
+    </tr>
+    <tr>
+      <td>Number Of Floors If Villa</td>
+      <td><input type="number" [(ngModel)]="objHome.Data.NumberOfFloorsIfVilla" name="NumberOfFloorsIfVilla" /></td>
+    </tr>
+    <tr>
+      <td>Which Floor If Apartment</td>
+      <td><input type="number" [(ngModel)]="objHome.Data.WhichFloorIfApartment" name="WhichFloorIfApartment" /></td>
+    </tr>
+    <tr>
+      <td>Number Of Rooms</td>
+      <td><input type="number" [(ngModel)]="objHome.Data.NumberOFRooms" name="NumberOFRooms" /></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <input type="radio" name="IsRented" [value]="true" [(ngModel)]="objHome.Data.IsRented"> Rented
+        <input type="radio" name="IsRented" [value]="false" [(ngModel)]="objHome.Data.IsRented"> not Rented
+      </td>
+    </tr>
+    <tr>
+      <td>عمر البناء</td>
+      <td><input type="date" [(ngModel)]="objHome.Data.DateCreatedApartmentOrVilla" name="DateCreatedApartmentOrVilla" /></td>
+    </tr>
+    <tr>
+      <td>Email</td>
+      <td><input type="text" [(ngModel)]="objHome.Data.Email" name="Email" /></td>
+    </tr>
+    <tr>
+      <td>Telephone</td>
+      <td><input type="text" [(ngModel)]="objHome.Data.Telephone" name="Telephone" /></td>
+    </tr>
+  </table>
+  <button ion-button (click)="InsertHome()">Click it</button>
 </ion-content>

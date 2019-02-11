@@ -10,42 +10,45 @@ import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  movie;
   deviceToken;
-  sendData: any;
+  Lang:string;
+  loginData = {
+    Data:
+    {
+      EmailAddress: '',
+      PhoneNumber: '',
+      Password: '',
+      DeviceToken: ''
+    },
+    Language: ''
+  };
   ResponseData: any;
-  LoginData = {
-    EmailAddress: "",
-    PhoneNumber: "",
-    Password: ""
-  }
+  userInfo: any;
+
 
   constructor(public navCtrl: NavController,
     public _GlobalService: GlobalService,
     private uniqueDeviceID: UniqueDeviceID,
     public alertController: AlertController) {
     this.deviceToken = !this._GlobalService.getPlatform() ? this._GlobalService.getDeviceToken() : "cbF1x6YK4_w:APA91bEZOJLaN5ZO8wfRB6WyyLIQZ_29E0RLlU4ssd7rqEOxAP1AXYCOBE07-jBQyyn6zKY6MUrqXNFIZsS186Pg-fGMeOSwoHq1tJYv53V_BYHEduiT8CehSlxpObifuMOmuDEZZWQb";
+    this._GlobalService.getStorage('Lang').then((val) => {
+      this.Lang = val;
+    });
   }
 
   LoginUser() {
-    this.sendData = {
-      Data:
-      {
-        "EmailAddress": this.LoginData.EmailAddress,
-        "PhoneNumber": this.LoginData.EmailAddress,
-        "Password": this.LoginData.Password,
-        "DeviceToken": this.deviceToken
-      },
-      "Language": "en",
-    };
-    this.postLogin().then(data => {
-      if (data.Success === 'true') {
-        this._GlobalService.setStorage('Name', 'Fares');
-        this._GlobalService.getStorage('Name').then(data => this.movie = data);
+    this.loginData.Data.DeviceToken = this.deviceToken;
+    this.loginData.Data.PhoneNumber = this.loginData.Data.EmailAddress;
+    this.loginData.Language = this.Lang;
+
+    this.postLogin().then(res => {
+      if (res.Success === 'true') {
+        console.log(this.loginData);
+        this._GlobalService.setStorage('UserInfo', res.Data);
         this.navCtrl.navigateForward('home');
       }
       else {
-        this._GlobalService.showAlert('Sign-in Failed', data.ErrorMessage, ['OK']);
+        this._GlobalService.showAlert('Sign-in Failed', res.ErrorMessage, ['OK']);
       }
     });
   }
@@ -57,7 +60,7 @@ export class LoginPage implements OnInit {
     this.navCtrl.navigateForward('forgot-pass')
   }
   postLogin(): Promise<any> {
-    return this._GlobalService.fetchDataApi('Login', this.sendData)
+    return this._GlobalService.fetchDataApi('Login', this.loginData);
   }
 }
 
