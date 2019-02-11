@@ -17,14 +17,20 @@ import { stringify } from '@angular/core/src/util';
 
 export class SignupPage implements OnInit {
   confirmPassword: any;
+
+  objSignUp: any;
   countries: any;
   country: number = -1;
   agreed: boolean = false;
 
 
+
   constructor(public _GlobalService: GlobalService,
     public _LoadingController: LoadingController,
     public navCtrl: NavController) { }
+
+
+
 
   async ngOnInit() {
     await this.getCountries().then(result => this.countries = result.Data);
@@ -43,13 +49,13 @@ export class SignupPage implements OnInit {
     Language: ''
   }
 
-
   login() { this.navCtrl.navigateForward('login') }
 
   //SignUp Data Method
   signUp(objConfirmPassword) {
     this._GlobalService.getStorage("Lang").then(val => { this.objUserInfo.Language = val; });
     this.objUserInfo.Data.DeviceToken = this._GlobalService.getPlatform() ? '"' + this._GlobalService.getDeviceToken() + '"' : "cbF1x6YK4_w:APA91bEZOJLaN5ZO8wfRB6WyyLIQZ_29E0RLlU4ssd7rqEOxAP1AXYCOBE07-jBQyyn6zKY6MUrqXNFIZsS186Pg-fGMeOSwoHq1tJYv53V_BYHEduiT8CehSlxpObifuMOmuDEZZWQb";
+
 
     if (this.objUserInfo.Data.Password != objConfirmPassword) {
       alert('Password not correct')
