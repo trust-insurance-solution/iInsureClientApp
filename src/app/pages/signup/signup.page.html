@@ -1,4 +1,25 @@
-<ion-content padding> 
+<ion-content padding>
+
+  <div class="first">
+    <ion-buttons slot="end">
+      <ion-icon name="notifications" class="noti" (click)="notiPage()"></ion-icon>
+    </ion-buttons>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4" offset="4" class="nopadding">
+          <div class="circle">
+            <img class="avatar" src="../../assets/img/avatar.png">
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12" class="nopadding auto">
+          <h6 class="name">Tasneem Khalifeh</h6>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
   <ion-row col-12>
     <img src="../../../assets/img/logo2.png" width="70%" height="70%" class="auto">
   </ion-row>
@@ -25,11 +46,11 @@
       <ion-input [(ngModel)]="confirmPassword" name="confirmPassword" type="password" required></ion-input>
     </ion-item>
 
-    <ion-item> 
+    <ion-item>
       <ion-label>Country</ion-label>
-      <ionic-selectable [(ngModel)]="country" name="country" [items]="countries" itemValueField="Id" itemTextField="CountryName"
-        [canSearch]="true" (onChange)="portChange($event)">
- 
+      <ionic-selectable [(ngModel)]="country" name="country" [items]="countries" itemValueField="Id"
+        itemTextField="CountryName" [canSearch]="true" (onChange)="portChange($event)">
+
       </ionic-selectable>
     </ion-item>
 
@@ -47,16 +68,17 @@
         </ion-item>
       </ion-col>
     </ion-row>
-  
-    <ion-button color="dark" *ngIf="!allInfo" disabled ="true" expand="full" (click)="signUp(confirmPassword)">SIGN UP</ion-button>
-    <ion-button color="dark" *ngIf="allInfo"  expand="full" (click)="signUp(confirmPassword)">SIGN UP</ion-button>
 
-  <ion-row col-12>
-    <ion-col size="8">
-      <p> Already a Member?</p>
-    </ion-col>
-    <ion-col size="4" (click)="login();">
-      <p>Login here</p>
-    </ion-col>
-  </ion-row>
+    <ion-button color="dark" *ngIf="!allInfo" disabled="true" expand="full" (click)="signUp(confirmPassword)">SIGN UP
+    </ion-button>
+    <ion-button color="dark" *ngIf="allInfo" expand="full" (click)="signUp(confirmPassword)">SIGN UP</ion-button>
+
+    <ion-row col-12>
+      <ion-col size="8">
+        <p> Already a Member?</p>
+      </ion-col>
+      <ion-col size="4" (click)="login();">
+        <p>Login here</p>
+      </ion-col>
+    </ion-row>
 </ion-content>

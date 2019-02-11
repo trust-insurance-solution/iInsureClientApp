@@ -19,6 +19,24 @@
 *{
     font-family: CenturyGothic !important;
 }
+.first{
+    height: 42%;
+    background: linear-gradient(to right, #4372ff 0%, #801afe 100%);
+    border-bottom-left-radius: 60% 40%;
+    border-bottom-right-radius: 60% 40%;
+}
+ion-icon.noti {
+    font-size: x-large;
+    text-align: center;
+    margin: 1vw 3vw 0 auto;
+    color: #ffffff;
+} 
+img.avatar {
+    display: flex !important;
+    margin: auto;
+    border-radius: 50%;
+}
+
 .auto{
     margin: auto;
 }
