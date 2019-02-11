@@ -10,7 +10,12 @@ const routes: Routes = [
   { path: 'forgot-pass', loadChildren: './pages/forgot-pass/forgot-pass.module#ForgotPassPageModule' },
   { path: 'language', loadChildren: './pages/language/language.module#LanguagePageModule' },
   { path: 'business', loadChildren: './pages/business/business.module#BusinessPageModule' },
-  { path: 'notification', loadChildren: './pages/notification/notification.module#NotificationPageModule' },
+  { path: 'notification', loadChildren: './pages/notification/notification.module#NotificationPageModule' },  { path: 'home', loadChildren: './pages/home/home.module#HomePageModule' },
+  { path: 'office', loadChildren: './pages/office/office.module#OfficePageModule' },
+  { path: 'life', loadChildren: './pages/life/life.module#LifePageModule' },
+  { path: 'pa', loadChildren: './pages/pa/pa.module#PaPageModule' },
+  { path: 'travel', loadChildren: './pages/travel/travel.module#TravelPageModule' },
+
 
 
 
