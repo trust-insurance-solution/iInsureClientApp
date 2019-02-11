@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { GlobalService } from '../../apiCaller/global.service';
 import { LoadingController } from '@ionic/angular';
-
+import { FormsModule } from '@angular/forms';
 import { SignUpEntity } from '../../../entity/SignUpEntity';
 import { IonicSelectableModule, IonicSelectableComponent } from 'ionic-selectable';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-signup',
@@ -14,6 +15,7 @@ import { IonicSelectableModule, IonicSelectableComponent } from 'ionic-selectabl
 export class SignupPage implements OnInit {
   confirmPassword: any;
 
+  allInfo = true
 
   objSignUp: any;
   countries: any;
@@ -31,15 +33,14 @@ export class SignupPage implements OnInit {
 
   constructor(public _GlobalService: GlobalService,
     public _LoadingController: LoadingController,
-    public navCtrl: NavController) { }
-
-
+    public navCtrl: NavController) {
+  }
 
 
   async ngOnInit() {
     await this.getCountries().then(result => this.countries = result.Data);
   }
-  
+
   login() { this.navCtrl.navigateForward('login') }
 
   //SignUp Data Method
@@ -66,6 +67,10 @@ export class SignupPage implements OnInit {
       alert('Password not correct')
     }
     else {
+      console.log(this.allInfo)
+      this.allInfo = true
+      console.log(this.allInfo)
+
       this.postCreateNewClientAccount().then(data => {
         if (data.Success === 'true') {
           this._GlobalService.setStorage('UserInfo', data[0]);
