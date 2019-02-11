@@ -47,6 +47,8 @@ export class HomePage {
   }
   next() {
     this.slides.slideNext();
-
+  }
+  businessPage(){
+    this._routes.navigateByUrl('../business');
   }
 }

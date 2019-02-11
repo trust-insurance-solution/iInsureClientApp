@@ -1,4 +1,4 @@
-<ion-content padding>
+<ion-content padding> 
   <ion-row col-12>
     <img src="../../../assets/img/logo2.png" width="70%" height="70%" class="auto">
   </ion-row>
@@ -47,10 +47,10 @@
         </ion-item>
       </ion-col>
     </ion-row>
+  
+    <ion-button color="dark" *ngIf="!allInfo" disabled ="true" expand="full" (click)="signUp(confirmPassword)">SIGN UP</ion-button>
+    <ion-button color="dark" *ngIf="allInfo"  expand="full" (click)="signUp(confirmPassword)">SIGN UP</ion-button>
 
-
-  </ion-list>
-  <ion-button color="dark" expand="full" (click)="signUp(confirmPassword)">SIGN UP</ion-button>
   <ion-row col-12>
     <ion-col size="8">
       <p> Already a Member?</p>
