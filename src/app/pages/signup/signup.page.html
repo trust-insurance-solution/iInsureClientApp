@@ -31,8 +31,7 @@
     <ion-item>
       <ion-label>Country</ion-label>
       <ionic-selectable [(ngModel)]="country" [items]="Country" itemValueField="id" itemTextField="name"
-       [canSearch]="true"
-        (onChange)="portChange($event)">
+        [canSearch]="true" (onChange)="portChange($event)">
       </ionic-selectable>
     </ion-item>
 
