@@ -1,45 +1,41 @@
 <ion-content padding>
-
-
-
   <ion-row col-12>
     <img src="../../../assets/img/logo2.png" width="70%" height="70%" class="auto">
   </ion-row>
   <ion-list class="top" lines="none">
     <ion-item>
       <ion-label position="stacked">Full Name </ion-label>
-      <ion-input [(ngModel)]="signUpData.FullName" type="text" required></ion-input>
+      <ion-input [(ngModel)]="objUserInfo.Data.FullName" name="FullName" type="text" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Email Address</ion-label>
-      <ion-input [(ngModel)]="signUpData.EmailAddress" type="email" required
+      <ion-input [(ngModel)]="objUserInfo.Data.EmailAddress" name="EmailAddress" type="email" required
         pattern="[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]*\.([a-z]{2,4})$"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Phone Number</ion-label>
-      <ion-input [(ngModel)]="signUpData.PhoneNumber" type="Number" required></ion-input>
+      <ion-input [(ngModel)]="objUserInfo.Data.PhoneNumber" name="PhoneNumber" type="Number" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Password</ion-label>
-      <ion-input [(ngModel)]="signUpData.Password" type="password" required></ion-input>
+      <ion-input [(ngModel)]="objUserInfo.Data.Password" name="Password" type="password" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked"> Confirm Password</ion-label>
-      <ion-input [(ngModel)]="confirmPassword" type="password" required></ion-input>
+      <ion-input [(ngModel)]="confirmPassword" name="confirmPassword" type="password" required></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label>Country</ion-label>
-      <ionic-selectable [(ngModel)]="country" [items]="countries" itemValueField="Id" itemTextField="CountryName"
-       [canSearch]="true"
-        (onChange)="portChange($event)">
+      <ionic-selectable [(ngModel)]="country" name="country" [items]="countries" itemValueField="Id" itemTextField="CountryName"
+        [canSearch]="true" (onChange)="portChange($event)">
       </ionic-selectable>
     </ion-item>
 
     <ion-row>
       <ion-col size="2" class="nopadding nomargin">
         <ion-item class="nopadding">
-          <ion-checkbox [(ngModel)]="agreed"> </ion-checkbox>
+          <ion-checkbox [(ngModel)]="agreed" name="agreed"> </ion-checkbox>
         </ion-item>
       </ion-col>
       <ion-col size="10" class="nopadding nomargin">
