@@ -21,36 +21,38 @@ export class GlobalService {
     private _Storage: Storage, private _UniqueDeviceID: UniqueDeviceID, public _Platform: Platform) { }
 
 //Post Method
-  async fetchDataApi(controllerName: string, data: any,
-      loggedInUserID: string = null, authorization: string = null) {
+  async fetchDataApi(controllerName: string, data: any,AccessToken:string=null,
+    loggedInUserID: string = null, authorization: string = null) {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json; charset=utf-8',
       'LoggedInUserID': loggedInUserID != null ? loggedInUserID : '',
-      'Authorization': authorization != null ? authorization : ''
+      'Authorization': authorization != null ? authorization : '',
+      'AccessToken': AccessToken != null ? AccessToken : ''
     });
     let Data = data;
+    
     return new Promise((resolve, reject) => {
       this.http.post(apiUrl + controllerName, Data, { headers })
         .subscribe(res => {
           resolve(res);
         }, (err) => {
           reject(err);
+          console.log("Error "+err);
         });
     });
   }
 
   //Set Value To Storage
-  public setStorage(_key: string, _value: string): void {
+  public setStorage(_key, _value) {
     this._Storage.set(_key, _value);
   }
 
-  //Get Value in Storage
-  public getStorage(_key: string): Promise<any> {
-    return new Promise(resolve => {
-      this._Storage.get(_key).then((data) => {
-        resolve(data);
-      });
-    })
+ 
+
+ public getStorage(_key) {
+    return this._Storage.get(_key).then((val) => {
+      return val;
+    });
   }
 
   //Delte Value from Storage
