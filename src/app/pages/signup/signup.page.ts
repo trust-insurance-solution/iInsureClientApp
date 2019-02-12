@@ -28,7 +28,7 @@ export class SignupPage implements OnInit {
   Password: AbstractControl
   confirmPassword: AbstractControl
   countr: AbstractControl;
-
+  check: AbstractControl
   mail: "/^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/"
 
   constructor(public _GlobalService: GlobalService,
@@ -65,6 +65,9 @@ export class SignupPage implements OnInit {
 
       countr: new FormControl('', Validators.compose([
         Validators.required])),
+
+      check: new FormControl('', Validators.compose([
+        Validators.required])),
     });
 
     this.FullName = this.formgroup.controls['FullName']
@@ -73,6 +76,7 @@ export class SignupPage implements OnInit {
     this.Password = this.formgroup.controls['Password']
     this.confirmPassword = this.formgroup.controls['confirmPassword']
     this.countr = this.formgroup.controls['countr']
+    this.check = this.formgroup.controls['check']
 
 
   }
@@ -86,7 +90,7 @@ export class SignupPage implements OnInit {
 
   runTimeChange(ev: any) {
     let val = ev.target.value;
-    console.log("Ddddddddddd "+ val.value)
+    console.log("Ddddddddddd " + val.value)
   }
 
   async ngOnInit() {
