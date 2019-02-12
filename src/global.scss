@@ -22,6 +22,8 @@
 .inner-scroll.scroll-y{
     background-color: #000000 !important;
 }
+
+
 //First Div 
 .first{
     height: 42%;
@@ -55,4 +57,12 @@ ion-icon.noti {
 }
 .pl2{
     padding-left: 2vw;
+}
+
+.coverageModal{
+    .modal-wrapper{
+         height: 40% !important;
+         border-radius: 6vw;
+         margin: 0 25px;
+    }
 }

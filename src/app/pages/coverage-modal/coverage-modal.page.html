@@ -1,0 +1,28 @@
+<ion-content padding>
+
+  <ion-list>
+
+    <ion-radio-group>
+      <ion-list-header>
+        <h1>
+          Select
+        </h1>
+      </ion-list-header>
+      <ion-list-header>
+        <h4>from the option below</h4>
+      </ion-list-header>
+
+      <ion-item *ngFor="let entry of coverage">
+        <ion-label>{{entry.value}}</ion-label>
+        <ion-radio slot="end" [(ngModel)]="entry.isChecked"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+
+</ion-content>
+
+<ion-footer class="nopadding">
+  <ion-toolbar class="nopadding">
+    <ion-button class="nopadding" (click)="done();" Expand="full">Done</ion-button>
+  </ion-toolbar>
+</ion-footer>

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { GlobalService } from '../../apiCaller/global.service';
-import { NavController } from '@ionic/angular';
+import { NavController, ModalController } from '@ionic/angular';
 import { HomeResponse } from '../../../entity/HomeEntity';
-
+import { FormsModule, Validators, FormControl, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
+import { IonicSelectableModule, IonicSelectableComponent } from 'ionic-selectable';
+import { CoverageModalPage } from '../coverage-modal/coverage-modal.page';
 
 
 @Component({
@@ -10,7 +12,16 @@ import { HomeResponse } from '../../../entity/HomeEntity';
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
+
+
+
 export class HomePage implements OnInit {
+
+  apartment: boolean = true
+
+  formgroup: FormGroup
+  FullName: AbstractControl
+  NationalID: AbstractControl
   lang: string;
   userID: number;
   accessToken: string;
@@ -40,7 +51,23 @@ export class HomePage implements OnInit {
     LoggedInUserID: 0,
   };
 
-  constructor(public _GlobalService: GlobalService, public navCtrl: NavController) {
+  constructor(public _GlobalService: GlobalService, public navCtrl: NavController, public formbuilder: FormBuilder, public modalCtrl: ModalController) {
+
+    //FORM
+    this.formgroup = formbuilder.group({
+      FullName: new FormControl('', Validators.compose([
+        Validators.maxLength(8),
+        Validators.pattern('[a-zA-Z ]*'),
+        Validators.required])),
+
+      NationalID: new FormControl('', Validators.compose([
+        Validators.required])),
+
+    });
+    this.FullName = this.formgroup.controls['FullName']
+    this.NationalID = this.formgroup.controls['NationalID']
+
+
     this._GlobalService.getStorage('Lang').then((val) => {
       this.lang = val;
     });
@@ -51,6 +78,24 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit() { }
+
+  async coverageModal() {
+    const modal = await this.modalCtrl.create({
+      component: CoverageModalPage, cssClass: "coverageModal"
+
+    })
+    console.log("fe")
+    await modal.present();
+  }
+
+  //Event for selectable Nationality
+  Nationality(event: {
+    component: IonicSelectableComponent,
+    value: any
+  }) {
+    console.log('nationlID:', event.value);
+  }
+
 
   InsertHome() {
     this.objHome.Data.NationalID = this.objHome.Data.NationalID > 0 ? this.objHome.Data.NationalID : null;
@@ -69,5 +114,20 @@ export class HomePage implements OnInit {
   }
   private postInsertNewHome(): Promise<any> {
     return this._GlobalService.fetchDataApi('InsertNewHomeEntry', this.objHome, this.accessToken, this.userID.toString());
+  }
+
+
+
+  type(x) {
+    console.log("teem" + x)
+    switch (x) {
+      case 1:
+        this.apartment = true
+        break;
+
+      case 2:
+        this.apartment = false
+        break;
+    }
   }
 }
