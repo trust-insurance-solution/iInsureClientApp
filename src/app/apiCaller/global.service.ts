@@ -21,23 +21,22 @@ export class GlobalService {
     private _Storage: Storage, private _UniqueDeviceID: UniqueDeviceID, public _Platform: Platform) { }
 
 //Post Method
-  async fetchDataApi(controllerName: string, data: any,AccessToken:string=null,
-    loggedInUserID: string = null, authorization: string = null) {
+  async fetchDataApi(controllerName: string, data: any, authorization: string = null,
+    loggedInUserID: string = null) {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json; charset=utf-8',
       'LoggedInUserID': loggedInUserID != null ? loggedInUserID : '',
-      'Authorization': authorization != null ? authorization : '',
-      'AccessToken': AccessToken != null ? AccessToken : ''
+      'Authorization': authorization != null ? authorization : ''
     });
     let Data = data;
-    
+
     return new Promise((resolve, reject) => {
       this.http.post(apiUrl + controllerName, Data, { headers })
         .subscribe(res => {
           resolve(res);
         }, (err) => {
           reject(err);
-          console.log("Error "+err);
+          console.log("Error " + err);
         });
     });
   }
@@ -48,7 +47,7 @@ export class GlobalService {
   }
 
  
-
+//get Value from Storage
  public getStorage(_key) {
     return this._Storage.get(_key).then((val) => {
       return val;
