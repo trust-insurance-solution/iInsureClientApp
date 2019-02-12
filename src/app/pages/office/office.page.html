@@ -5,5 +5,97 @@
 </ion-header>
 
 <ion-content padding>
-
+  <table>
+    <tr>
+      <td>Full Name</td>
+      <td><input type="text" [(ngModel)]="objOffice.Data.FullName" name="FullName" /></td>
+    </tr>
+    <tr>
+      <td>Nationality</td>
+      <td><input type="number" [(ngModel)]="objOffice.Data.NationalID" name="NationalID" /></td>
+    </tr>
+    <tr>
+      <td>Some Insured</td>
+      <td><input type="number" [(ngModel)]="objOffice.Data.Fk_SomeInsured" name="Fk_SomeInsured" /></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <input type="radio" name="IsApartment" [value]="true" [(ngModel)]="objOffice.Data.IsApartment"> Apartment
+        <input type="radio" name="IsApartment" [value]="false" [(ngModel)]="objOffice.Data.IsApartment"> Villa
+      </td>
+    </tr>
+    <tr>
+      <td>Size Of Office</td>
+      <td><input type="number" [(ngModel)]="objOffice.Data.SizeOfOfficeOrVilla" name="SizeOfOfficeOrVilla" /></td>
+    </tr>
+    <tr>
+      <td>Detailed Location</td>
+      <td><input type="text" [(ngModel)]="objOffice.Data.DetailedLocation" name="DetailedLocation" /></td>
+    </tr>
+    <tr>
+      <td>Which Floor If Apartment</td>
+      <td><input type="number" [(ngModel)]="objOffice.Data.WhichFloorIfApartment" name="WhichFloorIfApartment" /></td>
+    </tr>
+    <tr>
+      <td>How Many Floors if villa</td>
+      <td><input type="number" [(ngModel)]="objOffice.Data.HowManyFloors" name="HowManyFloors" /></td>
+    </tr>
+    <tr>
+      <td>Number OF Rooms</td>
+      <td><input type="number" [(ngModel)]="objOffice.Data.NumberOFRooms" name="NumberOFRooms" /></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <input type="radio" name="IsRented" [value]="true" [(ngModel)]="objOffice.Data.IsRented"> Rented
+        <input type="radio" name="IsRented" [value]="false" [(ngModel)]="objOffice.Data.IsRented"> not Rented
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <input type="radio" name="IsOccuied" [value]="true" [(ngModel)]="objOffice.Data.IsOccuied"> Occuied
+        <input type="radio" name="IsOccuied" [value]="false" [(ngModel)]="objOffice.Data.IsOccuied"> Not Occuied
+      </td>
+    </tr>
+    <tr>
+      <td>عمر البناء</td>
+      <td><input type="date" [(ngModel)]="objOffice.Data.DateApartmentOrVillaBuilt" name="DateApartmentOrVillaBuilt" /></td>
+    </tr>
+    <tr>
+      <td>رقم الترخيص</td>
+      <td><input type="number" [(ngModel)]="objOffice.Data.CompanyRegistrationNumber" name="CompanyRegistrationNumber" /></td>
+    </tr>
+    <tr>
+      <td>الوظيفه الحالية</td>
+      <td><input type="text" [(ngModel)]="objOffice.Data.Occupancy" name="Occupancy" /></td>
+    </tr>
+    <tr>
+      <td>Number Of Employees</td>
+      <td><input type="number" [(ngModel)]="objOffice.Data.NumberOfEmployees" name="NumberOfEmployees" /></td>
+    </tr>
+    <tr>
+      <td>Availability</td>
+      <td>
+        <input type="radio" name="IsAvailability" [value]="true" [(ngModel)]="objOffice.Data.IsAvailability">
+        Availability
+        <input type="radio" name="IsAvailability" [value]="false" [(ngModel)]="objOffice.Data.IsAvailability"> Not
+        Availability
+      </td>
+    </tr>
+    <tr>
+      <td>Email</td>
+      <td><input type="email" [(ngModel)]="objOffice.Data.Email" name="Email" /></td>
+    </tr>
+    <tr>
+      <td>Telephone</td>
+      <td><input type="text" [(ngModel)]="objOffice.Data.Telephone" name="Telephone" /></td>
+    </tr>
+    <tr>
+      <td>Image</td>
+      <td><input type="text" [(ngModel)]="objOffice.Data.Images" name="Images" /></td>
+    </tr>
+  </table>
+  <button ion-button (click)="InsertOffice()">Click it</button>
 </ion-content>
