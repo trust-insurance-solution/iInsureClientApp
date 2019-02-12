@@ -6,8 +6,6 @@
 
 <ion-content>
   <ion-grid>
-
-
     <ion-row>
       <ion-col size="6" (click)="goToHome()">
         <ion-button expand="full" color="medium" class="nomargin">
@@ -24,13 +22,13 @@
     </ion-row>
 
     <ion-row>
-      <ion-col size="6" (click)="travelPage()">
+      <ion-col size="6" (click)="goToTravel()">
         <ion-button expand="full" color="medium" class="nomargin">
           <ion-icon class="ii" name="jet"></ion-icon>
           <label class="pl2">Travel</label>
         </ion-button>
       </ion-col>
-      <ion-col size="6">
+      <ion-col size="6" (click)="goToOffice()">
         <ion-button expand="full" color="medium" class="nomargin">
           <ion-icon class="ii" name="business"></ion-icon>
           <label class="pl2">Office</label>
@@ -39,37 +37,19 @@
     </ion-row>
 
     <ion-row>
-      <ion-col size="6">
+      <ion-col size="6" (click)="goToPersonalAccidents()">
         <ion-button expand="full" color="medium" class="nomargin">
           <ion-icon class="ii" name="person"></ion-icon>
-          <label class="pl2">User</label>
+          <label class="pl2">Personal<br/>Accidents</label>
         </ion-button>
       </ion-col>
-      <ion-col size="6">
+      <ion-col size="6" (click)="goToMotor()">
         <ion-button expand="full" color="medium" class="nomargin">
           <ion-icon class="ii" name="car"></ion-icon>
           <label class="pl2">Car</label>
         </ion-button>
       </ion-col>
     </ion-row>
-
-
-    <ion-row class="top">
-      <ion-col size="6">
-        <ion-button expand="full" color="medium" class="nomargin btn">
-          <ion-icon class="ii" name="ios-home"></ion-icon>
-          <label class="pl2">Home</label>
-        </ion-button>
-      </ion-col>
-      <ion-col size="6">
-        <ion-button expand="full" color="medium" class="nomargin btn">
-          <ion-icon class="ii" name="umbrella"></ion-icon>
-          <label class="pl2">Life</label>
-        </ion-button>
-      </ion-col>
-    </ion-row>
-
-
   </ion-grid>
 
 

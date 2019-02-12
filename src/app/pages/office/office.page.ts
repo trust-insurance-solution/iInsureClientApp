@@ -55,18 +55,12 @@ export class OfficePage implements OnInit {
     this.objOffice.LoggedInUserID = this.userID;
     this.objOffice.Language = this.lang;
     this.postOfficeEntry().then((res) => {
-      if (res.Success === 'true') {
+      if (res.Success === 'true')
         this.responseData = res.Data.CompanyListResult as OfficeResponse[];
-        console.log(this.responseData);
-      }
-      else if (res.ErrorCode === "NotAutharized") {
+      else if (res.ErrorCode === "NotAutharized")
         this._GlobalService.showAlert('Not Autharized...', res.ErrorMessage, ['OK']);
-        console.log("NotAutharized");
-      }
-      else {
-        console.log("false");
+      else
         this._GlobalService.showAlert('', res.ErrorMessage, ['OK']);
-      }
     });
   }
   private postOfficeEntry(): Promise<any> {

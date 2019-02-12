@@ -9,24 +9,30 @@ import { NavController } from '@ionic/angular';
 export class BusinessPage implements OnInit {
 
 
-  constructor(public navCtrl: NavController) { } 
+  constructor(public navCtrl: NavController) { }
 
   ngOnInit() {
   }
   goBack() {
-   // this.navCtrl.goBack();
+    // this.navCtrl.goBack();
   }
-
-  travelPage(){
-    this.navCtrl.navigateForward('travel');
-
-  } 
   goToHome() {
     this.navCtrl.navigateForward('homeBL');
   }
-
   goToLife() {
     this.navCtrl.navigateForward('life');
+  }
+  goToTravel() {
+    this.navCtrl.navigateForward('travel');
+  }
+  goToOffice() {
+    this.navCtrl.navigateForward('office');
+  }
+  goToPersonalAccidents() {
+    this.navCtrl.navigateForward('pa');
+  }
+  goToMotor() {
+    this.navCtrl.navigateForward('motor');
   }
 
 }

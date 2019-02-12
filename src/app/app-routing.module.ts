@@ -16,6 +16,8 @@ const routes: Routes = [
   { path: 'life', loadChildren: './pages/life/life.module#LifePageModule' },
   { path: 'pa', loadChildren: './pages/pa/pa.module#PaPageModule' },
   { path: 'travel', loadChildren: './pages/travel/travel.module#TravelPageModule' },
+  { path: 'motor', loadChildren: './pages/motor/motor.module#MotorPageModule' },
+
 
 
 
