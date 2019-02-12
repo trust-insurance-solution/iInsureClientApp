@@ -2,72 +2,92 @@
   <ion-row col-12>
     <img src="assets/img/logo.png" width="70%" height="70%" class="auto">
   </ion-row>
-  <ion-list class="top" lines="none">
 
 
-    <ion-item>
-      <ion-label position="stacked">Full Name </ion-label>
-      <ion-input [(ngModel)]="objUserInfo.Data.FullName" name="FullName" type="text" required></ion-input>
-    </ion-item>
+  <form [formGroup]="formgroup" (ngSubmit)="onSubmit(formgroup.value)">
+    <ion-list class="top" lines="none">
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Full Name</ion-label>
+        <ion-input *ngIf="!(FullName.hasError('required') && FullName.touched)" formControlName="FullName"
+          [(ngModel)]="objUserInfo.Data.FullName" name="FullName" type="text" required></ion-input>
+        <ion-input *ngIf="FullName.hasError('required') && FullName.touched" formControlName="FullName" name="FullName"
+          type="text" required placeholder="Enter a valid Name" color="danger" class="error"></ion-input>
+      </ion-item>
 
 
-    <ion-item>
-      <ion-label position="stacked">Email Address</ion-label>
-      <ion-input [(ngModel)]="objUserInfo.Data.EmailAddress" name="EmailAddress" type="email" required
-        pattern="[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]*\.([a-z]{2,4})$"></ion-input>
-    </ion-item>
+      <ion-item lines="none">
+        <ion-label position="stacked">Email Address</ion-label>
+        <ion-input *ngIf="!(EmailAddress.hasError('required') && EmailAddress.touched)" formControlName="EmailAddress"
+          [(ngModel)]="objUserInfo.Data.EmailAddress" name="EmailAddress" type="text" required></ion-input>
+        <ion-input *ngIf="EmailAddress.hasError('required') && EmailAddress.touched" formControlName="EmailAddress"
+          name="EmailAddress" type="text" required placeholder="Enter a valid Name" color="danger" class="error">
+        </ion-input>
+      </ion-item>
 
 
-    <ion-item>
-      <ion-label position="stacked">Phone Number</ion-label>
-      <ion-input [(ngModel)]="objUserInfo.Data.PhoneNumber" name="PhoneNumber" type="Number" required></ion-input>
-    </ion-item>
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Phone Number</ion-label>
+        <ion-input *ngIf="!(PhoneNumber.hasError('required') && PhoneNumber.touched)"
+          formControlName="PhoneNumber" [(ngModel)]="objUserInfo.Data.PhoneNumber" name="PhoneNumber" type="Number"
+          required></ion-input>
+
+        <ion-input (ionInput)="runTimeChange($event)" *ngIf="PhoneNumber.hasError('required') &&
+        PhoneNumber.touched" formControlName="PhoneNumber"
+        name="PhoneNumber" type="text" required placeholder="Enter a valid Phone Number" color="danger" class="error">
+        </ion-input>
+
+      </ion-item>
 
 
-    <ion-item>
-      <ion-label position="stacked">Password</ion-label>
-      <ion-input [(ngModel)]="objUserInfo.Data.Password" name="Password" type="password" required></ion-input>
-    </ion-item>
+      <ion-item lines="none">
+        <ion-label position="stacked">Password</ion-label>
+        <ion-input *ngIf="!(Password.hasError('required') && Password.touched)" formControlName="Password"
+          [(ngModel)]="objUserInfo.Data.Password" name="Password" type="Password" required></ion-input>
+        <ion-input *ngIf="Password.hasError('required') && Password.touched" formControlName="Password" name="Password"
+          type="text" required placeholder="Enter a valid Password" color="danger" class="error"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Confirm Password</ion-label>
+        <ion-input *ngIf="!(confirmPassword.hasError('required') && confirmPassword.touched)"
+          formControlName="confirmPassword" [(ngModel)]="objUserInfo.Data.confirmPassword" name="confirmPassword"
+          type="Password" required></ion-input>
+        <ion-input *ngIf="confirmPassword.hasError('required') && confirmPassword.touched"
+          formControlName="confirmPassword" name="confirmPassword" type="text" required
+          placeholder="Enter a valid Password" color="danger" class="error"></ion-input>
+      </ion-item>
 
 
-    <ion-item>
-      <ion-label position="stacked"> Confirm Password</ion-label>
-      <ion-input [(ngModel)]="confirmPassword" name="confirmPassword" type="password" required></ion-input>
-    </ion-item>
 
-    <ion-item>
-      <ion-label>Country</ion-label>
-      <ionic-selectable [(ngModel)]="country" name="country" [items]="countries" itemValueField="Id"
-        itemTextField="CountryName" [canSearch]="true" (onChange)="portChange($event)">
-      </ionic-selectable>
-    </ion-item>
 
-    <ion-row>
-      <ion-col size="2" class="nopadding nomargin">
-        <ion-item class="nopadding">
-          <ion-checkbox [(ngModel)]="agreed" name="agreed"> </ion-checkbox>
-        </ion-item>
-      </ion-col>
-      <ion-col size="10" class="nopadding nomargin">
-        <ion-item>
-          <a href="#" target="_self">
-            I agree To the terms and condition
-          </a>
-        </ion-item>
-      </ion-col>
-    </ion-row>
 
-    <ion-button color="dark" *ngIf="!allInfo" disabled="true" expand="full" (click)="signUp(confirmPassword)">SIGN UP
+      <ion-item>
+        <ion-label>Country</ion-label>
+        <ionic-selectable [(ngModel)]="objUserInfo.Data.country" name="country" [items]="countries" itemValueField="Id"
+          formControlName="countr" itemTextField="CountryName" [canSearch]="true" (onChange)="portChange($event)"
+          required>
+        </ionic-selectable>
+      </ion-item>
+    </ion-list>
+
+    <ion-button color="dark" type="submit" [disabled]="!formgroup.valid" expand="full"
+      (click)="signUp(confirmPassword)">SIGN UP
     </ion-button>
-    <ion-button color="dark" *ngIf="allInfo" expand="full" (click)="signUp(confirmPassword)">SIGN UP</ion-button>
+  </form>
 
-    <ion-row col-12>
-      <ion-col size="8">
-        <p> Already a Member?</p>
-      </ion-col>
-      <ion-col size="4" (click)="login();">
-        <p>Login here</p>
-      </ion-col>
-    </ion-row>
-  </ion-list>
+
+
+
+
+  <ion-row col-12>
+    <ion-col size="8">
+      <p> Already a Member?</p>
+    </ion-col>
+    <ion-col size="4" (click)="login();">
+      <p>Login here</p>
+    </ion-col>
+  </ion-row>
+
 </ion-content>

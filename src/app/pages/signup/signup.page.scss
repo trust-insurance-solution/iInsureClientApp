@@ -16,3 +16,7 @@ ion-input{
    z-index: 0 !important;
    padding-left: 20px !important;
 }
+ion-input.error{
+    border: #9a1515 1px solid !important;
+    color: #9a1515;
+}
