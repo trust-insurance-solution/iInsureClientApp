@@ -81,7 +81,21 @@
           type="text" required placeholder="Enter a valid Name" color="danger" class="error"></ion-input>
       </ion-item>
 
+      <ion-item lines="none">
+        <ion-label position="stacked">Detailed Location</ion-label>
+        <ion-input *ngIf="!(FullName.hasError('required') && FullName.touched)" formControlName="FullName"
+          [(ngModel)]="objHome.Data.FullName" name="FullName" type="number" required></ion-input>
+        <ion-input *ngIf="FullName.hasError('required') && FullName.touched" formControlName="FullName" name="FullName"
+          type="text" required placeholder="Enter a valid Name" color="danger" class="error"></ion-input>
+      </ion-item>
 
+      <ion-item lines="none" *ngIf='apartment'>
+        <ion-label  position="stacked">Floor Number</ion-label>
+        <ion-input *ngIf="!(FullName.hasError('required') && FullName.touched)" formControlName="FullName"
+          [(ngModel)]="objHome.Data.FullName" name="FullName" type="number" required></ion-input>
+        <ion-input *ngIf="FullName.hasError('required') && FullName.touched" formControlName="FullName" name="FullName"
+          type="text" required placeholder="Enter a valid Name" color="danger" class="error"></ion-input>
+      </ion-item>
 
 
 

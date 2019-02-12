@@ -15,12 +15,9 @@ const routes: Routes = [
   { path: 'office', loadChildren: './pages/office/office.module#OfficePageModule' },
   { path: 'life', loadChildren: './pages/life/life.module#LifePageModule' },
   { path: 'pa', loadChildren: './pages/pa/pa.module#PaPageModule' },
-  { path: 'travel', loadChildren: './pages/travel/travel.module#TravelPageModule' },  { path: 'coverage-modal', loadChildren: './pages/coverage-modal/coverage-modal.module#CoverageModalPageModule' },
-
-
-
-
-
+  { path: 'travel', loadChildren: './pages/travel/travel.module#TravelPageModule' },
+  { path: 'coverage-modal', loadChildren: './pages/coverage-modal/coverage-modal.module#CoverageModalPageModule' },
+  { path: 'motor', loadChildren: './pages/motor/motor.module#MotorPageModule' },
 ];
 
 @NgModule({

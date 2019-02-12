@@ -1,4 +1,4 @@
-export interface PersonalAccidentsResponse {
+export interface OfficeResponse {
     PlanId: number;
     CompanyId: number;
     CompanyName: string;
@@ -10,3 +10,6 @@ export interface PersonalAccidentsResponse {
     PDFFilePath: string;
     RateWithCurrency: string;
 }
+
+
+

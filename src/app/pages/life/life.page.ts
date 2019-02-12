@@ -38,6 +38,7 @@ export class LifePage implements OnInit {
     });
     this.accessToken = "elNRWitrbFpYLzl0UGFnZ3FEUW1RMTNmTWhQTXkvL1FYbGhYNU5tSEtmWT06Mi8xMi8yMDE5OjYzNjg1NTY3NTE1ODI4MzI4Nw==";
   }
+  
   ngOnInit() { }
 
   InsertLife() {
@@ -53,9 +54,11 @@ export class LifePage implements OnInit {
         this._GlobalService.showAlert('', res.ErrorMessage, ['OK']);
     });
   }
+
   private postLifeEntry(): Promise<any> {
     return this._GlobalService.fetchDataApi('InsertNewLifeEntry', this.objLife, this.accessToken, this.userID.toString());
   }
+
 }
 
 
