@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GlobalService } from '../../apiCaller/global.service';
 import { NavController } from '@ionic/angular';
+import { HomeResponse } from '../../../entity/HomeEntity';
 
 
 
@@ -12,7 +13,8 @@ import { NavController } from '@ionic/angular';
 export class HomePage implements OnInit {
   lang: string;
   userID: number;
-  accessToken: string = 'N1lVV0E2Yk5XM0dmS3ZuZGZLTUhvU0pWaXlDbzF3UE9Mbm40bTdmRm93ST06Mi8xMi8yMDE5OjYzNjg1NTU5NjI5ODI1MDEwMQ==';
+  accessToken: string;
+  responseData: HomeResponse[];
   objHome = {
     Data: {
       DateCreatedApartmentOrVilla: "",
@@ -45,6 +47,7 @@ export class HomePage implements OnInit {
     this._GlobalService.getStorage('UserInfo').then((val) => {
       this.userID = val.UserId;
     });
+    this.accessToken = "elNRWitrbFpYLzl0UGFnZ3FEUW1RMTNmTWhQTXkvL1FYbGhYNU5tSEtmWT06Mi8xMi8yMDE5OjYzNjg1NTY3NTE1ODI4MzI4Nw==";
   }
 
   ngOnInit() { }
@@ -55,16 +58,16 @@ export class HomePage implements OnInit {
     this.objHome.LoggedInUserID = this.userID;
     this.objHome.Data.FkCreatedByUserId = this.userID;
     this.postInsertNewHome().then(res => {
-      if (res.Success === 'true') {
-        this.navCtrl.navigateForward('GoToNutationsNotCreated');
-      }
-      else {
-        this._GlobalService.showAlert('Failed...', res.ErrorMessage, ['OK']);
-      }
+      if (res.Success === 'true')
+        this.responseData = res.Data.CompanyListResult as HomeResponse[];
+      else if (res.ErrorCode === "NotAutharized")
+        this._GlobalService.showAlert('Not Autharized...', res.ErrorMessage, ['OK']);
+      else
+        this._GlobalService.showAlert('', res.ErrorMessage, ['OK']);
     }
     );
   }
-  public postInsertNewHome(): Promise<any> {
+  private postInsertNewHome(): Promise<any> {
     return this._GlobalService.fetchDataApi('InsertNewHomeEntry', this.objHome, this.accessToken, this.userID.toString());
   }
 }
