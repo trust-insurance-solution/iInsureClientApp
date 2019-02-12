@@ -5,8 +5,31 @@
 </ion-header>
 
 <ion-content padding>
-<button ion-button (click)="openGallary()">open Gallary</button><br/>
-<img [src]="base64Image" /><br/>
-<button ion-button (click)="uploadImage()">upload Image</button>
-
+    <table>
+      <tr>
+        <td>Full Name</td>
+        <td><input type="text" [(ngModel)]="objLife.Data.FullName" name="FullName" /></td>
+      </tr>
+      <tr>
+        <td>BirthDate</td>
+        <td><input type="date" [(ngModel)]="objLife.Data.DateOfBirth" name="DateOfBirth" /></td>
+      </tr>
+      <tr>
+        <td>Total amount of insured</td>
+        <td><input type="number" [(ngModel)]="objLife.Data.FkTotalamountofinsured" name="FkTotalamountofinsured" /></td>
+      </tr>
+      <tr>
+        <td>الأمراض المزمنة</td>
+        <td><input type="text" [(ngModel)]="objLife.Data.AnyChronicCasesOrPerExistingCases" name="AnyChronicCasesOrPerExistingCases" /></td>
+      </tr>
+      <tr>
+        <td>مده التغطية</td>
+        <td><input type="number" [(ngModel)]="objLife.Data.FkPeriodofcover" name="FkPeriodofcover" /></td>
+      </tr>
+      <tr>
+        <td>Number Of Unit</td>
+        <td><input type="number" [(ngModel)]="objLife.Data.NumberOfUnit" name="NumberOfUnit" /></td>
+      </tr>
+    </table>
+    <button ion-button (click)="InsertLife()">Click it</button>
 </ion-content>

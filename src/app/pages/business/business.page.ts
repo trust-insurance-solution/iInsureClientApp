@@ -21,8 +21,12 @@ export class BusinessPage implements OnInit {
     this.navCtrl.navigateForward('travel');
 
   } 
-  goToHome(){
-    this.navCtrl.navigateForward('homeBL')
+  goToHome() {
+    this.navCtrl.navigateForward('homeBL');
+  }
+
+  goToLife() {
+    this.navCtrl.navigateForward('life');
   }
 
 }
