@@ -1,5 +1,5 @@
 
-export class LifeResponse {
+export interface LifeResponse {
 
    PlanId: number;
    CompanyId: number;
