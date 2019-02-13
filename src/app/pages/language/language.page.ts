@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { AlertController, NavController } from '@ionic/angular';
-import { TranslateService } from '@ngx-translate/core';
+//import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -19,8 +19,8 @@ export class LanguagePage implements OnInit {
 
 
   language_selected = 0
-  constructor(private storage: Storage, public alertController: AlertController, public navCtrl: NavController, public translate: TranslateService) {
-    translate.setDefaultLang('en');
+  constructor(private storage: Storage, public alertController: AlertController, public navCtrl: NavController) {
+    //translate.setDefaultLang('en');
   }
           
   ngOnInit() {
@@ -34,21 +34,21 @@ export class LanguagePage implements OnInit {
         this.lan2 = true
         this.lan3 = true
         this.language_selected =1;
-        this.translate.use('en');
+       // this.translate.use('en');
         break;
       case 2:
         this.lan2 = false
         this.lan1 = true
         this.lan3 = true
         this.language_selected =2;
-        this.translate.use('ar');
+       // this.translate.use('ar');
         break;
       case 3:
         this.lan3 = false
         this.lan1 = true
         this.lan2 = true
         this.language_selected =3;
-        this.translate.use('fr');
+       // this.translate.use('fr');
         break;
     }
   }

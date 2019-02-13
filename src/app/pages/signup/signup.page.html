@@ -8,14 +8,12 @@
     <ion-list class="top" lines="none">
 
       <ion-item lines="none">
-        <ion-label position="stacked">FullName</ion-label>
+        <ion-label position="stacked">Full Name</ion-label>
         <ion-input *ngIf="!(FullName.hasError('required') && FullName.touched)" formControlName="FullName"
           [(ngModel)]="objUserInfo.Data.FullName" name="FullName" type="text" required></ion-input>
         <ion-input *ngIf="FullName.hasError('required') && FullName.touched" formControlName="FullName" name="FullName"
           type="text" required placeholder="Enter a valid Name" color="danger" class="error"></ion-input>
       </ion-item>
-
-
       <ion-item lines="none">
         <ion-label position="stacked">Email Address</ion-label>
         <ion-input *ngIf="!(EmailAddress.hasError('required') && EmailAddress.touched)" formControlName="EmailAddress"
@@ -24,22 +22,15 @@
           name="EmailAddress" type="text" required placeholder="Enter a valid Name" color="danger" class="error">
         </ion-input>
       </ion-item>
-
-
-
       <ion-item lines="none">
         <ion-label position="stacked">Phone Number</ion-label>
         <ion-input *ngIf="!(PhoneNumber.hasError('required') && PhoneNumber.touched)" formControlName="PhoneNumber"
           [(ngModel)]="objUserInfo.Data.PhoneNumber" name="PhoneNumber" type="Number" required></ion-input>
-
         <ion-input (ionInput)="runTimeChange($event)" *ngIf="PhoneNumber.hasError('required') &&
         PhoneNumber.touched" formControlName="PhoneNumber" name="PhoneNumber" type="text" required
           placeholder="Enter a valid Phone Number" color="danger" class="error">
         </ion-input>
-
       </ion-item>
-
-
       <ion-item lines="none">
         <ion-label position="stacked">Password</ion-label>
         <ion-input *ngIf="!(Password.hasError('required') && Password.touched)" formControlName="Password"
@@ -47,7 +38,6 @@
         <ion-input *ngIf="Password.hasError('required') && Password.touched" formControlName="Password" name="Password"
           type="text" required placeholder="Enter a valid Password" color="danger" class="error"></ion-input>
       </ion-item>
-
       <ion-item lines="none">
         <ion-label position="stacked">Confirm Password</ion-label>
         <ion-input *ngIf="!(confirmPassword.hasError('required') && confirmPassword.touched)"
