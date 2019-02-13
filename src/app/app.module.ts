@@ -14,6 +14,8 @@ import { Camera } from '@ionic-native/camera/ngx';
 import { HttpModule, Http } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
