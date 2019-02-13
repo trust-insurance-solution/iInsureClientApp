@@ -19,9 +19,7 @@
 *{
     font-family: CenturyGothic !important;
 }
-.inner-scroll.scroll-y{
-    background-color: #000000 !important;
-}
+
 
 
 //First Div 
@@ -37,7 +35,9 @@ ion-icon.noti {
     color: #ffffff;
 } 
 
-
+.label-stacked.sc-ion-label-md-h {
+    font-size: 13.8px !important;
+}
 
 .auto{
     margin: auto;
@@ -65,4 +65,31 @@ ion-icon.noti {
          border-radius: 6vw;
          margin: 0 25px;
     }
+}
+
+ion-input , ionic-selectable, ion-select{
+    background-color: var(--primary-color) !important;
+   border-radius: 2vw;
+   margin-top: 5px !important;
+  z-index: 0 !important;
+  padding-left: 10px !important; 
+  border: 1px solid #d6cccc;
+}
+
+ion-input.error{
+    border: #9a1515 1px solid !important;
+    color: #9a1515;
+}
+
+.native-input.sc-ion-input-md {
+    padding-left: 10px !important;
+}
+
+.searchbar-input.sc-ion-searchbar-md {
+ 
+    background-color: #fff !important;
+    border: 1px solid #e0d0cf !important;
+}
+ion-title.title-md.hydrated {
+    display: none;
 }

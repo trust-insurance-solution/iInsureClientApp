@@ -1,5 +1,8 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button class="show-back-button"></ion-back-button>
+    </ion-buttons>
     <ion-title>Line of Business</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -40,7 +43,7 @@
       <ion-col size="6" (click)="goToPersonalAccidents()">
         <ion-button expand="full" color="medium" class="nomargin">
           <ion-icon class="ii" name="person"></ion-icon>
-          <label class="pl2">Personal<br/>Accidents</label>
+          <label class="pl2">Personal<br />Accidents</label>
         </ion-button>
       </ion-col>
       <ion-col size="6" (click)="goToMotor()">

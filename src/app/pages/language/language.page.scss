@@ -6,10 +6,27 @@
 .ttop{
     margin-top: 10vw;
 }
-span.city{
+ion-label.city{
     padding-left: 1.2vw;
     font-weight: 600;
 }
 .lanColor{
-    background: linear-gradient(to right, #f6921f  0%, #801afe 100%);
+   // background: linear-gradient(to right, #f6921f  0%, #801afe 100%);
+}
+.avatar{
+    display: flex;
+    margin: auto;
+}
+ion-content.fullColor{
+    --background 	:#D9EDEC url("../../../assets/img/abs2.png") no-repeat center right;
+
+}
+
+ion-grid.hydrated {
+    margin-top: 20vw;
+}
+ion-icon.check {
+    top: 0;
+    position: absolute;
+    right: 0;
 }

@@ -12,8 +12,6 @@ import { FormsModule, Validators, FormControl, FormBuilder, FormGroup, AbstractC
   styleUrls: ['./signup.page.scss']
 })
 
-
-
 export class SignupPage implements OnInit {
   allInfo = true
   objSignUp: any;
@@ -21,12 +19,17 @@ export class SignupPage implements OnInit {
   country: number = -1;
   agreed: boolean = false;
 
+  checkbox: boolean = false
+
   formgroup: FormGroup
   FullName: AbstractControl
   EmailAddress: AbstractControl
   PhoneNumber: AbstractControl
   Password: AbstractControl
-  confirmPassword: AbstractControl
+
+  birthd: AbstractControl
+  gender: AbstractControl
+  city: AbstractControl
   countr: AbstractControl;
   check: AbstractControl
   mail: "/^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/"
@@ -58,27 +61,35 @@ export class SignupPage implements OnInit {
         Validators.pattern('[a-zA-Z0-9!!#$%&*+\/=?^_`{|}~.-]*'),
         Validators.required])),
 
-      confirmPassword: new FormControl('', Validators.compose([
-        Validators.minLength(7),
-        Validators.pattern('[a-zA-Z0-9!!#$%&*+\/=?^_`{|}~.-]*'),
-        Validators.required])),
 
       countr: new FormControl('', Validators.compose([
         Validators.required])),
 
       check: new FormControl('', Validators.compose([
         Validators.required])),
+
+      birthd: new FormControl('', Validators.compose([
+        Validators.required])),
+
+      gender: new FormControl('', Validators.compose([
+        Validators.required])),
+
+      city: new FormControl('', Validators.compose([
+        Validators.required])),
+
+
     });
 
     this.FullName = this.formgroup.controls['FullName']
     this.EmailAddress = this.formgroup.controls['EmailAddress']
     this.PhoneNumber = this.formgroup.controls['PhoneNumber']
     this.Password = this.formgroup.controls['Password']
-    this.confirmPassword = this.formgroup.controls['confirmPassword']
     this.countr = this.formgroup.controls['countr']
     this.check = this.formgroup.controls['check']
 
-
+    this.birthd = this.formgroup.controls['birthd']
+    this.gender = this.formgroup.controls['gender']
+    this.city = this.formgroup.controls['city']
   }
   onSubmit(value: any): void {
     if (this.formgroup.valid) {
@@ -123,7 +134,7 @@ export class SignupPage implements OnInit {
     return this._GlobalService.fetchDataApi('CreateNewClientAccount', this.objUserInfo)
   }
 
-  //Event for selectable Component
+  //Event for selectable Component country
   portChange(event: {
     component: IonicSelectableComponent,
     value: any
@@ -131,32 +142,39 @@ export class SignupPage implements OnInit {
     console.log('port:', event.value);
   }
 
+  //Event for selectable Component city
+  cityChange(event: {
+    component: IonicSelectableComponent,
+    value: any
+  }) {
+    console.log('city:', event.value);
+  }
+
 
   //SignUp Data Method
-  signUp(objConfirmPassword) {
+  signUp() {
     this._GlobalService.getStorage("Lang").then(val => { this.objUserInfo.Language = val; });
     this.objUserInfo.Data.DeviceToken = this._GlobalService.getPlatform() ? '"' + this._GlobalService.getDeviceToken() + '"' : "cbF1x6YK4_w:APA91bEZOJLaN5ZO8wfRB6WyyLIQZ_29E0RLlU4ssd7rqEOxAP1AXYCOBE07-jBQyyn6zKY6MUrqXNFIZsS186Pg-fGMeOSwoHq1tJYv53V_BYHEduiT8CehSlxpObifuMOmuDEZZWQb";
 
 
-    if (this.objUserInfo.Data.Password != objConfirmPassword) {
-      alert('Password not correct')
-    }
-    else {
-      console.log(this.allInfo)
-      this.allInfo = true
-      console.log(this.allInfo)
+    console.log(this.allInfo)
+    this.allInfo = true
+    console.log(this.allInfo)
 
-      this.postCreateNewClientAccount().then(data => {
-        if (data.Success === 'true') {
-          this._GlobalService.setStorage('UserInfo', data[0]);
-          this.navCtrl.navigateForward('login')
-        }
-        else {
-          this._GlobalService.showAlert('Sign-up Failed', data.ErrorMessage, ['OK']);
-        }
-      });
-    }
+    this.postCreateNewClientAccount().then(data => {
+      if (data.Success === 'true') {
+        this._GlobalService.setStorage('UserInfo', data[0]);
+        this.navCtrl.navigateForward('login')
+      }
+      else {
+        this._GlobalService.showAlert('Sign-up Failed', data.ErrorMessage, ['OK']);
+      }
+    });
+
   }
+
+
+
 
 
 }

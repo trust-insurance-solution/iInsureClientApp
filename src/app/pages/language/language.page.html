@@ -1,9 +1,9 @@
-<ion-content>
+<ion-content class="fullColor">
   <div class="first lanColor">
     <ion-grid>
       <ion-row>
         <ion-col size="8" offset="2" class="nopadding">
-          <div class="circle">
+          <div class="">
             <img class="avatar" src="assets/img/logo.png">
           </div>
         </ion-col>
@@ -11,37 +11,36 @@
     </ion-grid>
   </div>
 
-  <div class="ttop">
+  <!-- <div class="ttop">
     <h4 class="lan">Change Language</h4>
     <h4 class="lan">اختر اللغة</h4>
     <h4 class="lan">Cambiar idioma</h4>
-  </div>
+  </div> -->
 
   <ion-row>
-    <ion-col size="4">
-      <ion-button [color]="lan1 ? 'medium' : 'dark'" expand="block" (click)="changeLanguage(1)">
+    <ion-col size="10" offset="1">
+      <ion-button [color]="lan1 ? 'medium' : 'dark'" expand="block" (click)="changeLanguage(1)" class="fef">
         <img src="../../../assets/img/english.png">
-        <span class="city">English</span>
+        <ion-label class="city">English</ion-label>
       </ion-button>
     </ion-col>
-    <ion-col size="4">
+    <ion-col size="10" offset="1">
       <ion-button [color]="lan2 ? 'medium' : 'dark'" expand="block" (click)="changeLanguage(2)">
-        <img src="../../../assets/img/jordan.png">
-        <span class="city">العربية</span>
+            <img src="../../../assets/img/jordan.png">
+            <ion-label class="city">العربية</ion-label>
       </ion-button>
     </ion-col>
-    <ion-col size="4">
-      <ion-button [color]="lan3 ? 'medium' : 'dark'"  expand="block" (click)="changeLanguage(3)">
+    <ion-col size="10" offset="1">
+      <ion-button [color]="lan3 ? 'medium' : 'dark'" expand="block" (click)="changeLanguage(3)">
         <img src="../../../assets/img/france.png">
-        <span class="city">Francés</span>
+        <label class="city">Francés</label>
       </ion-button>
     </ion-col>
   </ion-row>
-
 </ion-content>
 
 
-<ion-footer (click)="done()">
+<ion-footer (click)="done()" *ngIf="language_selected > 0">
   <ion-toolbar color="dark">
     <ion-title class="footer">Done</ion-title>
   </ion-toolbar>

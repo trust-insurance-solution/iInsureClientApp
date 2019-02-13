@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: 'travel', loadChildren: './pages/travel/travel.module#TravelPageModule' },
   { path: 'coverage-modal', loadChildren: './pages/coverage-modal/coverage-modal.module#CoverageModalPageModule' },
   { path: 'motor', loadChildren: './pages/motor/motor.module#MotorPageModule' },
+  { path: 'map', loadChildren: './pages/map/map.module#MapPageModule' },
 ];
 
 @NgModule({

@@ -15,8 +15,6 @@ export class LanguagePage implements OnInit {
   lan1: boolean = true
   lan2: boolean = true
   lan3: boolean = true
- 
-
 
   language_selected = 0
   constructor(private storage: Storage, public alertController: AlertController, public navCtrl: NavController, public translate: TranslateService) {

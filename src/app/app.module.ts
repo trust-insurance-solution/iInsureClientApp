@@ -11,12 +11,18 @@ import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
 import { IonicStorageModule } from '@ionic/storage';
 import { IonicSelectableModule } from 'ionic-selectable';
 import { Camera } from '@ionic-native/camera/ngx';
-import { HttpModule,Http } from '@angular/http';
-import {  HttpClient } from '@angular/common/http';
+import { HttpModule, Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+
+
+import { File } from '@ionic-native/File/ngx';
+import { WebView } from '@ionic-native/ionic-webview/ngx';
+import { FilePath } from '@ionic-native/file-path/ngx';
+ 
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -30,13 +36,13 @@ export function createTranslateLoader(http: HttpClient) {
   imports: [
     HttpModule,
     FormsModule,
+    IonicStorageModule.forRoot(),
     ReactiveFormsModule,
     HttpClientModule,
     IonicSelectableModule,
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    IonicStorageModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -47,11 +53,14 @@ export function createTranslateLoader(http: HttpClient) {
   ],
 
   providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     StatusBar,
     UniqueDeviceID,
     SplashScreen,
     Camera,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    File,
+    WebView,
+    FilePath
   ],
   bootstrap: [AppComponent]
 })

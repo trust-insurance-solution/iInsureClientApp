@@ -5,6 +5,7 @@ import { HomeResponse } from '../../../entity/HomeEntity';
 import { FormsModule, Validators, FormControl, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
 import { IonicSelectableModule, IonicSelectableComponent } from 'ionic-selectable';
 import { CoverageModalPage } from '../coverage-modal/coverage-modal.page';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
 
 @Component({
@@ -16,12 +17,28 @@ import { CoverageModalPage } from '../coverage-modal/coverage-modal.page';
 
 
 export class HomePage implements OnInit {
+  myphoto: any
 
   apartment: boolean = true
 
   formgroup: FormGroup
   FullName: AbstractControl
   NationalID: AbstractControl
+  vCoverage: AbstractControl
+  IsApart: AbstractControl
+  size: AbstractControl
+  DetailedLoc: AbstractControl
+  floor: AbstractControl
+  IsRent: AbstractControl
+  Building: AbstractControl
+  EmailAddress: AbstractControl
+  PhoneNumber: AbstractControl
+  room: AbstractControl
+  mail: "/^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/"
+
+
+
+
   lang: string;
   userID: number;
   accessToken: string;
@@ -51,7 +68,7 @@ export class HomePage implements OnInit {
     LoggedInUserID: 0,
   };
 
-  constructor(public _GlobalService: GlobalService, public navCtrl: NavController, public formbuilder: FormBuilder, public modalCtrl: ModalController) {
+  constructor(public _GlobalService: GlobalService, public navCtrl: NavController, public formbuilder: FormBuilder, public modalCtrl: ModalController, private camera: Camera) {
 
     //FORM
     this.formgroup = formbuilder.group({
@@ -63,9 +80,56 @@ export class HomePage implements OnInit {
       NationalID: new FormControl('', Validators.compose([
         Validators.required])),
 
+      vCoverage: new FormControl('', Validators.compose([
+        Validators.required])),
+
+      IsApart: new FormControl('', Validators.compose([
+        Validators.required])),
+
+      IsRent: new FormControl('', Validators.compose([
+        Validators.required])),
+      size: new FormControl('', Validators.compose([
+        Validators.pattern('[0-9 ]*'),
+        Validators.required])),
+
+      DetailedLoc: new FormControl('', Validators.compose([
+        Validators.pattern('[a-zA-Z0-9 ]*'),
+        Validators.required])),
+
+      floor: new FormControl('', Validators.compose([
+        Validators.pattern('[0-9 ]*'),
+        Validators.required])),
+
+      Building: new FormControl('', Validators.compose([
+        Validators.required])),
+
+      EmailAddress: new FormControl('', Validators.compose([
+        Validators.maxLength(30),
+        Validators.pattern(this.mail),
+        Validators.required])),
+
+      PhoneNumber: new FormControl('', Validators.compose([
+        Validators.maxLength(15),
+        Validators.pattern('[0-9]*'),
+        Validators.required])),
+
+      room: new FormControl('', Validators.compose([
+        Validators.maxLength(15),
+        Validators.pattern('[0-9]*'),
+        Validators.required])),
     });
     this.FullName = this.formgroup.controls['FullName']
     this.NationalID = this.formgroup.controls['NationalID']
+    this.vCoverage = this.formgroup.controls['vCoverage']
+    this.IsApart = this.formgroup.controls['IsApart']
+    this.size = this.formgroup.controls['size']
+    this.DetailedLoc = this.formgroup.controls['DetailedLoc']
+    this.floor = this.formgroup.controls['floor']
+    this.IsRent = this.formgroup.controls['IsRent']
+    this.Building = this.formgroup.controls['Building']
+    this.EmailAddress = this.formgroup.controls['EmailAddress']
+    this.PhoneNumber = this.formgroup.controls['PhoneNumber']
+    this.room = this.formgroup.controls['room']
 
 
     this._GlobalService.getStorage('Lang').then((val) => {
@@ -115,7 +179,27 @@ export class HomePage implements OnInit {
   private postInsertNewHome(): Promise<any> {
     return this._GlobalService.fetchDataApi('InsertNewHomeEntry', this.objHome, this.accessToken, this.userID.toString());
   }
+  map() {
+    this.navCtrl.navigateForward('map');
+  }
 
+  img() {
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+      saveToPhotoAlbum: false
+    }
+
+    this.camera.getPicture(options).then((imageData) => {
+      // imageData is either a base64 encoded string or a file URI
+      // If it's base64 (DATA_URL):
+      this.myphoto = 'data:image/jpeg;base64,' + imageData;
+    }, (err) => {
+      // Handle error
+    });
+  }
 
 
   type(x) {

@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule, ModalController } from '@ionic/angular';
 
-import { HomePage } from './home.page';
+import { HomePage } from './home.page'; 
 
 import { IonicSelectableModule } from 'ionic-selectable';
 import { ReactiveFormsModule } from '@angular/forms';
