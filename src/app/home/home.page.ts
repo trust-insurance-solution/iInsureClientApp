@@ -2,6 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { LoadingController, IonSlides } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
+import { GlobalService } from '../apiCaller/global.service';
+
 
 @Component({
   selector: 'app-home',
@@ -11,22 +13,18 @@ import { NavController } from '@ionic/angular';
 export class HomePage {
   @ViewChild('mySlider') slides: IonSlides;
 
+  fullName: string;
+  userImage: string;
 
-
-  getSignUp: any;
-  objSignUp = {
-    EmailAddress: '',
-    Password: '',
-    DeviceToken: '',
-  };
-  constructor(public navCtrl: NavController, public loadingController: LoadingController, public _routes: Router) { }
-
-  data = '{ "Data": { "EmailAddress": "", "PhoneNumber": "0785946301", "Password": "123456789", "DeviceToken": "000" }, "Language": "en", }';
-
-  ngOnInit() {
-
+  constructor(public navCtrl: NavController, public loadingController: LoadingController, public _routes: Router, public _GlobalService: GlobalService) {
+    this._GlobalService.getStorage('UserInfo').then((val) => {
+      this.fullName = val.FullName;
+      this.userImage = this.userImage != null ? this.userImage : "../../assets/img/avatar.png";
+    });
   }
-  resultMessage: any;
+
+
+  ngOnInit() { }
   login() {
     this._routes.navigateByUrl('login');
   }
@@ -39,16 +37,14 @@ export class HomePage {
   }
   slidesDidLoad(slides: IonSlides) {
     slides.startAutoplay();
-   
   }
-  
   previous() {
-   this.slides.slidePrev();
+    this.slides.slidePrev();
   }
   next() {
     this.slides.slideNext();
   }
-  businessPage(){
+  businessPage() {
     this.navCtrl.navigateForward('business');
   }
 }
