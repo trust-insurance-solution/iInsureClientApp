@@ -5,6 +5,7 @@ import { LoadingController } from '@ionic/angular';
 import { IonicSelectableModule, IonicSelectableComponent } from 'ionic-selectable';
 import { stringify } from '@angular/core/src/util';
 import { FormsModule, Validators, FormControl, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-signup',
@@ -13,6 +14,7 @@ import { FormsModule, Validators, FormControl, FormBuilder, FormGroup, AbstractC
 })
 
 export class SignupPage implements OnInit {
+  trans_FullName:string;
   allInfo = true
   objSignUp: any;
   countries: any;
@@ -37,7 +39,7 @@ export class SignupPage implements OnInit {
   constructor(public _GlobalService: GlobalService,
     public _LoadingController: LoadingController,
     public navCtrl: NavController,
-    public formbuilder: FormBuilder, ) {
+    public formbuilder: FormBuilder,public translate:TranslateService ) {
 
     //FORM
     this.formgroup = formbuilder.group({
@@ -91,6 +93,7 @@ export class SignupPage implements OnInit {
     this.gender = this.formgroup.controls['gender']
     this.city = this.formgroup.controls['city']
   }
+
   onSubmit(value: any): void {
     if (this.formgroup.valid) {
       console.log(this.FullName)
@@ -177,6 +180,15 @@ export class SignupPage implements OnInit {
       }
     });
 
+  }
+
+  //Translated
+  ionViewWillEnter() {
+    this.translate.get(['SignUpPageFullName']).subscribe(
+      value => {
+        this.trans_FullName = value.SignUpPageFullName;
+      }
+    );
   }
 
 }
