@@ -142,6 +142,7 @@ export class SignupPage implements OnInit {
     value: any
   }) {
     console.log('port:', event.value);
+   // console.log('ffffffff:', event.value[].Id);
     //console.log('teem:', event.value,{IonicSelectableModule});
 
   }
@@ -152,6 +153,7 @@ export class SignupPage implements OnInit {
     value: any,
   }) {
     console.log('city:', event.value);
+    
   }
 
 

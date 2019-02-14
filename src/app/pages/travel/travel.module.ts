@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { TravelPage } from './travel.page';
 import { IonicSelectableModule } from 'ionic-selectable';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -12,11 +13,12 @@ const routes: Routes = [
     component: TravelPage
   }
 ];
-
+ 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     IonicSelectableModule,
     IonicModule,
     RouterModule.forChild(routes)

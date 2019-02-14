@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonSlides } from '@ionic/angular';
 import { GlobalService } from '../../apiCaller/global.service';
 import { TravelResponse } from '../../../entity/TravelEntry';
+import { FormsModule, Validators, FormControl, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
+import { IonicSelectableModule, IonicSelectableComponent } from 'ionic-selectable';
 
 @Component({
   selector: 'app-travel',
@@ -9,11 +11,24 @@ import { TravelResponse } from '../../../entity/TravelEntry';
   styleUrls: ['./travel.page.scss'],
 })
 export class TravelPage implements OnInit {
+
+  formgroup: FormGroup
+  StartDateJourney: AbstractControl
+  EndDateJourney: AbstractControl
+  countr: AbstractControl
+
+
+
+
+
+
+
   lang;
   userID;
   accessToken;
   countries: any;
   responseData;
+
   travlerLst: TravlerEntity[] = [];
   destinationId: FkDestination[] = [];
 
@@ -30,7 +45,25 @@ export class TravelPage implements OnInit {
   };
   @ViewChild('mySlider') slides: IonSlides;
 
-  constructor(public _GlobalService: GlobalService) {
+  constructor(public _GlobalService: GlobalService, public formbuilder: FormBuilder, ) {
+
+    //FORM
+    this.formgroup = formbuilder.group({
+      StartDateJourney: new FormControl('', Validators.compose([
+        Validators.required])),
+
+        EndDateJourney: new FormControl('', Validators.compose([
+        Validators.required])),
+
+        countr: new FormControl('', Validators.compose([
+        Validators.required])),
+    })
+    this.StartDateJourney = this.formgroup.controls['StartDateJourney']
+    this.EndDateJourney = this.formgroup.controls['EndDateJourney']
+    this.countr = this.formgroup.controls['countr']
+
+
+
     this._GlobalService.getStorage('Lang').then((val) => {
       this.lang = val;
     });
@@ -49,7 +82,6 @@ export class TravelPage implements OnInit {
   }
 
   savePost() {
-
     this.objTravel.Data.fkCreatedByUserId = this.userID;
     this.objTravel.LoggedInUserID = this.userID;
     this.objTravel.Language = this.lang;
@@ -63,6 +95,7 @@ export class TravelPage implements OnInit {
         this._GlobalService.showAlert('Failed...', res.ErrorMessage, ['OK']);
     });
   }
+
   addTraveler() { }
 
   private postTravelEntry(): Promise<any> {
@@ -78,6 +111,19 @@ export class TravelPage implements OnInit {
       Lst.push({ FkDestinationId: element.Id });
     });
     this.objTravel.Data.destinationIds = Lst;
+    //alert("lst "+Lst)
+    //alert(this.objTravel.Data.fkCreatedByUserId)
+    console.log('eeeeeeeeeee:', event.value);
+
+    console.log('ffffffff:', event.value[0].Id);
+    for (let j = 1; j <= this.objTravel.Data.destinationIds.length; j++) {
+      console.log("Country " + j)
+      // this.objTravel.Data.destinationIds[j].Id
+      console.log('id :', event.value[j].Id, event.value[j].CountryName);
+
+      alert('id :' + event.value[j].Id + " - " + event.value[j].CountryName);
+    }
+
   }
 
 }
