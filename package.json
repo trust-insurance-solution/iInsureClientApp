@@ -23,6 +23,7 @@
     "@ionic-native/camera": "^5.0.0",
     "@ionic-native/core": "^5.0.0",
     "@ionic-native/file": "^5.0.0",
+    "@ionic-native/file-path": "^5.0.0",
     "@ionic-native/http": "^5.0.0",
     "@ionic-native/ionic-webview": "^5.0.0",
     "@ionic-native/splash-screen": "^5.0.0",
@@ -92,7 +93,8 @@
       "cordova-sqlite-storage": {},
       "cordova-plugin-advanced-http": {},
       "cordova-plugin-camera": {},
-      "cordova-plugin-file": {}
+      "cordova-plugin-file": {},
+      "cordova-plugin-filepath": {}
     },
     "platforms": [
       "browser",
