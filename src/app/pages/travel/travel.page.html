@@ -15,7 +15,7 @@
       <ion-input [(ngModel)]="objTravel.Data.EndDateJourney" name="EndDateJourney" type="date" required></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>Destination Country</ion-label>
+      <ion-label position="stacked">Destination Country</ion-label>
       <ionic-selectable name="DestinationId" [items]="countries" itemValueField="Id" itemTextField="CountryName"
         [canSearch]="true" [isMultiple]="true" (onChange)="diagnosisChange($event)">
       </ionic-selectable>
