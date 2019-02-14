@@ -1,43 +1,102 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>pa</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button class="show-back-button"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Personal Accidents</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-    <table>
-      <tr>
-        <td>Full Name</td>
-        <td><input type="text" [(ngModel)]="objPersonalAccident.Data.FullName" name="FullName" /></td>
-      </tr>
-      <tr>
-        <td>قيمه التغطية</td>
-        <td><input type="number" [(ngModel)]="objPersonalAccident.Data.FkTotalamountofinsuredmaximum" name="FkTotalamountofinsuredmaximum" /></td>
-      </tr>
-      <tr>
-        <td>تاريخ الحادث</td>
-        <td><input type="date" [(ngModel)]="objPersonalAccident.Data.DateOfBirth" name="DateOfBirth" /></td>
-      </tr>
-      <tr>
-        <td>الأمراض المزمنة</td>
-        <td><input type="text" [(ngModel)]="objPersonalAccident.Data.AnyChronicCasesOrPerExistingCases" name="AnyChronicCasesOrPerExistingCases" /></td>
-      </tr>
-      <tr>
-        <td>مدة التغطية </td>
-        <td><input type="number" [(ngModel)]="objPersonalAccident.Data.FkPeriodofcover" name="FkPeriodofcover" /></td>
-      </tr>
-      <tr>
-        <td>مكان الأقامة</td>
-        <td><input type="number" [(ngModel)]="objPersonalAccident.Data.FkCountryresidence" name="FkCountryresidence" /></td>
-      </tr>
-      <tr>
-        <td> Nationality</td>
-        <td><input type="number" [(ngModel)]="objPersonalAccident.Data.FkNationality" name="FkNationality" /></td>
-      </tr>
-      <tr>
-        <td> Unit </td>
-        <td><input type="number" [(ngModel)]="objPersonalAccident.Data.NumberOfUnit" name="NumberOfUnit" /></td>
-      </tr>
-    </table>
-    <button ion-button (click)="InsertPersonalAccident()" >Save Data</button>
+
+
+  <form [formGroup]="formgroup">
+    <ion-list class="top" lines="none">
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Full Name</ion-label>
+        <ion-input *ngIf="!(FullName.hasError('required') && FullName.touched)" formControlName="FullName"
+          [(ngModel)]="objPersonalAccident.Data.FullName" name="FullName" type="text" required></ion-input>
+        <ion-input *ngIf="FullName.hasError('required') && FullName.touched" formControlName="FullName" name="FullName"
+          type="text" required placeholder="Enter a valid Name" color="danger" class="error"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Value of Coverage</ion-label>
+        <ion-select  [(ngModel)]="objPersonalAccident.Data.FkTotalamountofinsuredmaximum"
+          name="FkTotalamountofinsuredmaximum" formControlName="vCoverage">
+          <ion-select-option>50.000</ion-select-option>
+          <ion-select-option>100.000</ion-select-option>
+          <ion-select-option>150.000</ion-select-option>
+          <ion-select-option>200.000</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Date Of the Accident</ion-label>
+        <ion-input *ngIf="!(DateOfAcc.hasError('required') && DateOfAcc.touched)" formControlName="DateOfAcc"
+          [(ngModel)]="objPersonalAccident.Data.DateOfAcc" name="DateOfAcc" type="date" required></ion-input>
+        <ion-input *ngIf="DateOfAcc.hasError('required') && DateOfAcc.touched" formControlName="DateOfAcc"
+          name="DateOfAcc" type="date" required placeholder="Enter a valid Name" color="danger" class="error">
+        </ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Any pre-existing chronic cases</ion-label>
+        <ion-input *ngIf="!(cases.hasError('required') && cases.touched)" formControlName="cases"
+          [(ngModel)]="objPersonalAccident.Data.AnyChronicCasesOrPerExistingCases"
+          name="AnyChronicCasesOrPerExistingCases" type="text" required></ion-input>
+        <ion-input *ngIf="cases.hasError('required') && cases.touched" formControlName="cases" name="cases" type="text"
+          required placeholder="Enter a valid Name" color="danger" class="error"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Period of Cover</ion-label>
+        <ion-select [(ngModel)]="objPersonalAccident.Data.FkPeriodofcover" name="FkPeriodofcover"
+          formControlName="pCover">
+          <ion-select-option>1 Mon</ion-select-option>
+          <ion-select-option>2 Mon</ion-select-option>
+          <ion-select-option>3 Mon</ion-select-option>
+          <ion-select-option>4 Mon</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Country Residence</ion-label>
+        <ionic-selectable [(ngModel)]="objPersonalAccident.Data.FkCountryresidence" name="FkCountryresidence"
+          [items]="CountryResidencelID" itemValueField="Id" formControlName="CountryResidence"
+          itemTextField="CountryName" [canSearch]="true" (onChange)="CountryResidenc($event)" required>
+        </ionic-selectable>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Nationality</ion-label>
+        <ionic-selectable [(ngModel)]="objPersonalAccident.Data.FkNationality" name="FkNationality" [items]="nationlID"
+          itemValueField="Id" formControlName="NationalID" itemTextField="CountryName" [canSearch]="true"
+          (onChange)="Nationality($event)" required>
+        </ionic-selectable>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Unit</ion-label>
+        <ion-select [(ngModel)]="objPersonalAccident.Data.NumberOfUnit" name="NumberOfUnit"
+          formControlName="NumberOfUnit">
+          <ion-select-option>1 Unit</ion-select-option>
+          <ion-select-option>2 Unit</ion-select-option>
+          <ion-select-option>3 Unit</ion-select-option>
+          <ion-select-option>4 Unit</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-row>
+        <ion-col size="11" class="auto top">
+          <ion-button expand="full" (click)="InsertPersonalAccident()">
+            Get Quotation
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-list>
+  </form>
+
 </ion-content>

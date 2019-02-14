@@ -143,10 +143,10 @@ export class HomePage implements OnInit {
 
   ngOnInit() { }
 
+  //Modal
   async coverageModal() {
     const modal = await this.modalCtrl.create({
       component: CoverageModalPage, cssClass: "coverageModal"
-
     })
     console.log("fe")
     await modal.present();

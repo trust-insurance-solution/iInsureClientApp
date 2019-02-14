@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { GlobalService } from '../../apiCaller/global.service';
 import { PersonalAccidentsResponse } from '../../../entity/PersonalAccidentsEntry';
+import { FormsModule, Validators, FormControl, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
+import { IonicSelectableModule, IonicSelectableComponent } from 'ionic-selectable';
 
 @Component({
   selector: 'app-pa',
@@ -8,6 +10,19 @@ import { PersonalAccidentsResponse } from '../../../entity/PersonalAccidentsEntr
   styleUrls: ['./pa.page.scss'],
 })
 export class PaPage implements OnInit {
+
+  formgroup: FormGroup
+  FullName: AbstractControl
+  DateOfAcc: AbstractControl
+  vCoverage: AbstractControl
+  NationalID: AbstractControl
+  pCover: AbstractControl
+  cases: AbstractControl
+  NumberOfUnit: AbstractControl
+  CountryResidence: AbstractControl
+
+
+
   accessToken: string;
   lang: string;
   userID: number;
@@ -29,7 +44,54 @@ export class PaPage implements OnInit {
   };
   responseData: PersonalAccidentsResponse[];
 
-  constructor(public _GlobalService: GlobalService) {
+  constructor(public _GlobalService: GlobalService, public formbuilder: FormBuilder, ) {
+
+    this.formgroup = formbuilder.group({
+      FullName: new FormControl('', Validators.compose([
+        Validators.maxLength(8),
+        Validators.pattern('[a-zA-Z ]*'),
+        Validators.required])),
+
+      NationalID: new FormControl('', Validators.compose([
+        Validators.required])),
+
+      DateOfAcc: new FormControl('', Validators.compose([
+        Validators.pattern('[0-9]*'),
+        Validators.required])),
+
+      vCoverage: new FormControl('', Validators.compose([
+        Validators.required])),
+
+      cases: new FormControl('', Validators.compose([
+        Validators.pattern('[a-zA-Z0-9 ]*'),
+        Validators.required])),
+
+      pCover: new FormControl('', Validators.compose([
+        Validators.required])),
+
+      NumberOfUnit: new FormControl('', Validators.compose([
+        Validators.required])),
+
+      CountryResidence: new FormControl('', Validators.compose([
+        Validators.required])),
+
+    });
+
+    this.FullName = this.formgroup.controls['FullName']
+    this.DateOfAcc = this.formgroup.controls['DateOfAcc']
+    this.vCoverage = this.formgroup.controls['vCoverage']
+    this.cases = this.formgroup.controls['cases']
+    this.pCover = this.formgroup.controls['pCover']
+    this.NumberOfUnit = this.formgroup.controls['NumberOfUnit']
+    this.NationalID = this.formgroup.controls['NationalID']
+    this.CountryResidence = this.formgroup.controls['CountryResidence']
+
+
+
+
+
+
+
     this._GlobalService.getStorage('Lang').then((val) => {
       this.lang = val;
     });
@@ -40,6 +102,21 @@ export class PaPage implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  //Event for selectable Nationality
+  Nationality(event: {
+    component: IonicSelectableComponent,
+    value: any
+  }) {
+    console.log('nationlID:', event.value);
+  }
+   //Event for selectable Nationality
+   CountryResidenc(event: {
+    component: IonicSelectableComponent,
+    value: any
+  }) {
+    console.log('Country Residenc:', event.value);
   }
 
   InsertPersonalAccident() {

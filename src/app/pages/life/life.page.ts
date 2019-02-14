@@ -9,7 +9,7 @@ import { FormsModule, Validators, FormControl, FormBuilder, FormGroup, AbstractC
   styleUrls: ['./life.page.scss'],
 })
 export class LifePage implements OnInit {
-
+ 
   formgroup: FormGroup
   FullName: AbstractControl
   DateOfBirth: AbstractControl

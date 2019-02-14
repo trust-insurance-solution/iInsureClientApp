@@ -7,16 +7,21 @@ import { IonicModule } from '@ionic/angular';
 
 import { OfficePage } from './office.page';
 
+import { ReactiveFormsModule } from '@angular/forms';
+import { IonicSelectableModule } from 'ionic-selectable';
+
 const routes: Routes = [
   {
     path: '',
     component: OfficePage
   }
-];
+]; 
 
 @NgModule({
   imports: [
     CommonModule,
+    ReactiveFormsModule,
+    IonicSelectableModule,
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes)

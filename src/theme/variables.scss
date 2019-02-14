@@ -86,5 +86,13 @@
 
   $primary-color: #e6e6e652 !important;
   --primary-color: #{$primary-color};
+
+
+//gradient-color
+  $lightB-color: #4D7BBF !important;
+  --lightB-color: #{$lightB-color};
+
+  $darkB-color: #3967AB !important;
+  --darkB-color: #{$darkB-color};
 }
 

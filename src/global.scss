@@ -28,6 +28,13 @@
     border-bottom-left-radius: 60% 40%;
     border-bottom-right-radius: 60% 40%;
 }
+.firstColor{
+    background: linear-gradient(to right, var(--lightB-color) 0%, var(--darkB-color) 100%) !important;
+ }
+div.toolbar-background{
+    //background: linear-gradient(to right, var(--lightB-color) 0%, var(--darkB-color) 100%) !important;
+    background-color: red !important
+}
 ion-icon.noti {
     font-size: x-large;
     text-align: center;
@@ -90,3 +97,4 @@ ion-input.error{
     background-color: #fff !important;
     border: 1px solid #e0d0cf !important;
 }
+

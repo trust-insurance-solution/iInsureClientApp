@@ -1,101 +1,281 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>office</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button class="show-back-button"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Office</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <table>
-    <tr>
-      <td>Full Name</td>
-      <td><input type="text" [(ngModel)]="objOffice.Data.FullName" name="FullName" /></td>
-    </tr>
-    <tr>
-      <td>Nationality</td>
-      <td><input type="number" [(ngModel)]="objOffice.Data.NationalID" name="NationalID" /></td>
-    </tr>
-    <tr>
-      <td>Some Insured</td>
-      <td><input type="number" [(ngModel)]="objOffice.Data.Fk_SomeInsured" name="Fk_SomeInsured" /></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>
-        <input type="radio" name="IsApartment" [value]="true" [(ngModel)]="objOffice.Data.IsApartment"> Apartment
-        <input type="radio" name="IsApartment" [value]="false" [(ngModel)]="objOffice.Data.IsApartment"> Villa
-      </td>
-    </tr>
-    <tr>
-      <td>Size Of Office</td>
-      <td><input type="number" [(ngModel)]="objOffice.Data.SizeOfOfficeOrVilla" name="SizeOfOfficeOrVilla" /></td>
-    </tr>
-    <tr>
-      <td>Detailed Location</td>
-      <td><input type="text" [(ngModel)]="objOffice.Data.DetailedLocation" name="DetailedLocation" /></td>
-    </tr>
-    <tr>
-      <td>Which Floor If Apartment</td>
-      <td><input type="number" [(ngModel)]="objOffice.Data.WhichFloorIfApartment" name="WhichFloorIfApartment" /></td>
-    </tr>
-    <tr>
-      <td>How Many Floors if villa</td>
-      <td><input type="number" [(ngModel)]="objOffice.Data.HowManyFloors" name="HowManyFloors" /></td>
-    </tr>
-    <tr>
-      <td>Number OF Rooms</td>
-      <td><input type="number" [(ngModel)]="objOffice.Data.NumberOFRooms" name="NumberOFRooms" /></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>
-        <input type="radio" name="IsRented" [value]="true" [(ngModel)]="objOffice.Data.IsRented"> Rented
-        <input type="radio" name="IsRented" [value]="false" [(ngModel)]="objOffice.Data.IsRented"> not Rented
-      </td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>
-        <input type="radio" name="IsOccuied" [value]="true" [(ngModel)]="objOffice.Data.IsOccuied"> Occuied
-        <input type="radio" name="IsOccuied" [value]="false" [(ngModel)]="objOffice.Data.IsOccuied"> Not Occuied
-      </td>
-    </tr>
-    <tr>
-      <td>عمر البناء</td>
-      <td><input type="date" [(ngModel)]="objOffice.Data.DateApartmentOrVillaBuilt" name="DateApartmentOrVillaBuilt" /></td>
-    </tr>
-    <tr>
-      <td>رقم الترخيص</td>
-      <td><input type="number" [(ngModel)]="objOffice.Data.CompanyRegistrationNumber" name="CompanyRegistrationNumber" /></td>
-    </tr>
-    <tr>
-      <td>الوظيفه الحالية</td>
-      <td><input type="text" [(ngModel)]="objOffice.Data.Occupancy" name="Occupancy" /></td>
-    </tr>
-    <tr>
-      <td>Number Of Employees</td>
-      <td><input type="number" [(ngModel)]="objOffice.Data.NumberOfEmployees" name="NumberOfEmployees" /></td>
-    </tr>
-    <tr>
-      <td>Availability</td>
-      <td>
-        <input type="radio" name="IsAvailability" [value]="true" [(ngModel)]="objOffice.Data.IsAvailability">
-        Availability
-        <input type="radio" name="IsAvailability" [value]="false" [(ngModel)]="objOffice.Data.IsAvailability"> Not
-        Availability
-      </td>
-    </tr>
-    <tr>
-      <td>Email</td>
-      <td><input type="email" [(ngModel)]="objOffice.Data.Email" name="Email" /></td>
-    </tr>
-    <tr>
-      <td>Telephone</td>
-      <td><input type="text" [(ngModel)]="objOffice.Data.Telephone" name="Telephone" /></td>
-    </tr>
-    <tr>
-      <td>Image</td>
-      <td><input type="text" [(ngModel)]="objOffice.Data.Images" name="Images" /></td>
-    </tr>
-  </table>
-  <button ion-button (click)="InsertOffice()">Click it</button>
+
+
+  <form [formGroup]="formgroup">
+    <ion-list class="top" lines="none">
+      <ion-item lines="none">
+        <ion-label position="stacked">Full Name</ion-label>
+        <ion-input *ngIf="!(FullName.hasError('required') && FullName.touched)" formControlName="FullName"
+          [(ngModel)]="objOffice.Data.FullName" name="FullName" type="text" required></ion-input>
+        <ion-input *ngIf="FullName.hasError('required') && FullName.touched" formControlName="FullName" name="FullName"
+          type="text" required placeholder="Enter a valid Name" color="danger" class="error"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Nationality</ion-label>
+        <ionic-selectable [(ngModel)]="objOffice.Data.NationalID" name="National" [items]="nationlID"
+          itemValueField="Id" formControlName="National" itemTextField="CountryName" [canSearch]="true"
+          (onChange)="Nationality($event)" required>
+        </ionic-selectable>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Value of Coverage</ion-label>
+        <ion-select placeholder="Select" [(ngModel)]="objOffice.Data.Fk_SomeInsured" name="Fk_SomeInsured"
+          formControlName="vCoverage">
+          <ion-select-option>50.000</ion-select-option>
+          <ion-select-option>100.000</ion-select-option>
+          <ion-select-option>150.000</ion-select-option>
+          <ion-select-option>200.000</ion-select-option>
+          <ion-select-option>250.000</ion-select-option>
+          <ion-select-option>300.000</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+
+      <ion-list>
+        <ion-radio-group>
+          <ion-row>
+            <ion-col size="6" class="nopadding">
+              <ion-item (click)="type(1)">
+                <ion-label> Apartment</ion-label>
+                <ion-radio formControlName="IsApart" slot="start" name="IsApartment" value="apartment" checked
+                  [(ngModel)]="objOffice.Data.IsApartment">
+                </ion-radio>
+              </ion-item>
+            </ion-col>
+            <ion-col size="6" class="nopadding">
+              <ion-item (click)="type(2)">
+                <ion-label>Villa</ion-label>
+                <ion-radio formControlName="IsApart" slot="start" name="IsApartment" value="villa"
+                  [(ngModel)]="objOffice.Data.IsApartment">
+                </ion-radio>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-radio-group>
+      </ion-list>
+
+
+
+
+      <ion-item lines="none">
+        <ion-label *ngIf='apartment' position="stacked">Size of Apartment</ion-label>
+        <ion-label *ngIf='!apartment' position="stacked">Size of Villa</ion-label>
+        <ion-input *ngIf="!(size.hasError('required') && size.touched)" formControlName="size"
+          [(ngModel)]="objOffice.Data.SizeOfApartmentOrVilla" name="SizeOfApartmentOrVilla" type="number" required>
+        </ion-input>
+        <ion-input *ngIf="size.hasError('required') && size.touched" formControlName="size" name="size" type="number"
+          required placeholder="Enter a valid size" color="danger" class="error"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none" (click)="map();">
+        <ion-label position="stacked">Detailed Location</ion-label>
+        <ion-input *ngIf="!(DetailedLoc.hasError('required') && DetailedLoc.touched)" formControlName="DetailedLoc"
+          [(ngModel)]="objOffice.Data.DetailedLocation" name="DetailedLocation" type="number" required></ion-input>
+        <ion-input *ngIf="DetailedLoc.hasError('required') && DetailedLoc.touched" formControlName="DetailedLoc"
+          name="DetailedLocation" type="text" required placeholder="Enter a valid Name" color="danger" class="error">
+        </ion-input>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label *ngIf='apartment' position="stacked">Floor Number</ion-label>
+        <ion-label *ngIf='!apartment' position="stacked">Number of Floors in the property</ion-label>
+        <ion-input *ngIf="!(floor.hasError('required') && floor.touched)" formControlName="floor"
+          [(ngModel)]="objOffice.Data.NumberOfFloorsIfVilla" name="NumberOfFloorsIfVilla" type="number" required>
+        </ion-input>
+        <ion-input *ngIf="floor.hasError('required') && floor.touched" formControlName="floor" name="floor"
+          type="number" required placeholder="Enter a valid number" color="danger" class="error"></ion-input>
+      </ion-item>
+
+
+
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Number of rooms?</ion-label>
+        <ion-input *ngIf="!(room.hasError('required') && room.touched)" formControlName="room"
+          [(ngModel)]="objOffice.Data.NumberOFRooms" name="NumberOFRooms" type="number" required></ion-input>
+        <ion-input *ngIf="room.hasError('required') && room.touched" formControlName="room" type="number" required
+          placeholder="Enter a valid number" color="danger" class="error"></ion-input>
+      </ion-item>
+
+
+      <ion-list>
+        <ion-radio-group>
+          <ion-row>
+            <ion-col size="6" class="nopadding">
+              <ion-item>
+                <ion-label> Rented</ion-label>
+                <ion-radio formControlName="IsRent" slot="start" value="apartment" checked name="IsRented"
+                  [(ngModel)]="objOffice.Data.IsRented">
+                </ion-radio>
+              </ion-item>
+            </ion-col>
+            <ion-col size="6" class="nopadding">
+              <ion-item>
+                <ion-label>Owned</ion-label>
+                <ion-radio formControlName="IsRent" slot="start" value="villa" name="IsRented"
+                  [(ngModel)]="objOffice.Data.IsRented">
+                </ion-radio>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-radio-group>
+      </ion-list>
+
+
+      <ion-list>
+        <ion-radio-group>
+          <ion-row>
+            <ion-col size="6" class="nopadding">
+              <ion-item>
+                <ion-label> Occupied</ion-label>
+                <ion-radio formControlName="IsOccuied" slot="start" value="IsOccuied" checked name="IsOccuied"
+                  [(ngModel)]="objOffice.Data.IsOccuied">
+                </ion-radio>
+              </ion-item>
+            </ion-col>
+            <ion-col size="6" class="nopadding">
+              <ion-item>
+                <ion-label>UnOccupied</ion-label>
+                <ion-radio formControlName="IsOccuied" slot="start" value="unOccuied" name="IsOccuied"
+                  [(ngModel)]="objOffice.Data.IsOccuied">
+                </ion-radio>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-radio-group>
+      </ion-list>
+
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Age Of Building</ion-label>
+        <ion-input *ngIf="!(Building.hasError('required') && Building.touched)" formControlName="Building"
+          [(ngModel)]="objOffice.Data.DateApartmentOrVillaBuilt" name="DateApartmentOrVillaBuilt" type="date" required>
+        </ion-input>
+        <ion-input *ngIf="Building.hasError('required') && Building.touched" formControlName="Building" name="Building"
+          type="date" required placeholder="Enter a valid Name" color="danger" class="error"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Company Registration Number</ion-label>
+        <ion-input *ngIf="!(rName.hasError('required') && rName.touched)" formControlName="rName"
+          [(ngModel)]="objOffice.Data.CompanyRegistrationNumber" name="CompanyRegistrationNumber" type="Number"
+          required></ion-input>
+        <ion-input (ionInput)="runTimeChange($event)" *ngIf="rName.hasError('required') &&
+        rName.touched" formControlName="rName" name="rName" type="text" required
+          placeholder="Enter a valid Phone Number" color="danger" class="error">
+        </ion-input>
+      </ion-item>
+
+
+      <ion-item lines="none">
+        <ion-label position="stacked">What is Occupancy?</ion-label>
+        <ion-input *ngIf="!(Occupancy.hasError('required') && Occupancy.touched)" formControlName="Occupancy"
+          [(ngModel)]="objOffice.Data.Occupancy" name="Occupancy" type="text" required></ion-input>
+        <ion-input *ngIf="Occupancy.hasError('required') && Occupancy.touched" formControlName="Occupancy"
+          name="Occupancy" type="text" required placeholder="Enter a valid Name" color="danger" class="error">
+        </ion-input>
+      </ion-item>
+
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Phone Number</ion-label>
+        <ion-input *ngIf="!(NumberOfEmployee.hasError('required') && NumberOfEmployee.touched)"
+          formControlName="NumberOfEmployee" [(ngModel)]="objOffice.Data.NumberOfEmployees" name="NumberOfEmployees"
+          type="Number" required></ion-input>
+        <ion-input (ionInput)="runTimeChange($event)" *ngIf="NumberOfEmployee.hasError('required') &&
+        NumberOfEmployee.touched" formControlName="NumberOfEmployee" name="NumberOfEmployee" type="text" required
+          placeholder="Enter a valid Phone Number" color="danger" class="error">
+        </ion-input>
+      </ion-item>
+
+      <ion-list>
+
+        <ion-radio-group>
+          <ion-row>
+            <ion-col size="11" class="auto">
+              <ion-label position="stacked">Secured Availability?</ion-label>
+            </ion-col>
+            <ion-col size="6" class="nopadding">
+              <ion-item>
+                <ion-label> Yes</ion-label>
+                <ion-radio formControlName="IsAvailability" slot="start" value="apartment" checked
+                  [(ngModel)]="objOffice.Data.IsAvailability" name="IsAvailability">
+                </ion-radio>
+              </ion-item>
+            </ion-col>
+            <ion-col size="6" class="nopadding">
+              <ion-item>
+                <ion-label>No</ion-label>
+                <ion-radio formControlName="IsAvailability" slot="start" value="villa"
+                  [(ngModel)]="objOffice.Data.IsAvailability" name="IsAvailability">
+                </ion-radio>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+        </ion-radio-group>
+      </ion-list>
+
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Email Address</ion-label>
+        <ion-input *ngIf="!(EmailAddress.hasError('required') && EmailAddress.touched)" formControlName="EmailAddress"
+          [(ngModel)]="objOffice.Data.Email" name="Email" type="text" required></ion-input>
+        <ion-input *ngIf="EmailAddress.hasError('required') && EmailAddress.touched" formControlName="EmailAddress"
+          name="EmailAddress" type="text" required placeholder="Enter a valid Name" color="danger" class="error">
+        </ion-input>
+      </ion-item>
+
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Phone Number</ion-label>
+        <ion-input *ngIf="!(PhoneNumber.hasError('required') && PhoneNumber.touched)" formControlName="PhoneNumber"
+          [(ngModel)]="objOffice.Data.Telephone" name="Telephone" type="Number" required></ion-input>
+        <ion-input (ionInput)="runTimeChange($event)" *ngIf="PhoneNumber.hasError('required') &&
+                PhoneNumber.touched" formControlName="PhoneNumber" name="PhoneNumber" type="text" required
+          placeholder="Enter a valid Phone Number" color="danger" class="error">
+        </ion-input>
+      </ion-item>
+
+
+
+      <ion-row>
+        <ion-col size="11" class="auto">
+          <ion-button expand="full" (click)="img();" class="top" color="medium" [(ngModel)]="objOffice.Data.Images"
+            name="Images" formControlName="imge">
+            Upload Img
+            <ion-icon slot="end" name="add"></ion-icon>
+          </ion-button>
+          <p>
+            <img src="{{myphoto}}">
+          </p>
+        </ion-col>
+        <ion-col size="11" class="auto">
+          <ion-button expand="full" (click)="InsertOffice">
+            Get Quotation
+          </ion-button>
+        </ion-col>
+        <ion-col size=" 11" class="auto">
+          <span class="note">
+            <strong>Note:</strong>
+            Constructions with more than 30 years of age are rejected.
+          </span>
+        </ion-col>
+      </ion-row>
+
+
+
+
+    </ion-list>
+  </form>
 </ion-content>

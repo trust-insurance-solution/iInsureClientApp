@@ -5,13 +5,15 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
+import { IonicSelectableModule } from 'ionic-selectable';
+import { ReactiveFormsModule } from '@angular/forms';
 import { PaPage } from './pa.page';
 
 const routes: Routes = [
   {
     path: '',
     component: PaPage
-  }
+  } 
 ];
 
 @NgModule({
@@ -19,6 +21,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    IonicSelectableModule,
+    ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],
   declarations: [PaPage]
