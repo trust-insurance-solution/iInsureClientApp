@@ -2,27 +2,31 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
+
 import { IonicModule } from '@ionic/angular';
-import { TravelPage } from './travel.page';
+
+import { NewTravelerPage } from './new-traveler.page';
+
 import { IonicSelectableModule } from 'ionic-selectable';
 import { ReactiveFormsModule } from '@angular/forms';
 
+
 const routes: Routes = [
   {
-    path: '', 
-    component: TravelPage
+    path: '',
+    component: NewTravelerPage
   }
 ];
- 
+
 @NgModule({
   imports: [
     CommonModule,
+    IonicSelectableModule,
     FormsModule,
     ReactiveFormsModule,
-    IonicSelectableModule,
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [TravelPage]
+  declarations: [NewTravelerPage]
 })
-export class TravelPageModule { }
+export class NewTravelerPageModule { }

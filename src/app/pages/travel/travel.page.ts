@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IonSlides } from '@ionic/angular';
+import { IonSlides, NavController } from '@ionic/angular';
 import { GlobalService } from '../../apiCaller/global.service';
 import { TravelResponse } from '../../../entity/TravelEntry';
 import { FormsModule, Validators, FormControl, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
@@ -45,17 +45,17 @@ export class TravelPage implements OnInit {
   };
   @ViewChild('mySlider') slides: IonSlides;
 
-  constructor(public _GlobalService: GlobalService, public formbuilder: FormBuilder, ) {
+  constructor(public _GlobalService: GlobalService, public formbuilder: FormBuilder, public navCtrl: NavController) {
 
     //FORM
     this.formgroup = formbuilder.group({
       StartDateJourney: new FormControl('', Validators.compose([
         Validators.required])),
 
-        EndDateJourney: new FormControl('', Validators.compose([
+      EndDateJourney: new FormControl('', Validators.compose([
         Validators.required])),
 
-        countr: new FormControl('', Validators.compose([
+      countr: new FormControl('', Validators.compose([
         Validators.required])),
     })
     this.StartDateJourney = this.formgroup.controls['StartDateJourney']
@@ -96,7 +96,9 @@ export class TravelPage implements OnInit {
     });
   }
 
-  addTraveler() { }
+  newTraveler() {
+    this.navCtrl.navigateForward('new-traveler');
+  }
 
   private postTravelEntry(): Promise<any> {
     return this._GlobalService.fetchDataApi('InsertNewTravelEntry', this.objTravel, this.accessToken, this.userID.toString());

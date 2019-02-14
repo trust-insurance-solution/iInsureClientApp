@@ -1,11 +1,11 @@
 <ion-header>
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-back-button class="show-back-button"></ion-back-button>
-      </ion-buttons>
-      <ion-title>Travel</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button class="show-back-button"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Travel</ion-title>
+  </ion-toolbar>
+</ion-header>
 
 <ion-content padding>
   <form [formGroup]="formgroup">
@@ -31,11 +31,29 @@
         </ionic-selectable>
       </ion-item>
 
-      <ion-item lines="none" detail (click)="addTraveler()">
-        {{traveler}}
-        <ion-label>Add new Traveler </ion-label>
-      </ion-item>
+      <ion-row>
+        <ion-col size="11" class="auto">
+          <ion-item lines="none" detail (click)="newTraveler()" color="off">
+            {{traveler}}
+            <ion-label>Add new Traveler </ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
 
+
+      <ion-card>
+
+        <ion-card-header detail>
+          Add New Traveler
+
+        </ion-card-header>
+
+        <ion-card-content>
+          <!-- Add card content here! -->
+        </ion-card-content>
+
+      </ion-card>
+      <!-- 
       <div *ngFor='let item of objTravel.Data.listTravelEntry;let i = index'>
         <ion-item lines="none">
           <ion-label position="stacked">FullName</ion-label>
@@ -69,7 +87,7 @@
           <ion-label position="stacked">PictureOfPassport</ion-label>
           <ion-input [(ngModel)]="item.pictureOfPassport" name="PictureOfPassport" type="text" required></ion-input>
         </ion-item>
-      </div>
+      </div> -->
 
       <ion-button color="dark" expand="full" (click)="savePost()">Get Quotation</ion-button>
     </ion-list>

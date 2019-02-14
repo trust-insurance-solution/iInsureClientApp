@@ -111,7 +111,7 @@ export class PaPage implements OnInit {
   }) {
     console.log('nationlID:', event.value);
   }
-   //Event for selectable Nationality
+   //Event for selectable CountryResidenc
    CountryResidenc(event: {
     component: IonicSelectableComponent,
     value: any

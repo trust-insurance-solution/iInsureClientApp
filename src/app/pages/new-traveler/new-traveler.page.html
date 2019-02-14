@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button class="show-back-button"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add New Traveler </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <form [formGroup]="formgroup">
+    <ion-list class="top" lines="none">
+      <ion-item lines="none">
+        <ion-label position="stacked">Full Name</ion-label>
+        <ion-input *ngIf="!(FullName.hasError('required') && FullName.touched)" formControlName="FullName"
+          name="FullName" type="text" required></ion-input>
+        <ion-input *ngIf="FullName.hasError('required') && FullName.touched" formControlName="FullName" name="FullName"
+          type="text" required placeholder="Enter a valid Name" color="danger" class="error"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Date Of Birth</ion-label>
+        <ion-input *ngIf="!(DateOfBirth.hasError('required') && DateOfBirth.touched)" formControlName="DateOfBirth"
+          name="DateOfBirth" type="date" required></ion-input>
+        <ion-input *ngIf="DateOfBirth.hasError('required') && DateOfBirth.touched" formControlName="DateOfBirth"
+          name="DateOfBirth" type="date" required placeholder="Enter a valid Name" color="danger" class="error">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Nationality</ion-label>
+        <ionic-selectable name="NationalID" [items]="nationlID" itemValueField="Id" formControlName="NationalID"
+          itemTextField="CountryName" [canSearch]="true" (onChange)="Nationality($event)" required>
+        </ionic-selectable>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Passport Number</ion-label>
+        <ion-input *ngIf="!(PassportNumber.hasError('required') && PassportNumber.touched)"
+          formControlName="PassportNumber" name="Telephone" type="Number" required></ion-input>
+        <ion-input (ionInput)="runTimeChange($event)" *ngIf="PassportNumber.hasError('required') &&
+                  PassportNumber.touched" formControlName="PassportNumber" name="PassportNumber" type="text" required
+          placeholder="Enter a valid Phone Number" color="danger" class="error">
+        </ion-input>
+      </ion-item>
+
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Country Residence</ion-label>
+        <ionic-selectable name="FkCountryresidence" [items]="CountryResidencelID" itemValueField="Id"
+          formControlName="CountryResidence" itemTextField="CountryName" [canSearch]="true"
+          (onChange)="CountryResidenc($event)" required>
+        </ionic-selectable>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Passport Expiration Date</ion-label>
+        <ion-input *ngIf="!(passExBirth.hasError('required') && passExBirth.touched)" formControlName="passExBirth"
+          name="passExBirth" type="date" required></ion-input>
+        <ion-input *ngIf="passExBirth.hasError('required') && passExBirth.touched" formControlName="passExBirth"
+          name="passExBirth" type="date" required placeholder="Enter a valid Name" color="danger" class="error">
+        </ion-input>
+      </ion-item>
+
+      <ion-row>
+        <ion-col size="11" class="auto">
+          <ion-button expand="full" (click)="img();" class="top" color="medium">
+            Upload Img
+            <ion-icon slot="end" name="add"></ion-icon>
+          </ion-button>
+          <p>
+            <img src="{{myphoto}}">
+            <!-- <img src="../../../assets/img/bg1.jpg"> -->
+          </p>
+        </ion-col>
+        <ion-col size="11" class="auto">
+          <ion-button expand="full" (click)="save()">
+            SAve
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-list>
+  </form>
+</ion-content>
