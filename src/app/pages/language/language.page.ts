@@ -19,9 +19,6 @@ export class LanguagePage implements OnInit {
 
   language_selected = 0
   constructor(private storage: Storage, public alertController: AlertController, public navCtrl: NavController,private _Platform:Platform,public translate:TranslateService) {
-    translate.addLangs(['en','ar','fr']);
-    translate.setDefaultLang('en');
-    translate.use('en');
   }
           
   ngOnInit() {
