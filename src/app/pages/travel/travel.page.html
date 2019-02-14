@@ -1,62 +1,77 @@
 <ion-header>
-  <ion-toolbar color="dark">
-    <ion-title>Travel</ion-title>
-  </ion-toolbar>
-</ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button class="show-back-button"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Travel</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
 <ion-content padding>
-  <ion-list class="top" lines="none">
-    <ion-item>
-      <ion-label position="stacked">Start Date </ion-label>
-      <ion-input [(ngModel)]="objTravel.Data.StartDateJourney" name="StartDateJourney" type="date" required></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="stacked">End Date </ion-label>
-      <ion-input [(ngModel)]="objTravel.Data.EndDateJourney" name="EndDateJourney" type="date" required></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="stacked">Destination Country</ion-label>
-      <ionic-selectable name="DestinationId" [items]="countries" itemValueField="Id" itemTextField="CountryName"
-        [canSearch]="true" [isMultiple]="true" (onChange)="diagnosisChange($event)">
-      </ionic-selectable>
-    </ion-item>
-    <ion-item detail (click)="addTraveler()">{{traveler}}
-      <ion-label>Add a person </ion-label>
-    </ion-item>
-    <div *ngFor='let item of objTravel.Data.listTravelEntry;let i = index'>
-      <ion-item>
-        <ion-label position="stacked">FullName</ion-label>
-        <ion-input [(ngModel)]="item.fullName" name="FullName" type="text" required></ion-input>
+  <form [formGroup]="formgroup">
+    <ion-list class="top" lines="none">
+      <ion-item lines="none">
+        <ion-label position="stacked">Start Date </ion-label>
+        <ion-input *ngIf="!(StartDateJourney.hasError('required') && StartDateJourney.touched)"
+          formControlName="StartDateJourney" [(ngModel)]="objTravel.Data.StartDateJourney" name="StartDateJourney"
+          type="date" required></ion-input>
       </ion-item>
-      <ion-item>
-        <ion-label position="stacked">DateOfBirth</ion-label>
-        <ion-input [(ngModel)]="item.dateOfBirth" name="DateOfBirth" type="date" required></ion-input>
+      <ion-item lines="none">
+        <ion-label position="stacked">End Date </ion-label>
+        <ion-input *ngIf="!(EndDateJourney.hasError('required') && EndDateJourney.touched)"
+          formControlName="EndDateJourney" [(ngModel)]="objTravel.Data.EndDateJourney" name="EndDateJourney" type="date"
+          required></ion-input>
       </ion-item>
-      <ion-item>
-        <ion-label position="stacked">Nationality</ion-label>
-        <ionic-selectable [(ngModel)]="item.nationality" name="Nationality" [items]="countries" itemValueField="Id"
-          itemTextField="CountryName" [canSearch]="true">
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Destination Country</ion-label>
+        <ionic-selectable formControlName="countr" name="DestinationId" [items]="countries" itemValueField="Id"
+          itemTextField="CountryName" [canSearch]="true" [isMultiple]="true" (onChange)="diagnosisChange($event)">
+          <span style="background-color: red">s</span>
         </ionic-selectable>
       </ion-item>
-      <ion-item>
-        <ion-label position="stacked">PassportNumber</ion-label>
-        <ion-input [(ngModel)]="item.passportNumber" name="PassportNumber" type="number" required></ion-input>
+
+      <ion-item lines="none" detail (click)="addTraveler()">
+        {{traveler}}
+        <ion-label>Add new Traveler </ion-label>
       </ion-item>
-      <ion-item>
-        <ion-label position="stacked">CountryOfResidence</ion-label>
-        <ionic-selectable [(ngModel)]="item.countryOfResidence" name="CountryOfResidence" [items]="countries"
-          itemValueField="Id" itemTextField="CountryName" [canSearch]="true">
-        </ionic-selectable>
-      </ion-item>
-      <ion-item>
-        <ion-label position="stacked">PassportExpireDate</ion-label>
-        <ion-input [(ngModel)]="item.passportExpireDate" name="PassportExpireDate" type="date" required></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="stacked">PictureOfPassport</ion-label>
-        <ion-input [(ngModel)]="item.pictureOfPassport" name="PictureOfPassport" type="text" required></ion-input>
-      </ion-item>
-    </div>
-    <ion-button color="dark" expand="full" (click)="savePost()">Get Quotation</ion-button>
-  </ion-list>
+
+      <div *ngFor='let item of objTravel.Data.listTravelEntry;let i = index'>
+        <ion-item lines="none">
+          <ion-label position="stacked">FullName</ion-label>
+          <ion-input [(ngModel)]="item.fullName" name="FullName" type="text" required></ion-input>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label position="stacked">DateOfBirth</ion-label>
+          <ion-input [(ngModel)]="item.dateOfBirth" name="DateOfBirth" type="date" required></ion-input>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label position="stacked">Nationality</ion-label>
+          <ionic-selectable [(ngModel)]="item.nationality" name="Nationality" [items]="countries" itemValueField="Id"
+            itemTextField="CountryName" [canSearch]="true">
+          </ionic-selectable>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label position="stacked">PassportNumber</ion-label>
+          <ion-input [(ngModel)]="item.passportNumber" name="PassportNumber" type="number" required></ion-input>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label position="stacked">CountryOfResidence</ion-label>
+          <ionic-selectable [(ngModel)]="item.countryOfResidence" name="CountryOfResidence" [items]="countries"
+            itemValueField="Id" itemTextField="CountryName" [canSearch]="true">
+          </ionic-selectable>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label position="stacked">PassportExpireDate</ion-label>
+          <ion-input [(ngModel)]="item.passportExpireDate" name="PassportExpireDate" type="date" required></ion-input>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label position="stacked">PictureOfPassport</ion-label>
+          <ion-input [(ngModel)]="item.pictureOfPassport" name="PictureOfPassport" type="text" required></ion-input>
+        </ion-item>
+      </div>
+
+      <ion-button color="dark" expand="full" (click)="savePost()">Get Quotation</ion-button>
+    </ion-list>
+  </form>
 </ion-content>
