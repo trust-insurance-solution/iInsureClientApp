@@ -30,7 +30,7 @@
       </ion-item>
 
       <ion-item>
-        <ion-label>Value of Coverage</ion-label>
+        <ion-label position="stacked">Value of Coverage</ion-label>
         <ion-select placeholder="Select" [(ngModel)]="objLife.Data.FkPeriodofcover" name="FkPeriodofcover"
           formControlName="vCoverage">
           <ion-select-option>50.000</ion-select-option>
@@ -50,18 +50,18 @@
       </ion-item>
 
       <ion-item>
-        <ion-label>Period of Cover</ion-label>
+        <ion-label position="stacked">Period of Cover</ion-label>
         <ion-select placeholder="Select" [(ngModel)]="objLife.Data.FkPeriodofcover" name="FkPeriodofcover"
           formControlName="pCover">
           <ion-select-option>1 Year</ion-select-option>
           <ion-select-option>2 Year</ion-select-option>
           <ion-select-option>3 Year</ion-select-option>
-          <ion-select-option>4  Year</ion-select-option>
+          <ion-select-option>4 Year</ion-select-option>
         </ion-select>
       </ion-item>
 
       <ion-item>
-        <ion-label>Unit</ion-label>
+        <ion-label position="stacked">Unit</ion-label>
         <ion-select placeholder="Select" [(ngModel)]="objLife.Data.NumberOfUnit" name="NumberOfUnit"
           formControlName="NumberOfUnit">
           <ion-select-option>1 Unit</ion-select-option>
@@ -71,6 +71,13 @@
         </ion-select>
       </ion-item>
 
+      <ion-row>
+        <ion-col size="11" class="auto top">
+          <ion-button expand="full" (click)="InsertLife()">
+            Get Quotation
+          </ion-button>
+        </ion-col>
+      </ion-row>
     </ion-list>
   </form>
 
@@ -83,6 +90,5 @@
       </td>
     </tr>
 
-  </table>
-  <button ion-button (click)="InsertLife()">Click it</button> -->
+  </table> -->
 </ion-content>
