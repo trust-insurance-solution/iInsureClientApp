@@ -106,6 +106,7 @@ export class SignupPage implements OnInit {
 
   async ngOnInit() {
     await this.getCountries().then(result => this.countries = result.Data);
+
   }
 
   objUserInfo = {
@@ -126,6 +127,7 @@ export class SignupPage implements OnInit {
   //Get a countries
   getCountries(): Promise<any> {
     return this._GlobalService.fetchDataApi('GetAllCountryList', {});
+
   }
 
 
@@ -140,12 +142,14 @@ export class SignupPage implements OnInit {
     value: any
   }) {
     console.log('port:', event.value);
+    //console.log('teem:', event.value,{IonicSelectableModule});
+
   }
 
   //Event for selectable Component city
   cityChange(event: {
     component: IonicSelectableComponent,
-    value: any
+    value: any,
   }) {
     console.log('city:', event.value);
   }

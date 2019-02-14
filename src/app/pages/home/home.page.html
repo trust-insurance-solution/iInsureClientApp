@@ -19,7 +19,7 @@
       </ion-item>
 
       <ion-item>
-        <ion-label>Nationality</ion-label>
+        <ion-label position="stacked">Nationality</ion-label>
         <ionic-selectable [(ngModel)]="objHome.Data.NationalID" name="NationalID" [items]="nationlID"
           itemValueField="Id" formControlName="NationalID" itemTextField="CountryName" [canSearch]="true"
           (onChange)="Nationality($event)" required>
@@ -38,7 +38,7 @@
 
 
       <ion-item>
-        <ion-label>Value of Coverage</ion-label>
+        <ion-label position="stacked">Value of Coverage</ion-label>
         <ion-select placeholder="Select" [(ngModel)]="objHome.Data.vCoverage" formControlName="vCoverage">
           <ion-select-option>50.000</ion-select-option>
           <ion-select-option>100.000</ion-select-option>
@@ -173,7 +173,8 @@
             <ion-icon slot="end" name="add"></ion-icon>
           </ion-button>
           <p>
-            <img src="{{myphoto}}">
+             <img src="{{myphoto}}"> 
+            <!-- <img src="../../../assets/img/bg1.jpg"> -->
           </p>
         </ion-col>
         <ion-col size="11" class="auto">
