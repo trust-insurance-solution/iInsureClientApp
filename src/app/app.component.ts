@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { GlobalService } from '../app/apiCaller/global.service';
 
 @Component({
   selector: 'app-root',
@@ -25,7 +26,9 @@ export class AppComponent {
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private _GlobalService:GlobalService,
+
   ) {
     this.initializeApp();
   }
@@ -34,6 +37,20 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      //  this.goToNext();  
     });
   }
+
+  
+/* goToNext() {
+   if (this._GlobalService.isOnline()) {
+     // Network Connection available
+     console.log("YEEEESSS");
+   }
+   else {
+     // Network Connection not available
+     console.log("No0o0o");
+   }
+ }
+ */
 }

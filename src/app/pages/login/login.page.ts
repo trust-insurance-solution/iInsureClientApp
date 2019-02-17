@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, AlertController } from '@ionic/angular';
-import { GlobalService } from '../../apiCaller/global.service';
+import { NavController, AlertController,Platform } from '@ionic/angular';
 import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
+import { GlobalService } from '../../apiCaller/global.service';
 
 
 @Component({
@@ -18,7 +18,8 @@ export class LoginPage implements OnInit {
       EmailAddress: '',
       PhoneNumber: '',
       Password: '',
-      DeviceToken: ''
+      DeviceToken: '',
+      FkMachineType:1
     },
     Language: ''
   };
@@ -29,7 +30,7 @@ export class LoginPage implements OnInit {
   constructor(public navCtrl: NavController,
     public _GlobalService: GlobalService,
     private uniqueDeviceID: UniqueDeviceID,
-    public alertController: AlertController) {
+    public alertController: AlertController,private _Platform: Platform) {
     this.deviceToken = !this._GlobalService.getPlatform() ? this._GlobalService.getDeviceToken() : "cbF1x6YK4_w:APA91bEZOJLaN5ZO8wfRB6WyyLIQZ_29E0RLlU4ssd7rqEOxAP1AXYCOBE07-jBQyyn6zKY6MUrqXNFIZsS186Pg-fGMeOSwoHq1tJYv53V_BYHEduiT8CehSlxpObifuMOmuDEZZWQb";
     this._GlobalService.getStorage('Lang').then((val) => {
       this.Lang = val;
@@ -39,6 +40,7 @@ export class LoginPage implements OnInit {
   LoginUser() {
     this.loginData.Data.DeviceToken = this.deviceToken;
     this.loginData.Data.PhoneNumber = this.loginData.Data.EmailAddress;
+    this.loginData.Data.FkMachineType=this.getDeviceType();
     this.loginData.Language = this.Lang;
 
     this.postLogin().then(res => {
@@ -61,6 +63,14 @@ export class LoginPage implements OnInit {
   }
   postLogin(): Promise<any> {
     return this._GlobalService.fetchDataApi('Login', this.loginData);
+  }
+  getDeviceType(): number {
+    if (this._Platform.is('ios'))
+      return 3;
+    else if (this._Platform.is('android'))
+      return 2;
+    else
+      return 1;
   }
 }
 

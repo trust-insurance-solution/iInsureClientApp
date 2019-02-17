@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Storage } from '@ionic/storage';
 import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
 import { Platform } from '@ionic/angular';
+//import { Network } from '@ionic-native/network/ngx';
 
 
 
@@ -100,5 +101,18 @@ export class GlobalService {
       return this._IsApp;
     }
   }
+
+/* isOnline(): boolean {
+   console.log('Network connection is : ' + this.network.type);
+   if(this.network.type !== 'none'){
+     return true;
+   }else if(this.network.type === 'none'){
+     alert('Please Check your network and try again');
+   }else{
+     alert('Please Check your network and try again');
+   }
+   }
+   */
+    
 }
 
