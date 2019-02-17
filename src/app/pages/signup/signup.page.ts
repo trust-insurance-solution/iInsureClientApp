@@ -19,11 +19,11 @@ export class SignupPage implements OnInit {
   objSignUp: any;
   countries: any;
   cities:any;
-  country: number = -1;
+  country: number = 0;
+  cityId:number=0;
   agreed: boolean = false;
-
   checkbox: boolean = false
-
+  countryId:number=0;
   formgroup: FormGroup
   FullName: AbstractControl
   EmailAddress: AbstractControl
@@ -115,11 +115,11 @@ export class SignupPage implements OnInit {
       PhoneNumber: '',
       DateOfBirth: '',
       Password: '',
-      Gender: -1,
-      country: -1,
-      GovernorateId: -1,
+      Gender: 0,
+      country: 0,
+      GovernorateId: 0,
       DeviceToken: '',
-      FkMachineType:1
+      FkMachineType:0
     },
     Language: ''
   }
@@ -129,9 +129,13 @@ export class SignupPage implements OnInit {
     return this._GlobalService.fetchDataApi('GetAllCountryList', {});
   }
     //Get a cites
-    getCites(): Promise<any> {
-      return this._GlobalService.fetchDataApi('GetAllCountryList', {});
-    }
+  getCites(CountryId): Promise<any> {
+    let item = {
+      "Data": CountryId,
+      "Language": "string"
+    };
+    return this._GlobalService.fetchDataApi('GetCitiesListByCountryId', item);
+  }
   //Post Create New Client Account
   postCreateNewClientAccount(): Promise<any> {
     return this._GlobalService.fetchDataApi('CreateNewClientAccount', this.objUserInfo)
@@ -141,26 +145,24 @@ export class SignupPage implements OnInit {
     component: IonicSelectableComponent,
     value: any
   }) {
-    console.log('port:', event.value);
-    await this.getCites().then(result => this.cities = result.Data);
+   // 
+    this.countryId = event.value.Id;
+    await this.getCites(event.value.Id).then(result => this.cities = result.Data);
   }
   //Event for selectable Component city
   cityChange(event: {
     component: IonicSelectableComponent,
     value: any,
   }) {
-    console.log('city:', event.value);
+    this.objUserInfo.Data.GovernorateId = event.value.GovernorateId;
   }
   //SignUp Data Method
   signUp() {
-    this.objUserInfo.Data.Gender = this.objUserInfo.Data.Gender > -1 ? this.objUserInfo.Data.Gender : null;
-    this.objUserInfo.Data.country = this.objUserInfo.Data.country > -1 ? this.objUserInfo.Data.country : null;
-    this.objUserInfo.Data.GovernorateId = this.objUserInfo.Data.GovernorateId > -1 ? this.objUserInfo.Data.GovernorateId : null;
+    this.objUserInfo.Data.country = this.countryId;
     this.objUserInfo.Data.FkMachineType = this.getDeviceType();
-
-      this._GlobalService.getStorage("Lang").then(val => { this.objUserInfo.Language = val; });
+    this._GlobalService.getStorage("Lang").then(val => { this.objUserInfo.Language = val; });
     this.objUserInfo.Data.DeviceToken = this._GlobalService.getPlatform() ? '"' + this._GlobalService.getDeviceToken() + '"' : "cbF1x6YK4_w:APA91bEZOJLaN5ZO8wfRB6WyyLIQZ_29E0RLlU4ssd7rqEOxAP1AXYCOBE07-jBQyyn6zKY6MUrqXNFIZsS186Pg-fGMeOSwoHq1tJYv53V_BYHEduiT8CehSlxpObifuMOmuDEZZWQb";
-
+    console.log(JSON.stringify(this.objUserInfo));
     this.postCreateNewClientAccount().then(data => {
       if (data.Success === 'true') {
         this._GlobalService.setStorage('UserInfo', data[0]);
