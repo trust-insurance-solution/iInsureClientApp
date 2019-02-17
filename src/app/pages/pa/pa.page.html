@@ -72,7 +72,7 @@
 
       <ion-item lines="none">
         <ion-label position="stacked">Nationality</ion-label>
-        <ionic-selectable [(ngModel)]="objPersonalAccident.Data.FkNationality" name="FkNationality" [items]="nationlID"
+        <ionic-selectable [(ngModel)]="objPersonalAccident.Data.FkNationality" name="FkNationality" [items]="countries"
           itemValueField="Id" formControlName="NationalID" itemTextField="CountryName" [canSearch]="true"
           (onChange)="Nationality($event)" required>
         </ionic-selectable>

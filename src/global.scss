@@ -20,8 +20,6 @@
     font-family: CenturyGothic !important;
 }
 
-
-
 //First Div 
 .first{
     height: 42%;
@@ -93,8 +91,23 @@ ion-input.error{
 }
 
 .searchbar-input.sc-ion-searchbar-md {
- 
     background-color: #fff !important;
     border: 1px solid #e0d0cf !important;
 }
 
+
+.swiper-pagination {
+    position: initial !important;
+}
+
+  ion-header {
+    ion-title.hydrated{
+        color: var(--white-color) !important;
+    }
+    ion-buttons >*{
+        color: var(--white-color) !important;
+    }
+    ion-toolbar{
+        --background: linear-gradient(to right, var(--lightB-color) 0%, var(--darkB-color) 100%) !important;
+    }     
+}

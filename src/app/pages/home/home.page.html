@@ -12,15 +12,15 @@
     <ion-list class="top" lines="none">
       <ion-item lines="none">
         <ion-label position="stacked">Full Name</ion-label>
-        <ion-input *ngIf="!(FullName.hasError('required') && FullName.touched)" formControlName="FullName"
+        <ion-input *ngIf="!(FullName.hasError('required') && FullName.touched) " formControlName="FullName"
           [(ngModel)]="objHome.Data.FullName" name="FullName" type="text" required></ion-input>
         <ion-input *ngIf="FullName.hasError('required') && FullName.touched" formControlName="FullName" name="FullName"
-          type="text" required placeholder="Enter a valid Name" color="danger" class="error"></ion-input>
+          type="text" required placeholder="Enter a valid Name" color="danger" class="error"  (change)='onChange($event)'  ></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="stacked">Nationality</ion-label>
-        <ionic-selectable [(ngModel)]="objHome.Data.NationalID" name="NationalID" [items]="nationlID"
+        <ionic-selectable [(ngModel)]="objHome.Data.NationalID" name="NationalID" [items]="countries"
           itemValueField="Id" formControlName="NationalID" itemTextField="CountryName" [canSearch]="true"
           (onChange)="Nationality($event)" required>
         </ionic-selectable>

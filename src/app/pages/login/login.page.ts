@@ -31,7 +31,9 @@ export class LoginPage implements OnInit {
     public _GlobalService: GlobalService,
     private uniqueDeviceID: UniqueDeviceID,
     public alertController: AlertController,private _Platform: Platform) {
-    this.deviceToken = !this._GlobalService.getPlatform() ? this._GlobalService.getDeviceToken() : "cbF1x6YK4_w:APA91bEZOJLaN5ZO8wfRB6WyyLIQZ_29E0RLlU4ssd7rqEOxAP1AXYCOBE07-jBQyyn6zKY6MUrqXNFIZsS186Pg-fGMeOSwoHq1tJYv53V_BYHEduiT8CehSlxpObifuMOmuDEZZWQb";
+      // fares cbF1x6YK4_w:APA91bEZOJLaN5ZO8wfRB6WyyLIQZ_29E0RLlU4ssd7rqEOxAP1AXYCOBE07-jBQyyn6zKY6MUrqXNFIZsS186Pg-fGMeOSwoHq1tJYv53V_BYHEduiT8CehSlxpObifuMOmuDEZZWQb";
+      // "ZWw5TWVsdmhNdk5TOWlxbEMxeW1JOUI4endCMTVLNEpEaFhTV1ZMUmNaOD06Mi8xNy8yMDE5OjYzNjg2MDA4MTgyNzEwNjk5NQ==";
+    this.deviceToken = !this._GlobalService.getPlatform() ? this._GlobalService.getDeviceToken() : "ZWw5TWVsdmhNdk5TOWlxbEMxeW1JOUI4endCMTVLNEpEaFhTV1ZMUmNaOD06Mi8xNy8yMDE5OjYzNjg2MDA4MTgyNzEwNjk5NQ==";
     this._GlobalService.getStorage('Lang').then((val) => {
       this.Lang = val;
     });

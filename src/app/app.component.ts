@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { Network } from '@ionic-native/network';
 import { GlobalService } from '../app/apiCaller/global.service';
 
 @Component({
@@ -28,7 +29,6 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private _GlobalService: GlobalService
-    //private network: Network
   ) {
     this.initializeApp();
   }

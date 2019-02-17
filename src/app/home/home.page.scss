@@ -1,6 +1,7 @@
 .sec{
     height: 47%;
     margin-top: 19%;
+    padding: 0 8vw;
 }
 .circle{
     border: #ffffff 1px solid;
@@ -50,7 +51,7 @@ ion-slides{
 
 ion-icon.ic {
     font-size: xx-large;
-    color: #9c47fc;
+    color: #dd0000;
     background-color: #d4d4d4;
     margin: auto;
     text-align: center;
@@ -66,7 +67,7 @@ ion-icon.ic {
 
 .actName{
     white-space: pre-line;
-    color: #7e1efe;
+    color: #313131;
     font-weight: 600;
     margin-bottom: -7px
 }
@@ -78,3 +79,15 @@ ion-icon.ic {
 .swiper-pagination.swiper-pagination-bullets {
     position: initial !important;
 }
+
+.swiper-container-horizontal>.swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction {
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    position: initial !important;
+    background-color: red !important
+}
+
+
+
+
