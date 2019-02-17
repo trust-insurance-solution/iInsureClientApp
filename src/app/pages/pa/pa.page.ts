@@ -23,6 +23,8 @@ export class PaPage implements OnInit {
 
 
 
+  countries: any;
+  country: number = -1;
   accessToken: string;
   lang: string;
   userID: number;
@@ -101,8 +103,9 @@ export class PaPage implements OnInit {
     this.accessToken = "elNRWitrbFpYLzl0UGFnZ3FEUW1RMTNmTWhQTXkvL1FYbGhYNU5tSEtmWT06Mi8xMi8yMDE5OjYzNjg1NTY3NTE1ODI4MzI4Nw==";
   }
 
-  ngOnInit() {
-  }
+  async  ngOnInit() {
+    await this.getCountries().then(result => this.countries = result.Data);
+   }
 
   //Event for selectable Nationality
   Nationality(event: {
@@ -134,6 +137,12 @@ export class PaPage implements OnInit {
     });
   }
 
+  
+    //Get a countries
+    getCountries(): Promise<any> {
+      return this._GlobalService.fetchDataApi('GetAllCountryList', {});
+  
+    }
   private postOfficeEntry(): Promise<any> {
     return this._GlobalService.fetchDataApi('InsertNewPersonalAccidentsEntry', this.objPersonalAccident, this.accessToken, this.userID.toString());
   }

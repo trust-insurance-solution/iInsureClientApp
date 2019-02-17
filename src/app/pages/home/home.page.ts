@@ -39,7 +39,8 @@ export class HomePage implements OnInit {
 
 
 
-
+  countries: any;
+  country: number = -1;
   lang: string;
   userID: number;
   accessToken: string;
@@ -100,7 +101,7 @@ export class HomePage implements OnInit {
       floor: new FormControl('', Validators.compose([
         Validators.pattern('[0-9 ]*'),
         Validators.required])),
-        floorAp: new FormControl('', Validators.compose([
+      floorAp: new FormControl('', Validators.compose([
         Validators.pattern('[0-9 ]*'),
         Validators.required])),
 
@@ -143,10 +144,12 @@ export class HomePage implements OnInit {
     this._GlobalService.getStorage('UserInfo').then((val) => {
       this.userID = val.UserId;
     });
-    this.accessToken = "elNRWitrbFpYLzl0UGFnZ3FEUW1RMTNmTWhQTXkvL1FYbGhYNU5tSEtmWT06Mi8xMi8yMDE5OjYzNjg1NTY3NTE1ODI4MzI4Nw==";
+    this.accessToken = "ZWw5TWVsdmhNdk5TOWlxbEMxeW1JOUI4endCMTVLNEpEaFhTV1ZMUmNaOD06Mi8xNy8yMDE5OjYzNjg2MDA4MTgyNzEwNjk5NQ==";
   }
 
-  ngOnInit() { }
+  async  ngOnInit() {
+    await this.getCountries().then(result => this.countries = result.Data);
+   }
 
   //Modal
   async coverageModal() {
@@ -206,6 +209,11 @@ export class HomePage implements OnInit {
     });
   }
 
+    //Get a countries
+    getCountries(): Promise<any> {
+      return this._GlobalService.fetchDataApi('GetAllCountryList', {});
+  
+    }
 
   type(x) {
     console.log("teem" + x)
