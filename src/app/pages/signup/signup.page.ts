@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavController,Platform  } from '@ionic/angular';
 import { GlobalService } from '../../apiCaller/global.service';
 import { LoadingController } from '@ionic/angular';
 import { IonicSelectableModule, IonicSelectableComponent } from 'ionic-selectable';
@@ -18,6 +18,7 @@ export class SignupPage implements OnInit {
   allInfo = true
   objSignUp: any;
   countries: any;
+  cities:any;
   country: number = -1;
   agreed: boolean = false;
 
@@ -39,7 +40,7 @@ export class SignupPage implements OnInit {
   constructor(public _GlobalService: GlobalService,
     public _LoadingController: LoadingController,
     public navCtrl: NavController,
-    public formbuilder: FormBuilder,public translate:TranslateService ) {
+    public formbuilder: FormBuilder,public translate:TranslateService,private _Platform: Platform ) {
 
     //FORM
     this.formgroup = formbuilder.group({
@@ -93,7 +94,6 @@ export class SignupPage implements OnInit {
     this.gender = this.formgroup.controls['gender']
     this.city = this.formgroup.controls['city']
   }
-
   onSubmit(value: any): void {
     if (this.formgroup.valid) {
       console.log(this.FullName)
@@ -101,74 +101,65 @@ export class SignupPage implements OnInit {
       //window.localStorage.setItem('password', value.password);    
     }
   }
-
   runTimeChange(ev: any) {
     let val = ev.target.value;
     console.log("Ddddddddddd " + val.value)
   }
-
   async ngOnInit() {
     await this.getCountries().then(result => this.countries = result.Data);
-
   }
-
   objUserInfo = {
     Data: {
       FullName: '',
       EmailAddress: '',
       PhoneNumber: '',
+      DateOfBirth: '',
       Password: '',
+      Gender: -1,
+      country: -1,
+      GovernorateId: -1,
       DeviceToken: '',
-
+      FkMachineType:1
     },
     Language: ''
   }
-
   login() { this.navCtrl.navigateForward('login') }
-
-
   //Get a countries
   getCountries(): Promise<any> {
     return this._GlobalService.fetchDataApi('GetAllCountryList', {});
-
   }
-
-
+    //Get a cites
+    getCites(): Promise<any> {
+      return this._GlobalService.fetchDataApi('GetAllCountryList', {});
+    }
   //Post Create New Client Account
   postCreateNewClientAccount(): Promise<any> {
     return this._GlobalService.fetchDataApi('CreateNewClientAccount', this.objUserInfo)
   }
-
   //Event for selectable Component country
-  portChange(event: {
+  async portChange(event: {
     component: IonicSelectableComponent,
     value: any
   }) {
     console.log('port:', event.value);
-   // console.log('ffffffff:', event.value[].Id);
-    //console.log('teem:', event.value,{IonicSelectableModule});
-
+    await this.getCites().then(result => this.cities = result.Data);
   }
-
   //Event for selectable Component city
   cityChange(event: {
     component: IonicSelectableComponent,
     value: any,
   }) {
     console.log('city:', event.value);
-    
   }
-
-
   //SignUp Data Method
   signUp() {
-    this._GlobalService.getStorage("Lang").then(val => { this.objUserInfo.Language = val; });
+    this.objUserInfo.Data.Gender = this.objUserInfo.Data.Gender > -1 ? this.objUserInfo.Data.Gender : null;
+    this.objUserInfo.Data.country = this.objUserInfo.Data.country > -1 ? this.objUserInfo.Data.country : null;
+    this.objUserInfo.Data.GovernorateId = this.objUserInfo.Data.GovernorateId > -1 ? this.objUserInfo.Data.GovernorateId : null;
+    this.objUserInfo.Data.FkMachineType = this.getDeviceType();
+
+      this._GlobalService.getStorage("Lang").then(val => { this.objUserInfo.Language = val; });
     this.objUserInfo.Data.DeviceToken = this._GlobalService.getPlatform() ? '"' + this._GlobalService.getDeviceToken() + '"' : "cbF1x6YK4_w:APA91bEZOJLaN5ZO8wfRB6WyyLIQZ_29E0RLlU4ssd7rqEOxAP1AXYCOBE07-jBQyyn6zKY6MUrqXNFIZsS186Pg-fGMeOSwoHq1tJYv53V_BYHEduiT8CehSlxpObifuMOmuDEZZWQb";
-
-
-    console.log(this.allInfo)
-    this.allInfo = true
-    console.log(this.allInfo)
 
     this.postCreateNewClientAccount().then(data => {
       if (data.Success === 'true') {
@@ -179,9 +170,7 @@ export class SignupPage implements OnInit {
         this._GlobalService.showAlert('Sign-up Failed', data.ErrorMessage, ['OK']);
       }
     });
-
   }
-
   //Translated
   ionViewWillEnter() {
     this.translate.get(['SignUpPageFullName']).subscribe(
@@ -190,5 +179,12 @@ export class SignupPage implements OnInit {
       }
     );
   }
-
+  getDeviceType(): number {
+    if (this._Platform.is('android'))
+      return 2;
+    else if (this._Platform.is('ios'))
+      return 3;
+    else
+      return 1;
+  }
 }
