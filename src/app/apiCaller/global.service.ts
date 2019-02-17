@@ -4,7 +4,8 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Storage } from '@ionic/storage';
 import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
 import { Platform } from '@ionic/angular';
-//import { Network } from '@ionic-native/network/ngx';
+import { Network } from '@ionic-native/network';
+import { NavController, ModalController } from '@ionic/angular';
 
 
 
@@ -18,8 +19,8 @@ export class GlobalService {
   _UserInfo;
   _IsApp;
 
-  constructor(private http: HttpClient, public _AlertController: AlertController,
-    private _Storage: Storage, private _UniqueDeviceID: UniqueDeviceID, public _Platform: Platform) { }
+  constructor(private http: HttpClient, public _AlertController: AlertController,public navCtrl: NavController,
+    private _Storage: Storage, private _UniqueDeviceID: UniqueDeviceID, public _Platform: Platform) {}
 
 //Post Method
   async fetchDataApi(controllerName: string, data: any, authorization: string = null,
@@ -102,17 +103,18 @@ export class GlobalService {
     }
   }
 
-/* isOnline(): boolean {
-   console.log('Network connection is : ' + this.network.type);
-   if(this.network.type !== 'none'){
-     return true;
-   }else if(this.network.type === 'none'){
-     alert('Please Check your network and try again');
-   }else{
-     alert('Please Check your network and try again');
-   }
-   }
-   */
-    
+  public isOnline() {
+    this._Platform.ready().then(() => {
+      Network.onDisconnect().subscribe(() => {
+        console.log("Noo");
+      });
+      Network.onConnect().subscribe(() => {
+        console.log("Yes");
+      });
+    });
+  }
+
+
+
 }
 

@@ -27,8 +27,8 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private _GlobalService:GlobalService,
-
+    private _GlobalService: GlobalService
+    //private network: Network
   ) {
     this.initializeApp();
   }
@@ -37,20 +37,7 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      //  this.goToNext();  
+      this._GlobalService.isOnline();
     });
   }
-
-  
-/* goToNext() {
-   if (this._GlobalService.isOnline()) {
-     // Network Connection available
-     console.log("YEEEESSS");
-   }
-   else {
-     // Network Connection not available
-     console.log("No0o0o");
-   }
- }
- */
 }
