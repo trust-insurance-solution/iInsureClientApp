@@ -2,11 +2,13 @@
   <div class="first lanColor">
     <ion-grid>
       <ion-row>
-        <ion-col size="8" offset="2" class="nopadding">
-          <div class="">
+          <ion-col size="2"></ion-col>
+        <ion-col size="8" class="nopadding">
+          <div>
             <img class="avatar" src="assets/img/logo.png">
           </div>
         </ion-col>
+        <ion-col size="2"></ion-col>
       </ion-row>
     </ion-grid>
   </div>
@@ -16,32 +18,37 @@
     <h4 class="lan">اختر اللغة</h4>
     <h4 class="lan">Cambiar idioma</h4>
   </div> -->
+  <ion-grid>
+    <ion-row>
+      <ion-col size="1"></ion-col>
+      <ion-col size="10">
+        <ion-button [color]="lan1 ? 'medium' : 'dark'" expand="block" (click)="changeLanguage(1);done()" class="fef">
+          <img src="../../../assets/img/english.png">
+          <ion-label class="city">English</ion-label>
+        </ion-button>
+      </ion-col>
+      <ion-col size="1"></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="1"></ion-col>
+      <ion-col size="10">
+        <ion-button [color]="lan2 ? 'medium' : 'dark'" expand="block" (click)="changeLanguage(2);done()">
+          <img src="../../../assets/img/jordan.png">
+          <ion-label class="city">العربية</ion-label>
+        </ion-button>
+      </ion-col>
+      <ion-col size="1"></ion-col>
+    </ion-row>
 
-  <ion-row>
-    <ion-col size="10" offset="1">
-      <ion-button [color]="lan1 ? 'medium' : 'dark'" expand="block" (click)="changeLanguage(1)" class="fef">
-        <img src="../../../assets/img/english.png">
-        <ion-label class="city">English</ion-label>
-      </ion-button>
-    </ion-col>
-    <ion-col size="10" offset="1">
-      <ion-button [color]="lan2 ? 'medium' : 'dark'" expand="block" (click)="changeLanguage(2)">
-            <img src="../../../assets/img/jordan.png">
-            <ion-label class="city">العربية</ion-label>
-      </ion-button>
-    </ion-col>
-    <ion-col size="10" offset="1">
-      <ion-button [color]="lan3 ? 'medium' : 'dark'" expand="block" (click)="changeLanguage(3)">
-        <img src="../../../assets/img/france.png">
-        <label class="city">Francés</label>
-      </ion-button>
-    </ion-col>
-  </ion-row>
+    <ion-row>
+      <ion-col size="1"></ion-col>
+      <ion-col size="10">
+        <ion-button [color]="lan3 ? 'medium' : 'dark'" expand="block" (click)="changeLanguage(3);done()">
+          <img src="../../../assets/img/france.png">
+          <label class="city">Francés</label>
+        </ion-button>
+      </ion-col>
+      <ion-col size="1"></ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
-
-
-<ion-footer (click)="done()" *ngIf="language_selected > 0">
-  <ion-toolbar color="dark">
-    <ion-title class="footer"> Donee</ion-title>
-  </ion-toolbar>
-</ion-footer>

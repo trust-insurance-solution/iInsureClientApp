@@ -29,6 +29,7 @@ export class HomePage implements OnInit {
   size: AbstractControl
   DetailedLoc: AbstractControl
   floor: AbstractControl
+  floorAp: AbstractControl
   IsRent: AbstractControl
   Building: AbstractControl
   EmailAddress: AbstractControl
@@ -99,6 +100,9 @@ export class HomePage implements OnInit {
       floor: new FormControl('', Validators.compose([
         Validators.pattern('[0-9 ]*'),
         Validators.required])),
+        floorAp: new FormControl('', Validators.compose([
+        Validators.pattern('[0-9 ]*'),
+        Validators.required])),
 
       Building: new FormControl('', Validators.compose([
         Validators.required])),
@@ -130,6 +134,7 @@ export class HomePage implements OnInit {
     this.EmailAddress = this.formgroup.controls['EmailAddress']
     this.PhoneNumber = this.formgroup.controls['PhoneNumber']
     this.room = this.formgroup.controls['room']
+    this.floorAp = this.formgroup.controls['floorAp']
 
 
     this._GlobalService.getStorage('Lang').then((val) => {

@@ -65,9 +65,6 @@
         </ion-radio-group>
       </ion-list>
 
-
-
-
       <ion-item lines="none">
         <ion-label *ngIf='apartment' position="stacked">Size of Apartment</ion-label>
         <ion-label *ngIf='!apartment' position="stacked">Size of Villa</ion-label>
@@ -87,8 +84,8 @@
         </ion-input>
       </ion-item>
 
-      <ion-item lines="none">
-        <ion-label *ngIf='!apartment' position="stacked">Number of Floors villa </ion-label>
+      <ion-item lines="none" *ngIf='!apartment'>
+        <ion-label  position="stacked">Number of Floors villa </ion-label>
         <ion-input *ngIf="!(floor.hasError('required') && floor.touched)" formControlName="floor"
           [(ngModel)]="objOffice.Data.NumberOfFloorsIfVilla" name="NumberOfFloorsIfVilla" type="number" required>
         </ion-input>
@@ -97,8 +94,8 @@
       </ion-item>
 
       <!-- edit -->
-      <ion-item lines="none">
-        <ion-label *ngIf='apartment' position="stacked">Floor Number apartment </ion-label>
+      <ion-item lines="none" *ngIf='apartment'>
+        <ion-label  position="stacked">Floor Number apartment </ion-label>
         <ion-input *ngIf="!(floor.hasError('required') && floor.touched)" formControlName="floor"
           [(ngModel)]="objOffice.Data.WhichFloorIfApartment" name="WhichFloorIfApartment" type="number" required>
         </ion-input>
