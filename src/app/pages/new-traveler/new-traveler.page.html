@@ -14,7 +14,7 @@
       <ion-item lines="none">
         <ion-label position="stacked">Full Name</ion-label>
         <ion-input *ngIf="!(FullName.hasError('required') && FullName.touched)" formControlName="FullName"
-          name="FullName" type="text" required></ion-input>
+          name="FullName" type="text" required [(ngModel)]="item.fullName" name="FullName"></ion-input>
         <ion-input *ngIf="FullName.hasError('required') && FullName.touched" formControlName="FullName" name="FullName"
           type="text" required placeholder="Enter a valid Name" color="danger" class="error"></ion-input>
       </ion-item>
@@ -22,7 +22,7 @@
       <ion-item lines="none">
         <ion-label position="stacked">Date Of Birth</ion-label>
         <ion-input *ngIf="!(DateOfBirth.hasError('required') && DateOfBirth.touched)" formControlName="DateOfBirth"
-          name="DateOfBirth" type="date" required></ion-input>
+          name="DateOfBirth" type="date" required [(ngModel)]="item.dateOfBirth" name="DateOfBirth"></ion-input>
         <ion-input *ngIf="DateOfBirth.hasError('required') && DateOfBirth.touched" formControlName="DateOfBirth"
           name="DateOfBirth" type="date" required placeholder="Enter a valid Name" color="danger" class="error">
         </ion-input>
@@ -31,14 +31,16 @@
       <ion-item>
         <ion-label position="stacked">Nationality</ion-label>
         <ionic-selectable name="NationalID" [items]="nationlID" itemValueField="Id" formControlName="NationalID"
-          itemTextField="CountryName" [canSearch]="true" (onChange)="Nationality($event)" required>
+          itemTextField="CountryName" [canSearch]="true" (onChange)="Nationality($event)" required
+          [(ngModel)]="item.nationality" name="Nationality">
         </ionic-selectable>
       </ion-item>
 
       <ion-item lines="none">
         <ion-label position="stacked">Passport Number</ion-label>
         <ion-input *ngIf="!(PassportNumber.hasError('required') && PassportNumber.touched)"
-          formControlName="PassportNumber" name="Telephone" type="Number" required></ion-input>
+          formControlName="PassportNumber" name="Telephone" type="Number" required [(ngModel)]="item.passportNumber"
+          name="PassportNumber"></ion-input>
         <ion-input (ionInput)="runTimeChange($event)" *ngIf="PassportNumber.hasError('required') &&
                   PassportNumber.touched" formControlName="PassportNumber" name="PassportNumber" type="text" required
           placeholder="Enter a valid Phone Number" color="danger" class="error">
@@ -48,16 +50,16 @@
 
       <ion-item lines="none">
         <ion-label position="stacked">Country Residence</ion-label>
-        <ionic-selectable name="FkCountryresidence" [items]="CountryResidencelID" itemValueField="Id"
-          formControlName="CountryResidence" itemTextField="CountryName" [canSearch]="true"
-          (onChange)="CountryResidenc($event)" required>
+        <ionic-selectable formControlName="CountryResidence" (onChange)="CountryResidenc($event)" required
+          [(ngModel)]="item.countryOfResidence" itemValueField="Id" itemTextField="CountryName" [canSearch]="true"
+          name="CountryOfResidence" [items]="countries">
         </ionic-selectable>
       </ion-item>
 
       <ion-item lines="none">
         <ion-label position="stacked">Passport Expiration Date</ion-label>
         <ion-input *ngIf="!(passExBirth.hasError('required') && passExBirth.touched)" formControlName="passExBirth"
-          name="passExBirth" type="date" required></ion-input>
+          name="passExBirth" type="date" required  [(ngModel)]="item.passportExpireDate" name="PassportExpireDate"></ion-input>
         <ion-input *ngIf="passExBirth.hasError('required') && passExBirth.touched" formControlName="passExBirth"
           name="passExBirth" type="date" required placeholder="Enter a valid Name" color="danger" class="error">
         </ion-input>
@@ -70,7 +72,7 @@
             <ion-icon slot="end" name="add"></ion-icon>
           </ion-button>
           <p>
-            <img src="{{myphoto}}">
+            <img src="{{myphoto}}" [(ngModel)]="item.pictureOfPassport" name="PictureOfPassport">
             <!-- <img src="../../../assets/img/bg1.jpg"> -->
           </p>
         </ion-col>

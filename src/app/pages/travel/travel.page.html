@@ -57,35 +57,35 @@
       <div *ngFor='let item of objTravel.Data.listTravelEntry;let i = index'>
         <ion-item lines="none">
           <ion-label position="stacked">FullName</ion-label>
-          <ion-input [(ngModel)]="item.fullName" name="FullName" type="text" required></ion-input>
+          <ion-input type="text" required></ion-input>
         </ion-item>
         <ion-item lines="none">
           <ion-label position="stacked">DateOfBirth</ion-label>
-          <ion-input [(ngModel)]="item.dateOfBirth" name="DateOfBirth" type="date" required></ion-input>
+          <ion-input type="date" required></ion-input>
         </ion-item>
         <ion-item lines="none">
           <ion-label position="stacked">Nationality</ion-label>
-          <ionic-selectable [(ngModel)]="item.nationality" name="Nationality" [items]="countries" itemValueField="Id"
+          <ionic-selectable  [items]="countries" itemValueField="Id"
             itemTextField="CountryName" [canSearch]="true">
           </ionic-selectable>
         </ion-item>
         <ion-item lines="none">
           <ion-label position="stacked">PassportNumber</ion-label>
-          <ion-input [(ngModel)]="item.passportNumber" name="PassportNumber" type="number" required></ion-input>
+          <ion-input type="number" required></ion-input>
         </ion-item>
         <ion-item lines="none">
           <ion-label position="stacked">CountryOfResidence</ion-label>
-          <ionic-selectable [(ngModel)]="item.countryOfResidence" name="CountryOfResidence" [items]="countries"
-            itemValueField="Id" itemTextField="CountryName" [canSearch]="true">
+          <ionic-selectable 
+          >
           </ionic-selectable>
         </ion-item>
         <ion-item lines="none">
           <ion-label position="stacked">PassportExpireDate</ion-label>
-          <ion-input [(ngModel)]="item.passportExpireDate" name="PassportExpireDate" type="date" required></ion-input>
+          <ion-input type="date" required></ion-input>
         </ion-item>
         <ion-item lines="none">
           <ion-label position="stacked">PictureOfPassport</ion-label>
-          <ion-input [(ngModel)]="item.pictureOfPassport" name="PictureOfPassport" type="text" required></ion-input>
+          <ion-input  type="text" required></ion-input>
         </ion-item>
       </div> -->
 

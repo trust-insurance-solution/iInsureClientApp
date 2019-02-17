@@ -31,7 +31,7 @@
 
       <ion-item>
         <ion-label position="stacked">Value of Coverage</ion-label>
-        <ion-select placeholder="Select" [(ngModel)]="objLife.Data.FkPeriodofcover" name="FkPeriodofcover"
+        <ion-select placeholder="Select" [(ngModel)]="objLife.Data.FkTotalamountofinsured" name="FkTotalamountofinsured"
           formControlName="vCoverage">
           <ion-select-option>50.000</ion-select-option>
           <ion-select-option>100.000</ion-select-option>
@@ -80,15 +80,4 @@
       </ion-row>
     </ion-list>
   </form>
-
-
-  <!-- <table>
-
-    <tr>
-      <td>Total amount of insured</td>
-      <td><input type="number" [(ngModel)]="objLife.Data.FkTotalamountofinsured" name="FkTotalamountofinsured" />
-      </td>
-    </tr>
-
-  </table> -->
 </ion-content>
