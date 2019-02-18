@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NavController,Platform  } from '@ionic/angular';
+import { NavController, Platform } from '@ionic/angular';
 import { GlobalService } from '../../apiCaller/global.service';
 import { LoadingController } from '@ionic/angular';
 import { IonicSelectableModule, IonicSelectableComponent } from 'ionic-selectable';
@@ -14,16 +14,17 @@ import { TranslateService } from '@ngx-translate/core';
 })
 
 export class SignupPage implements OnInit {
-  trans_FullName:string;
+  err: boolean = false;
+  trans_FullName: string;
   allInfo = true
   objSignUp: any;
   countries: any;
-  cities:any;
+  cities: any;
   country: number = 0;
-  cityId:number=0;
+  cityId: number = 0;
   agreed: boolean = false;
   checkbox: boolean = false
-  countryId:number=0;
+  countryId: number = 0;
   formgroup: FormGroup
   FullName: AbstractControl
   EmailAddress: AbstractControl
@@ -40,7 +41,7 @@ export class SignupPage implements OnInit {
   constructor(public _GlobalService: GlobalService,
     public _LoadingController: LoadingController,
     public navCtrl: NavController,
-    public formbuilder: FormBuilder,public translate:TranslateService,private _Platform: Platform ) {
+    public formbuilder: FormBuilder, public translate: TranslateService, private _Platform: Platform) {
 
     //FORM
     this.formgroup = formbuilder.group({
@@ -94,6 +95,8 @@ export class SignupPage implements OnInit {
     this.gender = this.formgroup.controls['gender']
     this.city = this.formgroup.controls['city']
   }
+
+
   onSubmit(value: any): void {
     if (this.formgroup.valid) {
       console.log(this.FullName)
@@ -101,12 +104,11 @@ export class SignupPage implements OnInit {
       //window.localStorage.setItem('password', value.password);    
     }
   }
-  runTimeChange(ev: any) {
-    let val = ev.target.value;
-    console.log("Ddddddddddd " + val.value)
-  }
+
   async ngOnInit() {
     await this.getCountries().then(result => this.countries = result.Data);
+
+   
   }
   objUserInfo = {
     Data: {
@@ -119,7 +121,7 @@ export class SignupPage implements OnInit {
       country: 0,
       GovernorateId: 0,
       DeviceToken: '',
-      FkMachineType:0
+      FkMachineType: 0
     },
     Language: ''
   }
@@ -128,7 +130,7 @@ export class SignupPage implements OnInit {
   getCountries(): Promise<any> {
     return this._GlobalService.fetchDataApi('GetAllCountryList', {});
   }
-    //Get a cites
+  //Get a cites
   getCites(CountryId): Promise<any> {
     let item = {
       "Data": CountryId,
@@ -145,7 +147,7 @@ export class SignupPage implements OnInit {
     component: IonicSelectableComponent,
     value: any
   }) {
-   // 
+    // 
     this.countryId = event.value.Id;
     await this.getCites(event.value.Id).then(result => this.cities = result.Data);
   }
@@ -189,4 +191,20 @@ export class SignupPage implements OnInit {
     else
       return 1;
   }
+  // updateToggleSet(x) {
+  //   if (x == 1) {
+  //     console.log("111  " + x)
+  //     if(this.objUserInfo.Data[''].FullName == null){
+  //     console.log("dedddddd")
+
+  //     }
+  //     }
+  //   else if (x == 2) {
+  //     console.log("2222  " + x)
+  //     x.value
+  //     console.log("vv  " +  x.value)
+
+  //   }
+  // }
+
 }
