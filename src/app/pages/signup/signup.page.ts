@@ -43,7 +43,8 @@ export class SignupPage implements OnInit {
     public _LoadingController: LoadingController,
     public navCtrl: NavController,
     public formbuilder: FormBuilder, public translate: TranslateService, private _Platform: Platform) {
-
+      
+      this._GlobalService.getStorage("Lang").then(val => { this.objUserInfo.Language = val; });
     //FORM
     this.formgroup = formbuilder.group({
       FullName: new FormControl('', Validators.compose([
@@ -163,13 +164,12 @@ export class SignupPage implements OnInit {
   signUp() {
     this.objUserInfo.Data.country = this.countryId;
     this.objUserInfo.Data.FkMachineType = this.getDeviceType();
-    this._GlobalService.getStorage("Lang").then(val => { this.objUserInfo.Language = val; });
     this.objUserInfo.Data.DeviceToken = this._GlobalService.getPlatform() ? '"' + this._GlobalService.getDeviceToken() + '"' : "cbF1x6YK4_w:APA91bEZOJLaN5ZO8wfRB6WyyLIQZ_29E0RLlU4ssd7rqEOxAP1AXYCOBE07-jBQyyn6zKY6MUrqXNFIZsS186Pg-fGMeOSwoHq1tJYv53V_BYHEduiT8CehSlxpObifuMOmuDEZZWQb";
     console.log(JSON.stringify(this.objUserInfo));
     this.postCreateNewClientAccount().then(data => {
       if (data.Success === 'true') {
-        this._GlobalService.setStorage('UserInfo', data[0]);
-        this.navCtrl.navigateForward('login')
+        this._GlobalService.setStorage('UserInfo', data.Data);
+        this.navCtrl.navigateForward('verification')
       }
       else {
         this._GlobalService.showAlert('Sign-up Failed', data.ErrorMessage, ['OK']);
