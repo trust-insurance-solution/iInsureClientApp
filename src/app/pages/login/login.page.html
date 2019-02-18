@@ -14,9 +14,26 @@
   </div>
 
 
-  <ion-row col-12>
-    <img src="../../../assets/img/logo.png" width="70%" height="70%" class="auto">
-  </ion-row>
+  <div class="box">
+      <ion-grid class="nopadding">
+        <ion-row>
+          <ion-col size="10" class="auto nopadding">
+            <ion-slides pager="true" #mySlider color="dark" (ionSlidesDidLoad)="slidesDidLoad(mySlider)" [options]="slideOpts">
+              <ion-slide>
+                <img src="assets/img/adver.png">
+              </ion-slide>
+              <ion-slide>
+                <img src="assets/img/adver.png">
+              </ion-slide>
+              <ion-slide>
+                <img src="assets/img/adver.png">
+              </ion-slide>
+            </ion-slides>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  
 
   <form>
     <ion-list class="top" lines="none">
