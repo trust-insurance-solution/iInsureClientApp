@@ -103,9 +103,8 @@
               name="Password" [(ngModel)]="objUserInfo.Data.Password" type="text" required
               placeholder="Enter a valid Password" color="danger" class="error">
             </ion-input>
-
-
           </ion-item>
+          
           <ion-item lines="none">
             <ion-label position="stacked">Gender</ion-label>
             <ion-select formControlName="gender" [(ngModel)]="objUserInfo.Data.Gender" name="Gender">
@@ -154,7 +153,7 @@
               </ion-col>
             </ion-row>
           </ion-col>
-          <ion-col size="11" class="auto">
+          <ion-col size="11" class="auto nopadding">
             <ion-button color="success" type="submit" expand="full" (click)="signUp()" [disabled]="! isValid"
               class="top">
               SIGN UP
@@ -165,7 +164,7 @@
               <ion-col size="8" class="nopadding">
                 <span> Already a Member?</span>
               </ion-col>
-              <ion-col size="4" (click)="login();" class="nopadding">
+              <ion-col size="4" (click)="login();" class="nopadding" text-end>
                 <span>Login here</span>
               </ion-col>
             </ion-row>

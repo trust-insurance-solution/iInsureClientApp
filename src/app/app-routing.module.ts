@@ -20,6 +20,7 @@ const routes: Routes = [
   { path: 'motor', loadChildren: './pages/motor/motor.module#MotorPageModule' },
   { path: 'map', loadChildren: './pages/map/map.module#MapPageModule' },
   { path: 'new-traveler', loadChildren: './pages/new-traveler/new-traveler.module#NewTravelerPageModule' },  { path: 'verification', loadChildren: './pages/verification/verification.module#VerificationPageModule' },
+  { path: 'quotation', loadChildren: './pages/quotation/quotation.module#QuotationPageModule' },
 
 ];
 
