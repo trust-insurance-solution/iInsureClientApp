@@ -3,24 +3,8 @@
     margin-top: 19%;
     padding: 0 8vw;
 }
-.circle{
-    border: #ffffff 1px solid;
-    height: 100%;
-    width: 80%;
-    border-radius: 50%;
-    padding: 5px;
-    margin: auto;
-}
-img.avatar {
-    display: flex !important;
-    margin: auto;
-    border-radius: 50%;
-}
-.name{
-    color: #ffffff;
-    text-align: center;
-    margin-top: 10px !important
-}
+
+
 .box{
     position: absolute;
     z-index: 999;
@@ -28,7 +12,7 @@ img.avatar {
     top: 28%; 
 }
 .autoA{
-    margin: auto;
+    margin: auto; 
     text-align: center;
 }
 ion-slides{
@@ -59,8 +43,6 @@ ion-icon.ic {
     border-radius: 8vw;
     padding: 5px;
 } 
-
-
 .third{
     height: 33.3% ;
 }

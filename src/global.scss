@@ -22,17 +22,35 @@
 
 //First Div 
 .first{
-    height: 42%;
-    border-bottom-left-radius: 60% 40%;
-    border-bottom-right-radius: 60% 40%;
+    // height: 42%;
+    // border-bottom-left-radius: 60% 40%;
+    // border-bottom-right-radius: 60% 40%;
+    height: 27%;
+    border-bottom-left-radius: 70%;
+    border-bottom-right-radius: 70%;
 }
 .firstColor{
     background: linear-gradient(to right, var(--lightB-color) 0%, var(--darkB-color) 100%) !important;
  }
-div.toolbar-background{
-    //background: linear-gradient(to right, var(--lightB-color) 0%, var(--darkB-color) 100%) !important;
-    background-color: red !important
+ img.avatar {
+    display: flex !important;
+    margin: auto;
+    border-radius: 50%;
 }
+.circle{
+    border: #ffffff 1px solid;
+    height: 100%;
+    width: 80%;
+    border-radius: 50%;
+    padding: 5px;
+    margin: auto;
+}
+.name{
+    color: #ffffff;
+    text-align: center;
+    margin-top: 10px !important
+}
+
 ion-icon.noti {
     font-size: x-large;
     text-align: center;
@@ -112,9 +130,7 @@ ion-input.error{
     }     
 }
 
-div.inner-scroll.scroll-y{
-    --background: var(--lightB-color) !important
-}
+
 
 ion-content{
     ion-list{
