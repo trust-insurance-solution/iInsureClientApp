@@ -8,6 +8,7 @@ a{
     margin: auto;
     display: flex;
     padding-left: 1vw;
+    color: #ffffff;
 }
 .term{
     padding-left: 1vw
@@ -17,6 +18,33 @@ ion-checkbox{
     place-content: center;
     display: flex
 }
-.npt{
-    padding-top:0px !important;
+.tb{
+    margin:0px 2vw !important;
+}
+
+ion-icon.add{
+    color: #428DFF;
+    font-size: xx-large;
+    right: 13px;
+    position: absolute;
+    top: 18vw;
+}
+.box2{
+    position: absolute;
+    z-index: 999;
+    width: 100%;
+    top: 15%; 
+}
+
+
+ion-button.pass{
+    position: absolute;
+    right: 20px;
+    top: 55%;
+    margin: 0px;
+
+}
+
+ion-icon.eyee{
+    font-size: 5vw
 }

@@ -28,7 +28,7 @@
   --ion-color-tertiary-tint: #7e57ff;
 
   /** success **/
-  --ion-color-success: none;
+  --ion-color-success: #45ce92;
   --ion-color-success-rgb: 16, 220, 96;
   --ion-color-success-contrast: #ffffff;
   --ion-color-success-contrast-rgb: 255, 255, 255;
@@ -83,10 +83,18 @@
   $lightB-color: #6D9BDF !important;
   --lightB-color: #{$lightB-color};
 
+  $mediumB-color: #5E8CCF !important;
+  --mediumB-color: #{$mediumB-color};
+
   $darkB-color: #315FA3 !important;
   --darkB-color: #{$darkB-color};
 
   $white-color: #ffffff !important;
   --white-color: #{$white-color};
+
+  $transprent-color: #ffffff !important;
+  --transprent-color: #{$transprent-color};
+
+
 }
 

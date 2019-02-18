@@ -15,12 +15,13 @@ import { TranslateService } from '@ngx-translate/core';
 
 export class SignupPage implements OnInit {
   err: boolean = false;
+  showPwd: boolean
   trans_FullName: string;
   allInfo = true
   objSignUp: any;
   countries: any;
-  cities:any;
-  isValid:boolean=false;
+  cities: any;
+  isValid: boolean = false;
   country: number = 0;
   cityId: number = 0;
   agreed: boolean = false;
@@ -44,7 +45,7 @@ export class SignupPage implements OnInit {
     public navCtrl: NavController,
     public formbuilder: FormBuilder, public translate: TranslateService, private _Platform: Platform) {
 
-      this._GlobalService.getStorage("Lang").then(val => { this.objUserInfo.Language = val; });
+    this._GlobalService.getStorage("Lang").then(val => { this.objUserInfo.Language = val; });
     //FORM
     this.formgroup = formbuilder.group({
       FullName: new FormControl('', Validators.compose([
@@ -203,20 +204,22 @@ export class SignupPage implements OnInit {
     else
       return 1;
   }
-  // updateToggleSet(x) {
-  //   if (x == 1) {
-  //     console.log("111  " + x)
-  //     if(this.objUserInfo.Data[''].FullName == null){
-  //     console.log("dedddddd")
 
-  //     }
-  //     }
-  //   else if (x == 2) {
-  //     console.log("2222  " + x)
-  //     x.value
-  //     console.log("vv  " +  x.value)
+  showPass(x) {
+    console.log(22222222222222222222)
 
-  //   }
-  // }
+    switch (x) {
+      case 1:
+        this.showPwd = false
+        console.log("11 " +x)
+        break;
+
+      case 0:
+        this.showPwd = true
+        console.log("22 " +x)
+
+        break;
+    }
+  }
 
 }
