@@ -19,6 +19,7 @@ export class SignupPage implements OnInit {
   objSignUp: any;
   countries: any;
   cities:any;
+  isValid:boolean=false;
   country: number = 0;
   cityId:number=0;
   agreed: boolean = false;
@@ -103,7 +104,6 @@ export class SignupPage implements OnInit {
   }
   runTimeChange(ev: any) {
     let val = ev.target.value;
-    console.log("Ddddddddddd " + val.value)
   }
   async ngOnInit() {
     await this.getCountries().then(result => this.countries = result.Data);

@@ -82,7 +82,7 @@
       <ion-col size="11" class="auto">
         <ion-row>
           <ion-col size="1" class="nopadding auto">
-            <ion-checkbox formControlName="check" [(ngModel)]="objUserInfo.Data.agreed" name="agreed"></ion-checkbox>
+            <ion-checkbox formControlName="check" (click)="isValid=!isValid" [(ngModel)]="objUserInfo.Data.agreed" name="agreed"></ion-checkbox>
           </ion-col>
           <ion-col size="11" class="nopadding">
             <a href="https://trst-ins.com/" target="_self">
@@ -92,7 +92,7 @@
         </ion-row>
       </ion-col>
       <ion-col size="11" class="auto">
-        <ion-button color="dark" type="submit" expand="full" (click)="signUp()" class="top">
+        <ion-button color="dark" type="submit" expand="full" (click)="signUp()" [disabled]="! isValid" class="top">
           SIGN UP
         </ion-button>
       </ion-col>
