@@ -16,8 +16,9 @@
         <ion-label position="stacked">Full Name</ion-label>
         <ion-input *ngIf="!(FullName.hasError('required') && FullName.touched)" formControlName="FullName"
           [(ngModel)]="objOffice.Data.FullName" name="FullName" type="text" required></ion-input>
-        <ion-input *ngIf="FullName.hasError('required') && FullName.touched" formControlName="FullName" name="FullName"
-          type="text" required placeholder="Enter a valid Name" color="danger" class="error"></ion-input>
+        <ion-input [(ngModel)]="objOffice.Data.FullName" *ngIf="FullName.hasError('required') && FullName.touched"
+          formControlName="FullName" name="FullName" type="text" required placeholder="Enter a valid Name"
+          color="danger" class="error"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -71,44 +72,49 @@
         <ion-input *ngIf="!(size.hasError('required') && size.touched)" formControlName="size"
           [(ngModel)]="objOffice.Data.SizeOfApartmentOrVilla" name="SizeOfApartmentOrVilla" type="number" required>
         </ion-input>
-        <ion-input *ngIf="size.hasError('required') && size.touched" formControlName="size" name="size" type="number"
-          required placeholder="Enter a valid size" color="danger" class="error"></ion-input>
+        <ion-input [(ngModel)]="objOffice.Data.SizeOfApartmentOrVilla" *ngIf="size.hasError('required') && size.touched"
+          formControlName="size" name="size" type="number" required placeholder="Enter a valid size" color="danger"
+          class="error"></ion-input>
       </ion-item>
 
       <ion-item lines="none" (click)="map();">
         <ion-label position="stacked">Detailed Location</ion-label>
         <ion-input *ngIf="!(DetailedLoc.hasError('required') && DetailedLoc.touched)" formControlName="DetailedLoc"
           [(ngModel)]="objOffice.Data.DetailedLocation" name="DetailedLocation" type="number" required></ion-input>
-        <ion-input *ngIf="DetailedLoc.hasError('required') && DetailedLoc.touched" formControlName="DetailedLoc"
+        <ion-input [(ngModel)]="objOffice.Data.DetailedLocation"
+          *ngIf="DetailedLoc.hasError('required') && DetailedLoc.touched" formControlName="DetailedLoc"
           name="DetailedLocation" type="text" required placeholder="Enter a valid Name" color="danger" class="error">
         </ion-input>
       </ion-item>
 
       <ion-item lines="none" *ngIf='!apartment'>
-        <ion-label  position="stacked">Number of Floors villa </ion-label>
+        <ion-label position="stacked">Number of Floors villa </ion-label>
         <ion-input *ngIf="!(floor.hasError('required') && floor.touched)" formControlName="floor"
           [(ngModel)]="objOffice.Data.NumberOfFloorsIfVilla" name="NumberOfFloorsIfVilla" type="number" required>
         </ion-input>
-        <ion-input *ngIf="floor.hasError('required') && floor.touched" formControlName="floor" name="floor"
-          type="number" required placeholder="Enter a valid number" color="danger" class="error"></ion-input>
+        <ion-input [(ngModel)]="objOffice.Data.NumberOfFloorsIfVilla"
+          *ngIf="floor.hasError('required') && floor.touched" formControlName="floor" name="floor" type="number"
+          required placeholder="Enter a valid number" color="danger" class="error"></ion-input>
       </ion-item>
 
       <!-- edit -->
       <ion-item lines="none" *ngIf='apartment'>
-        <ion-label  position="stacked">Floor Number apartment </ion-label>
+        <ion-label position="stacked">Floor Number apartment </ion-label>
         <ion-input *ngIf="!(floor.hasError('required') && floor.touched)" formControlName="floor"
           [(ngModel)]="objOffice.Data.WhichFloorIfApartment" name="WhichFloorIfApartment" type="number" required>
         </ion-input>
-        <ion-input *ngIf="floor.hasError('required') && floor.touched" formControlName="floor" name="floor"
-          type="number" required placeholder="Enter a valid number" color="danger" class="error"></ion-input>
+        <ion-input [(ngModel)]="objOffice.Data.WhichFloorIfApartment"
+          *ngIf="floor.hasError('required') && floor.touched" formControlName="floor" name="floor" type="number"
+          required placeholder="Enter a valid number" color="danger" class="error"></ion-input>
       </ion-item>
 
       <ion-item lines="none">
         <ion-label position="stacked">Number of rooms?</ion-label>
         <ion-input *ngIf="!(room.hasError('required') && room.touched)" formControlName="room"
           [(ngModel)]="objOffice.Data.NumberOFRooms" name="NumberOFRooms" type="number" required></ion-input>
-        <ion-input *ngIf="room.hasError('required') && room.touched" formControlName="room" type="number" required
-          placeholder="Enter a valid number" color="danger" class="error"></ion-input>
+        <ion-input [(ngModel)]="objOffice.Data.NumberOFRooms" *ngIf="room.hasError('required') && room.touched"
+          formControlName="room" type="number" required placeholder="Enter a valid number" color="danger" class="error">
+        </ion-input>
       </ion-item>
 
 
@@ -165,7 +171,8 @@
         <ion-input *ngIf="!(Building.hasError('required') && Building.touched)" formControlName="Building"
           [(ngModel)]="objOffice.Data.DateApartmentOrVillaBuilt" name="DateApartmentOrVillaBuilt" type="date" required>
         </ion-input>
-        <ion-input *ngIf="Building.hasError('required') && Building.touched" formControlName="Building" name="Building"
+        <ion-input [(ngModel)]="objOffice.Data.DateApartmentOrVillaBuilt"
+          *ngIf="Building.hasError('required') && Building.touched" formControlName="Building" name="Building"
           type="date" required placeholder="Enter a valid Name" color="danger" class="error"></ion-input>
       </ion-item>
 
@@ -174,7 +181,7 @@
         <ion-input *ngIf="!(rName.hasError('required') && rName.touched)" formControlName="rName"
           [(ngModel)]="objOffice.Data.CompanyRegistrationNumber" name="CompanyRegistrationNumber" type="Number"
           required></ion-input>
-        <ion-input (ionInput)="runTimeChange($event)" *ngIf="rName.hasError('required') &&
+        <ion-input [(ngModel)]="objOffice.Data.CompanyRegistrationNumber" *ngIf="rName.hasError('required') &&
         rName.touched" formControlName="rName" name="rName" type="text" required
           placeholder="Enter a valid Phone Number" color="danger" class="error">
         </ion-input>
@@ -185,8 +192,9 @@
         <ion-label position="stacked">What is Occupancy? الوظيفة الحالية</ion-label>
         <ion-input *ngIf="!(Occupancy.hasError('required') && Occupancy.touched)" formControlName="Occupancy"
           [(ngModel)]="objOffice.Data.Occupancy" name="Occupancy" type="text" required></ion-input>
-        <ion-input *ngIf="Occupancy.hasError('required') && Occupancy.touched" formControlName="Occupancy"
-          name="Occupancy" type="text" required placeholder="Enter a valid Name" color="danger" class="error">
+        <ion-input [(ngModel)]="objOffice.Data.Occupancy" *ngIf="Occupancy.hasError('required') && Occupancy.touched"
+          formControlName="Occupancy" name="Occupancy" type="text" required placeholder="Enter a valid Name"
+          color="danger" class="error">
         </ion-input>
       </ion-item>
 
@@ -196,7 +204,7 @@
         <ion-input *ngIf="!(NumberOfEmployee.hasError('required') && NumberOfEmployee.touched)"
           formControlName="NumberOfEmployee" [(ngModel)]="objOffice.Data.NumberOfEmployees" name="NumberOfEmployees"
           type="Number" required></ion-input>
-        <ion-input (ionInput)="runTimeChange($event)" *ngIf="NumberOfEmployee.hasError('required') &&
+        <ion-input [(ngModel)]="objOffice.Data.NumberOfEmployees" *ngIf="NumberOfEmployee.hasError('required') &&
         NumberOfEmployee.touched" formControlName="NumberOfEmployee" name="NumberOfEmployee" type="text" required
           placeholder="Enter a valid Phone Number" color="danger" class="error">
         </ion-input>
@@ -235,8 +243,9 @@
         <ion-label position="stacked">Email Address</ion-label>
         <ion-input *ngIf="!(EmailAddress.hasError('required') && EmailAddress.touched)" formControlName="EmailAddress"
           [(ngModel)]="objOffice.Data.Email" name="Email" type="text" required></ion-input>
-        <ion-input *ngIf="EmailAddress.hasError('required') && EmailAddress.touched" formControlName="EmailAddress"
-          name="EmailAddress" type="text" required placeholder="Enter a valid Name" color="danger" class="error">
+        <ion-input [(ngModel)]="objOffice.Data.Email" *ngIf="EmailAddress.hasError('required') && EmailAddress.touched"
+          formControlName="EmailAddress" name="EmailAddress" type="text" required placeholder="Enter a valid Name"
+          color="danger" class="error">
         </ion-input>
       </ion-item>
 
@@ -245,7 +254,7 @@
         <ion-label position="stacked">Phone Number</ion-label>
         <ion-input *ngIf="!(PhoneNumber.hasError('required') && PhoneNumber.touched)" formControlName="PhoneNumber"
           [(ngModel)]="objOffice.Data.Telephone" name="Telephone" type="Number" required></ion-input>
-        <ion-input (ionInput)="runTimeChange($event)" *ngIf="PhoneNumber.hasError('required') &&
+        <ion-input [(ngModel)]="objOffice.Data.Telephone" *ngIf="PhoneNumber.hasError('required') &&
                 PhoneNumber.touched" formControlName="PhoneNumber" name="PhoneNumber" type="text" required
           placeholder="Enter a valid Phone Number" color="danger" class="error">
         </ion-input>

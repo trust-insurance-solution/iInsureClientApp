@@ -111,3 +111,18 @@ ion-input.error{
         --background: linear-gradient(to right, var(--lightB-color) 0%, var(--darkB-color) 100%) !important;
     }     
 }
+
+div.inner-scroll.scroll-y{
+    --background: var(--lightB-color) !important
+}
+
+ion-content{
+    ion-list{
+        padding: 0px !important;
+    }
+    ion-list >*{
+         --background: #F7F8FC !important;
+    }
+    --background:  #F7F8FC !important;
+
+    }

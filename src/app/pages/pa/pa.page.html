@@ -17,7 +17,7 @@
         <ion-label position="stacked">Full Name</ion-label>
         <ion-input *ngIf="!(FullName.hasError('required') && FullName.touched)" formControlName="FullName"
           [(ngModel)]="objPersonalAccident.Data.FullName" name="FullName" type="text" required></ion-input>
-        <ion-input *ngIf="FullName.hasError('required') && FullName.touched" formControlName="FullName" name="FullName"
+        <ion-input   [(ngModel)]="objPersonalAccident.Data.FullName" *ngIf="FullName.hasError('required') && FullName.touched" formControlName="FullName" name="FullName"
           type="text" required placeholder="Enter a valid Name" color="danger" class="error"></ion-input>
       </ion-item>
 
@@ -36,7 +36,7 @@
         <ion-label position="stacked">Date Of the Accident</ion-label>
         <ion-input *ngIf="!(DateOfAcc.hasError('required') && DateOfAcc.touched)" formControlName="DateOfAcc"
           [(ngModel)]="objPersonalAccident.Data.DateOfAcc" name="DateOfAcc" type="date" required></ion-input>
-        <ion-input *ngIf="DateOfAcc.hasError('required') && DateOfAcc.touched" formControlName="DateOfAcc"
+        <ion-input   [(ngModel)]="objPersonalAccident.Data.DateOfAcc" *ngIf="DateOfAcc.hasError('required') && DateOfAcc.touched" formControlName="DateOfAcc"
           name="DateOfAcc" type="date" required placeholder="Enter a valid Name" color="danger" class="error">
         </ion-input>
       </ion-item>
@@ -46,7 +46,7 @@
         <ion-input *ngIf="!(cases.hasError('required') && cases.touched)" formControlName="cases"
           [(ngModel)]="objPersonalAccident.Data.AnyChronicCasesOrPerExistingCases"
           name="AnyChronicCasesOrPerExistingCases" type="text" required></ion-input>
-        <ion-input *ngIf="cases.hasError('required') && cases.touched" formControlName="cases" name="cases" type="text"
+        <ion-input  [(ngModel)]="objPersonalAccident.Data.AnyChronicCasesOrPerExistingCases" *ngIf="cases.hasError('required') && cases.touched" formControlName="cases" name="cases" type="text"
           required placeholder="Enter a valid Name" color="danger" class="error"></ion-input>
       </ion-item>
 
