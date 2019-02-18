@@ -19,7 +19,8 @@ const routes: Routes = [
   { path: 'coverage-modal', loadChildren: './pages/coverage-modal/coverage-modal.module#CoverageModalPageModule' },
   { path: 'motor', loadChildren: './pages/motor/motor.module#MotorPageModule' },
   { path: 'map', loadChildren: './pages/map/map.module#MapPageModule' },
-  { path: 'new-traveler', loadChildren: './pages/new-traveler/new-traveler.module#NewTravelerPageModule' },
+  { path: 'new-traveler', loadChildren: './pages/new-traveler/new-traveler.module#NewTravelerPageModule' },  { path: 'verification', loadChildren: './pages/verification/verification.module#VerificationPageModule' },
+
 ];
 
 @NgModule({
