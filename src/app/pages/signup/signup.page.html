@@ -107,7 +107,7 @@
           
           <ion-item lines="none">
             <ion-label position="stacked">Gender</ion-label>
-            <ion-select formControlName="gender" [(ngModel)]="objUserInfo.Data.Gender" name="Gender">
+            <ion-select placeholder="---Please Select---" formControlName="gender" [(ngModel)]="objUserInfo.Data.Gender" name="Gender">
               <ion-select-option value="1">Male</ion-select-option>
               <ion-select-option value="2">Female</ion-select-option>
             </ion-select>
@@ -123,14 +123,14 @@
       </ion-item> -->
           <ion-item lines="none">
             <ion-label position="stacked">Country</ion-label>
-            <ionic-selectable [(ngModel)]="country" name="country" [items]="countries" itemValueField="Id"
-              formControlName="countr" itemTextField="CountryName" [canSearch]="true" (onChange)="portChange($event)"
-              required>
-            </ionic-selectable>
+            <ionic-selectable placeholder="---Please Select---"  name="NationalID" [items]="countries" itemValueField="Id"
+            formControlName="countr" itemTextField="CountryName" [canSearch]="true" (onChange)="Nationality($event)"
+            required>
+          </ionic-selectable>
           </ion-item>
           <ion-item lines="none">
             <ion-label position="stacked">City</ion-label>
-            <ionic-selectable [(ngModel)]="cityId" name="GovernorateId" [items]="cities" itemValueField="GovernorateId"
+            <ionic-selectable placeholder="---Please Select---"  name="GovernorateId" [items]="cities" itemValueField="GovernorateId"
               formControlName="city" itemTextField="GovernorateName" [canSearch]="true" (onChange)="cityChange($event)"
               required>
             </ionic-selectable>
