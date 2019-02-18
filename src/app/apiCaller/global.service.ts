@@ -114,12 +114,5 @@ export class GlobalService {
       });
     });
   }
-  //
-  public ValueOfCoverage(): number[] {
-    return [50000, 100000, 150000, 200000, 250000, 300000];
-  }
-
-
-
 }
 

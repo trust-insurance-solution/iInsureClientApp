@@ -69,7 +69,7 @@ export class HomePage implements OnInit {
   };
 
   constructor(public _GlobalService: GlobalService, public navCtrl: NavController, public formbuilder: FormBuilder, public modalCtrl: ModalController, private camera: Camera) {
-    this.valueOfCoverage = this._GlobalService.ValueOfCoverage();
+
     //FORM
     this.formgroup = formbuilder.group({
       FullName: new FormControl('', Validators.compose([
@@ -244,5 +244,9 @@ export class HomePage implements OnInit {
     }, (err) => {
       // Handle error
     });
+  }
+
+  Counter(i: number) {
+    return new Array(i);
   }
 }

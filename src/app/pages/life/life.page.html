@@ -6,71 +6,52 @@
     <ion-title>Life</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content padding>
-
   <form [formGroup]="formgroup">
     <ion-list class="top" lines="none">
-
       <ion-item lines="none">
         <ion-label position="stacked">Full Name</ion-label>
-        <ion-input *ngIf="!(FullName.hasError('required') && FullName.touched)" formControlName="FullName"
-          [(ngModel)]="objLife.Data.FullName" name="FullName" type="text" required></ion-input>
+        <ion-input *ngIf="!(FullName.hasError('required') && FullName.touched)" formControlName="FullName" [(ngModel)]="objLife.Data.FullName"
+          name="FullName" type="text" required></ion-input>
         <ion-input *ngIf="FullName.hasError('required') && FullName.touched" formControlName="FullName" name="FullName"
           type="text" required placeholder="Enter a valid Name" color="danger" class="error"></ion-input>
       </ion-item>
-
       <ion-item lines="none">
         <ion-label position="stacked">Date Of Birth</ion-label>
         <ion-input *ngIf="!(DateOfBirth.hasError('required') && DateOfBirth.touched)" formControlName="DateOfBirth"
           [(ngModel)]="objLife.Data.DateOfBirth" name="DateOfBirth" type="date" required></ion-input>
-        <ion-input *ngIf="DateOfBirth.hasError('required') && DateOfBirth.touched" formControlName="DateOfBirth"
-          name="DateOfBirth" type="date" required placeholder="Enter a valid Name" color="danger" class="error">
+        <ion-input *ngIf="DateOfBirth.hasError('required') && DateOfBirth.touched" formControlName="DateOfBirth" name="DateOfBirth"
+          type="date" required placeholder="Enter a valid Name" color="danger" class="error">
         </ion-input>
       </ion-item>
-
       <ion-item>
         <ion-label position="stacked">Value of Coverage</ion-label>
-        <ion-select placeholder="Select" [(ngModel)]="objLife.Data.FkTotalamountofinsured" name="FkTotalamountofinsured"
+        <ion-select placeholder="---Please Select---" [(ngModel)]="objLife.Data.FkTotalamountofinsured" name="FkTotalamountofinsured"
           formControlName="vCoverage">
-          <ion-select-option>50.000</ion-select-option>
-          <ion-select-option>100.000</ion-select-option>
-          <ion-select-option>150.000</ion-select-option>
-          <ion-select-option>200.000</ion-select-option>
+          <ion-select-option *ngFor='let in of Counter(4) ;let i = index' value="{{ (i+1) * 50000}}">{{ (i+1) * 50000 |
+            number : '0.0'}}</ion-select-option>
         </ion-select>
       </ion-item>
-
       <ion-item lines="none">
         <ion-label position="stacked">Any pre-existing chronic cases</ion-label>
-        <ion-input *ngIf="!(cases.hasError('required') && cases.touched)" formControlName="cases"
-          [(ngModel)]="objLife.Data.AnyChronicCasesOrPerExistingCases" name="AnyChronicCasesOrPerExistingCases"
-          type="text" required></ion-input>
+        <ion-input *ngIf="!(cases.hasError('required') && cases.touched)" formControlName="cases" [(ngModel)]="objLife.Data.AnyChronicCasesOrPerExistingCases"
+          name="AnyChronicCasesOrPerExistingCases" type="text" required></ion-input>
         <ion-input *ngIf="cases.hasError('required') && cases.touched" formControlName="cases" name="cases" type="text"
           required placeholder="Enter a valid Name" color="danger" class="error"></ion-input>
       </ion-item>
-
       <ion-item>
         <ion-label position="stacked">Period of Cover</ion-label>
-        <ion-select placeholder="Select" [(ngModel)]="objLife.Data.FkPeriodofcover" name="FkPeriodofcover"
+        <ion-select placeholder="---Please Select---" [(ngModel)]="objLife.Data.FkPeriodofcover" name="FkPeriodofcover"
           formControlName="pCover">
-          <ion-select-option>1 Year</ion-select-option>
-          <ion-select-option>2 Year</ion-select-option>
-          <ion-select-option>3 Year</ion-select-option>
-          <ion-select-option>4 Year</ion-select-option>
+          <ion-select-option *ngFor='let in of Counter(13) ;let i = index' value="{{i+1}}">{{i+1}} Year</ion-select-option>
         </ion-select>
       </ion-item>
-
       <ion-item>
         <ion-label position="stacked">Unit</ion-label>
-        <ion-select placeholder="Select" [(ngModel)]="objLife.Data.NumberOfUnit" name="NumberOfUnit"
-          formControlName="NumberOfUnit">
-          <ion-select-option>1 Unit</ion-select-option>
-          <ion-select-option>2 Unit</ion-select-option>
-          <ion-select-option>3 Unit</ion-select-option>
-          <ion-select-option>4 Unit</ion-select-option>
+        <ion-select placeholder="---Please Select---" [(ngModel)]="objLife.Data.NumberOfUnit" name="NumberOfUnit" formControlName="NumberOfUnit">
+          <ion-select-option *ngFor='let in of Counter(4) ;let i = index' value="{{i+1}}">{{i+1}} Unit</ion-select-option>
         </ion-select>
       </ion-item>
-
       <ion-row>
         <ion-col size="11" class="auto top">
           <ion-button expand="full" (click)="InsertLife()">

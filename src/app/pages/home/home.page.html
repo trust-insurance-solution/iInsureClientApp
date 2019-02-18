@@ -29,7 +29,7 @@
         <ion-label position="stacked">Value of Coverage</ion-label>
         <ion-select placeholder="---Please Select---" [(ngModel)]="objHome.Data.Fk_SomeInsured" name="Fk_SomeInsured"
           formControlName="vCoverage">
-          <ion-select-option *ngFor="let v of valueOfCoverage" value="{{v}}">{{v | number}}</ion-select-option>
+          <ion-select-option *ngFor='let in of Counter(6) ;let i = index' value="{{ (i+1) * 50000}}">{{ (i+1) * 50000 | number : '0.0'}}</ion-select-option>
         </ion-select>
       </ion-item>
 
