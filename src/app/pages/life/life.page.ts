@@ -18,8 +18,6 @@ export class LifePage implements OnInit {
   cases: AbstractControl
   NumberOfUnit: AbstractControl
 
-
-
   accessToken: string;
   lang: string;
   userID: number;
@@ -73,27 +71,24 @@ export class LifePage implements OnInit {
     this.pCover = this.formgroup.controls['pCover']
     this.NumberOfUnit = this.formgroup.controls['NumberOfUnit']
 
-
-
-
-
-
     this._GlobalService.getStorage('Lang').then((val) => {
       this.lang = val;
     });
     this._GlobalService.getStorage('UserInfo').then((val) => {
       this.userID = val.UserId;
     });
-    this.accessToken = "elNRWitrbFpYLzl0UGFnZ3FEUW1RMTNmTWhQTXkvL1FYbGhYNU5tSEtmWT06Mi8xMi8yMDE5OjYzNjg1NTY3NTE1ODI4MzI4Nw==";
+    this.accessToken = "WWZlbTJyY29iazlkL09zMVlnM1VYVEk3UEZOek53NjRpZ1M3ZEw1ZFgxTT06Mi8xOC8yMDE5OjYzNjg2MDc4NDEzNDExMTMxMg==";
   }
-
+  
   ngOnInit() { }
 
   InsertLife() {
     this.objLife.Data.FkCreatedByUserId = this.userID;
     this.objLife.LoggedInUserID = this.userID;
     this.objLife.Language = this.lang;
+    console.log(this.objLife);
     this.postLifeEntry().then((res) => {
+      console.log("Res "+JSON.stringify(res));
       if (res.Success === 'true')
         this.responseData = res.Data.CompanyListResult as LifeResponse[];
       else if (res.ErrorCode === "NotAutharized")
@@ -107,6 +102,9 @@ export class LifePage implements OnInit {
     return this._GlobalService.fetchDataApi('InsertNewLifeEntry', this.objLife, this.accessToken, this.userID.toString());
   }
 
+  Counter(i: number) {
+    return new Array(i);
+  }
 }
 
 
