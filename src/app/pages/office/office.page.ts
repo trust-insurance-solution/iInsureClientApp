@@ -15,8 +15,8 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 export class OfficePage implements OnInit {
   apartment: boolean = true
   myphoto: any
-
-
+  countries: any;
+  CurrentDate = new Date();
   formgroup: FormGroup
   FullName: AbstractControl
   National: AbstractControl
@@ -37,9 +37,6 @@ export class OfficePage implements OnInit {
   IsAvailability: AbstractControl
   NumberOfEmployee: AbstractControl
   mail: "/^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/"
-
-
-
 
   lang: string;
   userID: number;
@@ -108,7 +105,7 @@ export class OfficePage implements OnInit {
         Validators.pattern('[0-9 ]*'),
         Validators.required])),
 
-        NumberOfEmployee: new FormControl('', Validators.compose([
+      NumberOfEmployee: new FormControl('', Validators.compose([
         Validators.pattern('[0-9 ]*'),
         Validators.required])),
       Building: new FormControl('', Validators.compose([
@@ -165,66 +162,77 @@ export class OfficePage implements OnInit {
     this.NumberOfEmployee = this.formgroup.controls['NumberOfEmployee']
 
 
-
-
-
-
-
-
-
-
-
-
-
     this._GlobalService.getStorage('Lang').then((val) => {
       this.lang = val;
     });
     this._GlobalService.getStorage('UserInfo').then((val) => {
       this.userID = val.UserId;
     });
-    this.accessToken = "elNRWitrbFpYLzl0UGFnZ3FEUW1RMTNmTWhQTXkvL1FYbGhYNU5tSEtmWT06Mi8xMi8yMDE5OjYzNjg1NTY3NTE1ODI4MzI4Nw==";
+    this.accessToken = "WWZlbTJyY29iazlkL09zMVlnM1VYVEk3UEZOek53NjRpZ1M3ZEw1ZFgxTT06Mi8xOC8yMDE5OjYzNjg2MDc4NDEzNDExMTMxMg==";
   }
-  ngOnInit() { }
+  async ngOnInit() {
+    await this.getCountries().then(result => this.countries = result.Data);
+  }
+
+  InsertOffice() {
+    this.objOffice.Data.FkCreatedByUserId = this.userID;
+    this.objOffice.LoggedInUserID = this.userID;
+    this.objOffice.Language = this.lang;
+    if (this.CheckDateOfBuilding() === 1) {
+      this.postOfficeEntry().then((res) => {
+        if (res.Success === 'true')
+          this.responseData = res.Data.CompanyListResult as OfficeResponse[];
+        else if (res.ErrorCode === "NotAutharized")
+          this._GlobalService.showAlert('Not Autharized...', res.ErrorMessage, ['OK']);
+        else
+          this._GlobalService.showAlert('', res.ErrorMessage, ['OK']);
+      });
+    }
+    else if (this.CheckDateOfBuilding() === 0) {
+      this._GlobalService.showAlert("Note", " Constructions with more than 30 years of age are rejected. ", ['OK']);
+    }
+  }
+
+  private postOfficeEntry(): Promise<any> {
+    return this._GlobalService.fetchDataApi('InsertNewOfficeEntry', this.objOffice, this.accessToken, this.userID.toString());
+  }
+
+  getCountries(): Promise<any> {
+    return this._GlobalService.fetchDataApi('GetAllCountryList', {});
+  }
+  getDateTime(): Promise<any> {
+    return this._GlobalService.fetchDataApi('GetCurrentDateTime', { "Data": 1 });
+  }
+  //Check Date of Building
+  CheckDateOfBuilding(): number {
+    if ((this.objOffice.Data.DateApartmentOrVillaBuilt) != "") {
+      this.getDateTime().then(res => {
+        this.CurrentDate = new Date(res.Data);
+      });
+      var comp = this.CurrentDate.getFullYear() - new Date(this.objOffice.Data.DateApartmentOrVillaBuilt).getFullYear();
+      if (comp > 30)
+        return 0;
+      else if (comp <= 30)
+        return 1;
+    }
+  }
+
+  Counter(i: number) {
+    return new Array(i);
+  }
 
   //Event for selectable Nationality
   Nationality(event: {
     component: IonicSelectableComponent,
     value: any
   }) {
-    console.log('nationlID:', event.value);
+    this.objOffice.Data.NationalID = event.value.Id;
   }
 
-  InsertOffice() {
-
-    this.objOffice.Data.FkCreatedByUserId = this.userID;
-    this.objOffice.LoggedInUserID = this.userID;
-    this.objOffice.Language = this.lang;
-    this.postOfficeEntry().then((res) => {
-      if (res.Success === 'true')
-        this.responseData = res.Data.CompanyListResult as OfficeResponse[];
-      else if (res.ErrorCode === "NotAutharized")
-        this._GlobalService.showAlert('Not Autharized...', res.ErrorMessage, ['OK']);
-      else
-        this._GlobalService.showAlert('', res.ErrorMessage, ['OK']);
-    });
-  }
-  private postOfficeEntry(): Promise<any> {
-    return this._GlobalService.fetchDataApi('InsertNewOfficeEntry', this.objOffice, this.accessToken, this.userID.toString());
-  }
-  type(x) {
-    switch (x) {
-      case 1:
-        this.apartment = true
-        break;
-
-      case 2:
-        this.apartment = false
-        break;
-    }
-  }
   map() {
     this.navCtrl.navigateForward('map');
   }
+
   img() {
     const options: CameraOptions = {
       quality: 100,
@@ -243,4 +251,16 @@ export class OfficePage implements OnInit {
     });
   }
 
+  //Show and hide controls
+  ShowControls(val) {
+    switch (val) {
+      case 1:
+        this.apartment = true
+        break;
+
+      case 2:
+        this.apartment = false
+        break;
+    }
+  }
 }
