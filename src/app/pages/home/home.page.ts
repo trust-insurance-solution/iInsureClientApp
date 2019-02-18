@@ -18,9 +18,9 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
 export class HomePage implements OnInit {
   myphoto: any
-
+  Nationallity: any;
   apartment: boolean = true
-
+  CurrentDate = new Date();
   formgroup: FormGroup
   FullName: AbstractControl
   NationalID: AbstractControl
@@ -36,14 +36,12 @@ export class HomePage implements OnInit {
   PhoneNumber: AbstractControl
   room: AbstractControl
   mail: "/^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/"
-
-
-
   countries: any;
   country: number = -1;
   lang: string;
   userID: number;
   accessToken: string;
+  valueOfCoverage: number[];
   responseData: HomeResponse[];
   objHome = {
     Data: {
@@ -71,7 +69,7 @@ export class HomePage implements OnInit {
   };
 
   constructor(public _GlobalService: GlobalService, public navCtrl: NavController, public formbuilder: FormBuilder, public modalCtrl: ModalController, private camera: Camera) {
-
+    this.valueOfCoverage = this._GlobalService.ValueOfCoverage();
     //FORM
     this.formgroup = formbuilder.group({
       FullName: new FormControl('', Validators.compose([
@@ -144,49 +142,88 @@ export class HomePage implements OnInit {
     this._GlobalService.getStorage('UserInfo').then((val) => {
       this.userID = val.UserId;
     });
-    this.accessToken = "ZWw5TWVsdmhNdk5TOWlxbEMxeW1JOUI4endCMTVLNEpEaFhTV1ZMUmNaOD06Mi8xNy8yMDE5OjYzNjg2MDA4MTgyNzEwNjk5NQ==";
+    this.accessToken = "WWZlbTJyY29iazlkL09zMVlnM1VYVEk3UEZOek53NjRpZ1M3ZEw1ZFgxTT06Mi8xOC8yMDE5OjYzNjg2MDc4NDEzNDExMTMxMg==";
   }
 
   async  ngOnInit() {
     await this.getCountries().then(result => this.countries = result.Data);
-   }
-
-  //Modal
-  async coverageModal() {
-    const modal = await this.modalCtrl.create({
-      component: CoverageModalPage, cssClass: "coverageModal"
-    })
-    console.log("fe")
-    await modal.present();
   }
-
-  //Event for selectable Nationality
-  Nationality(event: {
-    component: IonicSelectableComponent,
-    value: any
-  }) {
-    console.log('nationlID:', event.value);
-  }
-
 
   InsertHome() {
     this.objHome.Data.NationalID = this.objHome.Data.NationalID > 0 ? this.objHome.Data.NationalID : null;
     this.objHome.Language = this.lang;
     this.objHome.LoggedInUserID = this.userID;
     this.objHome.Data.FkCreatedByUserId = this.userID;
-    this.postInsertNewHome().then(res => {
-      if (res.Success === 'true')
-        this.responseData = res.Data.CompanyListResult as HomeResponse[];
-      else if (res.ErrorCode === "NotAutharized")
-        this._GlobalService.showAlert('Not Autharized...', res.ErrorMessage, ['OK']);
-      else
-        this._GlobalService.showAlert('', res.ErrorMessage, ['OK']);
+    if (this.CheckDateOfBuilding() === 1) {
+      this.postInsertNewHome().then(res => {
+        if (res.Success === 'true')
+          this.responseData = res.Data.CompanyListResult as HomeResponse[];
+        else if (res.ErrorCode === "NotAutharized")
+          this._GlobalService.showAlert('Not Autharized...', res.ErrorMessage, ['OK']);
+        else
+          this._GlobalService.showAlert('', res.ErrorMessage, ['OK']);
+      }
+      );
     }
-    );
+    else if (this.CheckDateOfBuilding() === 0) {
+      this._GlobalService.showAlert("Note", " Constructions with more than 30 years of age are rejected. ", ['OK']);
+    }
   }
+
+  //Insert New Home
   private postInsertNewHome(): Promise<any> {
     return this._GlobalService.fetchDataApi('InsertNewHomeEntry', this.objHome, this.accessToken, this.userID.toString());
   }
+
+  //Get a countries
+  getCountries(): Promise<any> {
+    return this._GlobalService.fetchDataApi('GetAllCountryList', {});
+  }
+
+  getDateTime(): Promise<any> {
+    return this._GlobalService.fetchDataApi('GetCurrentDateTime', { "Data": 1 });
+  }
+
+  //Check Date of Building
+  CheckDateOfBuilding(): number {
+    if ((this.objHome.Data.DateCreatedApartmentOrVilla) != "") {
+      this.getDateTime().then(res => {
+        this.CurrentDate = new Date(res.Data);
+      });
+      var comp = this.CurrentDate.getFullYear() - new Date(this.objHome.Data.DateCreatedApartmentOrVilla).getFullYear();
+      if (comp > 30)
+        return 0;
+      else if (comp <= 30)
+        return 1;
+    }
+  }
+  //Hide and show controls if villa or apartments
+  ShowControls(val) {
+    switch (val) {
+      case 1:
+        this.apartment = true
+        break;
+      case 2:
+        this.apartment = false
+        break;
+    }
+  }
+
+  //Modal
+  async coverageModal() {
+    const modal = await this.modalCtrl.create({
+      component: CoverageModalPage, cssClass: "coverageModal"
+    })
+    await modal.present();
+  }
+  //Event for selectable Nationality
+  Nationality(event: {
+    component: IonicSelectableComponent,
+    value: any
+  }) {
+    this.objHome.Data.NationalID = this.Nationallity.Id;
+  }
+
   map() {
     this.navCtrl.navigateForward('map');
   }
@@ -207,24 +244,5 @@ export class HomePage implements OnInit {
     }, (err) => {
       // Handle error
     });
-  }
-
-    //Get a countries
-    getCountries(): Promise<any> {
-      return this._GlobalService.fetchDataApi('GetAllCountryList', {});
-  
-    }
-
-  type(x) {
-    console.log("teem" + x)
-    switch (x) {
-      case 1:
-        this.apartment = true
-        break;
-
-      case 2:
-        this.apartment = false
-        break;
-    }
   }
 }

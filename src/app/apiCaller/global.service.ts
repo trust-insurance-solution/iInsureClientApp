@@ -103,6 +103,7 @@ export class GlobalService {
     }
   }
 
+  //Check if online or offline
   public isOnline() {
     this._Platform.ready().then(() => {
       Network.onDisconnect().subscribe(() => {
@@ -112,6 +113,10 @@ export class GlobalService {
         console.log("Yes");
       });
     });
+  }
+  //
+  public ValueOfCoverage(): number[] {
+    return [50000, 100000, 150000, 200000, 250000, 300000];
   }
 
 
