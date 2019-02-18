@@ -212,7 +212,6 @@ export class OfficePage implements OnInit {
     return this._GlobalService.fetchDataApi('InsertNewOfficeEntry', this.objOffice, this.accessToken, this.userID.toString());
   }
   type(x) {
-    console.log("teem" + x)
     switch (x) {
       case 1:
         this.apartment = true
