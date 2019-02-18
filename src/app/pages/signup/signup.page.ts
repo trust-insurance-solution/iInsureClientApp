@@ -144,6 +144,15 @@ export class SignupPage implements OnInit {
   postCreateNewClientAccount(): Promise<any> {
     return this._GlobalService.fetchDataApi('CreateNewClientAccount', this.objUserInfo)
   }
+
+  //
+  postGetClientInformationByID(UserID): Promise<any> {
+    let data = {
+      Data: UserID,
+      Language: this.objUserInfo.Language,
+    }
+    return this._GlobalService.fetchDataApi('GetClientInformationByID', data)
+  }
   //Event for selectable Component country
   async portChange(event: {
     component: IonicSelectableComponent,
@@ -167,7 +176,10 @@ export class SignupPage implements OnInit {
     this.objUserInfo.Data.DeviceToken = this._GlobalService.getPlatform() ? '"' + this._GlobalService.getDeviceToken() + '"' : "cbF1x6YK4_w:APA91bEZOJLaN5ZO8wfRB6WyyLIQZ_29E0RLlU4ssd7rqEOxAP1AXYCOBE07-jBQyyn6zKY6MUrqXNFIZsS186Pg-fGMeOSwoHq1tJYv53V_BYHEduiT8CehSlxpObifuMOmuDEZZWQb";
     this.postCreateNewClientAccount().then(data => {
       if (data.Success === 'true') {
-        this._GlobalService.setStorage('UserInfo', data.Data);
+       let UserID= data.ReturnUserId;
+        this.postGetClientInformationByID(UserID).then(
+          res => { this._GlobalService.setStorage('UserInfo', res.Data); }
+        );
         this.navCtrl.navigateForward('verification')
       }
       else {
