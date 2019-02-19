@@ -6,54 +6,48 @@
     <ion-title>Travel</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content padding>
   <form [formGroup]="formgroup">
     <ion-list class="top" lines="none">
       <ion-item lines="none">
         <ion-label position="stacked">Start Date </ion-label>
-        <ion-input *ngIf="!(StartDateJourney.hasError('required') && StartDateJourney.touched)"
-          formControlName="StartDateJourney" [(ngModel)]="objTravel.Data.StartDateJourney" name="StartDateJourney"
-          type="date" required></ion-input>
+        <ion-input *ngIf="!(StartDateJourney.hasError('required') && StartDateJourney.touched)" formControlName="StartDateJourney"
+          [(ngModel)]="objTravel.Data.StartDateJourney" name="StartDateJourney" type="date" required></ion-input>
       </ion-item>
       <ion-item lines="none">
         <ion-label position="stacked">End Date </ion-label>
-        <ion-input *ngIf="!(EndDateJourney.hasError('required') && EndDateJourney.touched)"
-          formControlName="EndDateJourney" [(ngModel)]="objTravel.Data.EndDateJourney" name="EndDateJourney" type="date"
-          required></ion-input>
+        <ion-input *ngIf="!(EndDateJourney.hasError('required') && EndDateJourney.touched)" formControlName="EndDateJourney"
+          [(ngModel)]="objTravel.Data.EndDateJourney" name="EndDateJourney" type="date" required></ion-input>
       </ion-item>
-
       <ion-item lines="none">
         <ion-label position="stacked">Destination Country</ion-label>
-        <ionic-selectable formControlName="countr" name="DestinationId" [items]="countries" itemValueField="Id"
+        <ionic-selectable placeholder="---Please Select---" formControlName="countr" name="DestinationId" [items]="countries" itemValueField="Id"
           itemTextField="CountryName" [canSearch]="true" [isMultiple]="true" (onChange)="diagnosisChange($event)">
           <span style="background-color: red">s</span>
         </ionic-selectable>
       </ion-item>
-
       <ion-row>
-        <ion-col size="11" class="auto" >
+        <ion-col size="11" class="auto">
           <ion-item lines="none" detail color="medium" (click)="newTraveler()">
             {{traveler}}
             <ion-label>Add new Traveler</ion-label>
           </ion-item>
         </ion-col>
       </ion-row>
-
       <ion-card>
-        <ion-card-content>
+        <ion-card-content *ngFor="let item of travlerLst;let i = index">
           <ion-row>
             <ion-col size="4">
-              <img src="../../../assets/img/passport.jpg">
+              <img src="{{item.PictureOfPassport!=''?item.PictureOfPassport:'assets/img/avatar.png'}}">
             </ion-col>
             <ion-col size="8">
               <div class="info">
-                <h2> Tasneem Khalifeh </h2>
-                <h2> 26/3/1995</h2>
-                <h2> Jordanian </h2>
-                <h2> O484329 </h2>
-                <h2> Italy </h2>
-                <h2> 30/8/2020</h2>
+                <h2> {{item.FullName}} </h2>
+                <h2> {{item.DateOfBirth}}</h2>
+                <h2> {{item.NationalityName}} </h2>
+                <h2> {{item.PassportNumber}} </h2>
+                <h2> {{item.CountryOfResidenceName}} </h2>
+                <h2> {{item.PassportExpireDate}}</h2>
               </div>
             </ion-col>
           </ion-row>
@@ -63,7 +57,7 @@
                 <ion-button expand="full" class="mRight" color="medium"> Edit</ion-button>
               </ion-col>
               <ion-col size="6" class="nopadding">
-                <ion-button expand="full" class="mLeft" color="medium"> Delete</ion-button>
+                <ion-button expand="full" class="mLeft" color="medium" (click)="removeItem(i)"> Delete</ion-button>
               </ion-col>
             </ion-row>
           </ion-footer>
@@ -104,7 +98,6 @@
                   <ion-input type="text" required></ion-input>
                 </ion-item>
                 </div> -->
-
       <ion-button color="dark" expand="full" (click)="savePost()">Get Quotation</ion-button>
     </ion-list>
   </form>
