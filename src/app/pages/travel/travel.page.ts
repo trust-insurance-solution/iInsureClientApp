@@ -16,13 +16,7 @@ export class TravelPage implements OnInit {
   StartDateJourney: AbstractControl
   EndDateJourney: AbstractControl
   countr: AbstractControl
-
-
-
-
-
-
-
+  traveler;
   lang;
   userID;
   accessToken;
@@ -45,7 +39,8 @@ export class TravelPage implements OnInit {
   };
   @ViewChild('mySlider') slides: IonSlides;
 
-  constructor(public _GlobalService: GlobalService, public formbuilder: FormBuilder, public navCtrl: NavController) {
+  constructor(public _GlobalService: GlobalService, public formbuilder: FormBuilder,
+    public navCtrl: NavController) {
 
     //FORM
     this.formgroup = formbuilder.group({
@@ -61,16 +56,21 @@ export class TravelPage implements OnInit {
     this.StartDateJourney = this.formgroup.controls['StartDateJourney']
     this.EndDateJourney = this.formgroup.controls['EndDateJourney']
     this.countr = this.formgroup.controls['countr']
-
-
-
     this._GlobalService.getStorage('Lang').then((val) => {
       this.lang = val;
     });
     this._GlobalService.getStorage('UserInfo').then((val) => {
       this.userID = val.UserId;
     });
-    this.accessToken = "eDd1ZHQxNnZoQXdzVTdSa1pTZHJFWjljMlJIa1BHYTBZSWl1R0M2RHJnQT06Mi8xMy8yMDE5OjYzNjg1NjUxOTQ1NTkyNzMyMg==";
+    this.accessToken = "TGtNc2w5VXFPb2xEMzJhWVNvazBaTStMeC9uVFE4N04weUFiY3BzN3Fwaz06Mi8xOS8yMDE5OjYzNjg2MTg5ODgzNDA3ODYxNw==";
+  }
+
+  ionViewWillEnter() {
+    this.addTraveler();
+  }
+
+  addTraveler() {
+    this.travlerLst = JSON.parse(localStorage.getItem('Traveler')) || [];
   }
 
   async ngOnInit() {
@@ -82,10 +82,10 @@ export class TravelPage implements OnInit {
   }
 
   savePost() {
+    this.objTravel.Data.listTravelEntry = JSON.parse(localStorage.getItem('Traveler')) || [];
     this.objTravel.Data.fkCreatedByUserId = this.userID;
     this.objTravel.LoggedInUserID = this.userID;
     this.objTravel.Language = this.lang;
-    console.log(this.objTravel);
     this.postTravelEntry().then((res) => {
       if (res.Success === 'true')
         this.responseData = res.Data.CompanyListResult as TravelResponse[];
@@ -103,8 +103,16 @@ export class TravelPage implements OnInit {
   private postTravelEntry(): Promise<any> {
     return this._GlobalService.fetchDataApi('InsertNewTravelEntry', this.objTravel, this.accessToken, this.userID.toString());
   }
+
   getCountries(): Promise<any> {
     return this._GlobalService.fetchDataApi('GetAllCountryList', {});
+  }
+
+  removeItem(index) {
+    this.travlerLst = JSON.parse(localStorage.getItem('Traveler')) || [];
+    this.travlerLst.splice(index, 1);
+    localStorage.setItem('Traveler', JSON.stringify(this.travlerLst));
+    this.ionViewWillEnter();
   }
 
   diagnosisChange(event) {
@@ -113,28 +121,16 @@ export class TravelPage implements OnInit {
       Lst.push({ FkDestinationId: element.Id });
     });
     this.objTravel.Data.destinationIds = Lst;
-    //alert("lst "+Lst)
-    //alert(this.objTravel.Data.fkCreatedByUserId)
-    console.log('eeeeeeeeeee:', event.value);
-
-    console.log('ffffffff:', event.value[0].Id);
-    for (let j = 1; j <= this.objTravel.Data.destinationIds.length; j++) {
-      console.log("Country " + j)
-      // this.objTravel.Data.destinationIds[j].Id
-      console.log('id :', event.value[j].Id, event.value[j].CountryName);
-
-      alert('id :' + event.value[j].Id + " - " + event.value[j].CountryName);
-    }
-
   }
-
 }
 
 export interface TravlerEntity {
   FullName: string;
   DateOfBirth: string;
   Nationality: number;
+  NationalityName: string;
   CountryOfResidence: number;
+  CountryOfResidenceName: string;
   PictureOfPassport: string;
   PassportExpireDate: string;
   PassportNumber: string;
