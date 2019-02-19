@@ -12,10 +12,15 @@
 
 @font-face{
     font-family: 'CenturyGothic';
-    src: url(../src/assets/font/CenturyGothicRegular.ttf)
+    src: url(assets/font/CenturyGothicRegular.ttf);
+
+//     font-family: 'HiraginoSansGB';
+//     src: url(assets/font/HiraginoSansGB.ttc);
+
 }
 *{
-    font-family: CenturyGothic !important;
+    // font-family: CenturyGothic !important;
+     font-family: HiraginoSansGB !important;
 }
 
 //First Div 
@@ -116,7 +121,7 @@ ion-icon.noti {
     }
 }
 ion-label{
-    color:#ffffff !important;
+    color:#000000 !important;
     text-align: center
 }
 ion-input , ionic-selectable, ion-select{

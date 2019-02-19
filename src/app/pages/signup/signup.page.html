@@ -26,7 +26,8 @@
             <div class="circle">
               <!-- <img class="avatar" [src]="userImage" alt="No Profile Image"> -->
               <img class="avatar" src="assets/img/avatar.png" alt="No Profile Image">
-              <ion-icon class="add" name="add-circle"></ion-icon>
+              <!-- <img src="{{myphoto}}"> -->
+              <ion-icon class="add" name="add-circle" (click)="img();"></ion-icon>
             </div>
           </ion-col>
         </ion-row>
