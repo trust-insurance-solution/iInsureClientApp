@@ -20,7 +20,7 @@
       </ion-item>
       <ion-item>
         <ion-label position="stacked">Value of Coverage</ion-label>
-        <ion-select placeholder="---Please Select---" [(ngModel)]="objPersonalAccident.Data.FkTotalamountofinsuredmaximum"
+        <ion-select  [(ngModel)]="objPersonalAccident.Data.FkTotalamountofinsuredmaximum"
           name="FkTotalamountofinsuredmaximum" formControlName="vCoverage">
           <ion-select-option *ngFor='let in of Counter(4) ;let i = index' value="{{ (i+1) * 50000}}">{{ (i+1) * 50000 |
             number : '0.0'}}</ion-select-option>
@@ -51,21 +51,21 @@
       </ion-item>
       <ion-item lines="none">
         <ion-label position="stacked">Country Residence</ion-label>
-        <ionic-selectable placeholder="---Please Select---"  name="FkCountryresidence" [items]="countries"
+        <ionic-selectable   name="FkCountryresidence" [items]="countries"
           itemValueField="Id" formControlName="CountryResidence" itemTextField="CountryName" [canSearch]="true"
           (onChange)="CountryResidenc($event)" required>
         </ionic-selectable>
       </ion-item>
       <ion-item lines="none">
         <ion-label position="stacked">Nationality</ion-label>
-        <ionic-selectable placeholder="---Please Select---" name="FkNationality" [items]="countries"
+        <ionic-selectable  name="FkNationality" [items]="countries"
           itemValueField="Id" formControlName="NationalID" itemTextField="CountryName" [canSearch]="true" (onChange)="Nationality($event)"
           required>
         </ionic-selectable>
       </ion-item>
       <ion-item lines="none">
         <ion-label position="stacked">Unit</ion-label>
-        <ion-select placeholder="---Please Select---" [(ngModel)]="objPersonalAccident.Data.NumberOfUnit" name="NumberOfUnit" formControlName="NumberOfUnit">
+        <ion-select  [(ngModel)]="objPersonalAccident.Data.NumberOfUnit" name="NumberOfUnit" formControlName="NumberOfUnit">
           <ion-select-option *ngFor='let in of Counter(4) ;let i = index' value="{{i+1}}"> {{ i+1 }} Unit</ion-select-option>
         </ion-select>
       </ion-item>

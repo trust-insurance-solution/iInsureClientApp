@@ -20,14 +20,14 @@
 
       <ion-item lines="none">
         <ion-label position="stacked">Nationality</ion-label>
-        <ionic-selectable placeholder="---Please Select---" [(ngModel)]="Nationallity" name="NationalID" [items]="countries" itemValueField="Id"
+        <ionic-selectable  [(ngModel)]="Nationallity" name="NationalID" [items]="countries" itemValueField="Id"
           formControlName="NationalID" itemTextField="CountryName" [canSearch]="true" (onChange)="Nationality($event)"
           required>
         </ionic-selectable>
       </ion-item>
       <ion-item lines="none">
         <ion-label position="stacked">Value of Coverage</ion-label>
-        <ion-select placeholder="---Please Select---" [(ngModel)]="objHome.Data.Fk_SomeInsured" name="Fk_SomeInsured"
+        <ion-select  [(ngModel)]="objHome.Data.Fk_SomeInsured" name="Fk_SomeInsured"
           formControlName="vCoverage">
           <ion-select-option *ngFor='let in of Counter(6) ;let i = index' value="{{ (i+1) * 50000}}">{{ (i+1) * 50000 | number : '0.0'}}</ion-select-option>
         </ion-select>
