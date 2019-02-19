@@ -4,22 +4,86 @@
     <div class="first2 nopadding">
       <ion-grid>
         <ion-row>
-          <ion-col size="4">
+          <ion-col size="3">
           </ion-col>
-          <ion-col size="4" class="nopadding">
+          <ion-col size="6" class="nopadding">
             <img src="assets/img/logo.png" class="auto">
           </ion-col>
-          <ion-col size="4">
+          <ion-col size="3">
           </ion-col>
         </ion-row>
       </ion-grid>
     </div>
 
-
     <div class="sec2">
+      <!-- 
+      <div class="centerlight">
+        <ion-row class="center">
+          <ion-col size="1"></ion-col>
+          <ion-col size="1" class="ourCol nopadding">
+            <span class="our">OUR</span>
+          </ion-col>
+          <ion-col size="8" class="nopadding">
+            <ion-row>
+              <ion-col size="12">
+                <span class="rep"> Reputation</span>
+              </ion-col>
+              <ion-col size="12">
+                <span class="rep">Is Your</span>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="2"></ion-col>
+          <ion-col size="9">
+            <span class="rep2">Insutance</span>
+          </ion-col>
+        </ion-row>
+      </div>
+
+      <hr>
+
+      <div class="centerlight">
+        <ion-row class="center">
+          <ion-col size="1"></ion-col>
+          <ion-col size="1" class="ourCol nopadding">
+            <span class="our2">OUR</span>
+          </ion-col>
+          <ion-col size="8" class="nopadding">
+            <ion-row>
+              <ion-col size="12">
+                <span class="rep3"> Reputation</span>
+              </ion-col>
+              <ion-col size="12">
+                <span class="rep3">Is Your</span>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="2"></ion-col>
+          <ion-col size="9">
+            <span class="rep2">Insutance</span>
+          </ion-col>
+        </ion-row>
+      </div>
+      <hr> -->
+
+
+
+      <ion-row class="center">
+        <ion-col size="12" class="center">
+          <span class="rep3">Our Reputation Is Your Insutance</span>
+        </ion-col>
+        <ion-col size="12" class="center"> 
+          <span class="rep3">LogIn</span>
+        </ion-col>
+      </ion-row>
+
+
       <form [formGroup]="formgroup">
         <ion-list class="top" lines="none">
-
           <ion-item lines="none">
             <ion-label position="stacked">Email Address</ion-label>
             <ion-input *ngIf="!(EmailAddress.hasError('required') && EmailAddress.touched)"
@@ -63,7 +127,7 @@
 
         <ion-row class="top">
           <ion-col size="11" class="auto nopadding">
-            <ion-button color="success" type="submit" expand="full"  (click)="LoginUser()" router-direction="backward"
+            <ion-button color="success" type="submit" expand="full" (click)="LoginUser()" router-direction="backward"
               class="top">
               LOGIN
             </ion-button>
@@ -73,7 +137,7 @@
               <ion-col size="8" class="nopadding" (click)="forgotPss()">
                 <span> Forgot your Password?</span>
               </ion-col>
-              <ion-col size="4" (click)="SignUp();" class="nopadding" text-end >
+              <ion-col size="4" (click)="SignUp();" class="nopadding" text-end>
                 <span>SignUp</span>
               </ion-col>
             </ion-row>

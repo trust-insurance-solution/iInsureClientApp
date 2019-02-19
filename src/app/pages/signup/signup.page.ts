@@ -6,6 +6,7 @@ import { IonicSelectableModule, IonicSelectableComponent } from 'ionic-selectabl
 import { stringify } from '@angular/core/src/util';
 import { FormsModule, Validators, FormControl, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
 @Component({
   selector: 'app-signup',
@@ -14,6 +15,8 @@ import { TranslateService } from '@ngx-translate/core';
 })
 
 export class SignupPage implements OnInit {
+  myphoto: any
+
   err: boolean = false;
   showPwd: boolean
   trans_FullName: string;
@@ -43,7 +46,10 @@ export class SignupPage implements OnInit {
   constructor(public _GlobalService: GlobalService,
     public _LoadingController: LoadingController,
     public navCtrl: NavController,
-    public formbuilder: FormBuilder, public translate: TranslateService, private _Platform: Platform) {
+    public formbuilder: FormBuilder, 
+    public translate: TranslateService,
+    private _Platform: Platform,
+    private camera: Camera) {
 
     this._GlobalService.getStorage("Lang").then(val => { this.objUserInfo.Language = val; });
     //FORM
@@ -205,9 +211,26 @@ export class SignupPage implements OnInit {
       return 1;
   }
 
+  img(){
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+      saveToPhotoAlbum: false
+    }
+
+    this.camera.getPicture(options).then((imageData) => {
+      // imageData is either a base64 encoded string or a file URI
+      // If it's base64 (DATA_URL):
+      this.myphoto = 'data:image/jpeg;base64,' + imageData;
+    }, (err) => {
+      // Handle error
+    });
+  }
+
   showPass(x) {
     console.log(22222222222222222222)
-
     switch (x) {
       case 1:
         this.showPwd = false
