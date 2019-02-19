@@ -92,8 +92,8 @@ export class NewTravelerPage implements OnInit {
       });
       var Year = this.CurrentDate.getFullYear() - new Date(this.objTraveler.PassportExpireDate).getFullYear();
       var Month = new Date(this.objTraveler.PassportExpireDate).getMonth() - this.CurrentDate.getMonth();
-      var Day = new Date(this.objTraveler.PassportExpireDate).getDate() - this.CurrentDate.getDate();
-      if (Year < 1 && Month <= 6 && Day < 1)
+      var Day = this.CurrentDate.getDate() - new Date(this.objTraveler.PassportExpireDate).getDate();
+      if ((Year < 1 || Month <= 6) && Day >= 0)
         return false;
     }
   }
