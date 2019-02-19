@@ -17,6 +17,7 @@ export class NewTravelerPage implements OnInit {
   PassportNumber: AbstractControl;
   passExBirth: AbstractControl;
   CountryResidence: AbstractControl;
+  CurrentDate = new Date();
   objTraveler = {
     FullName: '',
     DateOfBirth: '',
@@ -76,9 +77,28 @@ export class NewTravelerPage implements OnInit {
   }
 
   SaveData() {
+    if (this.checkPasswordDate() === false) {
+      this._GlobalService.showAlert('Warning..!','Passwort has expired',['OK']);
+    }
     this.addTraveler(this.objTraveler);
     this.navCtrl.navigateForward('travel');
     this.formgroup.reset()
+  }
+
+  checkPasswordDate(): boolean {
+    if ((this.objTraveler.PassportExpireDate) != "") {
+      this.getDateTime().then(res => {
+        this.CurrentDate = new Date(res.Data);
+      });
+      var Year = this.CurrentDate.getFullYear() - new Date(this.objTraveler.PassportExpireDate).getFullYear();
+      var Month = new Date(this.objTraveler.PassportExpireDate).getMonth() - this.CurrentDate.getMonth();
+      var Day = new Date(this.objTraveler.PassportExpireDate).getDate() - this.CurrentDate.getDate();
+      if (Year < 1 && Month <= 6 && Day < 1)
+        return false;
+    }
+  }
+  getDateTime(): Promise<any> {
+    return this._GlobalService.fetchDataApi('GetCurrentDateTime', { "Data": 1 });
   }
 
   getCountries(): Promise<any> {
