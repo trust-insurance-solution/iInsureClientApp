@@ -9,7 +9,7 @@ import { NavController, ModalController } from '@ionic/angular';
 
 
 
-const apiUrl = "https://api.trst-ins.com/api/Client/";
+const apiUrl = "http://192.168.0.99/iInsurePortal/TrustInsurance.API/api/Client/";
 
 @Injectable({
   providedIn: 'root'

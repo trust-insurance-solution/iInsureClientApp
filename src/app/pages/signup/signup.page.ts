@@ -161,7 +161,7 @@ export class SignupPage implements OnInit {
     return this._GlobalService.fetchDataApi('GetClientInformationByID', data)
   }
   //Event for selectable Component country
-  async portChange(event: {
+  async Nationality(event: {
     component: IonicSelectableComponent,
     value: any
   }) {
