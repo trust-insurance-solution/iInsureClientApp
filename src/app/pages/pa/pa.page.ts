@@ -88,45 +88,38 @@ export class PaPage implements OnInit {
     this.NationalID = this.formgroup.controls['NationalID']
     this.CountryResidence = this.formgroup.controls['CountryResidence']
 
-
-
-
-
-
-
     this._GlobalService.getStorage('Lang').then((val) => {
       this.lang = val;
     });
     this._GlobalService.getStorage('UserInfo').then((val) => {
       this.userID = val.UserId;
     });
-    this.accessToken = "elNRWitrbFpYLzl0UGFnZ3FEUW1RMTNmTWhQTXkvL1FYbGhYNU5tSEtmWT06Mi8xMi8yMDE5OjYzNjg1NTY3NTE1ODI4MzI4Nw==";
+    this.accessToken = "RWlTV2tKYitKc0R4TXZCcVBGd0JuelVDN3hBbHNOWjZpcTFOU2VJRkROST06Mi8xOS8yMDE5OjYzNjg2MTY2NjIwNDI5NTcyOA==";
   }
 
   async  ngOnInit() {
     await this.getCountries().then(result => this.countries = result.Data);
-   }
+  }
 
   //Event for selectable Nationality
   Nationality(event: {
     component: IonicSelectableComponent,
     value: any
   }) {
-    console.log('nationlID:', event.value);
+    this.objPersonalAccident.Data.FkNationality = event.value.Id;
   }
-   //Event for selectable CountryResidenc
-   CountryResidenc(event: {
+  //Event for selectable CountryResidenc
+  CountryResidenc(event: {
     component: IonicSelectableComponent,
     value: any
   }) {
-    console.log('Country Residenc:', event.value);
+    this.objPersonalAccident.Data.FkCountryresidence = event.value.Id;
   }
 
   InsertPersonalAccident() {
     this.objPersonalAccident.Data.FkCreatedByUserId = this.userID;
     this.objPersonalAccident.LoggedInUserID = this.userID.toString();
     this.objPersonalAccident.Language = this.lang;
-
     this.postOfficeEntry().then((res) => {
       if (res.Success === 'true')
         this.responseData = res.Data.CompanyListResult as PersonalAccidentsResponse[];
@@ -136,14 +129,14 @@ export class PaPage implements OnInit {
         this._GlobalService.showAlert('', res.ErrorMessage, ['OK']);
     });
   }
-
-  
-    //Get a countries
-    getCountries(): Promise<any> {
-      return this._GlobalService.fetchDataApi('GetAllCountryList', {});
-  
-    }
+  //Get a countries
+  getCountries(): Promise<any> {
+    return this._GlobalService.fetchDataApi('GetAllCountryList', {});
+  }
   private postOfficeEntry(): Promise<any> {
     return this._GlobalService.fetchDataApi('InsertNewPersonalAccidentsEntry', this.objPersonalAccident, this.accessToken, this.userID.toString());
+  }
+  Counter(i: number) {
+    return new Array(i);
   }
 }
