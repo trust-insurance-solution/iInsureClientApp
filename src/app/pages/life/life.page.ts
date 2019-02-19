@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { GlobalService } from '../../apiCaller/global.service';
 import { LifeResponse } from '../../../entity/LifeEntity';
 import { FormsModule, Validators, FormControl, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
-
+import { LoadingController, IonSlides } from '@ionic/angular';
 @Component({
   selector: 'app-life',
   templateUrl: './life.page.html',
   styleUrls: ['./life.page.scss'],
 })
 export class LifePage implements OnInit {
- 
+  @ViewChild('mySlider') slides: IonSlides;
+
   formgroup: FormGroup
   FullName: AbstractControl
   DateOfBirth: AbstractControl
@@ -79,6 +80,10 @@ export class LifePage implements OnInit {
     });
     this.accessToken = "WWZlbTJyY29iazlkL09zMVlnM1VYVEk3UEZOek53NjRpZ1M3ZEw1ZFgxTT06Mi8xOC8yMDE5OjYzNjg2MDc4NDEzNDExMTMxMg==";
   }
+  slidesDidLoad(slides: IonSlides) {
+    slides.startAutoplay();
+  }
+
   
   ngOnInit() { }
 

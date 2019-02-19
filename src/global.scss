@@ -9,18 +9,24 @@
 @import '~@ionic/angular/css/text-alignment.css';
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
+//  @import url('https://fonts.googleapis.com/css?family=Cairo');
+
 
 @font-face{
     font-family: 'CenturyGothic';
     src: url(assets/font/CenturyGothicRegular.ttf);
 
+    font-family: 'HiraginoSansGBW3';
+    src: url(assets/font/HiraginoSansGBW3.ttf);
+
 //     font-family: 'HiraginoSansGB';
 //     src: url(assets/font/HiraginoSansGB.ttc);
-
 }
 *{
     // font-family: CenturyGothic !important;
-     font-family: HiraginoSansGB !important;
+     //font-family: HiraginoSansGB !important;
+     //font-family: 'Cairo', sans-serif;
+     font-family: HiraginoSansGBW3 !important;
 }
 
 //First Div 
@@ -30,13 +36,11 @@
     border-bottom-right-radius: 60% 40%;
 }
 
-
 .first2{
    background-color: #f7f8fc !important;
    height: 24vh !important;
    border-bottom-left-radius: 50%;
    border-bottom-right-radius: 50%;
-
 }
 .sec{
     height: 47%;
@@ -51,15 +55,12 @@
 .firstColor {
      ion-list >*{
         --background: linear-gradient(to right, var(--lightB-color) 0%, var(--mediumB-color) 100%) !important;
-    
      }
     background: linear-gradient(to right, var(--lightB-color) 0%, var(--mediumB-color) 100%) !important;
-    
     ion-list{
         background-color: unset !important;
         padding: 0px !important;
     }
-   
  }
 
  img.avatar {
@@ -110,7 +111,7 @@ ion-icon.noti {
     font-size: x-large;
 }
 .pl2{
-    padding-left: 2vw;
+    padding: 0 0 0 2vw !important;
 }
 
 .coverageModal{
@@ -120,20 +121,35 @@ ion-icon.noti {
          margin: 0 25px;
     }
 }
-ion-label{
-    color:#000000 !important;
-    text-align: center
+ion-label.inn{
+    color:var(--gray333-color) !important;
+    text-align: left
+}
+ion-label.inn2{
+    color: var(--gray333-color) !important;
+    text-align: left;
 }
 ion-input , ionic-selectable, ion-select{
    background-color: var(--white-color) !important;
    border-radius: 1vw;
-   margin-top: 5px !important;
-  z-index: 0 !important;
-  padding-left: 10px !important; 
-  border: 1px solid #d6cccc;
-  text-align: center;
- 
+   z-index: 0 !important;
+   padding-left: 10px !important; 
+   border: 1px solid #d6cccc;
+   text-align: left;
+   height: 35px !important;
 }
+
+ion-input.gray ,  ionic-selectable.gray, ion-select.gray{
+    background-color: var(--primary-color) !important;
+    color: var(--gray333-color) !important;
+    border-radius: 1vw;
+    margin-top: 5px !important;
+   z-index: 0 !important;
+   padding-left: 10px !important; 
+   border: 1px solid #d6cccc;
+   text-align: left;
+   height: 35px !important;
+ }
 
 ion-input.error{
     border: #9a1515 1px solid !important;
@@ -177,7 +193,6 @@ ion-content{
          --background: #F7F8FC !important;
     }
     --background:  #F7F8FC !important;
-
     }
  
 
@@ -190,9 +205,13 @@ ion-content{
         right: 20px;
         top: 55%;
         margin: 0px;
-    
     }
     
     ion-icon.eyee{
         font-size: 5vw
+    }
+    .center{
+        place-content: center;
+        text-align: center;
+        display: flex;
     }

@@ -1,5 +1,5 @@
 .firstColor{
-    height: 200% !important;
+    height: 100vh !important;
 }
 .our{
     writing-mode: tb;
@@ -28,10 +28,7 @@
     border: dotted 1px #eeeeee;
     margin: 0 1% 0 4%;
 }
-.center{
-    place-content: center;
-    text-align: center;
-}
+
 .rep{
     color: #ffffff;  
     font-size: x-large; 
@@ -57,4 +54,10 @@
     border-radius: 7%;
     padding: 5px;
     box-shadow: 0px 1px 15px 0px #4d7cc1;
+}
+.secc2{
+    padding: 0 8vw;
+}
+.mt{
+margin-top: 15%
 }
