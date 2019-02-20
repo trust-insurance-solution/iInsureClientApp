@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { GlobalService } from '../../apiCaller/global.service';
 import { PersonalAccidentsResponse } from '../../../entity/PersonalAccidentsEntry';
 import { FormsModule, Validators, FormControl, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
 import { IonicSelectableModule, IonicSelectableComponent } from 'ionic-selectable';
+
+import { LoadingController, IonSlides } from '@ionic/angular';
+
 import { NavController } from '@ionic/angular';
 
 @Component({
@@ -11,6 +14,7 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./pa.page.scss'],
 })
 export class PaPage implements OnInit {
+  @ViewChild('mySlider') slides: IonSlides;
 
   formgroup: FormGroup
   FullName: AbstractControl
@@ -116,7 +120,9 @@ export class PaPage implements OnInit {
   }) {
     this.objPersonalAccident.Data.FkCountryresidence = event.value.Id;
   }
-
+  slidesDidLoad(slides: IonSlides) {
+    slides.startAutoplay();
+  }
   InsertPersonalAccident() {
     this.objPersonalAccident.Data.FkCreatedByUserId = this.userID;
     this.objPersonalAccident.LoggedInUserID = this.userID.toString();

@@ -1,26 +1,63 @@
-<ion-content padding>
-  <ion-row col-12>
-    <img src="../../../assets/img/logo2.png" width="70%" height="70%" class="auto">
-  </ion-row>
+<ion-content>
+  <div class="firstColor">
+
+    <div class="first2 nopadding">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="3">
+          </ion-col>
+          <ion-col size="6" class="nopadding">
+            <img src="assets/img/logo.png" class="auto">
+          </ion-col>
+          <ion-col size="3">
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
 
 
-  <ion-list class="top">
-    <ion-row>
+
+    <ion-list class="top">
+      <ion-row>
+        <h2 class="auto">
+          Forget Your Password?
+        </h2>
+        <span>
+          Enter your email below to recive your password reset instructions
+        </span>
+      </ion-row>
+    </ion-list>
+
+    <div class="sec2">
+      <form [formGroup]="formgroup">
+        <ion-list class="top" lines="none">
+          <ion-item lines="none">
+            <ion-label class="inn" position="stacked">Email Address</ion-label>
+            <ion-input *ngIf="!(EmailAddress.hasError('required') && EmailAddress.touched)"
+              formControlName="EmailAddress" [(ngModel)]="loginData.Data.EmailAddress" name="EmailAddress" type="text"
+              required></ion-input>
+            <ion-input *ngIf="EmailAddress.hasError('required') && EmailAddress.touched" formControlName="EmailAddress"
+              [(ngModel)]="email" name="email" type="text" required placeholder="Enter a valid Name" color="danger"
+              class="error">
+            </ion-input>
+          </ion-item>
+        </ion-list>
 
 
-      <h2 class="auto">
-        Forget Your Password?
-      </h2>
-      <span>
-        Enter your email below to recive your password reset instructions
-      </span>
-    </ion-row>
 
-    <ion-item class="top"  lines="none">
-      <ion-label position="stacked">Email</ion-label>
-      <ion-input [(ngModel)]="email" type="email" pattern="[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]*\.([a-z]{2,4})$"></ion-input>
-    </ion-item>
-  </ion-list>
-  <ion-button expand="full" color="dark" (click)="forgetPassword()">RESET MY PASSWORD</ion-button>
+        <ion-row class="top">
+          <ion-col size="11" class="auto nopadding">
+            <ion-button color="success" type="submit" expand="full" (click)="forgetPassword()"
+              router-direction="backward" class="top">
+              RESET PASSWORD
+            </ion-button>
+          </ion-col>
+
+        </ion-row>
+      </form>
+    </div>
+
+
+  </div>
 
 </ion-content>

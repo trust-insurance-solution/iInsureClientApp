@@ -5,14 +5,123 @@
     </ion-buttons>
     <ion-title>Line of Business</ion-title>
     <ion-buttons slot="end">
-      <ion-icon class="ii" name="notifications"></ion-icon>
-    </ion-buttons>
+        <ion-button fill="clear"  (click)="notiPage()">
+            <ion-icon class="ii" name="notifications"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
+
+
 <ion-content>
 
+  <ion-grid class="padd">
 
+    <ion-row>
+      <ion-col size="6" (click)="goToHome()">
+        <ion-row>
+          <ion-col size="12" class="nopadding">
+            <img src="assets/img/homeS.png" class="Bimg">
+          </ion-col>
+          <ion-col size="12" class="padL">
+            <ion-label>
+              <h4 class="bLine">Home</h4>
+            </ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-col>
 
+      <ion-col size="6" (click)="goToLife()">
+        <ion-row>
+          <ion-col size="12" class="nopadding">
+            <img src="assets/img/life.png" class="Bimg">
+          </ion-col>
+          <ion-col size="12" class="padL">
+            <ion-label>
+              <h4 class="bLine">Life</h4>
+            </ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
 
+    <ion-row>
+      <ion-col size="6" (click)="goToTravel()">
+        <ion-row>
+          <ion-col size="12" class="nopadding">
+            <img src="assets/img/travel.png" class="Bimg">
+          </ion-col>
+          <ion-col size="12" class="padL">
+            <ion-label>
+              <h4 class="bLine">Travel</h4>
+            </ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+
+      <ion-col size="6" (click)="goToOffice()">
+        <ion-row>
+          <ion-col size="12" class="nopadding">
+            <img src="assets/img/office.png" class="Bimg">
+          </ion-col>
+          <ion-col size="12" class="padL">
+            <ion-label>
+              <h4 class="bLine">Office</h4>
+            </ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6" (click)="goToPA()">
+        <ion-row>
+          <ion-col size="12" class="nopadding">
+            <img src="assets/img/pa.png" class="Bimg">
+          </ion-col>
+          <ion-col size="12" class="padL">
+            <ion-label>
+              <h4 class="bLine">Personal Accidents</h4>
+            </ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+
+      <ion-col size="6" class="soon">
+        <ion-row>
+          <ion-col size="12" class="nopadding">
+            <img src="assets/img/soon.png" class="Bimg">
+          </ion-col>
+          <ion-col size="12" class="padL">
+            <ion-label>
+              <h4 class="bLine">Coming Soon!</h4>
+            </ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+  
+  <h6 class="adv"><span class="advS">Ads</span></h6>
+  <ion-grid class="nopadding">
+    <ion-row>
+      <ion-col size="10" class="auto nopadding">
+        <ion-slides pager="true" #mySlider color="dark" (ionSlidesDidLoad)="slidesDidLoad(mySlider)"
+          [options]="slideOpts">
+          <ion-slide>
+            <img src="assets/img/adver.png">
+          </ion-slide>
+          <ion-slide>
+            <img src="assets/img/adver.png">
+          </ion-slide>
+          <ion-slide>
+            <img src="assets/img/adver.png">
+          </ion-slide>
+        </ion-slides>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
