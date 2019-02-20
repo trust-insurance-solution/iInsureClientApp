@@ -3,6 +3,8 @@ import { GlobalService } from '../../apiCaller/global.service';
 import { LifeResponse } from '../../../entity/LifeEntity';
 import { FormsModule, Validators, FormControl, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
 import { LoadingController, IonSlides } from '@ionic/angular';
+import { NavController } from '@ionic/angular';
+
 @Component({
   selector: 'app-life',
   templateUrl: './life.page.html',
@@ -40,7 +42,7 @@ export class LifePage implements OnInit {
     LoggedInUserID: 0,
   };
 
-  constructor(public _GlobalService: GlobalService, public formbuilder: FormBuilder, ) {
+  constructor(public _GlobalService: GlobalService, public formbuilder: FormBuilder,private navCtrl:NavController ) {
     this.formgroup = formbuilder.group({
       FullName: new FormControl('', Validators.compose([
         Validators.maxLength(8),
@@ -94,8 +96,11 @@ export class LifePage implements OnInit {
     console.log(this.objLife);
     this.postLifeEntry().then((res) => {
       console.log("Res "+JSON.stringify(res));
-      if (res.Success === 'true')
+      if (res.Success === 'true'){
         this.responseData = res.Data.CompanyListResult as LifeResponse[];
+        this._GlobalService._Param =  this.responseData ;
+        this.navCtrl.navigateForward('quotation');
+      }
       else if (res.ErrorCode === "NotAutharized")
         this._GlobalService.showAlert('Not Autharized...', res.ErrorMessage, ['OK']);
       else

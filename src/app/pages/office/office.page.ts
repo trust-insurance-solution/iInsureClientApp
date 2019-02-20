@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GlobalService } from '../../apiCaller/global.service'
 import { OfficeResponse } from '../../../entity/OfficeEntity';
-
 import { FormsModule, Validators, FormControl, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
 import { IonicSelectableModule, IonicSelectableComponent } from 'ionic-selectable';
 import { NavController } from '@ionic/angular';
@@ -180,8 +179,11 @@ export class OfficePage implements OnInit {
     this.objOffice.Language = this.lang;
     if (this.CheckDateOfBuilding() === 1) {
       this.postOfficeEntry().then((res) => {
-        if (res.Success === 'true')
+        if (res.Success === 'true'){
           this.responseData = res.Data.CompanyListResult as OfficeResponse[];
+          this._GlobalService._Param =  this.responseData ;
+          this.navCtrl.navigateForward('quotation');
+        }
         else if (res.ErrorCode === "NotAutharized")
           this._GlobalService.showAlert('Not Autharized...', res.ErrorMessage, ['OK']);
         else

@@ -3,7 +3,10 @@ import { GlobalService } from '../../apiCaller/global.service';
 import { PersonalAccidentsResponse } from '../../../entity/PersonalAccidentsEntry';
 import { FormsModule, Validators, FormControl, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
 import { IonicSelectableModule, IonicSelectableComponent } from 'ionic-selectable';
+
 import { LoadingController, IonSlides } from '@ionic/angular';
+
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-pa',
@@ -48,7 +51,7 @@ export class PaPage implements OnInit {
   };
   responseData: PersonalAccidentsResponse[];
 
-  constructor(public _GlobalService: GlobalService, public formbuilder: FormBuilder, ) {
+  constructor(public _GlobalService: GlobalService, public formbuilder: FormBuilder,private navCtrl:NavController ) {
 
     this.formgroup = formbuilder.group({
       FullName: new FormControl('', Validators.compose([
@@ -125,8 +128,11 @@ export class PaPage implements OnInit {
     this.objPersonalAccident.LoggedInUserID = this.userID.toString();
     this.objPersonalAccident.Language = this.lang;
     this.postOfficeEntry().then((res) => {
-      if (res.Success === 'true')
+      if (res.Success === 'true'){
         this.responseData = res.Data.CompanyListResult as PersonalAccidentsResponse[];
+        this._GlobalService._Param =  this.responseData ;
+        this.navCtrl.navigateForward('quotation');
+      }
       else if (res.ErrorCode === "NotAutharized")
         this._GlobalService.showAlert('Not Autharized...', res.ErrorMessage, ['OK']);
       else

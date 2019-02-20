@@ -67,56 +67,35 @@
   </ion-list>
   <hr> -->
 
-  <ion-card>
+  <ion-card *ngFor="let res of lstQuotation;let i =index;">
     <ion-row>
       <ion-col size="2" class="nopadding">
-        <img src="assets/img/avatar2.png">
+        <img [src]="res.LogoFilePath">
       </ion-col>
       <ion-col size="8" class="nopadding">
         <ion-grid class="nopadding">
           <ion-row>
             <ion-col size="12" class="pl2">
-              <strong>Company Name Here</strong>
+              <strong>{{res.CompanyName}}</strong>
             </ion-col>
             <ion-col size="12" class="pl2">
               <span class="plan">text here text </span>
             </ion-col>
-
           </ion-row>
         </ion-grid>
       </ion-col>
       <ion-col size="2" class="nopadding borderLeft">
         <span class="price">
-          170 JOD
+          {{res.RateWithCurrency}}
         </span>
       </ion-col>
     </ion-row>
   </ion-card>
-
-  <ion-card>
+  <ion-card *ngIf="!lstQuotation?.length > 0">
     <ion-row>
-      <ion-col size="2" class="nopadding">
-        <img src="assets/img/avatar2.png">
-      </ion-col>
-      <ion-col size="8" class="nopadding">
-        <ion-grid class="nopadding">
-          <ion-row>
-            <ion-col size="12" class="pl2">
-              <strong>Company Name Here</strong>
-            </ion-col>
-            <ion-col size="12" class="pl2">
-              <span class="plan">text here text </span>
-            </ion-col>
-
-          </ion-row>
-        </ion-grid>
-      </ion-col>
-      <ion-col size="2" class="nopadding borderLeft">
-        <span class="price">
-          170 JOD
-        </span>
+      <ion-col size="12" class="nopadding">
+        <strong class="dangerCls">No any item</strong>
       </ion-col>
     </ion-row>
   </ion-card>
-
-</ion-content>
+  </ion-content>
