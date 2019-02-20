@@ -19,9 +19,12 @@ const routes: Routes = [
   { path: 'coverage-modal', loadChildren: './pages/coverage-modal/coverage-modal.module#CoverageModalPageModule' },
   { path: 'motor', loadChildren: './pages/motor/motor.module#MotorPageModule' },
   { path: 'map', loadChildren: './pages/map/map.module#MapPageModule' },
-  { path: 'new-traveler', loadChildren: './pages/new-traveler/new-traveler.module#NewTravelerPageModule' },  { path: 'verification', loadChildren: './pages/verification/verification.module#VerificationPageModule' },
+  { path: 'new-traveler', loadChildren: './pages/new-traveler/new-traveler.module#NewTravelerPageModule' },
+  { path: 'verification', loadChildren: './pages/verification/verification.module#VerificationPageModule' },
   { path: 'quotation', loadChildren: './pages/quotation/quotation.module#QuotationPageModule' },
   { path: 'gmap', loadChildren: './pages/gmap/gmap.module#GmapPageModule' },
+  { path: 'termsconditions', loadChildren: './pages/termsconditions/termsconditions.module#TermsconditionsPageModule' },
+  { path: 'policyview', loadChildren: './pages/policyview/policyview.module#PolicyviewPageModule' },
 
 ];
 

@@ -45,9 +45,9 @@ export class PaPage implements OnInit {
     Language: "",
     LoggedInUserID: ""
   };
-  responseData: PersonalAccidentsResponse[];
+  responseData: any;
 
-  constructor(public _GlobalService: GlobalService, public formbuilder: FormBuilder,private navCtrl:NavController ) {
+  constructor(public _GlobalService: GlobalService, public formbuilder: FormBuilder, private navCtrl: NavController) {
 
     this.formgroup = formbuilder.group({
       FullName: new FormControl('', Validators.compose([
@@ -122,9 +122,9 @@ export class PaPage implements OnInit {
     this.objPersonalAccident.LoggedInUserID = this.userID.toString();
     this.objPersonalAccident.Language = this.lang;
     this.postOfficeEntry().then((res) => {
-      if (res.Success === 'true'){
-        this.responseData = res.Data.CompanyListResult as PersonalAccidentsResponse[];
-        this._GlobalService._Param =  this.responseData ;
+      if (res.Success === 'true') {
+        this.responseData = res;
+        this._GlobalService._Param = this.responseData;
         this.navCtrl.navigateForward('quotation');
       }
       else if (res.ErrorCode === "NotAutharized")

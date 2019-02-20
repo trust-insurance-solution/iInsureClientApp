@@ -67,7 +67,7 @@ export class OfficePage implements OnInit {
     Language: "",
     LoggedInUserID: 0
   };
-  responseData: OfficeResponse[];
+  responseData: any;
   constructor(public _GlobalService: GlobalService, public formbuilder: FormBuilder, public navCtrl: NavController, private camera: Camera) {
 
     //FORM
@@ -180,7 +180,7 @@ export class OfficePage implements OnInit {
     if (this.CheckDateOfBuilding() === 1) {
       this.postOfficeEntry().then((res) => {
         if (res.Success === 'true'){
-          this.responseData = res.Data.CompanyListResult as OfficeResponse[];
+          this.responseData = res;
           this._GlobalService._Param =  this.responseData ;
           this.navCtrl.navigateForward('quotation');
         }

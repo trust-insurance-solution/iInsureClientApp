@@ -21,7 +21,7 @@ export class TravelPage implements OnInit {
   userID;
   accessToken;
   countries: any;
-  responseData;
+  responseData:any;
 
   travlerLst: TravlerEntity[] = [];
   destinationId: FkDestination[] = [];
@@ -88,8 +88,8 @@ export class TravelPage implements OnInit {
     this.objTravel.Language = this.lang;
     this.postTravelEntry().then((res) => {
       if (res.Success === 'true'){
-        this.responseData = res.Data.CompanyListResult as TravelResponse[];
-        this._GlobalService._Param =  this.responseData ;
+        this.responseData = res;
+        this._GlobalService._Param = this.responseData;
         this.navCtrl.navigateForward('quotation');
       }
       else if (res.ErrorCode === "NotAutharized")

@@ -18,7 +18,7 @@ export class GlobalService {
   _Language;
   _UserInfo;
   _IsApp;
-  _Param: BusinessResponse[];
+  _Param: any;
   constructor(private http: HttpClient, public _AlertController: AlertController, public navCtrl: NavController,
     private _Storage: Storage, private _UniqueDeviceID: UniqueDeviceID, public _Platform: Platform) { }
 

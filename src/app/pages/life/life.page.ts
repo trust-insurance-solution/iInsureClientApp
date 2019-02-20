@@ -24,7 +24,7 @@ export class LifePage implements OnInit {
   accessToken: string;
   lang: string;
   userID: number;
-  responseData: LifeResponse[];
+  responseData: any;
 
   objLife = {
     Data: {
@@ -97,7 +97,7 @@ export class LifePage implements OnInit {
     this.postLifeEntry().then((res) => {
       console.log("Res "+JSON.stringify(res));
       if (res.Success === 'true'){
-        this.responseData = res.Data.CompanyListResult as LifeResponse[];
+        this.responseData = res;
         this._GlobalService._Param =  this.responseData ;
         this.navCtrl.navigateForward('quotation');
       }
