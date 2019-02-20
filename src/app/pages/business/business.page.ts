@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { LoadingController, IonSlides } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-business',
@@ -7,9 +9,16 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./business.page.scss'],
 })
 export class BusinessPage implements OnInit {
+  @ViewChild('mySlider') slides: IonSlides;
 
-
-  constructor(public navCtrl: NavController) { }
+  constructor(public navCtrl: NavController,
+    public _routes: Router) { }
+  slidesDidLoad(slides: IonSlides) {
+    slides.startAutoplay();
+  }
+  notiPage() {
+    this.navCtrl.navigateForward('notification');
+  }
 
   ngOnInit() {
   }
@@ -28,7 +37,7 @@ export class BusinessPage implements OnInit {
   goToOffice() {
     this.navCtrl.navigateForward('office');
   }
-  goToPersonalAccidents() {
+  goToPA() {
     this.navCtrl.navigateForward('pa');
   }
   goToMotor() {

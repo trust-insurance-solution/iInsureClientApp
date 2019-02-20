@@ -3,7 +3,7 @@ import { NavController, AlertController,Platform } from '@ionic/angular';
 import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
 import { GlobalService } from '../../apiCaller/global.service';
 import { FormsModule, Validators, FormControl, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
-
+ 
 
 @Component({
   selector: 'app-login',

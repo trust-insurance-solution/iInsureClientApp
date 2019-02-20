@@ -1,18 +1,16 @@
-ion-button{
-    height: 30vw;
-}
 .bLine{
     color:#45629D;
     text-align: center;
     font-size: small;
 }
-img{
-    width: 40px;
-    height: 40px;
+.Bimg{
+    margin: auto;
+    display: flex;
+    width: 40%;
 }
-ion-button {
-    background-color: #b58b8b;
+.padd{
+    padding: 16px 50px;
 }
-p.bLine{
-    word-wrap: break-word;
+ion-row.hydrated {
+    margin: 3% 0;
 }

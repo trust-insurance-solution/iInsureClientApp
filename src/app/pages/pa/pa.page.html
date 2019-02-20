@@ -7,20 +7,20 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <form [formGroup]="formgroup">
+<ion-content>
+  <form [formGroup]="formgroup" class="padding16">
     <ion-list class="top" lines="none">
       <ion-item lines="none">
         <ion-label position="stacked">Full Name</ion-label>
-        <ion-input *ngIf="!(FullName.hasError('required') && FullName.touched)" formControlName="FullName" [(ngModel)]="objPersonalAccident.Data.FullName"
-          name="FullName" type="text" required></ion-input>
-        <ion-input [(ngModel)]="objPersonalAccident.Data.FullName" *ngIf="FullName.hasError('required') && FullName.touched"
-          formControlName="FullName" name="FullName" type="text" required placeholder="Enter a valid Name" color="danger"
-          class="error"></ion-input>
+        <ion-input *ngIf="!(FullName.hasError('required') && FullName.touched)" formControlName="FullName"
+          [(ngModel)]="objPersonalAccident.Data.FullName" name="FullName" type="text" required></ion-input>
+        <ion-input [(ngModel)]="objPersonalAccident.Data.FullName"
+          *ngIf="FullName.hasError('required') && FullName.touched" formControlName="FullName" name="FullName"
+          type="text" required placeholder="Enter a valid Name" color="danger" class="error"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="stacked">Value of Coverage</ion-label>
-        <ion-select  [(ngModel)]="objPersonalAccident.Data.FkTotalamountofinsuredmaximum"
+        <ion-select [(ngModel)]="objPersonalAccident.Data.FkTotalamountofinsuredmaximum"
           name="FkTotalamountofinsuredmaximum" formControlName="vCoverage">
           <ion-select-option *ngFor='let in of Counter(4) ;let i = index' value="{{ (i+1) * 50000}}">{{ (i+1) * 50000 |
             number : '0.0'}}</ion-select-option>
@@ -30,43 +30,47 @@
         <ion-label position="stacked">Date Of the Accident</ion-label>
         <ion-input *ngIf="!(DateOfAcc.hasError('required') && DateOfAcc.touched)" formControlName="DateOfAcc"
           [(ngModel)]="objPersonalAccident.Data.DateOfBirth" name="DateOfAcc" type="date" required></ion-input>
-        <ion-input [(ngModel)]="objPersonalAccident.Data.DateOfAcc" *ngIf="DateOfAcc.hasError('required') && DateOfAcc.touched"
-          formControlName="DateOfAcc" name="DateOfAcc" type="date" required placeholder="Enter a valid Name" color="danger"
-          class="error">
+        <ion-input [(ngModel)]="objPersonalAccident.Data.DateOfAcc"
+          *ngIf="DateOfAcc.hasError('required') && DateOfAcc.touched" formControlName="DateOfAcc" name="DateOfAcc"
+          type="date" required placeholder="Enter a valid Name" color="danger" class="error">
         </ion-input>
       </ion-item>
       <ion-item lines="none">
         <ion-label position="stacked">Any pre-existing chronic cases</ion-label>
-        <ion-input *ngIf="!(cases.hasError('required') && cases.touched)" formControlName="cases" [(ngModel)]="objPersonalAccident.Data.AnyChronicCasesOrPerExistingCases"
+        <ion-input *ngIf="!(cases.hasError('required') && cases.touched)" formControlName="cases"
+          [(ngModel)]="objPersonalAccident.Data.AnyChronicCasesOrPerExistingCases"
           name="AnyChronicCasesOrPerExistingCases" type="text" required></ion-input>
-        <ion-input [(ngModel)]="objPersonalAccident.Data.AnyChronicCasesOrPerExistingCases" *ngIf="cases.hasError('required') && cases.touched"
-          formControlName="cases" name="cases" type="text" required placeholder="Enter a valid Name" color="danger"
-          class="error"></ion-input>
+        <ion-input [(ngModel)]="objPersonalAccident.Data.AnyChronicCasesOrPerExistingCases"
+          *ngIf="cases.hasError('required') && cases.touched" formControlName="cases" name="cases" type="text" required
+          placeholder="Enter a valid Name" color="danger" class="error"></ion-input>
       </ion-item>
       <ion-item lines="none">
         <ion-label position="stacked">Period of Cover</ion-label>
-        <ion-select [(ngModel)]="objPersonalAccident.Data.FkPeriodofcover" name="FkPeriodofcover" formControlName="pCover">
-          <ion-select-option *ngFor='let in of Counter(12) ;let i = index' value="{{i+1}}"> {{ i+1 }} Month</ion-select-option>
+        <ion-select [(ngModel)]="objPersonalAccident.Data.FkPeriodofcover" name="FkPeriodofcover"
+          formControlName="pCover">
+          <ion-select-option *ngFor='let in of Counter(12) ;let i = index' value="{{i+1}}"> {{ i+1 }} Month
+          </ion-select-option>
         </ion-select>
       </ion-item>
       <ion-item lines="none">
         <ion-label position="stacked">Country Residence</ion-label>
-        <ionic-selectable   name="FkCountryresidence" [items]="countries"
-          itemValueField="Id" formControlName="CountryResidence" itemTextField="CountryName" [canSearch]="true"
+        <ionic-selectable name="FkCountryresidence" [items]="countries" itemValueField="Id"
+          formControlName="CountryResidence" itemTextField="CountryName" [canSearch]="true"
           (onChange)="CountryResidenc($event)" required>
         </ionic-selectable>
       </ion-item>
       <ion-item lines="none">
         <ion-label position="stacked">Nationality</ion-label>
-        <ionic-selectable  name="FkNationality" [items]="countries"
-          itemValueField="Id" formControlName="NationalID" itemTextField="CountryName" [canSearch]="true" (onChange)="Nationality($event)"
-          required>
+        <ionic-selectable name="FkNationality" [items]="countries" itemValueField="Id" formControlName="NationalID"
+          itemTextField="CountryName" [canSearch]="true" (onChange)="Nationality($event)" required>
         </ionic-selectable>
       </ion-item>
       <ion-item lines="none">
         <ion-label position="stacked">Unit</ion-label>
-        <ion-select  [(ngModel)]="objPersonalAccident.Data.NumberOfUnit" name="NumberOfUnit" formControlName="NumberOfUnit">
-          <ion-select-option *ngFor='let in of Counter(4) ;let i = index' value="{{i+1}}"> {{ i+1 }} Unit</ion-select-option>
+        <ion-select [(ngModel)]="objPersonalAccident.Data.NumberOfUnit" name="NumberOfUnit"
+          formControlName="NumberOfUnit">
+          <ion-select-option *ngFor='let in of Counter(4) ;let i = index' value="{{i+1}}"> {{ i+1 }} Unit
+          </ion-select-option>
         </ion-select>
       </ion-item>
       <ion-row>
@@ -77,5 +81,25 @@
         </ion-col>
       </ion-row>
     </ion-list>
-  </form>
+  </form> 
+
+  <h6 class="adv"><span class="advS">Ads</span></h6>
+  <ion-grid class="nopadding">
+    <ion-row>
+      <ion-col size="10" class="auto nopadding">
+        <ion-slides pager="true" #mySlider color="dark" (ionSlidesDidLoad)="slidesDidLoad(mySlider)"
+          [options]="slideOpts" >
+          <ion-slide>
+            <img src="assets/img/adver.png">
+          </ion-slide>
+          <ion-slide>
+            <img src="assets/img/adver.png">
+          </ion-slide>
+          <ion-slide>
+            <img src="assets/img/adver.png">
+          </ion-slide>
+        </ion-slides>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
