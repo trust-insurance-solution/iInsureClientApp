@@ -225,7 +225,7 @@ export class HomePage implements OnInit {
   }
 
   map() {
-    this.navCtrl.navigateForward('map');
+    this.navCtrl.navigateForward('gmap');
   }
 
   img() {
@@ -245,7 +245,7 @@ export class HomePage implements OnInit {
       // Handle error
     });
   }
-
+ 
   Counter(i: number) {
     return new Array(i);
   }

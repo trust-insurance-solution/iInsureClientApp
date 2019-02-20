@@ -21,6 +21,7 @@ const routes: Routes = [
   { path: 'map', loadChildren: './pages/map/map.module#MapPageModule' },
   { path: 'new-traveler', loadChildren: './pages/new-traveler/new-traveler.module#NewTravelerPageModule' },  { path: 'verification', loadChildren: './pages/verification/verification.module#VerificationPageModule' },
   { path: 'quotation', loadChildren: './pages/quotation/quotation.module#QuotationPageModule' },
+  { path: 'gmap', loadChildren: './pages/gmap/gmap.module#GmapPageModule' },
 
 ];
 

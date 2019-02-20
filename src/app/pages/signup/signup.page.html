@@ -45,9 +45,6 @@
               name="FullName" [(ngModel)]="objUserInfo.Data.FullName" type="text" required
               placeholder="Enter a valid Name" color="danger" class="error"></ion-input>
           </ion-item>
-
-
-
           <ion-item lines="none">
             <ion-label class="inn" position="stacked">Email Address</ion-label>
             <ion-input *ngIf="!(EmailAddress.hasError('required') && EmailAddress.touched)"

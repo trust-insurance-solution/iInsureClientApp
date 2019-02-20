@@ -20,6 +20,8 @@ import { File } from '@ionic-native/File/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
 import { Network } from '@ionic-native/network/ngx';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -39,6 +41,7 @@ export function createTranslateLoader(http: HttpClient) {
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
+
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -49,6 +52,7 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   exports: [TranslateModule],
   providers: [
+    Geolocation,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     StatusBar,
     UniqueDeviceID,
@@ -57,7 +61,11 @@ export function createTranslateLoader(http: HttpClient) {
     File,
     WebView,
     FilePath,
-    Network
+    Network,
+    Geolocation,
+    
+    
+
   ],
   bootstrap: [AppComponent]
 })

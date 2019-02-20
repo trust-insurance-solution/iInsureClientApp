@@ -7,8 +7,8 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <form [formGroup]="formgroup">
+<ion-content>
+  <form [formGroup]="formgroup"  class="padding16">
     <ion-list class="top" lines="none">
       <ion-item lines="none">
         <ion-label position="stacked">Full Name</ion-label>
@@ -235,4 +235,30 @@
       </ion-row>
     </ion-list>
   </form>
+
+
+
+
+
+
+  
+  <h6 class="adv"><span class="advS">Ads</span></h6>
+  <ion-grid class="nopadding">
+    <ion-row>
+      <ion-col size="10" class="auto nopadding">
+        <ion-slides pager="true" #mySlider color="dark" (ionSlidesDidLoad)="slidesDidLoad(mySlider)"
+          [options]="slideOpts">
+          <ion-slide>
+            <img src="assets/img/adver.png">
+          </ion-slide>
+          <ion-slide>
+            <img src="assets/img/adver.png">
+          </ion-slide>
+          <ion-slide>
+            <img src="assets/img/adver.png">
+          </ion-slide>
+        </ion-slides>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

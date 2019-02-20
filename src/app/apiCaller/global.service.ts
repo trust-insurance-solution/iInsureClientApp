@@ -8,8 +8,8 @@ import { Network } from '@ionic-native/network';
 import { NavController, ModalController } from '@ionic/angular';
 
 
-
-const apiUrl = "http://192.168.0.99/iInsurePortal/TrustInsurance.API/api/Client/";
+// const apiUrl = "http://192.168.0.99/iInsurePortal/TrustInsurance.API/api/Client/";
+const apiUrl = "https://api.trst-ins.com/api/Client/";
 
 @Injectable({
   providedIn: 'root'
@@ -19,10 +19,10 @@ export class GlobalService {
   _UserInfo;
   _IsApp;
 
-  constructor(private http: HttpClient, public _AlertController: AlertController,public navCtrl: NavController,
-    private _Storage: Storage, private _UniqueDeviceID: UniqueDeviceID, public _Platform: Platform) {}
+  constructor(private http: HttpClient, public _AlertController: AlertController, public navCtrl: NavController,
+    private _Storage: Storage, private _UniqueDeviceID: UniqueDeviceID, public _Platform: Platform) { }
 
-//Post Method
+  //Post Method
   async fetchDataApi(controllerName: string, data: any, authorization: string = null,
     loggedInUserID: string = null) {
     const headers = new HttpHeaders({
@@ -48,9 +48,9 @@ export class GlobalService {
     this._Storage.set(_key, _value);
   }
 
- 
-//get Value from Storage
- public getStorage(_key) {
+
+  //get Value from Storage
+  public getStorage(_key) {
     return this._Storage.get(_key).then((val) => {
       return val;
     });
@@ -63,9 +63,9 @@ export class GlobalService {
 
   //Method Device token
   public getDeviceToken() {
-  return this._UniqueDeviceID.get()
-      .then(uuid => {return uuid})
-      .catch((error: any) => console.log(error));   
+    return this._UniqueDeviceID.get()
+      .then(uuid => { return uuid })
+      .catch((error: any) => console.log(error));
   }
 
   //Method Get Current Language
