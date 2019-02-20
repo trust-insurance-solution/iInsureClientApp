@@ -27,7 +27,8 @@ export class QuotationPage implements OnInit {
     this.lineOfBusiness = 5;
   }
 
-  AssignPlanToTransaction(PlanDetailId, CompanyId, TransationID, lineOfBusiness) {
+  AssignPlanToTransaction(PlanDetailId, CompanyId, TransationID, lineOfBusiness,PDFFilePath) {
+    this._GlobalService._PDFFilePath=PDFFilePath;
     this.getCountries(PlanDetailId, CompanyId, TransationID, lineOfBusiness).then(res => {
       if (res.Success === 'true') {
         this.navCtrl.navigateForward('termsconditions');

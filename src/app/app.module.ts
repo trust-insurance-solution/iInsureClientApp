@@ -21,6 +21,7 @@ import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
 import { Network } from '@ionic-native/network/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { DocumentViewer } from '@ionic-native/document-viewer/ngx';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -63,9 +64,7 @@ export function createTranslateLoader(http: HttpClient) {
     FilePath,
     Network,
     Geolocation,
-    
-    
-
+    DocumentViewer
   ],
   bootstrap: [AppComponent]
 })
