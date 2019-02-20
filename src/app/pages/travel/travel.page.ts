@@ -87,8 +87,11 @@ export class TravelPage implements OnInit {
     this.objTravel.LoggedInUserID = this.userID;
     this.objTravel.Language = this.lang;
     this.postTravelEntry().then((res) => {
-      if (res.Success === 'true')
+      if (res.Success === 'true'){
         this.responseData = res.Data.CompanyListResult as TravelResponse[];
+        this._GlobalService._Param =  this.responseData ;
+        this.navCtrl.navigateForward('quotation');
+      }
       else if (res.ErrorCode === "NotAutharized")
         this._GlobalService.showAlert('Not Autharized...', res.ErrorMessage, ['OK']);
       else

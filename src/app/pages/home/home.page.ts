@@ -142,7 +142,7 @@ export class HomePage implements OnInit {
     this._GlobalService.getStorage('UserInfo').then((val) => {
       this.userID = val.UserId;
     });
-    this.accessToken = "WWZlbTJyY29iazlkL09zMVlnM1VYVEk3UEZOek53NjRpZ1M3ZEw1ZFgxTT06Mi8xOC8yMDE5OjYzNjg2MDc4NDEzNDExMTMxMg==";
+    this.accessToken = "TGtNc2w5VXFPb2xEMzJhWVNvazBaTStMeC9uVFE4N04weUFiY3BzN3Fwaz06Mi8xOS8yMDE5OjYzNjg2MTg5ODgzNDA3ODYxNw==";
   }
 
   async  ngOnInit() {
@@ -156,8 +156,12 @@ export class HomePage implements OnInit {
     this.objHome.Data.FkCreatedByUserId = this.userID;
     if (this.CheckDateOfBuilding() === 1) {
       this.postInsertNewHome().then(res => {
-        if (res.Success === 'true')
+        if (res.Success === 'true'){
           this.responseData = res.Data.CompanyListResult as HomeResponse[];
+          this._GlobalService._Param =  this.responseData ;
+          console.log("Fares "+this._GlobalService._Param );
+          this.navCtrl.navigateForward('quotation');
+        }
         else if (res.ErrorCode === "NotAutharized")
           this._GlobalService.showAlert('Not Autharized...', res.ErrorMessage, ['OK']);
         else

@@ -1,4 +1,4 @@
-export interface HomeResponse {
+export interface BusinessResponse {
     PlanId: number;
     CompanyId: number;
     CompanyName: string;

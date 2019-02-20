@@ -6,10 +6,10 @@ import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
 import { Platform } from '@ionic/angular';
 import { Network } from '@ionic-native/network';
 import { NavController, ModalController } from '@ionic/angular';
+import { BusinessResponse } from '../../entity/BusinessEntity';
 
-
-// const apiUrl = "http://192.168.0.99/iInsurePortal/TrustInsurance.API/api/Client/";
-const apiUrl = "https://api.trst-ins.com/api/Client/";
+ const apiUrl = "http://192.168.0.99/iInsurePortal/TrustInsurance.API/api/Client/";
+//const apiUrl = "https://api.trst-ins.com/api/Client/";
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,7 @@ export class GlobalService {
   _Language;
   _UserInfo;
   _IsApp;
-
+  _Param: BusinessResponse[];
   constructor(private http: HttpClient, public _AlertController: AlertController, public navCtrl: NavController,
     private _Storage: Storage, private _UniqueDeviceID: UniqueDeviceID, public _Platform: Platform) { }
 
