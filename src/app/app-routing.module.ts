@@ -21,7 +21,12 @@ const routes: Routes = [
   { path: 'new-traveler', loadChildren: './pages/new-traveler/new-traveler.module#NewTravelerPageModule' },
   { path: 'verification', loadChildren: './pages/verification/verification.module#VerificationPageModule' },
   { path: 'quotation', loadChildren: './pages/quotation/quotation.module#QuotationPageModule' },
-  { path: 'gmap', loadChildren: './pages/gmap/gmap.module#GmapPageModule' },  { path: 'googlemap', loadChildren: './pages/googlemap/googlemap.module#GooglemapPageModule' },
+
+  { path: 'gmap', loadChildren: './pages/gmap/gmap.module#GmapPageModule' },
+  { path: 'termsconditions', loadChildren: './pages/termsconditions/termsconditions.module#TermsconditionsPageModule' },
+  { path: 'policyview', loadChildren: './pages/policyview/policyview.module#PolicyviewPageModule' },
+  { path: 'payment', loadChildren: './pages/payment/payment.module#PaymentPageModule' },
+
 
 
 ];

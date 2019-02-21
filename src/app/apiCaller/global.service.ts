@@ -7,6 +7,8 @@ import { Platform } from '@ionic/angular';
 import { Network } from '@ionic-native/network';
 import { NavController, ModalController } from '@ionic/angular';
 import { BusinessResponse } from '../../entity/BusinessEntity';
+import { UserInfoEntity } from '../../entity/UserInfoEntity';
+import { LoadingController } from '@ionic/angular';
 
  const apiUrl = "http://192.168.0.99/iInsurePortal/TrustInsurance.API/api/Client/";
 //const apiUrl = "https://api.trst-ins.com/api/Client/";
@@ -18,9 +20,14 @@ export class GlobalService {
   _Language;
   _UserInfo;
   _IsApp;
-  _Param: BusinessResponse[];
+  _Param: any;
+  _PDFFilePath:string;
+  _PolicyURL:string;
+  _ObjUserInfo:UserInfoEntity;
+  _Loading:any;
   constructor(private http: HttpClient, public _AlertController: AlertController, public navCtrl: NavController,
-    private _Storage: Storage, private _UniqueDeviceID: UniqueDeviceID, public _Platform: Platform) { }
+    private _Storage: Storage, private _UniqueDeviceID: UniqueDeviceID, public _Platform: Platform,
+    public loadingController:LoadingController) { }
 
   //Post Method
   async fetchDataApi(controllerName: string, data: any, authorization: string = null,
@@ -114,5 +121,19 @@ export class GlobalService {
       });
     });
   }
+
+  // To turn on Loading
+  async presentLoading(message: string, spinner?) {
+    this._Loading = await this.loadingController.create({
+      message: message,
+      spinner: spinner
+    });
+    this._Loading.present();
+  }
+  //To turn off Loading
+  hideLoading() {
+    this._Loading.dismiss();
+  }
+
 }
 

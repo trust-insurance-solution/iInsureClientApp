@@ -16,7 +16,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
 export class SignupPage implements OnInit {
   myphoto: any
-
+  Lang:string;
   err: boolean = false;
   showPwd: boolean
   trans_FullName: string;
@@ -35,7 +35,6 @@ export class SignupPage implements OnInit {
   EmailAddress: AbstractControl
   PhoneNumber: AbstractControl
   Password: AbstractControl
-
   birthd: AbstractControl
   gender: AbstractControl
   city: AbstractControl
@@ -103,6 +102,9 @@ export class SignupPage implements OnInit {
     this.birthd = this.formgroup.controls['birthd']
     this.gender = this.formgroup.controls['gender']
     this.city = this.formgroup.controls['city']
+    this._GlobalService.getStorage('Lang').then((val) => {
+      this.Lang = val;
+    });
   }
 
 
@@ -142,8 +144,8 @@ export class SignupPage implements OnInit {
   //Get a cites
   getCites(CountryId): Promise<any> {
     let item = {
-      "Data": CountryId,
-      "Language": "string"
+      Data: CountryId,
+      Language: this.Lang
     };
     return this._GlobalService.fetchDataApi('GetCitiesListByCountryId', item);
   }

@@ -67,7 +67,7 @@
   </ion-list>
   <hr> -->
 
-  <ion-card *ngFor="let res of lstQuotation;let i =index;">
+  <ion-card *ngFor="let res of lstQuotation;let i =index;" (click)="AssignPlanToTransaction(res.PlanDetailId,res.CompanyId,transationID,lineOfBusiness,res.PDFFilePath)">
     <ion-row>
       <ion-col size="2" class="nopadding">
         <img [src]="res.LogoFilePath">

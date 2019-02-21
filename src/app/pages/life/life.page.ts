@@ -24,7 +24,7 @@ export class LifePage implements OnInit {
   accessToken: string;
   lang: string;
   userID: number;
-  responseData: LifeResponse[];
+  responseData: any;
 
   objLife = {
     Data: {
@@ -79,8 +79,8 @@ export class LifePage implements OnInit {
     });
     this._GlobalService.getStorage('UserInfo').then((val) => {
       this.userID = val.UserId;
+      this.accessToken = val.AccessToken;
     });
-    this.accessToken = "WWZlbTJyY29iazlkL09zMVlnM1VYVEk3UEZOek53NjRpZ1M3ZEw1ZFgxTT06Mi8xOC8yMDE5OjYzNjg2MDc4NDEzNDExMTMxMg==";
   }
   slidesDidLoad(slides: IonSlides) {
     slides.startAutoplay();
@@ -93,11 +93,9 @@ export class LifePage implements OnInit {
     this.objLife.Data.FkCreatedByUserId = this.userID;
     this.objLife.LoggedInUserID = this.userID;
     this.objLife.Language = this.lang;
-    console.log(this.objLife);
     this.postLifeEntry().then((res) => {
-      console.log("Res "+JSON.stringify(res));
       if (res.Success === 'true'){
-        this.responseData = res.Data.CompanyListResult as LifeResponse[];
+        this.responseData = res;
         this._GlobalService._Param =  this.responseData ;
         this.navCtrl.navigateForward('quotation');
       }

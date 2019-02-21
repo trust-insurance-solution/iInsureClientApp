@@ -141,8 +141,8 @@ export class HomePage implements OnInit {
     });
     this._GlobalService.getStorage('UserInfo').then((val) => {
       this.userID = val.UserId;
+      this.accessToken = val.AccessToken;
     });
-    this.accessToken = "TGtNc2w5VXFPb2xEMzJhWVNvazBaTStMeC9uVFE4N04weUFiY3BzN3Fwaz06Mi8xOS8yMDE5OjYzNjg2MTg5ODgzNDA3ODYxNw==";
   }
 
   async  ngOnInit() {
@@ -156,10 +156,9 @@ export class HomePage implements OnInit {
     this.objHome.Data.FkCreatedByUserId = this.userID;
     if (this.CheckDateOfBuilding() === 1) {
       this.postInsertNewHome().then(res => {
-        if (res.Success === 'true'){
-          this.responseData = res.Data.CompanyListResult as HomeResponse[];
-          this._GlobalService._Param =  this.responseData ;
-          console.log("Fares "+this._GlobalService._Param );
+        if (res.Success === 'true') {
+          this.responseData = res;
+          this._GlobalService._Param = this.responseData;
           this.navCtrl.navigateForward('quotation');
         }
         else if (res.ErrorCode === "NotAutharized")
@@ -220,6 +219,7 @@ export class HomePage implements OnInit {
     })
     await modal.present();
   }
+  
   //Event for selectable Nationality
   Nationality(event: {
     component: IonicSelectableComponent,
@@ -250,7 +250,7 @@ export class HomePage implements OnInit {
       // Handle error
     });
   }
- 
+
   Counter(i: number) {
     return new Array(i);
   }

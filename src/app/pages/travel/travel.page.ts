@@ -22,7 +22,7 @@ export class TravelPage implements OnInit {
   userID;
   accessToken;
   countries: any;
-  responseData;
+  responseData:any;
 
   travlerLst: TravlerEntity[] = [];
   destinationId: FkDestination[] = [];
@@ -62,8 +62,8 @@ export class TravelPage implements OnInit {
     });
     this._GlobalService.getStorage('UserInfo').then((val) => {
       this.userID = val.UserId;
+      this.accessToken = val.AccessToken;
     });
-    this.accessToken = "TGtNc2w5VXFPb2xEMzJhWVNvazBaTStMeC9uVFE4N04weUFiY3BzN3Fwaz06Mi8xOS8yMDE5OjYzNjg2MTg5ODgzNDA3ODYxNw==";
   }
 
   ionViewWillEnter() {
@@ -88,8 +88,8 @@ export class TravelPage implements OnInit {
     this.objTravel.LoggedInUserID = this.userID;
     this.objTravel.Language = this.lang;
     this.postTravelEntry().then((res) => {
-      if (res.Success === 'true') {
-        this.responseData = res.Data.CompanyListResult as TravelResponse[];
+      if (res.Success === 'true'){
+        this.responseData = res;
         this._GlobalService._Param = this.responseData;
         this.navCtrl.navigateForward('quotation');
       }

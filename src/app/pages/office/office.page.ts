@@ -67,7 +67,7 @@ export class OfficePage implements OnInit {
     Language: "",
     LoggedInUserID: 0
   };
-  responseData: OfficeResponse[];
+  responseData: any;
   constructor(public _GlobalService: GlobalService, public formbuilder: FormBuilder, public navCtrl: NavController, private camera: Camera) {
 
     //FORM
@@ -166,8 +166,8 @@ export class OfficePage implements OnInit {
     });
     this._GlobalService.getStorage('UserInfo').then((val) => {
       this.userID = val.UserId;
+      this.accessToken = val.AccessToken;
     });
-    this.accessToken = "WWZlbTJyY29iazlkL09zMVlnM1VYVEk3UEZOek53NjRpZ1M3ZEw1ZFgxTT06Mi8xOC8yMDE5OjYzNjg2MDc4NDEzNDExMTMxMg==";
   }
   async ngOnInit() {
     await this.getCountries().then(result => this.countries = result.Data);
@@ -180,7 +180,7 @@ export class OfficePage implements OnInit {
     if (this.CheckDateOfBuilding() === 1) {
       this.postOfficeEntry().then((res) => {
         if (res.Success === 'true'){
-          this.responseData = res.Data.CompanyListResult as OfficeResponse[];
+          this.responseData = res;
           this._GlobalService._Param =  this.responseData ;
           this.navCtrl.navigateForward('quotation');
         }
