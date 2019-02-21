@@ -20,6 +20,7 @@ export class GlobalService {
   _IsApp;
   _Param: any;
   _PDFFilePath:string;
+  _PolicyURL:string;
   constructor(private http: HttpClient, public _AlertController: AlertController, public navCtrl: NavController,
     private _Storage: Storage, private _UniqueDeviceID: UniqueDeviceID, public _Platform: Platform) { }
 

@@ -18,7 +18,7 @@ export class QuotationPage implements OnInit {
     this._GlobalService.getStorage('UserInfo').then((val) => {
       this.userID = val.UserId;
     });
-    this.accessToken = "TGtNc2w5VXFPb2xEMzJhWVNvazBaTStMeC9uVFE4N04weUFiY3BzN3Fwaz06Mi8xOS8yMDE5OjYzNjg2MTg5ODgzNDA3ODYxNw==";
+    this.accessToken = "T1ZjWGxBd1JDa2tQaWg4TWdLdVNNcGpoL2txSXFTZHhEanRyQ3dxMWZ4MD06Mi8yMC8yMDE5OjYzNjg2Mjc4MjY4NjM4Nzk5NQ==";
   }
 
   ngOnInit() {
@@ -27,16 +27,17 @@ export class QuotationPage implements OnInit {
     this.lineOfBusiness = 5;
   }
 
-  AssignPlanToTransaction(PlanDetailId, CompanyId, TransationID, lineOfBusiness,PDFFilePath) {
-    this._GlobalService._PDFFilePath=PDFFilePath;
-    this.getCountries(PlanDetailId, CompanyId, TransationID, lineOfBusiness).then(res => {
+  AssignPlanToTransaction(PlanDetailId, CompanyId, TransationID, lineOfBusiness, PDFFilePath) {
+    this._GlobalService._PDFFilePath = PDFFilePath;
+    this.AssignPlan(PlanDetailId, CompanyId, TransationID, lineOfBusiness).then(res => {
       if (res.Success === 'true') {
+        this._GlobalService._PolicyURL = res.Data.PolicyURL;
         this.navCtrl.navigateForward('termsconditions');
       }
     });
   }
 
-  getCountries(PlanDetailId, CompanyId, TransationID, lineOfBusiness): Promise<any> {
+  AssignPlan(PlanDetailId, CompanyId, TransationID, lineOfBusiness): Promise<any> {
     let data = {
       Data: {
         PlanDetailId: PlanDetailId,
