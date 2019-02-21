@@ -93,9 +93,7 @@ export class LifePage implements OnInit {
     this.objLife.Data.FkCreatedByUserId = this.userID;
     this.objLife.LoggedInUserID = this.userID;
     this.objLife.Language = this.lang;
-    console.log(this.objLife);
     this.postLifeEntry().then((res) => {
-      console.log("Res "+JSON.stringify(res));
       if (res.Success === 'true'){
         this.responseData = res;
         this._GlobalService._Param =  this.responseData ;

@@ -26,7 +26,6 @@ export class HomePage {
     this._GlobalService.getStorage('Lang').then((val) => {
       this.LangID=val;
     });
-    console.log(this.UserId);
   }
 
 
