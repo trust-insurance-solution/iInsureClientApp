@@ -4,6 +4,7 @@ import { GlobalService } from '../../apiCaller/global.service';
 import { TravelResponse } from '../../../entity/TravelEntry';
 import { FormsModule, Validators, FormControl, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
 import { IonicSelectableModule, IonicSelectableComponent } from 'ionic-selectable';
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-travel',
@@ -11,7 +12,7 @@ import { IonicSelectableModule, IonicSelectableComponent } from 'ionic-selectabl
   styleUrls: ['./travel.page.scss'],
 })
 export class TravelPage implements OnInit {
-
+  sub: boolean = false
   formgroup: FormGroup
   StartDateJourney: AbstractControl
   EndDateJourney: AbstractControl
@@ -87,9 +88,9 @@ export class TravelPage implements OnInit {
     this.objTravel.LoggedInUserID = this.userID;
     this.objTravel.Language = this.lang;
     this.postTravelEntry().then((res) => {
-      if (res.Success === 'true'){
+      if (res.Success === 'true') {
         this.responseData = res.Data.CompanyListResult as TravelResponse[];
-        this._GlobalService._Param =  this.responseData ;
+        this._GlobalService._Param = this.responseData;
         this.navCtrl.navigateForward('quotation');
       }
       else if (res.ErrorCode === "NotAutharized")
@@ -125,6 +126,18 @@ export class TravelPage implements OnInit {
     });
     this.objTravel.Data.destinationIds = Lst;
   }
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 export interface TravlerEntity {

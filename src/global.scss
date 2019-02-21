@@ -11,24 +11,32 @@
 @import '~@ionic/angular/css/flex-utils.css';
 //  @import url('https://fonts.googleapis.com/css?family=Cairo');
 
-
-@font-face{
-    font-family: 'CenturyGothic';
-    src: url(assets/font/CenturyGothicRegular.ttf);
-
-    font-family: 'HiraginoSansGBW3';
-    src: url(assets/font/HiraginoSansGBW3.ttf);
-
-//     font-family: 'HiraginoSansGB';
-//     src: url(assets/font/HiraginoSansGB.ttc);
+@font-face {
+    font-family: Cairo;
+    src: url(assets/font/Cairo-Bold.ttf);
+    font-weight: 600;
+} 
+@font-face {
+    font-family: Cairo;
+    src: url(assets/font/Cairo-light.ttf);
+    font-weight: 200;
 }
+@font-face {
+    font-family: Cair;
+    src: url(assets/font/Cairo-Regular.ttf);
+    font-weight: 400;
+}
+
+
 *{
-    // font-family: CenturyGothic !important;
-     //font-family: HiraginoSansGB !important;
-     //font-family: 'Cairo', sans-serif;
-     font-family: HiraginoSansGBW3 !important;
+     font-family: Cairo !important;
 }
-
+h6 { font-weight:200; }
+h3 { font-weight:400; }
+h1 { font-weight:600; }
+ion-button{  font-weight:600; }
+ion-label{font-weight:100;}
+ion-label.ww{font-weight:600;}
 //First Div 
 .first{
     height: 42%;
@@ -90,10 +98,10 @@ ion-icon.noti {
     color: #ffffff;
 } 
 
-.label-stacked.sc-ion-label-md-h {
-    font-size: 13.8px !important;
+.autoF{
+     margin: auto;
+     display: flex;
 }
-
 .auto{
     margin: auto;
 }
@@ -121,15 +129,25 @@ ion-icon.noti {
          margin: 0 25px;
     }
 }
-ion-label.inn{
-    color:var(--gray333-color) !important;
-    text-align: left
-}
-ion-label.inn2{
+
+ion-label{
     color: var(--gray333-color) !important;
     text-align: left;
 }
-ion-input , ionic-selectable, ion-select{
+ion-label.ww{
+    color: var(--white-color) !important;
+    text-align: left;
+}
+
+ionic-selectable{
+    line-height: 18px !important;
+}
+
+ion-datetime.in-item.hydrated{
+    display: none; 
+}
+
+ion-input.ww , ionic-selectable.ww, ion-select.ww{
    background-color: var(--white-color) !important;
    border-radius: 1vw;
    z-index: 0 !important;
@@ -137,9 +155,10 @@ ion-input , ionic-selectable, ion-select{
    border: 1px solid #d6cccc;
    text-align: left;
    height: 35px !important;
+   
 }
 
-ion-input.gray ,  ionic-selectable.gray, ion-select.gray{
+ion-input ,  ionic-selectable, ion-select{
     background-color: var(--primary-color) !important;
     color: var(--gray333-color) !important;
     border-radius: 1vw;
@@ -165,7 +184,9 @@ ion-input.error{
     background-color: #fff !important;
     border: 1px solid #e0d0cf !important;
 }
-
+.marg5{
+    margin: 5px;
+}
 
 .swiper-pagination {
     position: initial !important;
@@ -184,7 +205,7 @@ ion-input.error{
 }
 
 .soon{
-    opacity: 0.5;
+    opacity: 0.5; 
 }
 
 ion-content{
@@ -199,6 +220,18 @@ ion-content{
     }
  
 
+    ion-content.immg{
+        ion-list{
+            padding: 0px !important;
+        }
+        ion-list >* ,  ion-radio-group *, ion-row >*{
+             --background: #F7F8FC !important;
+        }
+        // --background: url('assets/img/bg.jpg') center  no-repeat !important;
+        --background: url('assets/img/bgV.jpg') center  no-repeat !important;
+        //--background: url('assets/img/bgUpS.jpg') center  no-repeat !important;
+        }
+ 
     ion-input.inputPass input.native-input {
         padding-right: 11% !important;
     }
@@ -206,12 +239,12 @@ ion-content{
     ion-button.pass{
         position: absolute;
         right: 20px;
-        top: 55%;
+        top: 60%;
         margin: 0px;
     }
     
     ion-icon.eyee{
-        font-size: 5vw
+        font-size: 6vw
     }
     .center{
         place-content: center;

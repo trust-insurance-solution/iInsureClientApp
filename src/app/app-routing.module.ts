@@ -6,7 +6,6 @@ const routes: Routes = [
   { path: 'home', loadChildren: './home/home.module#HomePageModule' },
   { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' },
   { path: 'signup', loadChildren: './pages/signup/signup.module#SignupPageModule' },
-  { path: 'rest-pass', loadChildren: './pages/rest-pass/rest-pass.module#RestPassPageModule' },
   { path: 'forgot-pass', loadChildren: './pages/forgot-pass/forgot-pass.module#ForgotPassPageModule' },
   { path: 'language', loadChildren: './pages/language/language.module#LanguagePageModule' },
   { path: 'business', loadChildren: './pages/business/business.module#BusinessPageModule' },
@@ -19,9 +18,11 @@ const routes: Routes = [
   { path: 'coverage-modal', loadChildren: './pages/coverage-modal/coverage-modal.module#CoverageModalPageModule' },
   { path: 'motor', loadChildren: './pages/motor/motor.module#MotorPageModule' },
   { path: 'map', loadChildren: './pages/map/map.module#MapPageModule' },
-  { path: 'new-traveler', loadChildren: './pages/new-traveler/new-traveler.module#NewTravelerPageModule' },  { path: 'verification', loadChildren: './pages/verification/verification.module#VerificationPageModule' },
+  { path: 'new-traveler', loadChildren: './pages/new-traveler/new-traveler.module#NewTravelerPageModule' },
+  { path: 'verification', loadChildren: './pages/verification/verification.module#VerificationPageModule' },
   { path: 'quotation', loadChildren: './pages/quotation/quotation.module#QuotationPageModule' },
-  { path: 'gmap', loadChildren: './pages/gmap/gmap.module#GmapPageModule' },
+  { path: 'gmap', loadChildren: './pages/gmap/gmap.module#GmapPageModule' },  { path: 'googlemap', loadChildren: './pages/googlemap/googlemap.module#GooglemapPageModule' },
+
 
 ];
 

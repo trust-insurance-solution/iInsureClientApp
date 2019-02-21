@@ -16,23 +16,23 @@
     </div>
 
 
-
-    <ion-list class="top">
-      <ion-row>
-        <h2 class="auto">
-          Forget Your Password?
-        </h2>
-        <span>
-          Enter your email below to recive your password reset instructions
-        </span>
-      </ion-row>
-    </ion-list>
-
     <div class="sec2">
+      <ion-list class="top">
+        <ion-row>
+          <h2 class="auto">
+            Forget Your Password?
+          </h2>
+          <span>
+            Enter your email below to recive your password reset instructions
+          </span>
+        </ion-row>
+      </ion-list>
+
+
       <form [formGroup]="formgroup">
         <ion-list class="top" lines="none">
           <ion-item lines="none">
-            <ion-label class="inn" position="stacked">Email Address</ion-label>
+            <ion-label position="stacked">Email Address</ion-label>
             <ion-input *ngIf="!(EmailAddress.hasError('required') && EmailAddress.touched)"
               formControlName="EmailAddress" [(ngModel)]="loginData.Data.EmailAddress" name="EmailAddress" type="text"
               required></ion-input>
@@ -47,8 +47,8 @@
 
         <ion-row class="top">
           <ion-col size="11" class="auto nopadding">
-            <ion-button color="success" type="submit" expand="full" (click)="forgetPassword()"
-              router-direction="backward" class="top">
+            <ion-button class="marg5" color="success" type="submit" expand="full" (click)="forgetPassword()"
+              router-direction="backward">
               RESET PASSWORD
             </ion-button>
           </ion-col>

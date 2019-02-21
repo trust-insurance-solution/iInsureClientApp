@@ -11,6 +11,7 @@ import { NavController } from '@ionic/angular';
 @Component({
   selector: 'app-pa',
   templateUrl: './pa.page.html',
+
   styleUrls: ['./pa.page.scss'],
 })
 export class PaPage implements OnInit {
@@ -120,8 +121,10 @@ export class PaPage implements OnInit {
   }) {
     this.objPersonalAccident.Data.FkCountryresidence = event.value.Id;
   }
+
   slidesDidLoad(slides: IonSlides) {
     slides.startAutoplay();
+    slides.updateAutoHeight(40)
   }
   InsertPersonalAccident() {
     this.objPersonalAccident.Data.FkCreatedByUserId = this.userID;

@@ -11,50 +11,74 @@
     <ion-list class="top" lines="none">
       <ion-item lines="none">
         <ion-label position="stacked">Full Name</ion-label>
-        <ion-input *ngIf="!(FullName.hasError('required') && FullName.touched)" formControlName="FullName" name="FullName"
-          type="text" required [(ngModel)]="objTraveler.FullName" name="FullName"></ion-input>
-        <ion-input *ngIf="FullName.hasError('required') && FullName.touched" formControlName="FullName" name="FullName"
-          type="text" required placeholder="Enter a valid Name" color="danger" class="error"></ion-input>
+        <ion-input *ngIf="!(FullName.hasError('required') && FullName.touched)" formControlName="FullName"
+          name="FullName" type="text" required [(ngModel)]="objTraveler.FullName" name="FullName"></ion-input>
+        <ion-input *ngIf="FullName.hasError('required') && FullName.touched" formControlName="FullName"
+          [(ngModel)]="objTraveler.FullName" name="FullName" type="text" required placeholder="Enter a valid Name"
+          color="danger" class="error"></ion-input>
       </ion-item>
       <ion-item lines="none">
         <ion-label position="stacked">Date Of Birth</ion-label>
         <ion-input *ngIf="!(DateOfBirth.hasError('required') && DateOfBirth.touched)" formControlName="DateOfBirth"
-          name="DateOfBirth" type="date" required [(ngModel)]="objTraveler.DateOfBirth" name="DateOfBirth"></ion-input>
-        <ion-input *ngIf="DateOfBirth.hasError('required') && DateOfBirth.touched" formControlName="DateOfBirth" name="DateOfBirth"
-          type="date" required placeholder="Enter a valid Name" color="danger" class="error">
+          name="DateOfBirth" type="date" required [(ngModel)]="objTraveler.DateOfBirth" name="DateOfBirth">
+          <ion-datetime display-format="DD/MM/YYYY" picker-format="DD MM YYYY"></ion-datetime>
+        </ion-input>
+        <ion-input *ngIf="DateOfBirth.hasError('required') && DateOfBirth.touched" formControlName="DateOfBirth"
+          name="DateOfBirth" [(ngModel)]="objTraveler.DateOfBirth" type="date" required placeholder="Enter a valid Name"
+          color="danger" class="error">
+          <ion-datetime display-format="DD/MM/YYYY" picker-format="DD MM YYYY"></ion-datetime>
         </ion-input>
       </ion-item>
-      <ion-item>
+
+      <ion-item lines="none">
         <ion-label position="stacked">Nationality</ion-label>
-        <ionic-selectable placeholder="---Please Select---" name="NationalID" [items]="countries" itemValueField="Id"
-          formControlName="NationalID" itemTextField="CountryName" [canSearch]="true" (onChange)="Nationality($event)"
-          required name="Nationality">
+        <ionic-selectable name="NationalID" [items]="countries" itemValueField="Id" formControlName="NationalID"
+          itemTextField="CountryName" [canSearch]="true" (onChange)="Nationality($event)" required name="Nationality">
         </ionic-selectable>
       </ion-item>
       <ion-item lines="none">
         <ion-label position="stacked">Passport Number</ion-label>
-        <ion-input *ngIf="!(PassportNumber.hasError('required') && PassportNumber.touched)" formControlName="PassportNumber"
-          name="Telephone" type="Number" required [(ngModel)]="objTraveler.PassportNumber" name="PassportNumber"></ion-input>
+        <ion-input *ngIf="!(PassportNumber.hasError('required') && PassportNumber.touched)"
+          formControlName="PassportNumber" name="Telephone" type="Number" required
+          [(ngModel)]="objTraveler.PassportNumber" name="PassportNumber"></ion-input>
         <ion-input (ionInput)="runTimeChange($event)" *ngIf="PassportNumber.hasError('required') &&
-                  PassportNumber.touched"
-          formControlName="PassportNumber" name="PassportNumber" type="text" required placeholder="Enter a valid Phone Number"
-          color="danger" class="error">
+                  PassportNumber.touched" [(ngModel)]="objTraveler.PassportNumber" formControlName="PassportNumber"
+          name="PassportNumber" type="text" required placeholder="Enter a valid Phone Number" color="danger"
+          class="error">
         </ion-input>
       </ion-item>
       <ion-item lines="none">
         <ion-label position="stacked">Country Residence</ion-label>
-        <ionic-selectable placeholder="---Please Select---" formControlName="CountryResidence" (onChange)="CountryResidenc($event)"
-          required itemValueField="Id" itemTextField="CountryName" [canSearch]="true" name="CountryOfResidence" [items]="countries">
+        <ionic-selectable formControlName="CountryResidence" (onChange)="CountryResidenc($event)" required
+          itemValueField="Id" itemTextField="CountryName" [canSearch]="true" name="CountryOfResidence"
+          [items]="countries">
         </ionic-selectable>
       </ion-item>
+
+
+
+
+
       <ion-item lines="none">
         <ion-label position="stacked">Passport Expiration Date</ion-label>
+
+
         <ion-input *ngIf="!(passExBirth.hasError('required') && passExBirth.touched)" formControlName="passExBirth"
-          name="passExBirth" type="date" required [(ngModel)]="objTraveler.PassportExpireDate" name="PassportExpireDate"></ion-input>
-        <ion-input *ngIf="passExBirth.hasError('required') && passExBirth.touched" formControlName="passExBirth" name="passExBirth"
-          type="date" required placeholder="Enter a valid Name" color="danger" class="error">
+          name="passExBirth" type="date" required [(ngModel)]="objTraveler.PassportExpireDate"
+          name="PassportExpireDate">
+          <ion-datetime display-format="DD/MM/YYYY" picker-format="DD MM YYYY"></ion-datetime>
         </ion-input>
+
+        <ion-input display-format=" DD,MM, YYYY" *ngIf="passExBirth.hasError('required') && passExBirth.touched"
+          formControlName="passExBirth" name="passExBirth" type="date" [(ngModel)]="objTraveler.PassportExpireDate"
+          required placeholder="Enter a valid Name" color="danger" class="error">
+          <ion-datetime display-format="DD/MM/YYYY" picker-format="DD MM YYYY"></ion-datetime>
+        </ion-input>
+
+
       </ion-item>
+
+
       <ion-row>
         <!-- <ion-col size="11" class="auto">
           <ion-button expand="full" (click)="img();" class="top" color="medium">

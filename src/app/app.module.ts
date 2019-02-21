@@ -23,6 +23,8 @@ import { Network } from '@ionic-native/network/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 
+
+
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }

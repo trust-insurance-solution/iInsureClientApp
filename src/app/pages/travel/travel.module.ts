@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 import { TravelPage } from './travel.page';
 import { IonicSelectableModule } from 'ionic-selectable';
 import { ReactiveFormsModule } from '@angular/forms';
+import { IonicPageModule } from 'ionic-angular';
 
 const routes: Routes = [
   {

@@ -229,7 +229,8 @@ export class HomePage implements OnInit {
   }
 
   map() {
-    this.navCtrl.navigateForward('gmap');
+    alert(44444444444)
+    this.navCtrl.navigateForward('googlemap');
   }
 
   img() {

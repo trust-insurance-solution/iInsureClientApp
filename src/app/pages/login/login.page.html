@@ -15,16 +15,18 @@
       </ion-grid>
     </div>
 
-    <ion-row class="center mt">
-      <ion-col size="12" class="center nopadding">
-        <span class="rep3">Our Reputation Is Your Insutance</span>
-      </ion-col>
-      <ion-col size="12" class="center">
-        <span class="rep3">LogIn</span>
-      </ion-col>
-    </ion-row>
-    
-    <div class="secc2">
+
+    <div class="secc2 mt">
+      <ion-row class="center ">
+        <ion-col size="12" class="center nopadding">
+          <ion-label  class="rep3 ww">Our Reputation Is Your Insutance</ion-label>
+        </ion-col>
+        <!-- <ion-col size="12" class="center">
+          <span class="rep3">LogIn</span>
+        </ion-col> -->
+      </ion-row>
+
+
       <!-- 
       <div class="centerlight">
         <ion-row class="center">
@@ -82,18 +84,18 @@
       <form [formGroup]="formgroup">
         <ion-list class="top" lines="none">
           <ion-item lines="none">
-            <ion-label class="inn"  position="stacked">Email Address</ion-label>
-            <ion-input *ngIf="!(EmailAddress.hasError('required') && EmailAddress.touched)"
+            <ion-label class="ww" position="stacked">Email Address</ion-label>
+            <ion-input class="ww" *ngIf="!(EmailAddress.hasError('required') && EmailAddress.touched)"
               formControlName="EmailAddress" [(ngModel)]="loginData.Data.EmailAddress" name="EmailAddress" type="text"
               required></ion-input>
-            <ion-input *ngIf="EmailAddress.hasError('required') && EmailAddress.touched" formControlName="EmailAddress"
-              [(ngModel)]="loginData.Data.EmailAddress" name="EmailAddress" type="text" required
-              placeholder="Enter a valid Name" color="danger" class="error">
+            <ion-input class="ww" *ngIf="EmailAddress.hasError('required') && EmailAddress.touched"
+              formControlName="EmailAddress" [(ngModel)]="loginData.Data.EmailAddress" name="EmailAddress" type="text"
+              required placeholder="Enter a valid Name" color="danger" class="error">
             </ion-input>
           </ion-item>
 
           <ion-item lines="none">
-            <ion-label class="inn"  position="stacked">Password</ion-label>
+            <ion-label class="ww" position="stacked">Password</ion-label>
             <ion-button fill="clear" class="pass" (click)="showPass(x)">
               <div *ngIf="showPwd">
                 <ion-icon (click)="showPass(1)" name="eye" class="eyee" slot="end"></ion-icon>
@@ -103,16 +105,16 @@
               </div>
             </ion-button>
 
-            <ion-input class="inputPass" *ngIf="!(Password.hasError('required') && Password.touched) && showPwd"
+            <ion-input class="ww inputPass" *ngIf="!(Password.hasError('required') && Password.touched) && showPwd"
               formControlName="Password" [(ngModel)]="loginData.Data.Password" name="Password" type="text" required>
             </ion-input>
 
-            <ion-input class="inputPass" *ngIf="!(Password.hasError('required') && Password.touched) && !showPwd"
+            <ion-input class="ww inputPass" *ngIf="!(Password.hasError('required') && Password.touched) && !showPwd"
               formControlName="Password" [(ngModel)]="loginData.Data.Password" name="Password" type="Password" required>
             </ion-input>
 
             <!-- error -->
-            <ion-input *ngIf="Password.hasError('required') && Password.touched" formControlName="Password"
+            <ion-input class="ww" *ngIf="Password.hasError('required') && Password.touched" formControlName="Password"
               name="Password" [(ngModel)]="loginData.Data.Password" type="text" required
               placeholder="Enter a valid Password" color="danger" class="error">
             </ion-input>
@@ -131,10 +133,10 @@
           <ion-col size="11" class="auto tb">
             <ion-row>
               <ion-col size="9" class="nopadding" (click)="forgotPss()">
-                  <ion-label class="inn"> Forgot your Password?</ion-label>
+                <ion-label class="ww"> Forgot your Password?</ion-label>
               </ion-col>
               <ion-col size="3" (click)="SignUp();" class="nopadding" text-end>
-                <ion-label class="inn">SignUp</ion-label>
+                <ion-label class="ww">SignUp</ion-label>
               </ion-col>
             </ion-row>
           </ion-col>

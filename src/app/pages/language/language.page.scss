@@ -17,16 +17,12 @@ ion-label.city{
     display: flex;
     margin: auto;
 }
-ion-content.fullColor{
-    --background 	:#D9EDEC url("../../../assets/img/abs2.png") no-repeat center right;
-
-}
 
 ion-grid.hydrated {
     margin-top: 20vw;
 }
-ion-icon.check {
-    top: 0;
-    position: absolute;
-    right: 0;
+ion-button {
+    height: 10vh;
+
+   
 }
