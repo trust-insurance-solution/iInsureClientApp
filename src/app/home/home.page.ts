@@ -15,16 +15,24 @@ export class HomePage {
 
   fullName: string;
   userImage: string;
-
+  UserId:number;
+  LangID:string;
   constructor(public navCtrl: NavController, public loadingController: LoadingController, public _routes: Router, public _GlobalService: GlobalService) {
     this._GlobalService.getStorage('UserInfo').then((val) => {
+      this.UserId = val.UserId;
       this.fullName = val.FullName;
       this.userImage = this.userImage != null ? this.userImage : "../../assets/img/avatar.png";
     });
+    this._GlobalService.getStorage('Lang').then((val) => {
+      this.LangID=val;
+    });
+    console.log(this.UserId);
   }
 
 
-  ngOnInit() { }
+  ngOnInit() { 
+    
+  }
   login() {
     this._routes.navigateByUrl('login');
   }

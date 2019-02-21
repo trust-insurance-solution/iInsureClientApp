@@ -98,8 +98,8 @@ export class PaPage implements OnInit {
     });
     this._GlobalService.getStorage('UserInfo').then((val) => {
       this.userID = val.UserId;
+      this.accessToken = val.AccessToken;
     });
-    this.accessToken = "RWlTV2tKYitKc0R4TXZCcVBGd0JuelVDN3hBbHNOWjZpcTFOU2VJRkROST06Mi8xOS8yMDE5OjYzNjg2MTY2NjIwNDI5NTcyOA==";
   }
 
   async  ngOnInit() {

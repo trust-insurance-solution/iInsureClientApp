@@ -7,6 +7,8 @@ import { Platform } from '@ionic/angular';
 import { Network } from '@ionic-native/network';
 import { NavController, ModalController } from '@ionic/angular';
 import { BusinessResponse } from '../../entity/BusinessEntity';
+import { UserInfoEntity } from '../../entity/UserInfoEntity';
+import { promise } from 'protractor';
 
  const apiUrl = "http://192.168.0.99/iInsurePortal/TrustInsurance.API/api/Client/";
 //const apiUrl = "https://api.trst-ins.com/api/Client/";
@@ -21,6 +23,7 @@ export class GlobalService {
   _Param: any;
   _PDFFilePath:string;
   _PolicyURL:string;
+  _ObjUserInfo:UserInfoEntity;
   constructor(private http: HttpClient, public _AlertController: AlertController, public navCtrl: NavController,
     private _Storage: Storage, private _UniqueDeviceID: UniqueDeviceID, public _Platform: Platform) { }
 

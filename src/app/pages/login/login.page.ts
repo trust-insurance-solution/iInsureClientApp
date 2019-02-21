@@ -17,11 +17,6 @@ export class LoginPage implements OnInit {
   Password: AbstractControl
   mail: "/^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/"
 
-
-
-
-
-
   deviceToken;
   Lang:string;
   loginData = {
@@ -58,18 +53,6 @@ export class LoginPage implements OnInit {
         this.EmailAddress = this.formgroup.controls['EmailAddress']
         this.Password = this.formgroup.controls['Password']
 
-
-
-
-
-
-
-
-
-
-
-      // fares cbF1x6YK4_w:APA91bEZOJLaN5ZO8wfRB6WyyLIQZ_29E0RLlU4ssd7rqEOxAP1AXYCOBE07-jBQyyn6zKY6MUrqXNFIZsS186Pg-fGMeOSwoHq1tJYv53V_BYHEduiT8CehSlxpObifuMOmuDEZZWQb";
-      // "ZWw5TWVsdmhNdk5TOWlxbEMxeW1JOUI4endCMTVLNEpEaFhTV1ZMUmNaOD06Mi8xNy8yMDE5OjYzNjg2MDA4MTgyNzEwNjk5NQ==";
     this.deviceToken = !this._GlobalService.getPlatform() ? this._GlobalService.getDeviceToken() : "ZWw5TWVsdmhNdk5TOWlxbEMxeW1JOUI4endCMTVLNEpEaFhTV1ZMUmNaOD06Mi8xNy8yMDE5OjYzNjg2MDA4MTgyNzEwNjk5NQ==";
     this._GlobalService.getStorage('Lang').then((val) => {
       this.Lang = val;
@@ -84,7 +67,6 @@ export class LoginPage implements OnInit {
 
     this.postLogin().then(res => {
       if (res.Success === 'true') {
-        console.log(this.loginData);
         this._GlobalService.setStorage('UserInfo', res.Data);
         this.navCtrl.navigateForward('home');
       }

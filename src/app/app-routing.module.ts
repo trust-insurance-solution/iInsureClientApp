@@ -24,7 +24,8 @@ const routes: Routes = [
   { path: 'quotation', loadChildren: './pages/quotation/quotation.module#QuotationPageModule' },
   { path: 'gmap', loadChildren: './pages/gmap/gmap.module#GmapPageModule' },
   { path: 'termsconditions', loadChildren: './pages/termsconditions/termsconditions.module#TermsconditionsPageModule' },
-  { path: 'policyview', loadChildren: './pages/policyview/policyview.module#PolicyviewPageModule' },
+  { path: 'policyview', loadChildren: './pages/policyview/policyview.module#PolicyviewPageModule' },  { path: 'payment', loadChildren: './pages/payment/payment.module#PaymentPageModule' },
+
 
 ];
 

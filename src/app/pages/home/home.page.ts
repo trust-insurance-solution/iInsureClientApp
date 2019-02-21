@@ -141,8 +141,8 @@ export class HomePage implements OnInit {
     });
     this._GlobalService.getStorage('UserInfo').then((val) => {
       this.userID = val.UserId;
+      this.accessToken = val.AccessToken;
     });
-    this.accessToken = "T1ZjWGxBd1JDa2tQaWg4TWdLdVNNcGpoL2txSXFTZHhEanRyQ3dxMWZ4MD06Mi8yMC8yMDE5OjYzNjg2Mjc4MjY4NjM4Nzk5NQ==";
   }
 
   async  ngOnInit() {

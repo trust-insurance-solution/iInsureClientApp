@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>payment</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <table>
+    <tr>
+      <td>
+          <ion-radio-group  [(ngModel)]="payment.payment_type">
+              <ion-row>
+                <ion-col size="6" class="nopadding">
+                  <ion-item>
+                    <ion-label> Visa</ion-label>
+                    <ion-radio  slot="start" name="paymentType" value="1">
+                    </ion-radio>
+                  </ion-item>
+                </ion-col>
+                <ion-col size="6" class="nopadding">
+                  <ion-item>
+                    <ion-label>MasterCard</ion-label>
+                    <ion-radio   slot="start" name="paymentType" value="2">
+                    </ion-radio>
+                  </ion-item>
+                </ion-col>
+                <ion-col size="6" class="nopadding">
+                    <ion-item>
+                      <ion-label>PayPal</ion-label>
+                      <ion-radio   slot="start" name="paymentType" value="3">
+                      </ion-radio>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col size="6" class="nopadding">
+                      <ion-item>
+                        <ion-label>AhliBank</ion-label>
+                        <ion-radio   slot="start" name="paymentType" value="4">
+                        </ion-radio>
+                      </ion-item>
+                    </ion-col>
+                    <ion-col size="6" class="nopadding">
+                        <ion-item>
+                          <ion-label>Umniah</ion-label>
+                          <ion-radio   slot="start" name="paymentType" value="5">
+                          </ion-radio>
+                        </ion-item>
+                      </ion-col>
+              </ion-row>
+            </ion-radio-group>
+      </td>
+    </tr>
+    <tr>
+      <td> 
+        <ion-item>
+          <ion-label fixed>رقم البطاقة</ion-label>
+          <ion-input type="text" [(ngModel)]="payment.card_number"></ion-input>
+        </ion-item>
+      </td>
+    </tr>
+    <tr>
+        <td> 
+          <ion-item>
+            <ion-label fixed>شهر الانتهاء</ion-label>
+            <ion-input type="text" [(ngModel)]="payment.expire_month"></ion-input>
+          </ion-item>
+        </td>
+      </tr>
+      <tr>
+          <td> 
+            <ion-item>
+              <ion-label fixed>سنة الانتهاء</ion-label>
+              <ion-input type="text" [(ngModel)]="payment.expire_year"></ion-input>
+            </ion-item>
+          </td>
+        </tr>
+        <tr>
+            <td> 
+              <ion-item>
+                <ion-label fixed>كود الامان</ion-label>
+                <ion-input type="text" [(ngModel)]="payment.security_code"></ion-input>
+              </ion-item>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <button ion-button (click)="PaymentData()">Pay</button>
+            </td>
+          </tr>
+  </table>
+
+</ion-content>
