@@ -1,7 +1,7 @@
 <ion-content>
   <div class="firstColor">
 
-    <div class="first2 nopadding">
+    <div class="first30 nopadding">
       <ion-grid>
         <ion-row>
           <ion-col size="3">
@@ -88,9 +88,9 @@
             <ion-input class="ww" *ngIf="!(EmailAddress.hasError('required') && EmailAddress.touched)"
               formControlName="EmailAddress" [(ngModel)]="loginData.Data.EmailAddress" name="EmailAddress" type="text"
               required></ion-input>
-            <ion-input class="ww" *ngIf="EmailAddress.hasError('required') && EmailAddress.touched"
+            <ion-input class="error ww" *ngIf="EmailAddress.hasError('required') && EmailAddress.touched"
               formControlName="EmailAddress" [(ngModel)]="loginData.Data.EmailAddress" name="EmailAddress" type="text"
-              required placeholder="Enter a valid Name" color="danger" class="error">
+              required placeholder="Enter a valid Name" >
             </ion-input>
           </ion-item>
 

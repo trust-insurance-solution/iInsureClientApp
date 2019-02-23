@@ -25,9 +25,9 @@
           <ion-col size="4" offset="4" class="nopadding">
             <div class="circle">
               <!-- <img class="avatar" [src]="userImage" alt="No Profile Image"> -->
-              <img class="avatar" src="assets/img/avatar.png" alt="No Profile Image">
-              <!-- <img src="{{myphoto}}"> -->
-               <ion-icon class="add" name="add-circle" (click)="img();"></ion-icon>
+              <img class="avatar" src="assets/img/avatar.png" alt="No Profile Image"  *ngIf="!Img">
+              <img src="{{myphoto}}" *ngIf="Img">
+              <ion-icon class="add" name="add-circle" (click)="img();" ></ion-icon>
             </div>
           </ion-col>
         </ion-row>
@@ -37,47 +37,47 @@
     <div class="sec2">
       <form [formGroup]="formgroup">
         <ion-list lines="none">
+
           <ion-item lines="none">
             <ion-label class="ww" position="stacked">{{ trans_FullName }}</ion-label>
-            <ion-input class="ww" *ngIf="!(FullName.hasError('required') && FullName.touched )" formControlName="FullName"
-              [(ngModel)]="objUserInfo.Data.FullName" name="FullName" type="text" required></ion-input>
+            <ion-input class="ww" *ngIf="!(FullName.hasError('required') && FullName.touched )"
+              formControlName="FullName" [(ngModel)]="objUserInfo.Data.FullName" name="FullName" type="text" required>
+            </ion-input>
             <ion-input class="ww" *ngIf="FullName.hasError('required') && FullName.touched" formControlName="FullName"
               name="FullName" [(ngModel)]="objUserInfo.Data.FullName" type="text" required
               placeholder="Enter a valid Name" color="danger" class="error"></ion-input>
           </ion-item>
+
           <ion-item lines="none">
             <ion-label class="ww" position="stacked">Email Address</ion-label>
             <ion-input class="ww" *ngIf="!(EmailAddress.hasError('required') && EmailAddress.touched)"
               formControlName="EmailAddress" [(ngModel)]="objUserInfo.Data.EmailAddress" name="EmailAddress" type="text"
               required></ion-input>
-            <ion-input class="ww" *ngIf="EmailAddress.hasError('required') && EmailAddress.touched" formControlName="EmailAddress"
-              [(ngModel)]="objUserInfo.Data.EmailAddress" name="EmailAddress" type="text" required
-              placeholder="Enter a valid Name" color="danger" class="error">
+            <ion-input class="ww" *ngIf="EmailAddress.hasError('required') && EmailAddress.touched"
+              formControlName="EmailAddress" [(ngModel)]="objUserInfo.Data.EmailAddress" name="EmailAddress" type="text"
+              required placeholder="Enter a valid Email" color="danger" class="error">
             </ion-input>
           </ion-item>
+
           <ion-item lines="none">
             <ion-label class="ww" position="stacked">Phone Number</ion-label>
-            <ion-input class="ww" *ngIf="!(PhoneNumber.hasError('required') && PhoneNumber.touched)" formControlName="PhoneNumber"
-              [(ngModel)]="objUserInfo.Data.PhoneNumber" name="PhoneNumber" type="Number" required></ion-input>
+            <ion-input class="ww" *ngIf="!(PhoneNumber.hasError('required') && PhoneNumber.touched)"
+              formControlName="PhoneNumber" [(ngModel)]="objUserInfo.Data.PhoneNumber" name="PhoneNumber" type="Number"
+              required></ion-input>
             <ion-input class="ww" *ngIf="PhoneNumber.hasError('required') &&
         PhoneNumber.touched" formControlName="PhoneNumber" [(ngModel)]="objUserInfo.Data.PhoneNumber"
               name="PhoneNumber" type="text" required placeholder="Enter a valid Phone Number" color="danger"
               class="error">
             </ion-input>
           </ion-item>
+
           <ion-item lines="none">
             <ion-label class="ww" position="stacked">Birthday Date</ion-label>
-            <ion-input class="ww" lines="none" *ngIf="!(birthd.hasError('required') && birthd.touched)" formControlName="birthd"
-              [(ngModel)]="objUserInfo.Data.DateOfBirth" name="DateOfBirth" type="date" required>
-              <ion-datetime display-format="DD/MM/YYYY" picker-format="DD MM YYYY"></ion-datetime>
-            </ion-input>
-            <ion-input class="ww" [(ngModel)]="objUserInfo.Data.DateOfBirth" *ngIf="birthd.hasError('required') &&
-        birthd.touched" formControlName="birthd" name="birthd" type="date" required
-              placeholder="Enter a valid Phone Number" color="danger" class="error">
-              <ion-datetime display-format="DD/MM/YYYY" picker-format="DD MM YYYY"></ion-datetime>
-            </ion-input>
+            <ion-datetime class="ww" required formControlName="birthd" lines="none"
+              [(ngModel)]="objUserInfo.Data.DateOfBirth" name="DateOfBirth" display-format="DD/MM/YYYY"
+              picker-format="DD/MM/YYYY">
+            </ion-datetime>
           </ion-item>
-
 
           <ion-item lines="none">
             <ion-label class="ww" position="stacked">Password</ion-label>
@@ -90,7 +90,7 @@
               </div>
             </ion-button>
 
-            <ion-input class="ww inputPass"  *ngIf="!(Password.hasError('required') && Password.touched) && showPwd"
+            <ion-input class="ww inputPass" *ngIf="!(Password.hasError('required') && Password.touched) && showPwd"
               formControlName="Password" [(ngModel)]="objUserInfo.Data.Password" name="Password" type="text" required>
             </ion-input>
 
@@ -105,14 +105,15 @@
               placeholder="Enter a valid Password" color="danger" class="error">
             </ion-input>
           </ion-item>
-          
+
           <ion-item lines="none">
             <ion-label class="ww" position="stacked">Gender</ion-label>
-            <ion-select  class="ww" formControlName="gender" [(ngModel)]="objUserInfo.Data.Gender" name="Gender">
+            <ion-select class="ww" formControlName="gender" [(ngModel)]="objUserInfo.Data.Gender" name="Gender">
               <ion-select-option value="1">Male</ion-select-option>
               <ion-select-option value="2">Female</ion-select-option>
             </ion-select>
           </ion-item>
+          
           <!-- <ion-item lines="none">
         <ion-label class="ww" position="stacked">Confirm Password</ion-label>
         <ion-input class="ww" *ngIf="!(confirmPassword.hasError('required') && confirmPassword.touched)"
@@ -124,14 +125,15 @@
       </ion-item> -->
           <ion-item lines="none">
             <ion-label class="ww" position="stacked">Country</ion-label>
-            <ionic-selectable class="ww"   name="NationalID" [items]="countries" itemValueField="Id"
-            formControlName="countr" itemTextField="CountryName" [canSearch]="true" (onChange)="Nationality($event)"
-            required>
-          </ionic-selectable>
+            <ionic-selectable class="ww" name="NationalID" [items]="countries" itemValueField="Id"
+              formControlName="countr" itemTextField="CountryName" [canSearch]="true" (onChange)="Nationality($event)"
+              required>
+            </ionic-selectable>
           </ion-item>
+
           <ion-item lines="none">
             <ion-label class="ww" position="stacked">City</ion-label>
-            <ionic-selectable class="ww"   name="GovernorateId" [items]="cities" itemValueField="GovernorateId"
+            <ionic-selectable class="ww" name="GovernorateId" [items]="cities" itemValueField="GovernorateId"
               formControlName="city" itemTextField="GovernorateName" [canSearch]="true" (onChange)="cityChange($event)"
               required>
             </ionic-selectable>
@@ -140,6 +142,7 @@
         <!-- 
     <ion-button color="dark" type="submit"  disabled expand="full">SIGN UP
     </ion-button> -->
+
         <ion-row class="top">
           <ion-col size="11" class="auto nopadding">
             <ion-row>
@@ -162,11 +165,11 @@
           </ion-col>
           <ion-col size="11" class="auto tb">
             <ion-row>
-              <ion-col size="8" class="nopadding">
-                  <ion-label class="ww">Already a Member?</ion-label>
+              <ion-col size="8">
+                <ion-label class="ww">Already a Member?</ion-label>
               </ion-col>
-              <ion-col size="4" (click)="login();" class="nopadding" text-end>
-                  <ion-label class="ww">Login here</ion-label>
+              <ion-col size="4" (click)="login();"  text-end>
+                <ion-label class="ww">Login here</ion-label>
               </ion-col>
             </ion-row>
           </ion-col>

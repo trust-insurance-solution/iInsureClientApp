@@ -15,7 +15,7 @@ export class BusinessPage implements OnInit {
     public _routes: Router) { }
   slidesDidLoad(slides: IonSlides) {
     slides.startAutoplay();
-  }
+    }
   notiPage() {
     this.navCtrl.navigateForward('notification');
   }

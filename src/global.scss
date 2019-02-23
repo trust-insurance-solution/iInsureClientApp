@@ -43,12 +43,18 @@ ion-label.ww{font-weight:600;}
     border-bottom-left-radius: 60% 40%;
     border-bottom-right-radius: 60% 40%;
 }
+.first30{
+    background-color: #f7f8fc !important;
+    height: 33vh !important;
+    border-bottom-left-radius: 50% 100px;
+    border-bottom-right-radius: 50% 100px;
+    border-radius: 0 0 60vw 60vw/0 0 37vw 37vw;
+ }
 
 .first2{
    background-color: #f7f8fc !important;
    height: 24vh !important;
-   border-bottom-left-radius: 50%;
-   border-bottom-right-radius: 50%;
+   border-radius: 0 0 60vw 60vw/0 0 37vw 37vw;
 }
 .sec{
     height: 47%;
@@ -129,6 +135,9 @@ ion-icon.noti {
          margin: 0 25px;
     }
 }
+.swiper-slide img.slid{
+    max-width: 70% !important
+}
 
 ion-label{
     color: var(--gray333-color) !important;
@@ -136,18 +145,14 @@ ion-label{
 }
 ion-label.ww{
     color: var(--white-color) !important;
-    text-align: left;
+ 
 }
 
-ionic-selectable{
+ionic-selectable, ion-datetime,ion-datetime.ww, ion-select{
     line-height: 18px !important;
 }
 
-ion-datetime.in-item.hydrated{
-    display: none; 
-}
-
-ion-input.ww , ionic-selectable.ww, ion-select.ww{
+ion-input.ww , ionic-selectable.ww, ion-select.ww, ion-datetime.ww{
    background-color: var(--white-color) !important;
    border-radius: 1vw;
    z-index: 0 !important;
@@ -158,7 +163,7 @@ ion-input.ww , ionic-selectable.ww, ion-select.ww{
    
 }
 
-ion-input ,  ionic-selectable, ion-select{
+ion-input , ion-datetime, ionic-selectable, ion-select, ion-input.error{
     background-color: var(--primary-color) !important;
     color: var(--gray333-color) !important;
     border-radius: 1vw;
@@ -170,9 +175,18 @@ ion-input ,  ionic-selectable, ion-select{
    height: 35px !important;
  }
 
-ion-input.error{
+ ion-input.error{
     border: #9a1515 1px solid !important;
-    color: #9a1515;
+    color: #9a1515 !important;
+    font-weight: 700 !important;
+
+}
+
+ion-input.ww.error{
+    border: #9a1515 1px solid !important;
+    color: #9a1515 !important;
+    background-color: var(--white-color) !important;
+    font-weight: 700 !important;
 }
 
 .native-input {

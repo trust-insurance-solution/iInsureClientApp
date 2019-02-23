@@ -219,7 +219,7 @@ export class HomePage implements OnInit {
     })
     await modal.present();
   }
-  
+
   //Event for selectable Nationality
   Nationality(event: {
     component: IonicSelectableComponent,
@@ -233,6 +233,10 @@ export class HomePage implements OnInit {
     this.navCtrl.navigateForward('googlemap');
   }
 
+  dismiss() {
+
+  }
+  
   img() {
     const options: CameraOptions = {
       quality: 100,

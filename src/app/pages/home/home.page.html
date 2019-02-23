@@ -7,32 +7,31 @@
   </ion-toolbar>
 </ion-header>
 <ion-content padding>
-  <ion-button (click)="map();">
-    map
-  </ion-button>
+
   <form [formGroup]="formgroup">
     <ion-list class="top" lines="none">
       <ion-item lines="none">
         <ion-label position="stacked">Full Name</ion-label>
-        <ion-input *ngIf="!(FullName.hasError('required') && FullName.touched) " formControlName="FullName" [(ngModel)]="objHome.Data.FullName"
-          name="FullName" type="text" required></ion-input>
+        <ion-input *ngIf="!(FullName.hasError('required') && FullName.touched)" formControlName="FullName"
+          [(ngModel)]="objHome.Data.FullName" name="FullName" type="text" required></ion-input>
         <ion-input [(ngModel)]="objHome.Data.FullName" *ngIf="FullName.hasError('required') && FullName.touched"
-          formControlName="FullName" name="FullName" type="text" required placeholder="Enter a valid Name" color="danger"
-          class="error" (change)='onChange($event)'></ion-input>
+          formControlName="FullName" name="FullName" type="text" required placeholder="Enter a valid Name"
+          color="danger" class="error" (change)='onChange($event)'></ion-input>
       </ion-item>
 
       <ion-item lines="none">
         <ion-label position="stacked">Nationality</ion-label>
-        <ionic-selectable  [(ngModel)]="Nationallity" name="NationalID" [items]="countries" itemValueField="Id"
+        <ionic-selectable [(ngModel)]="Nationallity" name="NationalID" [items]="countries" itemValueField="Id"
           formControlName="NationalID" itemTextField="CountryName" [canSearch]="true" (onChange)="Nationality($event)"
           required>
         </ionic-selectable>
       </ion-item>
+
       <ion-item lines="none">
         <ion-label position="stacked">Value of Coverage</ion-label>
-        <ion-select  [(ngModel)]="objHome.Data.Fk_SomeInsured" name="Fk_SomeInsured"
-          formControlName="vCoverage">
-          <ion-select-option *ngFor='let in of Counter(6) ;let i = index' value="{{ (i+1) * 50000}}">{{ (i+1) * 50000 | number : '0.0'}}</ion-select-option>
+        <ion-select [(ngModel)]="objHome.Data.Fk_SomeInsured" name="Fk_SomeInsured" formControlName="vCoverage">
+          <ion-select-option *ngFor='let in of Counter(6) ;let i = index' value="{{ (i+1) * 50000}}">
+            {{ (i+1) * 50000 | number : '0.0'}}</ion-select-option>
         </ion-select>
       </ion-item>
 
@@ -48,7 +47,7 @@
           <ion-col size="6" class="nopadding">
             <ion-item>
               <ion-label>Villa</ion-label>
-              <ion-radio  (click)="ShowControls(2);" slot="start" name="IsApartment" [value]="false">
+              <ion-radio (click)="ShowControls(2);" slot="start" name="IsApartment" [value]="false">
               </ion-radio>
             </ion-item>
           </ion-col>
@@ -58,8 +57,8 @@
       <ion-item lines="none">
         <ion-label *ngIf='apartment' position="stacked">Size of Apartment</ion-label>
         <ion-label *ngIf='!apartment' position="stacked">Size of Villa</ion-label>
-        <ion-input *ngIf="!(size.hasError('required') && size.touched)" formControlName="size" [(ngModel)]="objHome.Data.SizeOfApartmentOrVilla"
-          name="SizeOfApartmentOrVilla"  type="number" required>
+        <ion-input *ngIf="!(size.hasError('required') && size.touched)" formControlName="size"
+          [(ngModel)]="objHome.Data.SizeOfApartmentOrVilla" name="SizeOfApartmentOrVilla" type="number" required>
         </ion-input>
         <ion-input [(ngModel)]="objHome.Data.SizeOfApartmentOrVilla" *ngIf="size.hasError('required') && size.touched"
           formControlName="size" name="size" type="number" required placeholder="Enter a valid size" color="danger"
@@ -73,37 +72,40 @@
         <ion-label position="stacked">Detailed Location</ion-label>
         <ion-input *ngIf="!(DetailedLoc.hasError('required') && DetailedLoc.touched)" formControlName="DetailedLoc"
           [(ngModel)]="objHome.Data.DetailedLocation" name="DetailedLocation" type="text" required></ion-input>
-        <ion-input [(ngModel)]="objHome.Data.DetailedLocation" *ngIf="DetailedLoc.hasError('required') && DetailedLoc.touched"
-          formControlName="DetailedLoc" name="DetailedLocation" type="text" required placeholder="Enter a valid Location"
-          color="danger" class="error">
+        <ion-input [(ngModel)]="objHome.Data.DetailedLocation"
+          *ngIf="DetailedLoc.hasError('required') && DetailedLoc.touched" formControlName="DetailedLoc"
+          name="DetailedLocation" type="text" required placeholder="Enter a valid Location" color="danger"
+          class="error">
         </ion-input>
       </ion-item>
 
       <ion-item lines="none" *ngIf='!apartment'>
         <ion-label position="stacked">Number of Floors in villa</ion-label>
-        <ion-input *ngIf="!(floor.hasError('required') && floor.touched)" formControlName="floor" [(ngModel)]="objHome.Data.NumberOfFloorsIfVilla"
-          name="NumberOfFloorsIfVilla" type="text" placeholder="ffff" required>
+        <ion-input *ngIf="!(floor.hasError('required') && floor.touched)" formControlName="floor"
+          [(ngModel)]="objHome.Data.NumberOfFloorsIfVilla" name="NumberOfFloorsIfVilla" type="text" required>
         </ion-input>
         <ion-input [(ngModel)]="objHome.Data.NumberOfFloorsIfVilla" *ngIf="floor.hasError('required') && floor.touched"
-          formControlName="floor" name="floor" type="number" required placeholder="nnnnn" color="danger" class="error"></ion-input>
+          formControlName="floor" name="floor" type="number" required color="danger" class="error"></ion-input>
       </ion-item>
 
 
       <ion-item lines="none" *ngIf='apartment'>
         <ion-label position="stacked">Number of Floors in apartment</ion-label>
-        <ion-input *ngIf="!(floorAp.hasError('required') && floorAp.touched)" formControlName="floorAp" [(ngModel)]="objHome.Data.WhichFloorIfApartment"
-          name="WhichFloorIfApartment" type="text" placeholder="ffff" required>
+        <ion-input *ngIf="!(floorAp.hasError('required') && floorAp.touched)" formControlName="floorAp"
+          [(ngModel)]="objHome.Data.WhichFloorIfApartment" name="WhichFloorIfApartment" type="text" required>
         </ion-input>
-        <ion-input [(ngModel)]="objHome.Data.WhichFloorIfApartment" *ngIf="floorAp.hasError('required') && floorAp.touched"
-          formControlName="floorAp" name="floorAp" type="number" required placeholder="nnnnn" color="danger" class="error"></ion-input>
+        <ion-input [(ngModel)]="objHome.Data.WhichFloorIfApartment"
+          *ngIf="floorAp.hasError('required') && floorAp.touched" formControlName="floorAp" name="floorAp" type="number"
+          required color="danger" class="error"></ion-input>
       </ion-item>
 
       <ion-item lines="none">
         <ion-label position="stacked">Number of rooms?</ion-label>
-        <ion-input *ngIf="!(room.hasError('required') && room.touched)" formControlName="room" [(ngModel)]="objHome.Data.NumberOFRooms"
-          name="NumberOFRooms" type="number" required></ion-input>
+        <ion-input *ngIf="!(room.hasError('required') && room.touched)" formControlName="room"
+          [(ngModel)]="objHome.Data.NumberOFRooms" name="NumberOFRooms" type="number" required></ion-input>
         <ion-input [(ngModel)]="objHome.Data.NumberOFRooms" *ngIf="room.hasError('required') && room.touched"
-          formControlName="room" type="number" required placeholder="Enter a valid number" color="danger" class="error"></ion-input>
+          formControlName="room" required placeholder="Enter a valid number" color="danger" class="error">
+        </ion-input>
       </ion-item>
 
       <ion-list>
@@ -126,20 +128,21 @@
           </ion-row>
         </ion-radio-group>
       </ion-list>
+
       <ion-item lines="none">
         <ion-label position="stacked">Age Of Building</ion-label>
-        <ion-input *ngIf="!(Building.hasError('required') && Building.touched)" formControlName="Building" [(ngModel)]="objHome.Data.DateCreatedApartmentOrVilla"
-          name="DateCreatedApartmentOrVilla" type="date"  required></ion-input>
-        <ion-input [(ngModel)]="objHome.Data.DateCreatedApartmentOrVilla" *ngIf="Building.hasError('required') && Building.touched"
-          formControlName="Building" name="Building" type="date" required placeholder="Enter a valid Name" color="danger"
-          class="error"></ion-input>
+        <ion-datetime required formControlName="Building" lines="none"
+          [(ngModel)]="objHome.Data.DateCreatedApartmentOrVilla" name="DateCreatedApartmentOrVilla"
+          display-format="DD/MM/YYYY" picker-format="DD/MM/YYYY">
+        </ion-datetime>
       </ion-item>
+
       <ion-item lines="none">
         <ion-label position="stacked">Email Address</ion-label>
         <ion-input *ngIf="!(EmailAddress.hasError('required') && EmailAddress.touched)" formControlName="EmailAddress"
           [(ngModel)]="objHome.Data.Email" name="Email" type="text" required></ion-input>
         <ion-input [(ngModel)]="objHome.Data.Email" *ngIf="EmailAddress.hasError('required') && EmailAddress.touched"
-          formControlName="EmailAddress" name="EmailAddress" type="text" required placeholder="Enter a valid Name"
+          formControlName="EmailAddress" name="EmailAddress" type="text" required placeholder="Enter a valid Email"
           color="danger" class="error">
         </ion-input>
       </ion-item>
@@ -149,34 +152,57 @@
         <ion-input *ngIf="!(PhoneNumber.hasError('required') && PhoneNumber.touched)" formControlName="PhoneNumber"
           [(ngModel)]="objHome.Data.Telephone" name="Telephone" type="Number" required></ion-input>
         <ion-input [(ngModel)]="objHome.Data.Telephone" *ngIf="PhoneNumber.hasError('required') &&
-              PhoneNumber.touched"
-          formControlName="PhoneNumber" name="PhoneNumber" type="text" required placeholder="Enter a valid Phone Number"
-          color="danger" class="error">
+              PhoneNumber.touched" formControlName="PhoneNumber" name="PhoneNumber" type="text" required
+          placeholder="Enter a valid Phone Number" color="danger" class="error">
         </ion-input>
       </ion-item>
-      <ion-row>
-        <ion-col size="11" class="auto">
-          <ion-button expand="full" (click)="img();" class="top" color="medium">
-            Upload Img
-            <ion-icon slot="end" name="add"></ion-icon>
-          </ion-button>
-          <p>
-            <img src="{{myphoto}}">
-            <!-- <img src="../../../assets/img/bg1.jpg"> -->
-          </p>
-        </ion-col>
-        <ion-col size="11" class="auto">
-          <ion-button expand="full" (click)="InsertHome()">
-            Get Quotation
-          </ion-button>
-        </ion-col>
-        <ion-col size="11" class="auto">
-          <span class="note">
-            <strong>Note:</strong>
-            Constructions with more than 30 years of age are rejected.
-          </span>
-        </ion-col>
-      </ion-row>
+
+      <ion-item lines="none">
+        <ion-grid class="nopadding">
+          <ion-row>
+            <ion-col size="4" class="auto">
+              <ion-button expand="full" (click)="img();" class="top" color="medium">
+                Upload Img
+                <ion-icon slot="end" name="add"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+
+      <ion-item>
+        <div style="position: relative;">
+          <div>
+            <img src="assets/img/bg1.jpg">
+          </div>
+          <div style="
+                background-color: #c0bdbd; position: absolute; width: 100%; bottom: 0; left: 0; z-index: 1;">
+            <ion-row>
+              <ion-col size="10">
+                Image Name
+              </ion-col>
+              <ion-col (click)="dismiss()" size="2" class="auto">
+                <ion-icon  name="close" class="ionClose"></ion-icon>
+              </ion-col>
+            </ion-row>
+
+
+          </div>
+        </div>
+      </ion-item>
+
+
+      <ion-col size="11" class="auto">
+        <ion-button expand="full" (click)="InsertHome()">
+          Get Quotation
+        </ion-button>
+      </ion-col>
+      <ion-col size="11" class="auto">
+        <span class="note">
+          <strong>Note:</strong>
+          Constructions with more than 30 years of age are rejected.
+        </span>
+      </ion-col>
     </ion-list>
   </form>
 </ion-content>

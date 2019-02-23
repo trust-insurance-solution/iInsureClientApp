@@ -15,8 +15,9 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 })
 
 export class SignupPage implements OnInit {
+  Img: boolean = false
   myphoto: any
-  Lang:string;
+  Lang: string;
   err: boolean = false;
   showPwd: boolean
   trans_FullName: string;
@@ -45,7 +46,7 @@ export class SignupPage implements OnInit {
   constructor(public _GlobalService: GlobalService,
     public _LoadingController: LoadingController,
     public navCtrl: NavController,
-    public formbuilder: FormBuilder, 
+    public formbuilder: FormBuilder,
     public translate: TranslateService,
     private _Platform: Platform,
     private camera: Camera) {
@@ -185,7 +186,7 @@ export class SignupPage implements OnInit {
     this.objUserInfo.Data.DeviceToken = this._GlobalService.getPlatform() ? '"' + this._GlobalService.getDeviceToken() + '"' : "cbF1x6YK4_w:APA91bEZOJLaN5ZO8wfRB6WyyLIQZ_29E0RLlU4ssd7rqEOxAP1AXYCOBE07-jBQyyn6zKY6MUrqXNFIZsS186Pg-fGMeOSwoHq1tJYv53V_BYHEduiT8CehSlxpObifuMOmuDEZZWQb";
     this.postCreateNewClientAccount().then(data => {
       if (data.Success === 'true') {
-       let UserID= data.ReturnUserId;
+        let UserID = data.ReturnUserId;
         this.postGetClientInformationByID(UserID).then(
           res => { this._GlobalService.setStorage('UserInfo', res.Data); }
         );
@@ -213,7 +214,7 @@ export class SignupPage implements OnInit {
       return 1;
   }
 
-  img(){
+  img() {
     const options: CameraOptions = {
       quality: 100,
       destinationType: this.camera.DestinationType.DATA_URL,
@@ -229,6 +230,7 @@ export class SignupPage implements OnInit {
     }, (err) => {
       // Handle error
     });
+    this.Img ==true
   }
 
   showPass(x) {
@@ -236,12 +238,12 @@ export class SignupPage implements OnInit {
     switch (x) {
       case 1:
         this.showPwd = false
-        console.log("11 " +x)
+        console.log("11 " + x)
         break;
 
       case 0:
         this.showPwd = true
-        console.log("22 " +x)
+        console.log("22 " + x)
 
         break;
     }
