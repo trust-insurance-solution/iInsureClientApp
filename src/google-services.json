@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "413537961389",
+    "firebase_url": "https://iinsureclientapp.firebaseio.com",
+    "project_id": "iinsureclientapp",
+    "storage_bucket": "iinsureclientapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:413537961389:android:3c3741886f2e9adf",
+        "android_client_info": {
+          "package_name": "com.trstins.iInsureClientApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "413537961389-viqvv4e2app0i6clsbjchr8oncoo3cv1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2so3_ehMCaEbFX9zsuXzV7QDisL8LHLg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

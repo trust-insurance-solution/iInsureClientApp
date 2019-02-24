@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "Insure",
+  "appId": "com.trstins.iInsureClientApp",
+  "appName": "iInsureClient",
   "bundledWebRuntime": false,
   "webDir": "www"
 }
