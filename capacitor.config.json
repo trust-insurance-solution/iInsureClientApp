@@ -1,0 +1,6 @@
+{
+  "appId": "com.trstins.iInsureClientApp",
+  "appName": "iInsureClient",
+  "bundledWebRuntime": false,
+  "webDir": "www"
+}
