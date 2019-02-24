@@ -10,7 +10,9 @@ import { BusinessResponse } from '../../entity/BusinessEntity';
 import { UserInfoEntity } from '../../entity/UserInfoEntity';
 import { LoadingController } from '@ionic/angular';
 
- const apiUrl = "http://192.168.0.99/iInsurePortal/TrustInsurance.API/api/Client/";
+
+// const apiUrl = "http://192.168.0.99/iInsurePortal/TrustInsurance.API/api/Client/";
+ const apiUrl = "http://api.trst-ins.com/api/Client/";
  const commonApiUrl = "http://192.168.0.99/iInsurePortal/TrustInsurance.API/api/Common/";
 
 @Injectable({

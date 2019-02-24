@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Toast } from 'ionic-angular';
 import { ToastController } from '@ionic/angular';
-import { $ } from 'protractor';
 
 @Component({
   selector: 'app-product',

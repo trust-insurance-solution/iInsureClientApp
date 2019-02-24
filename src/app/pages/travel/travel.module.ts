@@ -8,6 +8,7 @@ import { IonicSelectableModule } from 'ionic-selectable';
 import { ReactiveFormsModule } from '@angular/forms';
 import { IonicPageModule } from 'ionic-angular';
 import { SharedComponentsModule } from 'src/app/components/shared-components/shared-components.module';
+import { HttpClient } from '@angular/common/http';
 
 const routes: Routes = [
   {

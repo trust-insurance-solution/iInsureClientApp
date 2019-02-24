@@ -6,11 +6,11 @@
           <h3>{{product.name}}</h3>
         </ion-col>
         <ion-col size="12">
-            <h3>{{product.information}}</h3>
-          </ion-col>
+          <h3>{{product.information}}</h3>
+        </ion-col>
       </ion-row>
     </ion-col>
-    <ion-col size="3" text-right>
+    <ion-col size="3" text-right (click)="buyItem(product)">
       <h2> {{product.price}}</h2>
     </ion-col>
   </ion-row>

@@ -6,13 +6,24 @@ import { FormsModule, Validators, FormControl, FormBuilder, FormGroup, AbstractC
 import { IonicSelectableModule, IonicSelectableComponent } from 'ionic-selectable';
 import { forEach } from '@angular/router/src/utils/collection';
 
+import { HttpClient } from '@angular/common/http';
+
 @Component({
   selector: 'app-travel',
   templateUrl: './travel.page.html',
   styleUrls: ['./travel.page.scss'],
 })
 export class TravelPage implements OnInit {
+
+
+
+  information: any[]
+  automaticClose = false
+
+
+
   sub: boolean = false
+
   formgroup: FormGroup
   StartDateJourney: AbstractControl
   EndDateJourney: AbstractControl
@@ -22,7 +33,7 @@ export class TravelPage implements OnInit {
   userID;
   accessToken;
   countries: any;
-  responseData:any;
+  responseData: any;
 
   travlerLst: TravlerEntity[] = [];
   destinationId: FkDestination[] = [];
@@ -40,8 +51,16 @@ export class TravelPage implements OnInit {
   };
   @ViewChild('mySlider') slides: IonSlides;
 
-  constructor(public _GlobalService: GlobalService, public formbuilder: FormBuilder,
-    public navCtrl: NavController) {
+  constructor(public _GlobalService: GlobalService,
+    public formbuilder: FormBuilder,
+    public navCtrl: NavController,
+    private http: HttpClient) {
+    //get array from info.json
+    this.http.get('assets/information.json').subscribe(res => {
+      this.information = res['items'];
+
+      this.information[0].open = true;
+    });
 
     //FORM
     this.formgroup = formbuilder.group({
@@ -66,6 +85,23 @@ export class TravelPage implements OnInit {
     });
   }
 
+
+
+  toggleSection(index) {
+    this.information[index].open = !this.information[index].open
+
+    if (this.automaticClose && this.information[index].open) {
+      this.information
+        .filter((item, itemIndex) => itemIndex != index)
+        .map(item => item.open = false)
+    }
+  }
+
+  toggleItem(index, childIndex) {
+    this.information[index].children[childIndex].open = !this.information[index].children[childIndex].open
+
+  }
+
   ionViewWillEnter() {
     this.addTraveler();
   }
@@ -88,7 +124,7 @@ export class TravelPage implements OnInit {
     this.objTravel.LoggedInUserID = this.userID;
     this.objTravel.Language = this.lang;
     this.postTravelEntry().then((res) => {
-      if (res.Success === 'true'){
+      if (res.Success === 'true') {
         this.responseData = res;
         this._GlobalService._Param = this.responseData;
         this.navCtrl.navigateForward('quotation');
@@ -128,11 +164,14 @@ export class TravelPage implements OnInit {
   }
 
 
-
-
-
-
-
+  showhide(index) {
+    switch (index) {
+      case index:
+        console.log(index)
+        this.sub =true
+        break;
+    }
+  }
 
 
 
