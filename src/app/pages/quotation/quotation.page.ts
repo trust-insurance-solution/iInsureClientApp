@@ -33,6 +33,7 @@ export class QuotationPage implements OnInit {
     this._GlobalService._TransationID=TransationID;
     this.AssignPlan(PlanDetailId, CompanyId, TransationID, lineOfBusiness).then(res => {
       if (res.Success === 'true') {
+        this._GlobalService._PolicyShortPdf=res.Data.PolicyURL_URL;
         this._GlobalService._PolicyURL = res.Data.PolicyURL;
         this.navCtrl.navigateForward('termsconditions');      }
     });

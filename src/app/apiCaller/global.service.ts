@@ -27,6 +27,7 @@ export class GlobalService {
   _TransationID:number;
   _LoadingMessage:string;
   _LoadingSpinner?;
+  _PolicyShortPdf:string;
   constructor(private http: HttpClient, public _AlertController: AlertController, public navCtrl: NavController,
     private _Storage: Storage, private _UniqueDeviceID: UniqueDeviceID, public _Platform: Platform,
     public loadingController:LoadingController) { }

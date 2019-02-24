@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GlobalService } from '../../apiCaller/global.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-payment',
@@ -20,7 +21,7 @@ export class PaymentPage implements OnInit {
   langId:string;
   accessToken:string;
   transationID:number;
-  constructor(public _GlobalService:GlobalService) { 
+  constructor(public _GlobalService:GlobalService,public navCtrl:NavController) { 
     this.transationID=this._GlobalService._TransationID;
     this._GlobalService.getStorage('UserInfo').then((val) => {
       this.accessToken = val.AccessToken;
@@ -38,6 +39,7 @@ export class PaymentPage implements OnInit {
     this.postPayment().then(res => {
       if (res.Success === "true") {
         this._GlobalService.showAlert('', res.ErrorMessage, ['OK']);
+        this.navCtrl.navigateForward('successpayment');
       }
       else
         this._GlobalService.showAlert('', res.ErrorMessage, ['OK']);

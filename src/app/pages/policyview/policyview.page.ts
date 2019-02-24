@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DocumentViewer,DocumentViewerOptions } from '@ionic-native/document-viewer/ngx';
-import { GlobalService } from '../../apiCaller/global.service';
 import { NavController } from '@ionic/angular';
 
 @Component({
@@ -10,7 +9,8 @@ import { NavController } from '@ionic/angular';
 })
 export class PolicyviewPage implements OnInit {
 
-  constructor(private document: DocumentViewer, private _GlobalService: GlobalService, public navCtrl: NavController) {
+  constructor(private document: DocumentViewer, public navCtrl: NavController) {
+    
     const options: DocumentViewerOptions = {
       title: 'My PDF'
     }
