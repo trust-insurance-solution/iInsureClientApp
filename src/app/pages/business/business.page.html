@@ -5,10 +5,11 @@
     </ion-buttons>
     <ion-title>Line of Business</ion-title>
     <ion-buttons slot="end">
-        <ion-button fill="clear"  (click)="notiPage()">
-            <ion-icon class="ii" name="notifications"></ion-icon>
-        </ion-button>
-      </ion-buttons>
+      <ion-button fill="clear" (click)="notiPage()" class="nomargin nopadding">
+        <ion-badge class="badge2">1</ion-badge>
+        <ion-icon name="notifications" class="noti"></ion-icon>
+      </ion-button>
+    </ion-buttons>
 
   </ion-toolbar>
 </ion-header>
@@ -104,24 +105,21 @@
     </ion-row>
 
   </ion-grid>
-  
-  <h6 class="adv"><span class="advS">Ads</span></h6>
-  <ion-grid class="nopadding">
-    <ion-row>
-      <ion-col size="10" class="auto nopadding">
-        <ion-slides pager="true" #mySlider color="dark" (ionSlidesDidLoad)="slidesDidLoad(mySlider)"
-          [options]="slideOpts">
-          <ion-slide>
-            <img class="slid" src="assets/img/adver.png">
-          </ion-slide>
-          <ion-slide>
-             <img class="slid" src="assets/img/adver.png">
-          </ion-slide>
-          <ion-slide>
-             <img class="slid" src="assets/img/adver.png">
-          </ion-slide>
-        </ion-slides>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+
+
 </ion-content>
+
+<ion-footer class="myColor">
+  <h6 class="adv"><span class="advS">Ads</span></h6>
+  <ion-slides pager="true" #mySlider color="dark" (ionSlidesDidLoad)="slidesDidLoad(mySlider)" [options]="slideOpts">
+    <ion-slide>
+      <img class="slid" src="assets/img/adver.png">
+    </ion-slide>
+    <ion-slide>
+      <img class="slid" src="assets/img/adver.png">
+    </ion-slide>
+    <ion-slide>
+      <img class="slid" src="assets/img/adver.png">
+    </ion-slide>
+  </ion-slides>
+</ion-footer>

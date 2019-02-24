@@ -5,12 +5,12 @@
     <div class="first2 nopadding">
       <ion-grid>
         <ion-row>
-          <ion-col size="4">
+          <ion-col size="3">
           </ion-col>
-          <ion-col size="4" class="nopadding">
-            <img src="assets/img/logo.png" class="auto">
+          <ion-col size="6" class="nopadding">
+            <img src="assets/img/logo.png" class="auto logoo">
           </ion-col>
-          <ion-col size="4">
+          <ion-col size="3">
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -18,13 +18,13 @@
 
 
 
-
+    <!-- 
     <div class="box2">
       <ion-grid class="nopadding">
         <ion-row>
           <ion-col size="4" offset="4" class="nopadding">
             <div class="circle">
-              <!-- <img class="avatar" [src]="userImage" alt="No Profile Image"> -->
+            <img class="avatar" [src]="userImage" alt="No Profile Image"> 
               <img class="avatar" src="assets/img/avatar.png" alt="No Profile Image"  *ngIf="!Img">
               <img src="{{myphoto}}" *ngIf="Img">
               <ion-icon class="add" name="add-circle" (click)="img();" ></ion-icon>
@@ -32,7 +32,7 @@
           </ion-col>
         </ion-row>
       </ion-grid>
-    </div>
+    </div> -->
 
     <div class="sec2">
       <form [formGroup]="formgroup">
@@ -43,19 +43,19 @@
             <ion-input class="ww" *ngIf="!(FullName.hasError('required') && FullName.touched )"
               formControlName="FullName" [(ngModel)]="objUserInfo.Data.FullName" name="FullName" type="text" required>
             </ion-input>
-            <ion-input class="ww" *ngIf="FullName.hasError('required') && FullName.touched" formControlName="FullName"
-              name="FullName" [(ngModel)]="objUserInfo.Data.FullName" type="text" required
-              placeholder="Enter a valid Name" color="danger" class="error"></ion-input>
+            <ion-input class="ww error" *ngIf="FullName.hasError('required') && FullName.touched"
+              formControlName="FullName" name="FullName" [(ngModel)]="objUserInfo.Data.FullName" type="text" required
+              placeholder="Enter a valid Name" color="danger"></ion-input>
           </ion-item>
 
           <ion-item lines="none">
             <ion-label class="ww" position="stacked">Email Address</ion-label>
             <ion-input class="ww" *ngIf="!(EmailAddress.hasError('required') && EmailAddress.touched)"
-              formControlName="EmailAddress" [(ngModel)]="objUserInfo.Data.EmailAddress" name="EmailAddress" type="text"
-              required></ion-input>
-            <ion-input class="ww" *ngIf="EmailAddress.hasError('required') && EmailAddress.touched"
-              formControlName="EmailAddress" [(ngModel)]="objUserInfo.Data.EmailAddress" name="EmailAddress" type="text"
-              required placeholder="Enter a valid Email" color="danger" class="error">
+              formControlName="EmailAddress" [(ngModel)]="objUserInfo.Data.EmailAddress" name="EmailAddress"
+              type="email" required></ion-input>
+            <ion-input class="ww error" *ngIf="EmailAddress.hasError('required') && EmailAddress.touched"
+              formControlName="EmailAddress" [(ngModel)]="objUserInfo.Data.EmailAddress" name="EmailAddress"
+              type="email" required placeholder="Enter a valid Email" color="danger">
             </ion-input>
           </ion-item>
 
@@ -64,10 +64,9 @@
             <ion-input class="ww" *ngIf="!(PhoneNumber.hasError('required') && PhoneNumber.touched)"
               formControlName="PhoneNumber" [(ngModel)]="objUserInfo.Data.PhoneNumber" name="PhoneNumber" type="Number"
               required></ion-input>
-            <ion-input class="ww" *ngIf="PhoneNumber.hasError('required') &&
+            <ion-input class="ww error" *ngIf="PhoneNumber.hasError('required') &&
         PhoneNumber.touched" formControlName="PhoneNumber" [(ngModel)]="objUserInfo.Data.PhoneNumber"
-              name="PhoneNumber" type="text" required placeholder="Enter a valid Phone Number" color="danger"
-              class="error">
+              name="PhoneNumber" type="text" required placeholder="Enter a valid Phone Number" color="danger">
             </ion-input>
           </ion-item>
 
@@ -100,9 +99,9 @@
             </ion-input>
 
             <!-- error -->
-            <ion-input class="ww" *ngIf="Password.hasError('required') && Password.touched" formControlName="Password"
+            <ion-input  class="ww error" *ngIf="Password.hasError('required') && Password.touched" formControlName="Password"
               name="Password" [(ngModel)]="objUserInfo.Data.Password" type="text" required
-              placeholder="Enter a valid Password" color="danger" class="error">
+              placeholder="Enter a valid Password" color="danger" >
             </ion-input>
           </ion-item>
 
@@ -113,7 +112,7 @@
               <ion-select-option value="2">Female</ion-select-option>
             </ion-select>
           </ion-item>
-          
+
           <!-- <ion-item lines="none">
         <ion-label class="ww" position="stacked">Confirm Password</ion-label>
         <ion-input class="ww" *ngIf="!(confirmPassword.hasError('required') && confirmPassword.touched)"
@@ -124,7 +123,7 @@
           placeholder="Enter a valid Password" color="danger" class="error"></ion-input>
       </ion-item> -->
           <ion-item lines="none">
-            <ion-label class="ww" position="stacked">Country</ion-label>
+            <ion-label class="ww" position="stacked">Country tttttttttttt</ion-label>
             <ionic-selectable class="ww" name="NationalID" [items]="countries" itemValueField="Id"
               formControlName="countr" itemTextField="CountryName" [canSearch]="true" (onChange)="Nationality($event)"
               required>
@@ -168,7 +167,7 @@
               <ion-col size="8">
                 <ion-label class="ww">Already a Member?</ion-label>
               </ion-col>
-              <ion-col size="4" (click)="login();"  text-end>
+              <ion-col size="4" (click)="login();" text-end>
                 <ion-label class="ww">Login here</ion-label>
               </ion-col>
             </ion-row>

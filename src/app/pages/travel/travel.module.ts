@@ -7,6 +7,7 @@ import { TravelPage } from './travel.page';
 import { IonicSelectableModule } from 'ionic-selectable';
 import { ReactiveFormsModule } from '@angular/forms';
 import { IonicPageModule } from 'ionic-angular';
+import { SharedComponentsModule } from 'src/app/components/shared-components/shared-components.module';
 
 const routes: Routes = [
   {
@@ -22,7 +23,9 @@ const routes: Routes = [
     ReactiveFormsModule,
     IonicSelectableModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    SharedComponentsModule
+
   ],
   declarations: [TravelPage]
 })

@@ -60,6 +60,14 @@
     <tr>
         <td> 
           <ion-item>
+            <ion-label fixed> المبلغ</ion-label>
+            <ion-input type="text" [(ngModel)]="payment.amount"></ion-input>
+          </ion-item>
+        </td>
+      </tr>
+    <tr>
+        <td> 
+          <ion-item>
             <ion-label fixed>شهر الانتهاء</ion-label>
             <ion-input type="text" [(ngModel)]="payment.expire_month"></ion-input>
           </ion-item>

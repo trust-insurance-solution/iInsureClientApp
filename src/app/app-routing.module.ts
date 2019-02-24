@@ -27,8 +27,6 @@ const routes: Routes = [
   { path: 'policyview', loadChildren: './pages/policyview/policyview.module#PolicyviewPageModule' },
   { path: 'payment', loadChildren: './pages/payment/payment.module#PaymentPageModule' },
 
-
-
 ];
 
 @NgModule({

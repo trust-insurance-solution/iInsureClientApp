@@ -1,81 +1,6 @@
 <ion-content class="immg">
-  <div class="first lanColor">
-    <ion-grid>
-      <ion-row>
-        <ion-col size="2"></ion-col>
-        <ion-col size="8" class="nopadding">
-          <div>
-            <img class="avatar" src="assets/img/logo.png">
-          </div>
-        </ion-col>
-        <ion-col size="2"></ion-col>
-      </ion-row>
-    </ion-grid>
-  </div>
-
-  <!-- 
-  <ion-grid>
-    <ion-row>
-      <ion-col size="1"></ion-col>
-      <ion-col size="10">
-        <ion-button [color]="lan1 ? 'medium' : 'dark'" expand="block" (click)="changeLanguage(1);done()" class="fef">
-          <img src="../../../assets/img/english.png">
-          <ion-label class="city">English</ion-label>
-        </ion-button>
-      </ion-col>
-      <ion-col size="1"></ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="1"></ion-col>
-      <ion-col size="10">
-        <ion-button [color]="lan2 ? 'medium' : 'dark'" expand="block" (click)="changeLanguage(2);done()">
-          <img src="../../../assets/img/jordan.png">
-          <ion-label class="city">العربية</ion-label>
-        </ion-button>
-      </ion-col>
-      <ion-col size="1"></ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col size="1"></ion-col>
-      <ion-col size="10">
-        <ion-button [color]="lan3 ? 'medium' : 'dark'" expand="block" (click)="changeLanguage(3);done()">
-          <img src="../../../assets/img/france.png">
-          <ion-label class="city">Francés</ion-label>
-        </ion-button>
-      </ion-col>
-      <ion-col size="1"></ion-col>
-    </ion-row>
-  </ion-grid> -->
 
   <!-- <ion-grid>
-      <ion-row size="12">
-        <ion-col size="4">
-          <ion-fab horizontal="center">
-            <ion-fab-button [color]="lan1 ? 'unset' : 'dark'" expand="block" (click)="changeLanguage(1);done()">
-              <img src="../../../assets/img/english32.png"></ion-fab-button>
-          </ion-fab>
-        </ion-col>
-  
-  
-        <ion-col size="4">
-          <ion-fab horizontal="center">
-            <ion-fab-button [color]="lan2 ? 'unset' : 'dark'" expand="block" (click)="changeLanguage(2);done()">
-              <img src="../../../assets/img/saudi32.png"></ion-fab-button>
-          </ion-fab>
-        </ion-col>
-  
-        <ion-col size="4">
-          <ion-fab horizontal="center">
-            <ion-fab-button [color]="lan3 ? 'unset' : 'dark'" expand="block" (click)="changeLanguage(3);done()">
-              <img src="../../../assets/img/france32.png"></ion-fab-button>
-          </ion-fab>
-        </ion-col>
-  
-      </ion-row>
-    </ion-grid> -->
-
-  <ion-grid>
     <ion-row>
       <ion-col size="4">
         <ion-button [color]="lan1 ? 'unset' : 'dark'" shape="round" (click)="changeLanguage(1);done()">
@@ -93,6 +18,63 @@
         </ion-button>
       </ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-grid> -->
+
+
+  <ion-list class="top">
+    <ion-radio-group>
+      <ion-list-header>
+        <h3>
+          Countries Names
+        </h3>
+      </ion-list-header>
+
+      <ion-item>
+        <ion-avatar slot="start">
+          <ion-img src="assets/img/jordan64.png"></ion-img>
+        </ion-avatar>
+        <ion-label>Jordan</ion-label>
+        <ion-radio slot="end" value="jo"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-avatar slot="start">
+          <ion-img src="assets/img/egypt64.png"></ion-img>
+        </ion-avatar>
+        <ion-label>Egypt</ion-label>
+        <ion-radio slot="end" value="egy"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+
+
+  <ion-list class="top">
+    <ion-radio-group>
+      <ion-list-header>
+        <h3>
+          Language
+        </h3>
+      </ion-list-header>
+
+      <ion-item>
+        <ion-avatar slot="start" class="lan">
+          <span class="lan">AR </span>
+        </ion-avatar>
+        <ion-label>العربيه</ion-label>
+        <ion-radio slot="end" value="ar"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-avatar slot="start" class="lan">
+          <h5 class="lan">EN </h5>
+        </ion-avatar>
+        <ion-label>English</ion-label>
+        <ion-radio slot="end" value="en"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+
+
+
 
 </ion-content>
