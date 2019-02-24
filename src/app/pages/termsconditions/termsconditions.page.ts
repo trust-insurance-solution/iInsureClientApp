@@ -10,8 +10,9 @@ import { DocumentViewer,DocumentViewerOptions } from '@ionic-native/document-vie
   styleUrls: ['./termsconditions.page.scss'],
 })
 export class TermsconditionsPage implements OnInit {
-
+  transationID:number;
   constructor(private navCtrl: NavController, private _GlobalService: GlobalService,private document: DocumentViewer) {
+    this.transationID=this._GlobalService._TransationID;
     const options: DocumentViewerOptions = {
       title: 'My PDF'
     }

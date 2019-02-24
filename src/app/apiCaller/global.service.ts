@@ -11,7 +11,7 @@ import { UserInfoEntity } from '../../entity/UserInfoEntity';
 import { LoadingController } from '@ionic/angular';
 
  const apiUrl = "http://192.168.0.99/iInsurePortal/TrustInsurance.API/api/Client/";
-//const apiUrl = "https://api.trst-ins.com/api/Client/";
+ const commonApiUrl = "http://192.168.0.99/iInsurePortal/TrustInsurance.API/api/Common/";
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +24,10 @@ export class GlobalService {
   _PDFFilePath:string;
   _PolicyURL:string;
   _ObjUserInfo:UserInfoEntity;
-  _Loading:any;
+  _TransationID:number;
+  _LoadingMessage:string;
+  _LoadingSpinner?;
+  _PolicyShortPdf:string;
   constructor(private http: HttpClient, public _AlertController: AlertController, public navCtrl: NavController,
     private _Storage: Storage, private _UniqueDeviceID: UniqueDeviceID, public _Platform: Platform,
     public loadingController:LoadingController) { }
@@ -38,11 +41,48 @@ export class GlobalService {
       'Authorization': authorization != null ? authorization : ''
     });
     let Data = data;
-
+    let _Loading = await this.loadingController.create({
+      message: this._LoadingMessage!=null?this._LoadingMessage:'Please waiting...',
+      spinner: this._LoadingSpinner!=null?this._LoadingSpinner:'crescent'
+    });
+    _Loading.present();
     return new Promise((resolve, reject) => {
       this.http.post(apiUrl + controllerName, Data, { headers })
         .subscribe(res => {
           resolve(res);
+          _Loading.dismiss();
+        }, (err) => {
+          reject(err);
+          console.log("Error " + err);
+        });
+    }
+    );
+  }
+
+  async fetchHeaderApi(controllerName: string, data: any, headerData:any,_loggedInUserID:number,_authorization:string) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json; charset=utf-8',
+      'LoggedInUserID':_loggedInUserID.toString(),
+      'Authorization': _authorization,
+      'payment_type': headerData.payment_type,
+      'card_number': headerData.card_number,
+      'expire_month': headerData.expire_month,
+      'expire_year': headerData.expire_year,
+      'security_code': headerData.security_code,
+      'amount': headerData.amount,
+      'currency': headerData.currency
+    });
+    let Data = data;
+    let _Loading = await this.loadingController.create({
+      message: this._LoadingMessage,
+      spinner: this._LoadingSpinner
+    });
+    _Loading.present();
+    return new Promise((resolve, reject) => {
+      this.http.post(commonApiUrl + controllerName, Data, { headers })
+        .subscribe(res => {
+          resolve(res);
+          _Loading.dismiss();
         }, (err) => {
           reject(err);
           console.log("Error " + err);
@@ -121,19 +161,5 @@ export class GlobalService {
       });
     });
   }
-
-  // To turn on Loading
-  async presentLoading(message: string, spinner?) {
-    this._Loading = await this.loadingController.create({
-      message: message,
-      spinner: spinner
-    });
-    this._Loading.present();
-  }
-  //To turn off Loading
-  hideLoading() {
-    this._Loading.dismiss();
-  }
-
 }
 
