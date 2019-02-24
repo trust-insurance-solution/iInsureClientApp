@@ -11,7 +11,7 @@ import { UserInfoEntity } from '../../entity/UserInfoEntity';
 import { LoadingController } from '@ionic/angular';
 
  const apiUrl = "http://192.168.0.99/iInsurePortal/TrustInsurance.API/api/Client/";
-//const apiUrl = "https://api.trst-ins.com/api/Client/";
+ const commonApiUrl = "http://192.168.0.99/iInsurePortal/TrustInsurance.API/api/Common/";
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +25,7 @@ export class GlobalService {
   _PolicyURL:string;
   _ObjUserInfo:UserInfoEntity;
   _Loading:any;
+  _TransationID:number;
   constructor(private http: HttpClient, public _AlertController: AlertController, public navCtrl: NavController,
     private _Storage: Storage, private _UniqueDeviceID: UniqueDeviceID, public _Platform: Platform,
     public loadingController:LoadingController) { }
@@ -41,6 +42,31 @@ export class GlobalService {
 
     return new Promise((resolve, reject) => {
       this.http.post(apiUrl + controllerName, Data, { headers })
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+          console.log("Error " + err);
+        });
+    });
+  }
+
+  async fetchHeaderApi(controllerName: string, data: any, headerData:any,_loggedInUserID:number,_authorization:string) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json; charset=utf-8',
+      'LoggedInUserID':_loggedInUserID.toString(),
+      'Authorization': _authorization,
+      'payment_type': headerData.payment_type,
+      'card_number': headerData.card_number,
+      'expire_month': headerData.expire_month,
+      'expire_year': headerData.expire_year,
+      'security_code': headerData.security_code,
+      'amount': headerData.amount,
+      'currency': headerData.currency
+    });
+    let Data = data;
+    return new Promise((resolve, reject) => {
+      this.http.post(commonApiUrl + controllerName, Data, { headers })
         .subscribe(res => {
           resolve(res);
         }, (err) => {

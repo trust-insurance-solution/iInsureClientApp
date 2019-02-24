@@ -30,6 +30,7 @@ export class QuotationPage implements OnInit {
 
   AssignPlanToTransaction(PlanDetailId, CompanyId, TransationID, lineOfBusiness, PDFFilePath) {
     this._GlobalService._PDFFilePath = PDFFilePath;
+    this._GlobalService._TransationID=TransationID;
     this._GlobalService.presentLoading('Please wait...', 'crescent');
     this.AssignPlan(PlanDetailId, CompanyId, TransationID, lineOfBusiness).then(res => {
       if (res.Success === 'true') {
