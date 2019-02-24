@@ -1,7 +1,11 @@
-.lan{
+ion-avatar.lan{
+    display: grid;
+    border:1px solid #333333;
+}
+.lan {
+  
     text-align: center;
-    color: #035c8d;
-    font-weight: 700;
+    place-content: center;
 }
 .ttop{
     margin-top: 10vw;

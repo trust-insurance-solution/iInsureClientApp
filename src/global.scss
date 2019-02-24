@@ -10,6 +10,7 @@
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
 //  @import url('https://fonts.googleapis.com/css?family=Cairo');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 @font-face {
     font-family: Cairo;
@@ -27,35 +28,37 @@
     font-weight: 400;
 }
 
-
+@font-face {
+    font-family: HiraginoSans;
+    src: url(assets/font/HiraginoSansGBW3.ttf);
+}
 *{
-     font-family: Cairo !important;
+    font-family: 'Open Sans', sans-serif !important;
 }
 h6 { font-weight:200; }
 h3 { font-weight:400; }
 h1 { font-weight:600; }
 ion-button{  font-weight:600; }
-ion-label{font-weight:100;}
-ion-label.ww{font-weight:600;}
+
 //First Div 
 .first{
     height: 42%;
     border-bottom-left-radius: 60% 40%;
     border-bottom-right-radius: 60% 40%;
 }
-.first30{
+.first2{
     background-color: #f7f8fc !important;
-    height: 33vh !important;
-    border-bottom-left-radius: 50% 100px;
-    border-bottom-right-radius: 50% 100px;
+    //height: 28vh !important;
+    // border-bottom-left-radius: 50% 100px;
+    // border-bottom-right-radius: 50% 100px;
     border-radius: 0 0 60vw 60vw/0 0 37vw 37vw;
  }
+ .logoo{
+    margin: 0 0 30px 0 !important;
+    width: 100% !important;
+ }
 
-.first2{
-   background-color: #f7f8fc !important;
-   height: 24vh !important;
-   border-radius: 0 0 60vw 60vw/0 0 37vw 37vw;
-}
+
 .sec{
     height: 47%;
     margin-top: 19%;
@@ -98,9 +101,8 @@ ion-label.ww{font-weight:600;}
 }
 
 ion-icon.noti {
-    font-size: x-large;
+    font-size: xx-large;
     text-align: center;
-    margin: 1vw 3vw 0 auto;
     color: #ffffff;
 } 
 
@@ -159,11 +161,24 @@ ion-input.ww , ionic-selectable.ww, ion-select.ww, ion-datetime.ww{
    padding-left: 10px !important; 
    border: 1px solid #d6cccc;
    text-align: left;
-   height: 35px !important;
-   
+   height: 35px !important; 
+}
+.badge{
+    background-color: #d30c0c;
+    position: absolute;
+    z-index: 77;
+    top: 0;
+    right: 7px;
 }
 
-ion-input , ion-datetime, ionic-selectable, ion-select, ion-input.error{
+.badge2{
+    background-color: #d30c0c;
+    position: absolute;
+    z-index: 77;
+    top: -5px;
+    right: 7px;
+}
+ion-input , ion-datetime, ionic-selectable, ion-select, ion-input.error {
     background-color: var(--primary-color) !important;
     color: var(--gray333-color) !important;
     border-radius: 1vw;
@@ -173,6 +188,9 @@ ion-input , ion-datetime, ionic-selectable, ion-select, ion-input.error{
    border: 1px solid #d6cccc;
    text-align: left;
    height: 35px !important;
+ }
+ .myColor{
+    background-color: #f7f8fc !important;   
  }
 
  ion-input.error{

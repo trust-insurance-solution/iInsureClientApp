@@ -1,9 +1,14 @@
 <ion-content>
   <div class="first firstColor">
-    <ion-buttons slot="end">
-      <ion-icon name="notifications" class="noti" (click)="notiPage()"></ion-icon>
-    </ion-buttons>
     <ion-grid>
+      <ion-row>
+        <ion-col text-end>
+          <ion-button fill="clear" (click)="notiPage()" class="nomargin">
+            <ion-badge class="badge">1</ion-badge>
+            <ion-icon name="notifications" class="noti"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
       <ion-row>
         <ion-col size="4" offset="4" class="nopadding">
           <div class="circle">
@@ -14,7 +19,7 @@
       </ion-row>
       <ion-row>
         <ion-col size="12" class="nopadding auto">
-          <h6 class="name">fullName</h6>
+          <h6 class="name">{{fullName}}</h6>
         </ion-col>
       </ion-row>
     </ion-grid>
