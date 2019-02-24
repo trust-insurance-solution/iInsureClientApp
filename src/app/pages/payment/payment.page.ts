@@ -50,7 +50,6 @@ export class PaymentPage implements OnInit {
       Language: this.langId,
       LoggedInUserID: this.userID,
     }
-    console.log(JSON.stringify(objData));
     return this._GlobalService.fetchHeaderApi('ViasMasterCardPayment', objData, this.payment,this.userID,this.accessToken);
   }
 }

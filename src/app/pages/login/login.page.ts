@@ -64,16 +64,23 @@ export class LoginPage implements OnInit {
     this.loginData.Data.PhoneNumber = this.loginData.Data.EmailAddress;
     this.loginData.Data.FkMachineType=this.getDeviceType();
     this.loginData.Language = this.Lang;
-
-    this.postLogin().then(res => {
-      if (res.Success === 'true') {
-        this._GlobalService.setStorage('UserInfo', res.Data);
-        this.navCtrl.navigateForward('home');
-      }
-      else {
-        this._GlobalService.showAlert('Sign-in Failed', res.ErrorMessage, ['OK']);
-      }
-    });
+    this._GlobalService.deleteStorage('UserInfo');
+    if (this.loginData.Data.Password != "" && (this.loginData.Data.EmailAddress != "" || this.loginData.Data.PhoneNumber != "")) {
+      this.postLogin().then(res => {
+        if (res.Success === 'true') {
+          this._GlobalService.setStorage('UserInfo', res.Data);
+          this.navCtrl.navigateForward('home');
+        }
+        else {
+          this._GlobalService.showAlert('Sign-in Failed', res.ErrorMessage, ['OK']);
+        }
+      });
+    }
+  /*  else
+    {
+      this._GlobalService.showAlert('Sign-in Failed','Please fill email and password', ['OK']);
+    }
+    */
   }
   ngOnInit() { }
   SignUp() {
