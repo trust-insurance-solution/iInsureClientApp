@@ -1,0 +1,6 @@
+{
+  "appId": "io.ionic.starter",
+  "appName": "Insure",
+  "bundledWebRuntime": false,
+  "webDir": "www"
+}
